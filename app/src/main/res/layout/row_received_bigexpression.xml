@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingTop="13dp" >
+
+    <TextView
+        android:id="@+id/timestamp"
+        style="@style/chat_text_date_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+                 android:paddingLeft="10dp"
+        android:layout_marginTop="@dimen/margin_chat_activity" >
+
+        <ImageView
+            android:id="@+id/iv_userhead"
+            android:layout_width="@dimen/photo_chat_avatar_size"
+            android:layout_height="@dimen/photo_chat_avatar_size"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/margin_chat_activity"
+            android:src="@drawable/user_photo" />
+
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="11dp"
+            android:layout_toRightOf="@id/iv_userhead"
+               android:paddingBottom="3dp"
+            android:text="姓名"
+         
+            android:textColor="@color/text_gray_color"
+            android:textSize="11sp" />
+        
+        <RelativeLayout
+            android:id="@id/bubble"
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_chat_activity"
+            android:layout_toRightOf="@id/iv_userhead"
+            android:layout_below="@+id/name_tv"
+             >
+
+                <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/image"
+                  android:layout_width="@dimen/gif_emotionsize"
+                android:layout_height="@dimen/gif_emotionsize"
+                android:scaleType="fitXY" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

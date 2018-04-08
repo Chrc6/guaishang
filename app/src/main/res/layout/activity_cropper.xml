@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <RelativeLayout style="@style/titleBackGroundStyle" >
+
+        <ImageView style="@style/titleBackStyle" />
+
+        <TextView
+            style="@style/titleTextStyle"
+            android:text="裁剪" />
+        
+          <TextView
+            style="@style/TitleRightBtnNoBackgroundStyle"
+            android:text="完成" />
+    </RelativeLayout>
+
+    <View style="@style/LineStyle"/>
+    
+<ScrollView 
+    android:id="@+id/scrollview"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    
+    
+    <LinearLayout
+        android:id="@+id/mylayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:layout_margin="16dp"
+        android:orientation="vertical"
+        tools:context=".MainActivity" >
+
+        <com.houwei.guaishang.views.CropImageView
+                   xmlns:custom="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/CropImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+           android:minHeight="540dp"
+           android:minWidth="540dp"
+             />
+
+        
+
+            <Button
+                android:id="@+id/Button_crop"
+       android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/blue_round_background"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="完成"
+                android:textColor="@color/white_color"
+                android:textSize="16sp"  />
+
+  
+        </LinearLayout>
+    
+
+</ScrollView>
+</LinearLayout>

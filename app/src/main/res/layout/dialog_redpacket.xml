@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="250dp"
+    android:layout_height="150dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/red_envelope_bg" >
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="给TA送点金币才可以看到照片哦"
+        android:textColor="#F6DBBC"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:id="@+id/center_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageView  android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginRight="6dp"
+            android:src="@drawable/mission_coin"/>
+        
+        <TextView
+            android:id="@+id/price_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.01"
+            android:textColor="#F7F17E"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+        
+                <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="金币"
+            android:layout_marginLeft="4dp"
+            android:textColor="#F7F17E"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/pay_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="立即赠送"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:background="@drawable/gold_circle"
+        android:textColor="@color/orange_color"
+        android:textSize="13sp"/>
+
+</LinearLayout>

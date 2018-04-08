@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="118dp"
+    android:layout_height="118dp" >
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="118dp"
+        android:layout_height="118dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/user_photo" />
+
+    <Button
+        android:id="@+id/delete_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="4dp"
+        android:focusable="false"
+        android:background="@drawable/picture_delete" />
+
+</RelativeLayout>

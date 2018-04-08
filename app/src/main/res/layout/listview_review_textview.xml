@@ -1,0 +1,8 @@
+<com.houwei.guaishang.views.SpannableTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/comment_tiny_tv"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="3dp"
+    android:gravity="left"
+    android:textColor="@color/text_black_color"
+    android:textSize="13sp" />

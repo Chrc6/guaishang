@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white_color"
+    android:columnCount="3"
+    android:rowCount="3" >
+
+    <ImageView
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:padding="1dp"
+        android:src="@drawable/gray_rect" />
+
+    <ImageView
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:padding="1dp"
+        android:src="@drawable/gray_rect" />
+    
+    
+    
+    
+    
+   
+    
+    
+    
+    
+    
+    
+    
+
+</GridLayout>

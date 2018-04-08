@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/white_background"
+    android:orientation="vertical" >
+
+        <View style="@style/LineStyle" />
+    
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/transparent_gray_circle"
+        android:text="内容"
+        android:textColor="@color/text_black_color"
+        android:textColorLink="#0082CB"
+        android:textSize="17sp" />
+    
+	  <com.houwei.guaishang.video.JCVideoPlayerStandard
+        android:id="@+id/videoplayer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical" /> 
+    
+    <View
+        style="@style/LineStyle"
+        android:layout_marginTop="8dp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:duplicateParentState="true"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/comment_ll"
+            android:layout_width="0dp"
+            android:layout_height="34dp"
+            android:layout_weight="1"
+            android:addStatesFromChildren="true"
+            android:background="@drawable/white_background"
+            android:clickable="true"
+            android:duplicateParentState="true"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/review_count_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/icon_comment"
+                android:drawablePadding="5dp"
+                android:focusable="false"
+                android:gravity="center"
+                android:text="评论"
+                android:textColor="@color/text_gray_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <View style="@style/LineVerticalStyle" />
+
+        <LinearLayout
+            android:id="@+id/share_ll"
+            android:layout_width="0dp"
+            android:layout_height="34dp"
+            android:layout_weight="1"
+            android:addStatesFromChildren="true"
+            android:background="@drawable/white_background"
+            android:clickable="true"
+            android:duplicateParentState="true"
+            android:gravity="center"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp" >
+
+            <TextView
+                android:id="@+id/share_count_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:drawableLeft="@drawable/listitem_share"
+                android:drawablePadding="5dp"
+                android:focusable="false"
+                android:gravity="center"
+                android:text="分享"
+                android:textColor="@color/text_gray_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/LineStyle" />
+
+</LinearLayout>

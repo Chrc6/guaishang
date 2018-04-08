@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <com.houwei.guaishang.views.ParallaxListView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            style="@style/ListViewDividerStyle"
+            app:zoomRatio="1.9" />
+
+        <Button
+            android:id="@id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/back_no_titlebar" />
+    </RelativeLayout>
+
+    <View style="@style/LineStyle" />
+
+    <View style="@style/LineWhiteStyle" />
+
+    <LinearLayout
+        android:id="@+id/bottom_rg"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="@color/gray_light_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/chat_tv"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="对话"
+            android:textColor="@color/text_gray_color"
+            android:textSize="17sp" />
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="24dp"
+            android:background="@color/divider_color" />
+
+        <TextView
+            android:id="@+id/follow_tv"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="关注"
+            android:textColor="@color/text_gray_color"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+</LinearLayout>

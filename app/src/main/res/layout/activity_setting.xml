@@ -1,0 +1,192 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/title_rl"
+        style="@style/titleBackGroundStyle" >
+
+        <ImageView style="@style/titleBackStyle" />
+
+        <TextView
+            style="@style/titleTextStyle"
+            android:text="系统设置" />
+    </RelativeLayout>
+
+    <View style="@style/LineStyle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:orientation="vertical" >
+
+        <TextView
+            style="@style/MemoTitleTextStyle"
+            android:text="接收新消息通知" />
+
+        <View style="@style/LineStyle" />
+
+        <LinearLayout
+            android:id="@+id/setting_sound_ll"
+            style="@style/MemoBodyLinearLayoutStyle"
+            android:background="@drawable/white_background"
+            android:paddingBottom="10dp"
+            android:paddingLeft="24dp"
+            android:paddingTop="10dp" >
+
+            <TextView
+                style="@style/MemoBodyGrayText15SizeStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="声音" >
+            </TextView>
+
+            <ImageView
+                android:id="@+id/sound_iv"
+                 style="@style/ArrowRightStyle" 
+                android:background="@drawable/check_round_checked"/>
+        </LinearLayout>
+
+        <View
+            style="@style/LineStyle"
+            android:layout_marginLeft="24dp" />
+
+        <LinearLayout
+            android:id="@+id/setting_rock_ll"
+            style="@style/MemoBodyLinearLayoutStyle"
+            android:background="@drawable/white_background"
+            android:paddingBottom="10dp"
+            android:paddingLeft="24dp"
+            android:paddingTop="10dp" >
+
+            <TextView
+                style="@style/MemoBodyGrayText15SizeStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="震动" />
+
+              <ImageView
+                android:id="@+id/rock_iv"
+                 style="@style/ArrowRightStyle" 
+                android:background="@drawable/check_round_checked"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/LineStyle" />
+
+    <View
+        style="@style/LineStyle"
+        android:layout_marginTop="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/setting_ll3"
+            style="@style/MemoBodyLinearLayoutStyle"
+            android:background="@drawable/white_background"
+            android:paddingBottom="10dp"
+            android:paddingLeft="24dp"
+            android:paddingTop="10dp" >
+
+            <TextView
+                style="@style/MemoBodyGrayText15SizeStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="检查更新" >
+            </TextView>
+
+            <ImageView style="@style/ArrowRightStyle" />
+        </LinearLayout>
+
+        <View
+            style="@style/LineStyle"
+            android:layout_marginLeft="24dp" />
+
+             <LinearLayout
+            android:id="@+id/backlist_ll"
+            style="@style/MemoBodyLinearLayoutStyle"
+            android:background="@drawable/white_background"
+            android:paddingBottom="10dp"
+            android:paddingLeft="24dp"
+            android:paddingTop="10dp" >
+
+            <TextView
+                style="@style/MemoBodyGrayText15SizeStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="黑名单" >
+            </TextView>
+
+            <ImageView style="@style/ArrowRightStyle" />
+        </LinearLayout>
+
+        <View
+            style="@style/LineStyle"
+            android:layout_marginLeft="24dp" />
+        
+        <LinearLayout
+            android:id="@+id/setting_opinion"
+            style="@style/MemoBodyLinearLayoutStyle"
+            android:background="@drawable/white_background"
+            android:paddingBottom="10dp"
+            android:paddingLeft="24dp"
+            android:paddingTop="10dp" >
+
+            <TextView
+                style="@style/MemoBodyGrayText15SizeStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="意见反馈" />
+
+            <ImageView style="@style/ArrowRightStyle" />
+        </LinearLayout>
+
+        <View
+            style="@style/LineStyle"
+            android:layout_marginLeft="24dp" />
+
+        <LinearLayout
+            android:id="@+id/setting_ll5"
+            style="@style/MemoBodyLinearLayoutStyle"
+            android:background="@drawable/white_background"
+            android:paddingBottom="10dp"
+            android:paddingLeft="24dp"
+            android:paddingTop="10dp" >
+
+            <TextView
+                style="@style/MemoBodyGrayText15SizeStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="关于我们" />
+
+            <ImageView style="@style/ArrowRightStyle" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/VerticalWeightViewStyle" />
+
+    <Button
+        android:id="@+id/exit_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/red_round"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="退出登录"
+        android:textColor="@color/white_color"
+        android:textSize="16sp" >
+    </Button>
+
+</LinearLayout>

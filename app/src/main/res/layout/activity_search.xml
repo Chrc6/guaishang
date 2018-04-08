@@ -1,0 +1,162 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#AAAAAA"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/searchbar_et"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/white_fill_round"
+            android:drawableLeft="@drawable/searchbar_textfield_search_icon"
+            android:gravity="center"
+            android:hint="搜索：昵称、标签、商品"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:textColor="@color/text_black_color"
+            android:textColorHint="@color/text_gray_color"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/send_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/orange_round_background"
+            android:gravity="left"
+            android:padding="6dp"
+            android:text="搜索"
+            android:textColor="@color/white_color"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white_color"
+                    android:orientation="vertical"
+                    android:paddingLeft="12dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="相关用户"
+                        android:textColor="@color/text_gray_color"
+                        android:textSize="15sp" />
+
+                    <View style="@style/LineStyle" />
+
+                    <com.houwei.guaishang.layout.LinearLayoutForListView
+                        android:id="@+id/users_linearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp" >
+                    </com.houwei.guaishang.layout.LinearLayoutForListView>
+
+                    <TextView
+                        android:id="@+id/users_more_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/white_background"
+                        android:clickable="true"
+                        android:drawableLeft="@drawable/searchbar_textfield_search_icon_highlighted"
+                        android:drawablePadding="10dp"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:text="查看更多用户"
+                        android:textColor="@color/orange_color"
+                        android:textSize="15sp" />
+
+                    <View style="@style/LineStyle" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white_color"
+                    android:orientation="vertical"
+                    android:paddingLeft="12dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="相关商品"
+                        android:textColor="@color/text_gray_color"
+                        android:textSize="15sp" />
+
+                    <View style="@style/LineStyle" />
+
+                    <com.houwei.guaishang.layout.LinearLayoutForListView
+                        android:id="@+id/topic_linearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp" >
+                    </com.houwei.guaishang.layout.LinearLayoutForListView>
+
+                    <TextView
+                        android:id="@+id/topic_more_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/white_background"
+                        android:clickable="true"
+                        android:drawableLeft="@drawable/searchbar_textfield_search_icon_highlighted"
+                        android:drawablePadding="10dp"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:text="查看更多商品"
+                        android:textColor="@color/orange_color"
+                        android:textSize="15sp" />
+
+                    <View style="@style/LineStyle" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+        
+        
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/MProgressBar.black.Small"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:indeterminate="true" />
+        
+    </FrameLayout>
+
+</LinearLayout>

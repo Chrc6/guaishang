@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottom_ll"
+    android:layout_width="match_parent"
+    android:layout_height="34dp"
+
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="6dp"
+    android:paddingTop="6dp">
+
+
+    <TextView
+        android:id="@+id/price_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="14dp"
+        android:drawableLeft="@drawable/icon_money"
+        android:drawablePadding="4dp"
+
+        android:text="120元"
+        android:textColor="#000"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
+    <Button
+        android:id="@+id/order_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/l_buy_selector"
+        android:focusable="false"
+        android:gravity="center"
+        android:text="购买"
+        android:textColor="@color/white_color"
+        android:textSize="13sp" />
+
+
+</RelativeLayout>

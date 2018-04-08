@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/title_rl"
+        style="@style/titleBackGroundStyle" >
+
+        <ImageView style="@style/titleBackStyle" 
+             android:onClick="back" />
+
+          <TextView
+            style="@style/titleTextStyle"
+            android:text="选取图片（多选）" />
+        
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:text="完成"
+            android:onClick="ok"
+             style="@style/TitleRightBtnNoBackgroundStyle"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#d000" >
+
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom"
+            android:horizontalSpacing="3dp"
+            android:numColumns="3"
+            android:scrollbars="none"
+            android:verticalSpacing="5dp" >
+        </GridView>
+
+        <RelativeLayout
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray_color" >
+
+            <Button
+                android:id="@+id/btn_select"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dp"
+                android:background="@null"
+                android:onClick="select"
+                android:text="/所有图片"
+                android:textColor="@color/blue_color"
+                android:textSize="16sp" />
+           
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/albumlistview"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:layout_above="@id/bottom"
+            android:background="#fff"
+            android:visibility="gone" >
+        </ListView>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,156 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <RelativeLayout style="@style/titleBackGroundStyle" >
+
+        <ImageView style="@style/titleBackStyle" />
+
+        <TextView
+            style="@style/titleTextStyle"
+            android:text="完善资料" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/my_bg"
+                android:gravity="center"
+                android:padding="30dp" >
+
+                <ImageView
+                    android:id="@id/user_head"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/user_reg_photo" />
+            </LinearLayout>
+
+            
+             <View
+                style="@style/LineStyle"
+                android:layout_marginTop="14dp" />
+
+             <LinearLayout
+                 android:id="@+id/password_ll"
+                  style="@style/MemoBodyLinearLayoutStyle"
+            android:paddingLeft="18dp">
+
+                <TextView
+                    android:text="密码"
+                        style="@style/MemoBodyGrayText15SizeStyle"/>
+
+                <EditText
+                    android:id="@+id/password_et"
+                          android:inputType="textPassword"
+                     android:maxLength="30"
+                     style="@style/MemoBodyGrayEditText15SizeStyle"
+                    android:hint="登录密码（必填）"
+                    android:paddingRight="12dp"
+                    android:singleLine="true"/>
+            </LinearLayout>
+            
+                <View
+                style="@style/LineStyle"/>
+             
+             
+            <View
+                style="@style/LineStyle"
+                android:layout_marginTop="14dp" />
+
+             <LinearLayout
+                 android:id="@+id/user_name_ll"
+                  style="@style/MemoBodyLinearLayoutStyle"
+            android:paddingLeft="18dp">
+
+                <TextView
+                    android:text="昵称"
+                        style="@style/MemoBodyGrayText15SizeStyle"/>
+
+                <EditText
+                    android:id="@+id/realname_et"
+                       android:hint="输入昵称（必填）"
+                         android:singleLine="true"
+                            android:maxLength="30"
+                      style="@style/MemoBodyGrayEditText15SizeStyle" />
+            </LinearLayout>
+
+         
+
+            <View style="@style/LineStyle" />
+
+            <View
+                style="@style/LineStyle"
+                android:layout_marginTop="14dp" />
+
+            <LinearLayout
+                android:id="@+id/age_ll"
+                     android:paddingLeft="18dp"
+                 style="@style/MemoBodyLinearLayoutClickStyle" >
+
+                <TextView
+                    android:text="年龄"
+                        style="@style/MemoBodyGrayText15SizeStyle" />
+
+                <TextView
+                    android:id="@+id/age_tv"
+                    android:hint="选填"
+                      style="@style/MemoBodyGrayEditText15SizeStyle" />
+
+                <ImageView style="@style/ArrowRightStyle" />
+            </LinearLayout>
+
+            <View 
+                style="@style/LineStyle" />
+
+             <LinearLayout
+                android:id="@+id/sex_ll"
+                     android:paddingLeft="18dp"
+                 style="@style/MemoBodyLinearLayoutClickStyle" >
+
+                <TextView
+                    android:text="性别"
+                        style="@style/MemoBodyGrayText15SizeStyle" />
+
+                <TextView
+                    android:id="@+id/sex_tv"
+                      android:hint="选填"
+                      style="@style/MemoBodyGrayEditText15SizeStyle" />
+
+                <ImageView style="@style/ArrowRightStyle" />
+            </LinearLayout>
+
+
+            <View style="@style/LineStyle" />
+
+            <Button
+                android:id="@+id/reg_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/black_press_drawable"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="完成"
+                android:textColor="@color/white_color"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

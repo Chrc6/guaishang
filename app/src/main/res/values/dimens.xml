@@ -1,0 +1,55 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="radius_corner">4dp</dimen>
+    <dimen name="circle_corner">20dp</dimen>
+    <dimen name="photo_listitem_size">40dp</dimen>
+      <dimen name="photo_chat_avatar_size">43dp</dimen>
+       <dimen name="photo_listitem_large_size">55dp</dimen>
+         <dimen name="photo_grid_size">80dp</dimen>
+        <dimen name="face_tiny_item_size">16dp</dimen>
+    <dimen name="praise_photo_size">28dp</dimen>
+    <dimen name="photo_listitem_tiny_size">40dp</dimen>
+    <dimen name="half_circle_corner">40dp</dimen>
+    <dimen name="radio_margin">8dp</dimen>
+    <dimen name="cloudview_margin">6dp</dimen>
+    <dimen name="mine_info_header_name">14sp</dimen>
+    <dimen name="mine_info_header_job">11.7sp</dimen>
+    <dimen name="dp5">5dp</dimen>
+    <dimen name="face_item_size">20dp</dimen>
+      <dimen name="dp100">100dp</dimen>
+    <dimen name="mine_parallax_height">210dp</dimen>
+    <dimen name="carousel_image_shadow_height">40.0dip</dimen>
+    <dimen name="item_space">0dp</dimen>
+    <dimen name="max_header_height">210.0dip</dimen>
+    <dimen name="max_photo_width">210.0dip</dimen>
+    <dimen name="letter_textsize">12sp</dimen>
+   <dimen name="face_height">130dp</dimen>
+      <dimen name="emotion_height">150dp</dimen>
+      <dimen name="line_height">0.7dp</dimen>
+       <dimen name="comment_tiny_cell_padding">2dp</dimen>
+       <dimen name="topic_gridphoto_leftmargin">14dp</dimen>
+      
+      
+    <!-- huanxin -->
+        <dimen name="margin_chat_activity">5dp</dimen>
+    <dimen name="field_textsize">14sp</dimen>
+     <dimen name="edittext_emojicon_size">18dp</dimen>
+    
+	<dimen name="gif_emotionsize">105sp</dimen>
+    <dimen name="field_margin_right">5dp</dimen>
+    <dimen name="call_button_padding_vertical">10dp</dimen>
+    <dimen name="call_button_padding_left">25dp</dimen>
+    <dimen name="call_button_padding_right">25dp</dimen>
+    <dimen name="sidebar_text_size">10dp</dimen>
+     <dimen name="image_thumbnail_size">100dp</dimen>
+    <dimen name="image_thumbnail_spacing">1dp</dimen>
+    
+      <dimen name="jc_progress_dialog_margin_top">80dp</dimen>
+    <dimen name="jc_volume_dialog_margin_left">24dp</dimen>
+    <dimen name="divider_height">2dp</dimen>
+    <dimen name="divider_padding">2dp</dimen>
+    <dimen name="default_divider_padding">2dp</dimen>
+</resources>

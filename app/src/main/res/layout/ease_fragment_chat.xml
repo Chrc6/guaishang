@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:easemob="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/background_color" >
+
+    <RelativeLayout
+        android:id="@+id/title_layout"
+        style="@style/titleBackGroundStyle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" >
+
+        <ImageView
+            style="@style/titleBackStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/titleTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="聊天" />
+        
+        <ImageView
+            android:id="@+id/title_right"
+            style="@style/TitleRightBtnNoBackgroundStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:padding="10dp"
+            android:src="@drawable/navi_group_detail"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/title_bottom_ll"
+        style="@style/LineStyle"
+        android:layout_below="@+id/title_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/input_menu"
+        android:layout_below="@+id/title_bottom_ll" >
+
+        <com.houwei.guaishang.easemob.EaseChatMessageList
+            android:id="@+id/message_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.houwei.guaishang.easemob.EaseVoiceRecorderView
+            android:id="@+id/voice_recorder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <com.houwei.guaishang.easemob.EaseChatInputMenu  android:id="@+id/input_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

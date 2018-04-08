@@ -1,0 +1,135 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/avatar_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_light_color"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp" >
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/user_photo" />
+       
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_color">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                style="@style/titleBackGroundStyle"
+                android:background="@color/my_bg">
+
+                <ImageView
+                    style="@style/titleBackStyle"
+                    android:visibility="gone" />
+
+                <TextView
+                    style="@style/titleTextStyle"
+                    android:text="我的"
+                    android:textColor="@color/white_color" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/my_bg"
+                android:gravity="center">
+
+                <com.houwei.guaishang.view.CircleImageView
+                    android:id="@+id/user_head"
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
+                    android:layout_margin="32dp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
+                <TextView
+                    android:id="@+id/tv_license"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="营业执照"
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
+                <TextView
+                    android:gravity="center"
+                    android:layout_alignLeft="@+id/tv_license"
+                    android:layout_alignRight="@+id/tv_license"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_license"
+                    android:text="(或身份证)"
+                    android:textColor="@color/black" />
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:id="@+id/gridView_lisence"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/picture_update_icon" />
+            </RelativeLayout>
+
+            <View style="@style/LineStyle"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <TextView
+                    android:textSize="22sp"
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="电话"
+                    android:textColor="@color/black"
+                     />
+
+                <TextView
+                    android:textSize="22sp"
+                    android:id="@+id/tv_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="电话"
+                    android:textColor="@color/black"
+                     />
+
+
+            </LinearLayout>
+            <View style="@style/LineStyle"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"/>
+            <com.houwei.guaishang.views.UnScrollGridView
+                android:id="@+id/gridView"
+                style="@style/GridViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/white_color" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

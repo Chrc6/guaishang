@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ActivityBackgroundStyle" >
+
+    <RelativeLayout style="@style/titleBackGroundStyle" >
+
+        <ImageView style="@style/titleBackStyle" />
+
+        <TextView
+            style="@style/titleTextStyle"
+            android:text="任务中心" />
+    </RelativeLayout>
+
+    <View style="@style/LineStyle" />
+
+    <TextView
+        style="@style/MemoTitleTextStyle"
+        android:text="每日任务"
+        android:textSize="15sp" />
+
+    <View style="@style/LineStyle" />
+
+    <LinearLayout
+        android:id="@+id/sign_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="14dp"
+        android:clickable="true"
+        android:paddingTop="14dp" >
+
+        <ImageView
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="18dp"
+            android:src="@drawable/mission_icon_sign" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="每日签到"
+                android:textColor="@color/text_black_color"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/mission_coin"
+                android:drawablePadding="5dp"
+                android:text="10"
+                android:textColor="@color/text_gray_color"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sign_status_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="加载中"
+            android:textColor="@color/text_gray_color"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color" >
+
+        <View
+            style="@style/LineStyle"
+            android:layout_marginLeft="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp" >
+
+        <ImageView
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="18dp"
+            android:src="@drawable/mission_icon_share" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="分享给好友"
+                android:textColor="@color/text_black_color"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/mission_coin"
+                android:drawablePadding="5dp"
+                android:text="20"
+                android:textColor="@color/text_gray_color"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/share_status_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="加载中"
+            android:textColor="@color/text_gray_color"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color" >
+
+        <View
+            style="@style/LineStyle"
+            android:layout_marginLeft="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp" >
+
+        <ImageView
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="18dp"
+            android:src="@drawable/mission_icon_praise" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="每日点赞"
+                android:textColor="@color/text_black_color"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/mission_coin"
+                android:drawablePadding="5dp"
+                android:text="10"
+                android:textColor="@color/text_gray_color"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/praise_status_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="加载中"
+            android:textColor="@color/text_gray_color"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View style="@style/LineStyle" />
+
+    
+    <TextView
+        style="@style/MemoTitleTextStyle"
+        android:text="主线任务"
+        android:textSize="15sp" />
+
+    <View style="@style/LineStyle" />
+
+    <LinearLayout
+        android:id="@+id/avatar_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp" >
+
+        <ImageView
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="18dp"
+            android:src="@drawable/mission_icon_avatar" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上传头像"
+                android:textColor="@color/text_black_color"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/mission_coin"
+                android:drawablePadding="5dp"
+                android:text="50"
+                android:textColor="@color/text_gray_color"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/avatar_status_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="加载中"
+            android:textColor="@color/text_gray_color"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color" >
+
+        <View
+            style="@style/LineStyle"
+            android:layout_marginLeft="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp" >
+
+        <ImageView
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="18dp"
+            android:src="@drawable/mission_icon_follow" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关注十个人"
+                android:textColor="@color/text_black_color"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/mission_coin"
+                android:drawablePadding="5dp"
+                android:text="50"
+                android:textColor="@color/text_gray_color"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/follow_status_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="加载中"
+            android:textColor="@color/text_gray_color"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+            style="@style/LineStyle"/>
+</LinearLayout>

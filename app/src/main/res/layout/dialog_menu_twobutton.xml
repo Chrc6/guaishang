@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white_single_round"
+    android:gravity="center_horizontal"
+    android:minWidth="280dp"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="14dp"
+        android:background="@drawable/white_background"
+        android:text="举报"
+        android:gravity="center"
+        android:textColor="@color/text_black_color"
+        android:textSize="17sp"
+     />
+
+    <View style="@style/LineStyle"/>
+    
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="14dp"
+        android:background="@drawable/white_background"
+        android:text="拉入黑名单"
+        android:gravity="center"
+        android:textColor="@color/text_black_color"
+        android:textSize="17sp"
+     />
+    
+    
+</LinearLayout>

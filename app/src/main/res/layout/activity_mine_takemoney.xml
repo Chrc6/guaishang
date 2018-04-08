@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ActivityBackgroundStyle" >
+
+    <RelativeLayout style="@style/titleBackGroundStyle" >
+
+        <ImageView style="@style/titleBackStyle" />
+
+        <TextView
+            style="@style/titleTextStyle"
+            android:text="提现" />
+    </RelativeLayout>
+
+    <View style="@style/LineStyle" />
+    
+   <TextView
+        style="@style/MemoTitleTextStyle"
+        android:text="注：100金币 = 1人民币" />
+
+    <View style="@style/LineStyle" />
+
+    <LinearLayout
+        android:id="@+id/password_ll"
+        style="@style/MemoBodyLinearLayoutStyle"
+        android:paddingLeft="18dp" >
+
+        <TextView
+            style="@style/MemoBodyGrayText15SizeStyle"
+            android:text="真实姓名" />
+
+        <EditText
+            android:id="@+id/user_name_et"
+            style="@style/MemoBodyGrayEditText15SizeStyle"
+            android:hint="以便转账核实"
+            android:maxLength="30"
+            android:paddingRight="12dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <View style="@style/LineStyle" />
+
+  <TextView
+          android:id="@+id/balance_tv"
+        style="@style/MemoTitleTextStyle"
+        android:text="当前余额：加载中" />
+
+    <View style="@style/LineStyle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="18dp"
+            android:src="@drawable/zhifubao_icon" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/alipay_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="支付宝收款"
+                android:textColor="@color/text_black_color"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="钱将打到您的支付宝账户上"
+                android:textColor="@color/text_gray_color"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/alipay_cb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:button="@drawable/checkbox_round"
+            android:checked="true"
+            android:clickable="false"
+            android:gravity="center"
+            android:padding="10dp" />
+    </LinearLayout>
+
+    <View style="@style/LineStyle" />
+
+    <LinearLayout
+        style="@style/MemoBodyLinearLayoutStyle"
+        android:paddingLeft="18dp" >
+
+        <TextView
+            style="@style/MemoBodyGrayText15SizeStyle"
+            android:text="支付宝账号" />
+
+        <EditText
+            android:id="@+id/alipay_et"
+            style="@style/MemoBodyGrayEditText15SizeStyle"
+            android:hint="取款支付宝账号"
+            android:maxLength="30"
+            android:paddingRight="12dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <View style="@style/LineStyle" />
+
+    <View style="@style/VerticalWeightViewStyle" />
+
+    <Button
+        android:id="@+id/pay_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/green_round_background"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="提交申请"
+        android:textColor="@color/white_color"
+        android:textSize="16sp" >
+    </Button>
+
+</LinearLayout>

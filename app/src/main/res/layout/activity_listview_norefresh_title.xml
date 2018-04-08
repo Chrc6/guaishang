@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+   
+    <RelativeLayout
+        style="@style/titleBackGroundStyle" >
+
+        <ImageView
+            style="@style/titleBackStyle" />
+
+        <TextView
+            style="@style/titleTextStyle"/>
+        
+          <TextView
+            style="@style/TitleRightBtnNoBackgroundStyle" />
+    </RelativeLayout>
+
+    
+    <View style="@style/LineStyle"/>
+
+       <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <com.houwei.guaishang.views.PagedListView
+        android:id="@+id/pagedListView"
+        
+            style="@style/ListViewStyle" />
+        
+    
+<ProgressBar
+            android:id="@+id/loadingBar"
+            style="@style/MProgressBarCenter.Small"
+            />
+    </RelativeLayout>
+    
+</LinearLayout>

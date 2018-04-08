@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ActivityBackgroundStyle"
+    android:gravity="center_horizontal" >
+
+    <RelativeLayout style="@style/titleBackGroundStyle" >
+
+        <ImageView style="@style/titleBackStyle" />
+
+        <TextView
+            style="@style/titleTextStyle"
+            android:text="新建群" />
+        
+         <TextView
+            style="@style/TitleRightBtnNoBackgroundStyle"
+            android:text="添加成员" />
+    </RelativeLayout>
+
+    <View style="@style/LineStyle" />
+
+    <TextView
+        style="@style/MemoTitleTextStyle"
+        android:text="群名称" />
+
+    <View style="@style/LineStyle" />
+
+    <EditText
+        android:id="@+id/name_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:hint="不超过10个字"
+        android:paddingBottom="10dp"
+        android:paddingLeft="22dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:textColor="@color/text_black_color"
+        android:textSize="15sp" />
+
+    <View style="@style/LineStyle" />
+
+    <TextView
+        style="@style/MemoTitleTextStyle"
+        android:text="群组头像" />
+
+    <View style="@style/LineStyle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <ImageView
+            android:id="@id/user_head"
+            android:layout_width="@dimen/photo_listitem_large_size"
+            android:layout_height="@dimen/photo_listitem_large_size"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="24dp"
+            android:src="@drawable/group_avator_default" />
+
+        <View style="@style/HorizontalWeightViewStyle" />
+
+        <Button
+            android:id="@+id/change_groupavatar_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/green_round_background"
+            android:clickable="true"
+            android:focusable="false"
+            android:paddingBottom="3dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="3dp"
+            android:text="更换"
+            android:textColor="@color/white_color"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View style="@style/LineStyle" />
+
+    <TextView
+        android:id="@+id/public_title_tv"
+        style="@style/MemoTitleTextStyle"
+        android:text="创建公开群，别人可以搜索到且直接进入您的群" />
+
+    <View style="@style/LineStyle" />
+
+    <LinearLayout
+        style="@style/MemoBodyLinearLayoutStyle"
+        android:gravity="center_vertical"
+        android:paddingLeft="24dp" >
+
+        <TextView
+            style="@style/MemoBodyGrayText15SizeStyle"
+            android:layout_weight="1"
+            android:text="公开群　" />
+
+        <CheckBox
+            android:id="@+id/public_check_box"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:checked="true"
+            android:button="@drawable/checkbox_round" />
+    </LinearLayout>
+
+    <View 
+        android:id="@+id/line_view"
+        android:visibility="gone"
+        android:layout_marginLeft="18dp" style="@style/LineStyle" />
+
+        <LinearLayout
+            android:id="@+id/ll_open_invite"
+        style="@style/MemoBodyLinearLayoutStyle"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        android:paddingLeft="24dp" >
+
+        <TextView
+            style="@style/MemoBodyGrayText15SizeStyle"
+            android:layout_weight="1"
+            android:text="成员也可以邀请他人　" />
+
+        <CheckBox
+            android:id="@+id/member_check_box"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:button="@drawable/checkbox_round" />
+    </LinearLayout>
+
+    <View style="@style/LineStyle" />
+</LinearLayout>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="2dip"
+    android:paddingTop="2dip" >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_color" />
+
+    <LinearLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="4dp" >
+
+        <Button
+            android:id="@+id/btn_set_mode_voice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chatting_setmode_voice_btn"
+            android:onClick="setModeVoice"
+            android:paddingBottom="6dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="6dp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn_set_mode_keyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chatting_setmode_keyboard_btn"
+            android:onClick="setModeKeyboard"
+            android:paddingBottom="6dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="6dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/btn_press_to_speak"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_weight="1"
+            android:background="@drawable/chat_press_speak_btn"
+            android:gravity="center"
+            android:visibility="gone" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@string/button_pushtotalk"
+                android:textColor="@color/text_black_color"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/edittext_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1" >
+
+            <com.houwei.guaishang.layout.EmotionEditText
+                android:id="@+id/et_sendmessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="40dip"
+                android:background="@drawable/white_gray_stroke_corner"
+                android:inputType="textMultiLine"
+                android:maxHeight="80dp"
+                android:onClick="editClick"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="6dp"
+                android:paddingRight="6.0dip"
+                android:paddingTop="6.0dip"
+                android:minHeight="32dp"
+                android:textColor="@color/text_gray_color"
+                android:textSize="15.0sp" />
+
+            <ImageView
+                android:id="@+id/iv_face_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical|right"
+                android:padding="4dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/message_emotion_background"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_face_checked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical|right"
+                android:padding="4dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/message_emotion_background_highlighted"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/btn_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:onClick="more"
+            android:padding="4dp"
+            android:src="@drawable/type_select_btn" />
+
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/orange_round_background"
+            android:onClick="onClick"
+            android:padding="6dp"
+            android:text="发送"
+            android:textColor="@color/white_color"
+            android:textSize="15sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+      <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider_color" />
+    
+    
+</LinearLayout>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+            android:background="@drawable/white_background"
+    android:orientation="vertical" >
+
+    <LinearLayout
+          android:layout_marginTop="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal"
+        android:paddingBottom="6dp"
+        android:gravity="center_vertical"
+        android:paddingTop="6dp" >
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp" >
+
+            <ImageView
+                android:id="@+id/cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                     android:scaleType="centerCrop"
+                android:src="@drawable/gray_rect" />
+
+            <ImageView
+                 android:id="@+id/play_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/jc_play_normal" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="加载中"
+                android:singleLine="true"
+                android:textColor="@color/text_black_color"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/item_memo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:maxLines="1"
+                android:text="加载中..."
+                android:textColor="@color/text_gray_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/item_memo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:singleLine="true"
+                android:text="加载中..."
+                android:textColor="@color/text_gray_color"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <ImageView style="@style/ArrowRightStyle" />
+    </LinearLayout>
+    
+    
+    <View 
+        android:layout_marginTop="6dp"
+        style="@style/LineStyle" />
+    
+<LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gray_light_color"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="6dp"
+    android:paddingTop="6dp" >
+
+
+    <TextView
+        android:id="@+id/price_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+      android:layout_marginLeft="14dp"
+        android:layout_weight="1"
+        android:drawablePadding="4dp"
+        android:gravity="center_vertical|left"
+        android:text="120元"
+        android:textStyle="bold"
+        android:textColor="@color/green_color"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/chat_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/yellow_circle_background"
+        android:focusable="false"
+        android:paddingBottom="4dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="4dp"
+        android:text="聊一聊"
+        android:textColor="@color/brown_color"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/order_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/orange_circle_background"
+        android:focusable="false"
+        android:paddingBottom="4dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="4dp"
+        android:text="确认收货"
+        android:textColor="@color/white_black_enable"
+        android:textSize="13sp" />
+
+
+</LinearLayout>
+
+    <View style="@style/LineStyle" />
+    
+</LinearLayout>

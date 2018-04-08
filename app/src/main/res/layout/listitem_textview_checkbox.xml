@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+  android:background="@drawable/white_background"
+     android:paddingTop="9dp"
+     android:gravity="center"
+              android:paddingBottom="9dp"
+            android:paddingLeft="24dp"
+    android:orientation="horizontal" >
+               <TextView
+                   android:id="@+id/tv"
+                style="@style/MemoBodyGrayText15SizeStyle"
+                android:textColor="@color/text_gray_color"
+                android:textSize="17sp"
+                android:layout_centerInParent="true"
+                android:text="职业　" />
+
+               <ImageView 
+                   android:id="@+id/checked_iv"
+                   android:layout_marginLeft="14dp"
+                   android:layout_toRightOf="@+id/tv"
+                   android:background="@drawable/check_round_checked"
+                       android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+ </RelativeLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/my_bg"
+    android:orientation="vertical" >
+
+   
+    <RelativeLayout
+        style="@style/titleBackGroundStyle"
+        android:background="@color/my_bg">
+
+        <ImageView
+            style="@style/titleBackStyle" />
+
+        <TextView
+            style="@style/titleTextStyle"/>
+        
+       <TextView
+            style="@style/TitleRightBtnNoBackgroundStyle"/>
+    </RelativeLayout>
+
+    <View style="@style/LineStyle"
+        android:visibility="gone"/>
+    
+    <com.houwei.guaishang.views.PullToRefreshPagedListView
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        xmlns:ptr="http://schemas.android.com/apk/res/com.houwei.guaishang"
+        style="@style/ListViewDividerStyle"
+
+     />
+    
+</LinearLayout>

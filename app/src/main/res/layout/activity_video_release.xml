@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/ActivityBackgroundStyle">
+
+    <RelativeLayout style="@style/titleBackGroundStyle" >
+
+        <ImageView style="@style/titleBackStyle" />
+
+        <TextView
+            style="@style/titleTextStyle"
+            android:text="投稿视频" />
+
+        <TextView
+            style="@style/TitleRightBtnNoBackgroundStyle"
+            android:text="发布" />
+    </RelativeLayout>
+
+    <View style="@style/LineStyle" />
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <com.houwei.guaishang.views.InputControlEditText
+                android:id="@+id/content_et"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:background="@color/white_color"
+                android:gravity="top"
+                android:hint="说点什么吧"
+                android:imeOptions="actionSend"
+                android:padding="8dp"
+                android:textColor="@color/text_black_color"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_color"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:padding="8dp" >
+     <View style="@style/HorizontalWeightViewStyle"/>
+                <ImageView
+                    android:id="@+id/face_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:paddingTop="6dp"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="12dp"
+                    android:src="@drawable/compose_emoticonbutton_background_highlighted" />
+                
+                      <TextView
+                    android:id="@+id/showLength"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:gravity="right|center_vertical"
+                    android:paddingBottom="4dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="4dp"
+                    android:text="0/140 字"
+                    android:textColor="@color/orange_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View style="@style/LineStyle" />
+
+            
+            
+            <View
+                style="@style/LineStyle"
+                android:layout_marginTop="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_color"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:orientation="horizontal" >
+
+                <CheckBox
+                    android:id="@+id/location_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gray_single_circle"
+                    android:drawableLeft="@drawable/location_checkbox"
+                    android:gravity="center"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:paddingTop="2dp"
+                    android:checked="false"
+                    android:enabled="false"
+                    android:button="@null"
+                    android:text="正在定位中..."
+                    android:textColor="@color/location_checkbox"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View style="@style/LineStyle" />
+            
+            <View
+                style="@style/LineStyle"
+                android:layout_marginTop="12dp" />
+
+            <LinearLayout
+                android:id="@+id/price_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_color"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/price_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/icon_money"
+                    android:drawablePadding="6dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:text="价格　"
+                    android:textColor="@color/text_black_color"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/price_et"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="单位：元"
+                    android:inputType="numberDecimal"
+                    android:maxLength="5"
+                    android:padding="8dp"
+                    android:textColor="@color/orange_color"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <View style="@style/LineStyle" />
+            
+            <View
+                style="@style/LineStyle"
+                android:layout_marginTop="12dp" />
+            <android.support.v7.widget.RecyclerView
+                android:background="@color/white_color"
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:listSelector="@android:color/transparent"
+                android:scrollbarStyle="outsideOverlay"
+                app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                app:spanCount="5"
+                tools:listitem="@layout/list_item_imagetwo" />
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/white_color" >
+
+                <RelativeLayout
+
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp" >
+
+                    <ImageView
+                        android:id="@+id/imageview"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentBottom="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/picture_update_icon" />
+
+                    <Button
+                        android:id="@+id/delete_btn"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/picture_delete"
+                        android:focusable="false" 
+                        android:visibility="gone"/>
+                    
+                      <ImageView
+                        android:id="@+id/play_imageview"
+                     android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentBottom="true"
+                        android:visibility="gone"
+                        android:src="@drawable/jc_click_play_selector" />
+                    
+                </RelativeLayout>
+            </LinearLayout>
+            
+            <View style="@style/LineStyle" />
+            
+            <TextView
+                android:id="@+id/video_remark_tv"
+                style="@style/MemoTitleTextStyle"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="4dp"
+                android:text="最多只能上传九张图片" />
+
+
+            
+        </LinearLayout>
+    </ScrollView>
+
+    <View style="@style/LineStyle" />
+    <!-- 按表情出来的表情面板 -->
+
+    <FrameLayout
+        android:id="@+id/emojicon_menu_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f0f0f0"
+        android:visibility="gone" >
+    </FrameLayout>
+
+</LinearLayout>

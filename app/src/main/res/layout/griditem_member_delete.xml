@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="80dp" >
+
+    
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/user_photo" />
+
+    <Button
+        android:id="@+id/delete_btn"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="-15dp"
+        android:layout_toRightOf="@+id/imageview"
+        android:background="@drawable/picture_delete"
+        android:focusable="false" />
+
+    <TextView
+        android:id="@+id/name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="6dp"
+        android:text="加载中"
+        android:singleLine="true"
+        android:textColor="@color/text_black_color"
+        android:textSize="14sp" />
+
+    
+    
+    <ImageView 
+        android:id="@+id/owner_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_alignLeft="@+id/imageview"
+       android:layout_marginLeft="-8dp"
+        android:src="@drawable/message_icon_groupmanager"/>
+</RelativeLayout>

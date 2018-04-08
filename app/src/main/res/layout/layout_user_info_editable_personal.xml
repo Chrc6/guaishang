@@ -1,0 +1,135 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_color"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            style="@style/MemoTitleTextStyle"
+            android:text="基本资料" />
+
+        <View style="@style/LineStyle" />
+
+        <LinearLayout
+            android:id="@+id/realname_ll"
+            style="@style/MemoBodyLinearLayoutClickStyle"
+            android:paddingLeft="28dp" >
+
+            <TextView
+                style="@style/FormBodyGrayTextStyle"
+                android:text="昵称　" />
+
+            <TextView
+                android:id="@+id/realname_tv"
+                style="@style/FormBodyGrayPadding10EditTextStyle"
+                android:hint="未填写" />
+
+            <ImageView style="@style/ArrowRightStyle" />
+        </LinearLayout>
+
+        <View
+            style="@style/LineStyle"
+            android:layout_marginLeft="28dp" />
+
+        <LinearLayout
+            android:id="@+id/age_ll"
+            style="@style/MemoBodyLinearLayoutClickStyle"
+            android:paddingLeft="28dp" >
+
+            <TextView
+                style="@style/FormBodyGrayTextStyle"
+                android:text="年龄　" />
+
+            <TextView
+                android:id="@+id/age_tv"
+                style="@style/FormBodyGrayPadding10EditTextStyle"
+                android:hint="未填写" />
+
+            <ImageView style="@style/ArrowRightStyle" />
+        </LinearLayout>
+
+        <View
+            style="@style/LineStyle"
+            android:layout_marginLeft="28dp" />
+
+        <LinearLayout
+            android:id="@+id/sex_ll"
+            style="@style/MemoBodyLinearLayoutClickStyle"
+            android:paddingLeft="28dp" >
+
+            <TextView
+                style="@style/FormBodyGrayTextStyle"
+                android:text="性别　" />
+
+            <TextView
+                android:id="@+id/sex_tv"
+                style="@style/FormBodyGrayPadding10EditTextStyle"
+                android:hint="未填写" />
+
+            <ImageView style="@style/ArrowRightStyle" />
+        </LinearLayout>
+
+        <View
+            style="@style/LineStyle"
+            android:layout_marginLeft="28dp" />
+
+        <LinearLayout
+            android:id="@+id/mobile_ll"
+            style="@style/MemoBodyLinearLayoutClickStyle"
+            android:paddingLeft="28dp" >
+
+            <TextView
+                style="@style/FormBodyGrayTextStyle"
+                android:text="手机号　" />
+
+            <TextView
+                android:id="@+id/mobile_tv"
+                style="@style/FormBodyGrayPadding10EditTextStyle"
+                android:hint="未填写" />
+
+            <ImageView style="@style/ArrowRightStyle" />
+        </LinearLayout>
+
+        <View style="@style/LineStyle" />
+
+        <View style="@style/LineWhiteStyle" />
+
+        <TextView
+            style="@style/MemoTitleTextStyle"
+            android:text="个人标签" />
+
+        <View style="@style/LineStyle" />
+
+        <com.houwei.guaishang.views.CloudTagViewGroup
+            android:id="@+id/tagsViewGroup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+        <View style="@style/LineStyle" />
+
+        <View style="@style/LineWhiteStyle" />
+
+        <TextView
+            style="@style/MemoTitleTextStyle"
+            android:text="自我评价" />
+
+        <View style="@style/LineStyle" />
+
+        <TextView
+            android:id="@+id/introduce_tv"
+            style="@style/IntroTextStyle"
+            android:hint="未填写" />
+
+        <View style="@style/LineStyle" />
+    </LinearLayout>
+
+</LinearLayout>

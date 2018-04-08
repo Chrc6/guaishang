@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ActivityBackgroundStyle"
+    android:gravity="center_horizontal" >
+
+    <RelativeLayout style="@style/titleBackGroundStyle" >
+
+        <ImageView style="@style/titleBackStyle" />
+
+        <TextView
+            style="@style/titleTextStyle"
+            android:text="群资料" />
+    </RelativeLayout>
+
+    <View style="@style/LineStyle" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_color"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/MemoTitleTextStyle"
+                android:text="群成员" />
+
+            <View style="@style/LineStyle" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="90dp" >
+
+                <com.houwei.guaishang.views.UnScrollGridView
+                    android:id="@+id/gridview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="13dp"
+                    android:horizontalSpacing="6dp"
+                    android:gravity="center_horizontal"
+                    android:listSelector="@android:color/transparent"
+                    android:numColumns="4"
+                    
+                    android:verticalSpacing="10dp" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="@style/MProgressBar.black.Small"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_centerInParent="true"
+                    android:indeterminate="true" />
+            </RelativeLayout>
+
+            <View style="@style/LineStyle" />
+
+            <TextView
+                style="@style/MemoTitleTextStyle"
+                android:text="群组头像" />
+
+            <View style="@style/LineStyle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp" >
+
+                <ImageView
+                    android:id="@id/user_head"
+                    android:layout_width="@dimen/photo_listitem_large_size"
+                    android:layout_height="@dimen/photo_listitem_large_size"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="24dp"
+                    android:src="@drawable/user_photo" />
+
+                <View style="@style/HorizontalWeightViewStyle" />
+
+                <Button
+                    android:id="@+id/change_groupavatar_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/green_round_background"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="3dp"
+                    android:visibility="gone"
+                    android:text="更换"
+                    android:textColor="@color/white_color"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View style="@style/LineStyle" />
+
+            <TextView
+                style="@style/MemoTitleTextStyle"
+                android:text="基本资料" />
+
+            <View style="@style/LineStyle" />
+
+            <LinearLayout
+                android:id="@+id/name_ll"
+                style="@style/MemoBodyLinearLayoutStyle"
+                android:paddingLeft="24dp" >
+
+                <TextView
+                    style="@style/MemoBodyGrayText15SizeStyle"
+                    android:text="群名称　" />
+
+                <TextView
+                    android:id="@+id/name_tv"
+                    style="@style/MemoBodyGrayEditText15SizeStyle"
+                    android:hint="加载中" />
+
+                <ImageView style="@style/ArrowRightStyle" />
+            </LinearLayout>
+
+            <View style="@style/LineShortStyle" />
+
+            <LinearLayout
+                style="@style/MemoBodyLinearLayoutStyle"
+                android:paddingLeft="24dp" >
+
+                <TextView
+                    style="@style/MemoBodyGrayText15SizeStyle"
+                    android:text="群组人数　" />
+
+                <TextView
+                    android:id="@+id/count_tv"
+                    style="@style/MemoBodyGrayEditText15SizeStyle"
+                    android:hint="加载中" />
+
+                <ImageView
+                    style="@style/ArrowRightStyle"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View style="@style/LineShortStyle" />
+
+            <LinearLayout
+                android:id="@+id/notify_ll"
+                style="@style/MemoBodyLinearLayoutStyle"
+                android:gravity="center_vertical"
+                android:layout_height="40dp"
+                android:paddingLeft="24dp" >
+
+                <TextView
+                    style="@style/MemoBodyGrayText15SizeStyle"
+                    android:text="屏蔽群消息　" />
+
+                <View style="@style/HorizontalWeightViewStyle" />
+
+                <com.houwei.guaishang.views.SlipSwitch
+                    android:id="@+id/block_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    style="@style/ArrowRightStyle"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            
+                        <View style="@style/LineShortStyle" />
+
+            <LinearLayout
+                style="@style/MemoBodyLinearLayoutStyle"
+                android:gravity="center_vertical"
+                android:layout_height="40dp"
+                android:paddingLeft="24dp" >
+
+                <TextView
+                    style="@style/MemoBodyGrayText15SizeStyle"
+                    android:text="接收但不提示消息　" />
+
+                <View style="@style/HorizontalWeightViewStyle" />
+
+                <com.houwei.guaishang.views.SlipSwitch
+                    android:id="@+id/notity_disable_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    style="@style/ArrowRightStyle"
+                    android:visibility="invisible" />
+            </LinearLayout>
+            
+            <View style="@style/LineStyle" />
+
+            <LinearLayout   android:layout_width="fill_parent"
+                android:background="@color/background_color"
+                android:layout_height="wrap_content">
+            
+            <Button
+                android:id="@+id/exit_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/red_round"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp"
+                android:text="退出登录"
+                android:textColor="@color/white_color"
+                android:textSize="16sp" >
+            </Button>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

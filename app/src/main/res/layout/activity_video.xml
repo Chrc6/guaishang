@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0E3464"
+    android:scrollbarAlwaysDrawVerticalTrack="false"
+    android:scrollbarStyle="outsideOverlay"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        style="@style/titleBackGroundStyle"
+        android:layout_height="30dp"
+        android:paddingLeft="8dp"
+        android:background="#0E3464">
+
+
+        <ImageView
+            android:id="@+id/title_right_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:padding="6dp"
+            android:src="@drawable/titlesearch" />
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/title_right_iv"
+                android:layout_width="wrap_content"
+                android:text="搜索"
+                android:textColor="#fff"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <View
+
+        style="@style/LineStyle"
+        android:layout_height="1dp"
+
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:visibility="invisible"
+            android:layout_marginLeft="8dp"
+            android:id="@+id/image_add1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:padding="6dp"
+            android:src="@drawable/add" />
+        <com.houwei.guaishang.views.ViewPagerTabsView
+            android:layout_toRightOf="@+id/image_add1"
+            android:id="@+id/fixed_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="#0E3464"
+            android:gravity="center"
+            android:layout_toLeftOf="@+id/image_add"/>
+        <ImageView
+            android:layout_marginRight="8dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/image_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:padding="6dp"
+            android:src="@drawable/add" />
+
+    </RelativeLayout>
+
+    <!--<View style="@style/LineStyle" />-->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#0E3464"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:scrollbarStyle="outsideOverlay"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp" />
+
+</LinearLayout>

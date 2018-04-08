@@ -1,0 +1,148 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/bottom_ll" />
+
+    
+      <View
+    android:layout_width="match_parent"
+    android:layout_height="4dp"
+       android:layout_above="@+id/bottom_ll"
+    android:background="@drawable/top_shadow"
+          />
+    
+    <View
+        android:id="@+id/bottom_ll"
+        style="@style/LineStyle"
+        android:layout_above="@+id/bottom_layout" />
+
+
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true" >
+
+        <RadioGroup
+            android:id="@+id/rgOperator"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#F7F7F7"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/topic_radio"
+                style="@style/buttombuttonstyle"
+                android:checked="true"
+                android:drawableTop="@drawable/main_tab_check_topic"
+                android:text="订单" />
+
+            <FrameLayout
+                android:layout_width="54dp"
+                android:layout_height="wrap_content" >
+            </FrameLayout>
+
+            <RadioButton
+                android:id="@+id/mine_radio"
+                style="@style/buttombuttonstyle"
+                android:drawableTop="@drawable/main_tab_check_mine"
+                android:text="我的" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/rgOperator"
+            android:orientation="horizontal" >
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:id="@+id/unReadActionCountTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|center"
+                    android:layout_marginLeft="14.0dip"
+                    android:layout_marginTop="3dip"
+                    android:background="@drawable/red_unread_bg"
+                    android:gravity="center"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="5dip"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="@color/white_color"
+                    android:textSize="10dp"
+                    android:visibility="invisible" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="54dp"
+                android:layout_height="wrap_content" >
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:id="@+id/unReadFansCountTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|center"
+                    android:layout_marginLeft="14.0dip"
+                    android:layout_marginTop="3dip"
+                    android:background="@drawable/red_unread_bg"
+                    android:gravity="center"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="5dip"
+                    android:singleLine="true"
+                    android:textColor="@color/white_color"
+                    android:textSize="10dp"
+                    android:visibility="invisible" />
+            </FrameLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="54dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:id="@+id/publish_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tab_publis_selector" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="发布订单"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/bottom_check_tv_color"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+</RelativeLayout>

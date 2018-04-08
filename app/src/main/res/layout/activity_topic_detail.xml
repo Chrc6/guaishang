@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:background="#0E3464"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <RelativeLayout style="@style/titleBackGroundStyle"
+        android:background="#0E3464">
+
+        <ImageView style="@style/titleBackStyle" />
+
+        <TextView
+            style="@style/titleTextStyle"
+            android:text="评论" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:cardCornerRadius="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.houwei.guaishang.views.PullToRefreshPagedListView
+                style="@style/ListViewStyle"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+
+            <View style="@style/LineStyle" />
+
+
+
+            <com.houwei.guaishang.layout.InputLinearLayout
+                android:id="@+id/review_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+            </com.houwei.guaishang.layout.InputLinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

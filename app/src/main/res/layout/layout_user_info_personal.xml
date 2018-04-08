@@ -1,0 +1,120 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_color"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            style="@style/MemoTitleTextStyle"
+            android:text="基本资料" />
+
+        <View style="@style/LineStyle" />
+
+        <LinearLayout
+            style="@style/MemoBodyLinearLayoutStyle"
+            android:paddingLeft="24dp" >
+
+            <TextView
+                style="@style/MemoBodyGrayText15SizeStyle"
+                android:text="昵称　" />
+
+            <TextView
+                android:id="@+id/name_tv"
+                style="@style/MemoBodyGrayEditText15SizeStyle"
+                android:hint="未填写" />
+        </LinearLayout>
+
+        <View
+            style="@style/LineStyle"
+            android:layout_marginLeft="24dp" />
+
+        <LinearLayout
+            style="@style/MemoBodyLinearLayoutStyle"
+            android:paddingLeft="24dp" >
+
+            <TextView
+                style="@style/MemoBodyGrayText15SizeStyle"
+                android:text="年龄　" />
+
+            <TextView
+                android:id="@+id/age_tv"
+                style="@style/MemoBodyGrayEditText15SizeStyle"
+                android:hint="未填写" />
+        </LinearLayout>
+
+        <View
+            style="@style/LineStyle"
+            android:layout_marginLeft="24dp" />
+
+        <LinearLayout
+            style="@style/MemoBodyLinearLayoutStyle"
+            android:paddingLeft="24dp" >
+
+            <TextView
+                style="@style/MemoBodyGrayText15SizeStyle"
+                android:text="性别　" />
+
+            <TextView
+                android:id="@+id/sex_tv"
+                style="@style/MemoBodyGrayEditText15SizeStyle"
+                android:hint="未填写" />
+        </LinearLayout>
+
+        <View style="@style/LineStyle" />
+
+        <TextView
+            style="@style/MemoTitleTextStyle"
+            android:text="个人标签" />
+
+        <View style="@style/LineStyle" />
+
+        <com.houwei.guaishang.views.CloudTagViewGroup
+            android:id="@+id/tagsViewGroup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp" >
+        </com.houwei.guaishang.views.CloudTagViewGroup>
+
+        <View style="@style/LineStyle" />
+
+        <TextView
+            style="@style/MemoTitleTextStyle"
+            android:text="个人简介" />
+
+        <View style="@style/LineStyle" />
+
+        <TextView
+            android:id="@+id/introduce_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_color"
+            android:gravity="top"
+            android:hint="未填写"
+            android:paddingBottom="8dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:paddingTop="8dp"
+            android:textColor="@color/orange_color"
+            android:textColorHint="@color/text_gray_color"
+            android:textSize="14sp" />
+
+        <View style="@style/LineStyle" />
+
+        <TextView
+            style="@style/MemoTitleTextStyle"
+            android:text="TA的发布" />
+
+        <View style="@style/LineStyle" />
+
+        <View style="@style/LineWhiteStyle" />
+    </LinearLayout>
+
+</LinearLayout>

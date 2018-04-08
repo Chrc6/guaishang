@@ -1,0 +1,780 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+
+
+
+
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+
+
+
+
+        -->
+        <item name="android:scrollbarStyle"> outsideOverlay</item>
+    </style>
+
+    <style name="RechargiDialog" parent="@android:style/Theme.Dialog"><!--name是我们在使用时要用到的资源的标志，parent是指当前的样式所继承的父类样式-->
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item><!--隐藏标题栏-->
+        <item name="android:background">@color/transparent</item>
+        <item name="android:windowBackground">@color/card_transparent_color</item><!--这儿也很重要啊，我这儿用了一张透明的图，当然用#00000000也是可以的，否则的话这儿出来后有一个黑色的背景-->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:scrollbarStyle"> outsideOverlay</item>
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="AnimationActivity" parent="@style/AppTheme">
+      <item name="android:activityOpenEnterAnimation">@anim/zoom_in</item>
+      <item name="android:activityOpenExitAnimation">@anim/zoom_out</item>
+      <item name="android:activityCloseEnterAnimation">@anim/zoom_in</item>
+      <item name="android:activityCloseExitAnimation">@anim/zoom_out</item>
+  	</style>
+
+    <!-- Application theme. -->
+    <style name="AppTranslucentTheme" parent="android:style/Theme.Translucent">
+        <item name="android:windowNoTitle">true</item>
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="buttombuttonstyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:button">@null</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:drawablePadding">2dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/bottom_check_tv_color</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    
+      <!-- Group tab -->
+    <style name="HorizontalRadiobuttonstyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+        
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">13sp</item>
+          <item name="android:drawablePadding">4dp</item>
+        <item name="android:textColor">@color/white_color</item>
+    </style>
+    
+    <!-- 虚线 -->
+    <style name="DottedLineStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0.4dp</item>
+        <item name="android:background">@color/white_color</item>
+    </style>
+    <!-- 标题栏背景 -->
+    <style name="titleBackGroundStyle">
+        <item name="android:id">@id/title_layout</item>
+     
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@color/title_black_color</item>
+    </style>
+    <!-- 标题栏背景 -->
+    <style name="titleBackGroundStyle1">
+        <item name="android:id">@id/title_layout</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@color/white_color</item>
+    </style>
+    <!-- 标题栏文字 -->
+    <style name="titleTextStyle">
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:id">@id/title</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+    <!-- 标题返回按钮 -->
+    <style name="titleBackStyle">
+        <item name="android:id">@id/back</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:src">@mipmap/back</item>
+         <item name="android:paddingLeft">10dp</item>
+          <item name="android:paddingRight">30dp</item>
+           <item name="android:scaleType">center</item>
+    </style>
+
+
+    <!-- 右边按钮 -->
+    <style name="TitleRightBtnNoBackgroundStyle">
+        <item name="android:id">@id/title_right</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/blue_fill_round</item>
+        <item name="android:textColor">@color/white_color</item>
+    </style>
+    <!-- 右边按钮 -->
+    <style name="TitleRightBtnNoBackgroundStyle1">
+        <item name="android:id">@id/title_right</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@mipmap/release</item>
+    </style>
+
+    <style name="LineStyle">
+        <item name="android:background">@color/divider_color</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">fill_parent</item>
+    </style>
+
+     <style name="LineWhiteStyle">
+        <item name="android:background">@color/white_color</item>
+        <item name="android:layout_height">0.3dp</item>
+        <item name="android:layout_width">fill_parent</item>
+    </style>
+    
+       <style name="LineShortStyle">
+        <item name="android:background">@color/divider_color</item>
+        <item name="android:layout_height">0.4dp</item>
+           <item name="android:layout_marginLeft">18dp</item>
+        <item name="android:layout_width">fill_parent</item>
+    </style>
+    
+    <style name="SpaceVerticalStyle">
+        <item name="android:background">@color/background_color</item>
+        <item name="android:layout_height">14dp</item>
+        <item name="android:layout_width">fill_parent</item>
+    </style>
+    
+    <style name="LineVerticalStyle">
+        <item name="android:background">@color/divider_color</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_width">0.4dp</item>
+    </style>
+
+    <style name="HorizontalWeightViewStyle">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">0dp</item>
+    </style>
+
+    <style name="VerticalWeightViewStyle">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">1dp</item>
+    </style>
+
+    <!-- listview -->
+    <style name="ListViewStyle">
+        <item name="android:id">@id/listView</item>
+        <item name="android:background">@color/background_color</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:cacheColorHint">@null</item>
+           <item name="android:listSelector">@color/transparent</item>
+        <item name="android:scrollbarStyle"> outsideOverlay</item>
+        <item name="android:fadingEdge">@null</item>
+        <item name="android:divider">@color/divider_color</item>
+        <item name="android:dividerHeight">0.3dp</item>
+        <item name="android:headerDividersEnabled">false</item>
+    </style>
+
+    <!-- listview -->
+    <style name="ListViewDividerStyle">
+        <item name="android:id">@id/listView</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:cacheColorHint">@null</item>
+        <item name="android:fadingEdge">none</item>
+       <item name="android:scrollbarStyle"> outsideOverlay</item>
+           <item name="android:listSelector">@color/transparent</item>
+        <item name="android:divider">#0E3464</item>
+        <item name="android:headerDividersEnabled">false</item>
+        <item name="android:dividerHeight">9dp</item>
+
+    </style>
+
+    <!-- gridview -->
+    <style name="GridViewStyle">
+          <item name="android:id">@id/gridView</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:cacheColorHint">@null</item>
+        <item name="android:fadingEdge">@null</item>
+        <item name="android:horizontalSpacing">3dp</item>
+        <item name="android:listSelector">#00000000</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:numColumns">4</item>
+        <item name="android:scrollbarStyle"> outsideOverlay</item>
+        <item name="android:stretchMode">columnWidth</item>
+        <item name="android:scrollbars">@null</item>
+        <item name="android:verticalSpacing">3dp</item>
+    </style>
+    <!-- Group tab -->
+    <style name="twoDarkRadiobuttonstyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+         <item name="android:paddingTop">5dp</item>
+           <item name="android:paddingBottom">5dp</item>
+                    <item name="android:paddingLeft">12dp</item>
+           <item name="android:paddingRight">12dp</item>
+        <item name="android:scrollbarStyle"> outsideOverlay</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/white_normal_blue_check</item>
+           <item name="android:background">@drawable/blue_circle_checkbox</item>
+        
+    </style>
+        <!-- 底部 Popup动画 -->
+   	<style name="BottomPopupAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_bottom_menu_in</item>
+        <item name="android:windowExitAnimation">@anim/popup_bottom_menu_exit</item>
+    </style>
+        <!-- 定部 Popup动画 -->  
+    <style name="TopPopupAnimation">  
+    <item name="android:windowEnterAnimation">@anim/popup_top_menu_in</item>  
+    <item name="android:windowExitAnimation">@anim/popup_top_menu_exit</item>  
+</style>  
+   	
+    <!-- 自定义loading dialog -->
+    <style name="loading_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="MDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">false</item>
+        <!-- 模糊 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+
+
+    <style name="MProgressBarCenter.Small" parent="@style/MProgressBar.black.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+
+    <style name="MProgressBar.black.Small" parent="@android:style/Widget.ProgressBar">
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:indeterminateDrawable">@drawable/progress_big_black</item>
+        <item name="android:indeterminateBehavior">repeat</item>
+        <item name="android:indeterminateDuration">1500</item>
+        <item name="android:minWidth">20dip</item>
+        <item name="android:maxWidth">60dip</item>
+        <item name="android:minHeight">20dip</item>
+        <item name="android:maxHeight">60dip</item>
+    </style>
+
+    <style name="MProgressBar.white.Small" parent="@android:style/Widget.ProgressBar">
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:indeterminateDrawable">@drawable/progress_small_white</item>
+        <item name="android:indeterminateBehavior">repeat</item>
+        <item name="android:indeterminateDuration">1500</item>
+        <item name="android:minWidth">20dip</item>
+        <item name="android:maxWidth">60dip</item>
+        <item name="android:minHeight">20dip</item>
+        <item name="android:maxHeight">60dip</item>
+    </style>
+
+ 
+    
+    <!-- Group tab -->
+    <style name="twoLightRadiobuttonstyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
+         <item name="android:paddingBottom">7dp</item>
+        <item name="android:paddingTop">7dp</item>
+        <item name="android:textColor">@color/white_color</item>
+    </style>
+
+    <style name="ArrowRightStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:background">@drawable/arrow_right</item>
+    </style>
+
+    <style name="MemoTitleTextStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingLeft">18dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textColor">@color/text_gray_color</item>
+        <item name="android:background">@color/background_color</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="MemoBodyLinearLayoutStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white_color</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+      <style name="MemoBodyLinearLayoutClickStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+  
+          <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/white_background</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    
+    
+    <style name="MemoBodyGrayText15SizeStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_black_color</item>
+        <item name="android:textSize">14.5sp</item>
+    </style>
+
+  
+    
+    
+    <style name="MemoBodyGrayEditText15SizeStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@null</item>
+        <item name="android:gravity">right</item>
+        <item name="android:textColorHint">@color/text_gray_color</item>
+        <item name="android:textColor">@color/text_black_color</item>
+        <item name="android:textSize">13.5sp</item>
+        <item name="android:layout_marginRight">7dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+  <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
+
+
+    
+      
+       <style name="FormBodyGrayTextStyle">
+        <item name="android:layout_width">0dp</item>
+          <item name="android:layout_weight">1.0</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_black_color</item>
+        <item name="android:textSize">14.5sp</item>
+    </style>
+    
+       
+       <style name="FormBodyGrayEditTextStyle" parent="@style/FormBodyGrayPadding10EditTextStyle">
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+    </style>
+       
+             <style name="FormBodyGrayPadding10EditTextStyle" parent="@style/MemoBodyGrayEditText15SizeStyle">
+       <item name="android:gravity">left</item>
+        <item name="android:layout_weight">2.0</item>
+    </style>
+       
+             
+                 <style name="IntroTextStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingLeft">28dp</item>
+          <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingBottom">6dp</item>
+      
+        <item name="android:textColor">@color/text_gray_color</item>
+         <item name="android:textColorHint">@color/text_gray_color</item>
+        
+        <item name="android:background">@color/white_color</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:textSize">14.5sp</item>
+           <item name="android:text">加载中</item>
+            <item name="android:hint">未填写</item>
+           
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+             
+            <!-- 右边按钮 -->
+    <style name="BlueBtnNoBackgroundStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingTop">4dp</item>
+           <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+          <item name="android:textSize">13.5sp</item>
+             <item name="android:layout_centerVertical">true</item>
+                 <item name="android:layout_alignParentRight">true</item>
+        <item name="android:gravity">center</item>
+          <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textColor">@color/white_color</item>
+     
+    </style>
+    
+    
+    <!-- activity_背景 -->
+    <style name="ActivityBackgroundStyle">
+        <item name="android:scrollbarStyle"> outsideOverlay</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+          <item name="android:orientation">vertical</item>
+        <item name="android:background">@color/white_color</item>
+    </style>
+    
+    
+      <style name="DateDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+    <style name="AnimImageScale" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/image_scale_in</item>
+        <item name="android:windowExitAnimation">@anim/image_scale_out</item>
+    </style>
+    <!-- 显示大图片 -->
+    <style name="ImageScale" parent="android:Theme.NoTitleBar">
+        <item name="android:windowAnimationStyle">@style/AnimImageScale</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowFullscreen">true</item>
+        <!-- 设置全屏显示 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">false</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <!-- 模糊 -->
+    </style>
+
+    <style name="NPWidget">
+        <item name="android:textAppearance">?android:attr/textAppearance</item>
+    </style>
+
+    <style name="NPWidget.NumberPicker">
+        <item name="android:orientation">vertical</item>
+        <item name="android:fadingEdge">vertical</item>
+        <item name="android:fadingEdgeLength">50dip</item>
+    </style>
+
+    
+    <style name="NPWidget.Holo.NumberPicker" parent="NPWidget.NumberPicker">
+        <item name="solidColor">@android:color/transparent</item>
+        <item name="selectionDivider">@drawable/np_numberpicker_selection_divider</item>
+        <item name="selectionDividerHeight">2dip</item>
+        <item name="internalLayout">@layout/number_picker_with_selector_wheel</item>
+        <item name="internalMinWidth">64dip</item>
+        <item name="internalMaxHeight">180dip</item>
+        <item name="virtualButtonPressedDrawable">@drawable/item_background_holo_light</item>
+    </style>
+
+    <style name="SampleTheme.Light" parent="@android:style/Theme.NoTitleBar">
+        <item name="numberPickerStyle">@style/NPWidget.Holo.NumberPicker</item>
+    </style>
+
+    <style name="radiobuttonVerticalStyle">
+        <item name="android:drawablePadding">8dip</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@null</item>
+        <item name="android:drawableLeft">@drawable/checkbox_round</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textColor">@color/text_black_color</item>
+    </style>
+
+    
+     <style name="chat_content_date_style">
+        <item name="android:minHeight">50dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:background">#bfbfbf</item>
+    </style>
+    
+      <style name="chat_text_name_style">
+        <item name="android:textColor">#818181</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    
+    <style name="chat_text_date_style">
+        <item name="android:padding">2dp</item>
+        <item name="android:paddingTop">2dip</item>
+        <item name="android:paddingBottom">2dip</item>
+        <item name="android:paddingLeft">12dip</item>
+        <item name="android:paddingRight">12dip</item>
+        <item name="android:layout_marginBottom">5dip</item>
+        <item name="android:textColor">@color/btn_gray_normal</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:background">@drawable/timestampe_bg</item>
+    </style>
+    
+    
+    <style name="MyDialogStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    
+    <style name="progressBarHorizontal_color" parent="android:Widget.ProgressBar.Horizontal">
+		<item name="android:indeterminateOnly">false</item>
+		<item name="android:progressDrawable">@drawable/progress_color_horizontal</item>
+	</style>
+	
+      
+      <style name="jc_style_dialog_progress" parent="@android:style/Theme.Dialog">
+    <item name="android:windowBackground">@drawable/jc_dialog_progress_bg</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowAnimationStyle">@style/jc_popup_toast_anim</item>
+    <item name="android:backgroundDimEnabled">false</item>
+  </style>
+
+  <style name="jc_popup_toast_anim" parent="@android:style/Animation">
+    <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+    <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+  </style>
+
+  <style name="jc_vertical_progressBar">
+    <item name="android:maxWidth">12.0dip</item>
+    <item name="android:indeterminateOnly">false</item>
+    <item name="android:indeterminateDrawable">
+      @android:drawable/progress_indeterminate_horizontal
+    </item>
+    <item name="android:progressDrawable">@drawable/jc_volume_progress_bg</item>
+    <item name="android:indeterminateDuration">3500</item>
+    <item name="android:indeterminateBehavior">repeat</item>
+    <item name="android:minWidth">1.0dip</item>
+  </style>
+  
+   	<style name="zoominout">
+        <item name="android:inAnimation">@anim/zoom_in</item>
+        <item name="android:outAnimation">@anim/zoom_out</item>
+    </style>
+        <!--自定义seekbarstyle-->
+        <style name="CustomSeekbarStyle" >
+            <item name="android:maxHeight">10dp</item>
+            <item name="android:indeterminateOnly">false</item>
+            <item name="android:indeterminateDrawable">@color/colorAccent</item>
+            <item name="android:progressDrawable">@drawable/seekbar_progress_drawable</item>
+            <item name="android:minHeight">10dp</item>
+            <item name="android:thumb">@drawable/block_selector</item>
+        </style>
+
+    <style name="main_menu_animstyle">
+        <item name="android:windowEnterAnimation">@anim/photo_dialog_in_anim</item>
+        <item name="android:windowExitAnimation">@anim/photo_dialog_out_anim</item>
+    </style>
+    <style name="transparentFrameWindowStyle" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/photo_choose_bg</item>
+    </style>
+
+
+    <style name="NumberProgressBar_Default">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+
+        <item name="progress_max">100</item>
+        <item name="progress_current">0</item>
+
+        <item name="progress_unreached_color">#CCCCCC</item>
+        <item name="progress_reached_color">#3498DB</item>
+
+        <item name="progress_text_size">10sp</item>
+        <item name="progress_text_color">#CCCCCC</item>
+
+        <item name="progress_reached_bar_height">1.5dp</item>
+        <item name="progress_unreached_bar_height">0.75dp</item>
+    </style>
+
+    <style name="NumberProgressBar_Passing_Green">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+
+        <item name="progress_max">100</item>
+        <item name="progress_current">0</item>
+
+        <item name="progress_unreached_color">#CCCCCC</item>
+        <item name="progress_reached_color">#70A800</item>
+
+        <item name="progress_text_size">10sp</item>
+        <item name="progress_text_color">#70A800</item>
+
+        <item name="progress_reached_bar_height">1.5dp</item>
+        <item name="progress_unreached_bar_height">0.75dp</item>
+    </style>
+
+    <style name="NumberProgressBar_Beauty_Red">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+
+        <item name="progress_max">100</item>
+        <item name="progress_current">0</item>
+
+        <item name="progress_unreached_color">#CCCCCC</item>
+        <item name="progress_reached_color">#FF3D7F</item>
+        <item name="progress_text_size">10sp</item>
+        <item name="progress_text_color">#FF3D7F</item>
+
+        <item name="progress_reached_bar_height">1.5dp</item>
+        <item name="progress_unreached_bar_height">0.75dp</item>
+    </style>
+
+    <style name="NumberProgressBar_Warning_Red">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+
+        <item name="progress_max">100</item>
+        <item name="progress_current">0</item>
+
+        <item name="progress_unreached_color">#CCCCCC</item>
+        <item name="progress_reached_color">#E74C3C</item>
+        <item name="progress_text_size">10sp</item>
+        <item name="progress_text_color">#E74C3C</item>
+
+        <item name="progress_reached_bar_height">1.5dp</item>
+        <item name="progress_unreached_bar_height">0.75dp</item>
+    </style>
+
+    <style name="NumberProgressBar_Relax_Blue">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+
+        <item name="progress_max">100</item>
+        <item name="progress_current">0</item>
+
+        <item name="progress_unreached_color">#CCCCCC</item>
+        <item name="progress_reached_color">#6DBCDB</item>
+        <item name="progress_text_size">10sp</item>
+        <item name="progress_text_color">#6DBCDB</item>
+
+        <item name="progress_reached_bar_height">1.5dp</item>
+        <item name="progress_unreached_bar_height">0.75dp</item>
+    </style>
+
+    <style name="NumberProgressBar_Grace_Yellow">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+
+        <item name="progress_max">100</item>
+        <item name="progress_current">0</item>
+
+        <item name="progress_unreached_color">#CCCCCC</item>
+        <item name="progress_reached_color">#FFC73B</item>
+        <item name="progress_text_size">10sp</item>
+        <item name="progress_text_color">#FFC73B</item>
+
+        <item name="progress_reached_bar_height">1.5dp</item>
+        <item name="progress_unreached_bar_height">0.75dp</item>
+    </style>
+
+    <style name="NumberProgressBar_Funny_Orange">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+
+        <item name="progress_max">100</item>
+        <item name="progress_current">0</item>
+
+        <item name="progress_unreached_color">#CCCCCC</item>
+        <item name="progress_reached_color">#FF530D</item>
+        <item name="progress_text_size">10sp</item>
+        <item name="progress_text_color">#FF530D</item>
+
+        <item name="progress_reached_bar_height">1.5dp</item>
+        <item name="progress_unreached_bar_height">0.75dp</item>
+    </style>
+
+    <style name="NumberProgressBar_Twinkle_Night">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+
+        <item name="progress_max">100</item>
+        <item name="progress_current">0</item>
+
+        <item name="progress_unreached_color">#CCCCCC</item>
+        <item name="progress_reached_color">#ECF0F1</item>
+        <item name="progress_text_size">10sp</item>
+        <item name="progress_text_color">#ECF0F1</item>
+
+        <item name="progress_reached_bar_height">1.5dp</item>
+        <item name="progress_unreached_bar_height">0.75dp</item>
+    </style>
+
+    <style name ="RechargDialogActivity">
+    　　<item name="android:windowBackground">@color/card_transparent_color</item>
+    　　<item name="android:windowIsTranslucent">true</item>
+    　　<item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    　　
+    　　</style>
+
+</resources>

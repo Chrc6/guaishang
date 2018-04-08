@@ -1,0 +1,87 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_color"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <View style="@style/LineStyle" />
+
+    <View style="@style/LineWhiteStyle" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="3dp" >
+
+        <com.houwei.guaishang.layout.EmotionEditText
+            android:id="@+id/chat_et"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5.0dip"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="5.0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/white_gray_stroke_corner"
+            android:hint="说点什么吧"
+            android:inputType="textMultiLine"
+            android:maxHeight="80dp"
+            android:minHeight="32dp"
+            android:paddingBottom="6.0dip"
+            android:paddingLeft="6dp"
+            android:paddingRight="6.0dip"
+            android:paddingTop="6.0dip"
+            android:textColor="@color/text_gray_color"
+            android:textSize="15.0sp" />
+
+        <ImageButton
+            android:id="@+id/face_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:padding="6dp"
+            android:src="@drawable/message_face" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="6dp" >
+
+            <Button
+                android:id="@+id/send_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/orange_round_background"
+                android:gravity="left"
+                android:padding="6dp"
+                android:text="发送"
+                android:textColor="@color/white_color"
+                android:textSize="15sp" />
+
+            <ImageButton
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:padding="6dp"
+                android:src="@drawable/message_add"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View style="@style/LineStyle" />
+    <!-- 按表情出来的表情面板 -->
+
+    <FrameLayout
+        android:id="@+id/emojicon_menu_container"
+        android:layout_width="match_parent"
+             android:background="#f0f0f0"
+             android:visibility="gone"
+        android:layout_height="wrap_content" >
+    </FrameLayout>
+
+</LinearLayout>

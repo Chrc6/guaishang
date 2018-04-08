@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <RelativeLayout style="@style/titleBackGroundStyle" >
+
+        <TextView
+            style="@style/titleTextStyle"
+            android:drawableRight="@drawable/arrow_down_blue"
+            android:drawablePadding="6dp"
+            android:text="商品" />
+
+        <TextView
+            style="@style/TitleRightBtnNoBackgroundStyle"
+            android:text="写一条" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/unReadTopicReviewLL"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@color/white_color" />
+
+        <TextView
+            android:id="@+id/unReadReviewTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FEF79F"
+            android:gravity="center"
+            android:padding="9dp"
+            android:textColor="@color/text_black_color"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.7dp"
+            android:background="#F1E694" />
+    </LinearLayout>
+
+    <com.houwei.guaishang.views.PullToRefreshPagedListView style="@style/ListViewDividerStyle" />
+
+</LinearLayout>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.houwei.guaishang.views.RevealColorView
+        android:id="@+id/revealColorView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#5F86D9" >
+    </com.houwei.guaishang.views.RevealColorView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp" >
+
+            <LinearLayout
+                android:id="@+id/date_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/white_circle_shadow"
+                android:gravity="center"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp" >
+
+                <TextView
+                    android:id="@+id/date_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="04月01日 星期二"
+                    android:textColor="@color/text_black_color"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="6dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/white_vertical_shadow" />
+
+            <View
+                android:layout_width="6dp"
+                android:layout_height="60dp"
+                android:layout_alignRight="@+id/date_ll"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/white_vertical_shadow" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/sun_smile_imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/mission_sign_sun_laugh" />
+
+            <ImageView
+                android:id="@+id/sun_sad_imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/mission_sign_sun_sad" />
+
+            <ImageView
+                android:id="@+id/mission_z_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-24dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@+id/sun_sad_imageview"
+                android:src="@drawable/mission_z_3" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/status_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="每日签到"
+            android:textColor="@color/white_color"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/status_remark_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text=">> 点击小太阳唤醒它吧 &lt;&lt;"
+            android:textColor="@color/white_color"
+            android:textSize="15sp" />
+
+        <View style="@style/VerticalWeightViewStyle" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mission_sign_bottom" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="42dp"
+                android:text="签到送金币，金币可直接提现哦"
+                android:textColor="@color/text_black_color"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="bottom_bg">#9900ff00</color>
+
+     <color name="title_black_color">#393a3e</color>
+    
+    <color name="gray_color">#EEEEEE</color>
+     <color name="gray_light_color">#F9F9F9</color>
+        <color name="yellow_press_color">#FFCC00</color>
+       <color name="chat_gray_color">#666666</color>
+    <color name="green_color">#00b500</color>
+       <color name="green_press_color">#159987</color>
+             <color name="green_dark_color">#1AA392</color>
+      <color name="blue_press_color">#2780b0</color>
+             <drawable name="red_drawable">#E64C64</drawable>
+    <drawable name="red_press_drawable">#873939</drawable>
+       <color name="blue_color">#3399ff</color>
+    <color name="viewpager_gray_divider_color">#DDDDDD</color>
+
+     <color name="orange_press_color">#c25229</color>
+
+        <color name="brown_color">#632F20</color>
+    
+     <drawable name="gray_light_drawable">#FAFAFA</drawable>
+        <color name="card_transparent_color">#4d000000</color>
+     <color name="gray_transparent_color">#4dEEEEEE</color>
+       <drawable name="white_rect">#FFF</drawable>
+
+     <drawable name="black_transparent_light">#55000000</drawable>
+    <drawable name="black_transparent">#aa000000</drawable>
+    
+    <drawable name="green_drawable">#1CC4AD</drawable>
+       <drawable name="green_press_drawable">#159987</drawable>
+    
+     <drawable name="black_rect">#353535</drawable>
+    <drawable name="black_press_drawable">#000000</drawable>
+     <drawable name="pink_light_drawable">#e6e6fa</drawable>
+    
+     <color name="orange_transparent">#ccF46533</color>
+
+    
+    <!-- blue collar -->
+      <color name="action_bar_color">#495a80</color>
+      
+         <drawable name="action_bar_drawable">#495a80</drawable>
+      <drawable name="blue_light_drawable">#419DEA</drawable>
+     <color name="white_color">#FFF</color>
+    <color name="black_color">#000</color>
+     <color name="text_black_color">#5B5B5B</color>
+      <color name="text_gray_color">#919191</color>
+      <!-- #E4EBF7 -->
+ <color name="background_color">#F2F2F2</color>
+   <color name="white_press_color">#D9D9D9</color>
+   
+            <color name="red_color">#FB6869</color>
+            <color name="red_press_color">#873939</color>
+              <drawable name="gray_rect">#F1F1F1</drawable>
+               <drawable name="gray_rect_press">#D9D9D9</drawable>
+    <color name="divider_color">#DDDDDD</color>
+    <color name="orange_color">#FC6F1D</color>
+  <color name="transparent">#00000000</color>
+    <drawable name="transparent">#00000000</drawable>
+    <color name="blue_light_color">#419DEA</color>
+    <!--4873D9 # -->
+      <color name="blue_dark_color">#5E8DF9</color>
+       <color name="blue_dark_press_color">#003399</color>
+  <drawable name="blue_dark_press_drawable">#003399</drawable>
+      <drawable name="white_transparent">#ccffffff</drawable>
+   <color name="white_transparent">#ccffffff</color>
+    <color name="white_light_transparent">#40ffffff</color>
+    <drawable name="white_light_transparent">#40ffffff</drawable>
+    
+     <color name="blue_transparent">#cc419DEA</color>
+       <color name="blue_purple_color">#6ED8ED</color>
+        <drawable name="blue_purple_drawable">#ff0495B4</drawable>
+          <drawable name="blue_purple_press_drawable">#ff807FFE</drawable>
+        <drawable name="blue_dark_drawable">#ff4873D9</drawable>
+      <color name="yellow_color">#FCC14D</color>
+     <drawable name="white_drawable">#FFF</drawable>
+    <drawable name="white_press_drawable">#F2F2F2</drawable>
+           <color name="black_translucent">#77000000</color>
+    
+    <color name="error_item_color">#F6EBE6</color>
+
+        <color name="btn_gray_normal">#c0c0c0</color>
+     <color name="btn_gray_pressed_status">#b5b5b6</color>
+    <color name="btn_gray_pressed">#666667</color>
+        <!-- viewpager -->
+       
+    <bool name="default_circle_indicator_centered">true</bool>
+
+    <color name="default_circle_indicator_fill_color">#ff298ecb</color>
+    <color name="default_circle_indicator_page_color">#ff777777</color>
+
+    <integer name="default_circle_indicator_orientation">0</integer>
+
+    <dimen name="default_circle_indicator_radius">3dp</dimen>
+
+    <bool name="default_circle_indicator_snap">false</bool>
+
+    <color name="default_circle_indicator_stroke_color">#FFDDDDDD</color>
+
+    <dimen name="default_circle_indicator_stroke_width">1dp</dimen>
+    
+    
+    	<color name="holo_blue_bright">#ff00ddff</color>
+	<color name="holo_green_light">#ff99cc00</color>
+	<color name="holo_orange_light">#ffffbb33</color>
+	<color name="holo_red_light">#ffff4444</color>
+	<color name="emojicon_tab_selected">#E5E5E5</color>
+    <color name="fuzhu_blue">#33b5e5</color>
+    <color name="text_3">#333333</color>
+    <color name="my_bg">#0e3464</color>
+    <color name="progress_text">#ff9900</color>
+
+</resources>

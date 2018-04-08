@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ActivityBackgroundStyle"
+    android:gravity="center_horizontal" >
+
+    <RelativeLayout style="@style/titleBackGroundStyle" >
+
+        <ImageView style="@style/titleBackStyle" />
+
+        <TextView
+            style="@style/titleTextStyle"
+            android:text="群详情" />
+    </RelativeLayout>
+
+    <View style="@style/LineStyle" />
+
+   
+
+    <View 
+        android:layout_marginTop="26dp"
+        style="@style/LineStyle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <ImageView
+            android:id="@id/user_head"
+            android:layout_width="@dimen/photo_listitem_size"
+            android:layout_height="@dimen/photo_listitem_size"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="14dp"
+            android:src="@drawable/group_avator_default" />
+
+        
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="加载中"
+            
+            android:layout_marginLeft="12dp"
+            android:textColor="@color/blue_color"
+            android:textSize="16sp" />
+        
+        
+    </LinearLayout>
+  <View style="@style/LineStyle" />
+  
+        <Button
+            android:id="@+id/reg_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/green_round_background"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="加入群组"
+            android:textColor="@color/white_color"
+            android:textSize="16sp" />
+   
+</LinearLayout>

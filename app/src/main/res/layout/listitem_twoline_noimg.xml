@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingTop="6dp"
+    android:orientation="horizontal"
+    android:paddingBottom="6dp"
+     android:background="@color/white_color"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/avator"
+        android:layout_width="@dimen/photo_listitem_tiny_size"
+        android:layout_height="@dimen/photo_listitem_tiny_size"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/user_photo" />
+    
+    <LinearLayout
+      android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/l1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+              
+                android:text="加载中"
+                android:textColor="@color/text_black_color"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/item_memo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+           android:maxLines="2"
+                android:text="加载中..."
+                android:textColor="@color/text_gray_color"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/item_btn"
+        style="@style/BlueBtnNoBackgroundStyle"
+        android:focusable="false"
+
+        android:background="@drawable/orange_round_background"
+		android:layout_marginRight="10dp"
+        android:text="关注" />
+    
+</LinearLayout>
