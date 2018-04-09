@@ -18,6 +18,7 @@ public class AboutUsActivity extends BaseActivity {
 		initListener();
 	}
 
+
 	private void initListener() {
 		// TODO Auto-generated method stub
 		BackButtonListener();
