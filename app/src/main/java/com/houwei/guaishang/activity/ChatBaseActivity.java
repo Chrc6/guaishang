@@ -1,25 +1,33 @@
 package com.houwei.guaishang.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.text.ClipboardManager;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.easemob.EMChatRoomChangeListener;
@@ -41,6 +49,7 @@ import com.easemob.util.PathUtil;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.bean.AvatarBean;
 import com.houwei.guaishang.bean.UserBean;
+import com.houwei.guaishang.database.entity.ChatInfoData;
 import com.houwei.guaishang.easemob.EaseChatExtendMenu;
 import com.houwei.guaishang.easemob.EaseChatInputMenu;
 import com.houwei.guaishang.easemob.EaseChatInputMenu.ChatInputMenuListener;
@@ -57,10 +66,16 @@ import com.houwei.guaishang.easemob.EaseVoiceRecorderView;
 import com.houwei.guaishang.easemob.EaseVoiceRecorderView.EaseVoiceRecorderCallback;
 import com.houwei.guaishang.layout.SureOrCancelDialog;
 import com.houwei.guaishang.manager.FaceManager;
+import com.houwei.guaishang.sql.ChatBindInfoDBHelper;
 import com.houwei.guaishang.tools.JsonUtil;
+import com.houwei.guaishang.tools.ToastUtils;
+import com.luck.picture.lib.permissions.RxPermissions;
 
 import java.io.File;
 import java.util.List;
+
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 
 public class ChatBaseActivity extends BaseActivity implements EMEventListener {
 
@@ -76,6 +91,7 @@ public class ChatBaseActivity extends BaseActivity implements EMEventListener {
 	 * 传入fragment的参数
 	 */
 	protected int chatType;
+    private String mobile;
 	protected EaseChatMessageList messageList;
 	protected EaseChatInputMenu inputMenu;
 
@@ -114,14 +130,92 @@ public class ChatBaseActivity extends BaseActivity implements EMEventListener {
 	// 给谁发送消息
 	private String toChatUsername;
 	private AvatarBean hisAvatarBean;
-	
+
+
+    private RxPermissions rxPermissions;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ease_fragment_chat);
 		initView();
 		initListener();
+		initChatBindInfo();
 	}
+
+    /**
+     * 绑定头部订单信息的控件
+     */
+    private RelativeLayout VChatBindGp;
+	private void initChatBindInfo() {
+		VChatBindGp = (RelativeLayout) findViewById(R.id.edit_char_info_gp);
+		ImageView phone = (ImageView) findViewById(R.id.phone_et);
+		final EditText editPrice = (EditText) findViewById(R.id.edit_price);
+		final EditText editTime = (EditText) findViewById(R.id.edit_time);
+		TextView sure = (TextView) findViewById(R.id.sure);
+		//单聊初始化   群聊不初始化
+		if (chatType != EaseConstant.CHATTYPE_SINGLE || TextUtils.isEmpty(mobile)) {
+			VChatBindGp.setVisibility(View.GONE);
+			return;
+		}
+		VChatBindGp.setVisibility(View.VISIBLE);
+		ChatInfoData data = ChatBindInfoDBHelper.g().queryByKey(toChatUsername);
+		if (data == null){
+			sure.setVisibility(View.VISIBLE);
+			editPrice.setEnabled(true);
+			editTime.setEnabled(true);
+		}else {
+			sure.setVisibility(View.GONE);
+			editPrice.setEnabled(false);
+			editTime.setEnabled(false);
+			editPrice.setText(data.getPrice());
+			editTime.setText(data.getTime());
+		}
+
+		if (rxPermissions == null){
+            rxPermissions = new RxPermissions(this);
+        }
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rxPermissions.request(Manifest.permission.CALL_PHONE)
+                        .subscribe(new Consumer<Boolean>() {
+                            @Override
+                            public void accept(@NonNull Boolean aBoolean) throws Exception {
+                                if (aBoolean) {
+                                    //用intent启动拨打电话
+                                    if(TextUtils.isEmpty(mobile)){
+                                        ToastUtils.toastForShort(ChatBaseActivity.this,"电话号码不能为空");
+                                        return;
+                                    }
+                                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + mobile));
+                                    if (ActivityCompat.checkSelfPermission(ChatBaseActivity.this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                                       startActivity(intent);
+                                    }
+                                }
+                            }
+                        });
+
+            }
+        });
+
+		sure.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (TextUtils.isEmpty(editPrice.getText().toString())){
+					ToastUtils.toastForShort(ChatBaseActivity.this,"输入的价格不能为空");
+					return;
+				}
+				if (TextUtils.isEmpty(editTime.getText().toString())){
+					ToastUtils.toastForShort(ChatBaseActivity.this,"输入的交付日期不能为空");
+					return;
+				}
+				ChatBindInfoDBHelper.g().add(toChatUsername,editPrice.getText().toString(),editTime.getText().toString());
+
+				editPrice.setEnabled(false);
+				editTime.setEnabled(false);
+			}
+		});
+    }
 
 	protected void initView() {
 		// TODO Auto-generated method stub
@@ -129,6 +223,7 @@ public class ChatBaseActivity extends BaseActivity implements EMEventListener {
 		
 		// 判断单聊还是群聊
 		chatType = getIntent().getIntExtra(EaseConstant.EXTRA_CHATTYPE, EaseConstant.CHATTYPE_SINGLE);
+        mobile = getIntent().getStringExtra(HisRootActivity.HIS_MOBILE_KEY);
 		toChatUsername = getIntent().getStringExtra(HisRootActivity.HIS_ID_KEY);
 
 		// 按住说话录音控件

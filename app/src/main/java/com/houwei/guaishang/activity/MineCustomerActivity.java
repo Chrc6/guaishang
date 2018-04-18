@@ -295,7 +295,7 @@ public class MineCustomerActivity extends BaseActivity{
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
 					jumpToChatActivity(tb.getPayerId(),
-							tb.getPayerName(), tb.getPayerAvatar(),EaseConstant.CHATTYPE_SINGLE);
+							tb.getPayerName(), tb.getPayerAvatar(),EaseConstant.CHATTYPE_SINGLE,"");
 				}
 			});
 			

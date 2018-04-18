@@ -166,7 +166,7 @@ public class GroupMineActivity extends BaseActivity {
 					long arg3) {
 				// TODO Auto-generated method stub
 				EMGroup bean = grouplist.get(arg2-listView.getHeaderViewsCount());
-				jumpToChatActivity(bean.getGroupId(), bean.getGroupName(), null, EaseConstant.CHATTYPE_GROUP);
+				jumpToChatActivity(bean.getGroupId(), bean.getGroupName(), null, EaseConstant.CHATTYPE_GROUP,"");
 			}
 		});
 	}

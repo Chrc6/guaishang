@@ -65,7 +65,7 @@ public class HisRootActivity extends BasePhotoActivity{
 	public static final String HIS_ID_KEY = "hisUserId";
 	public static final String HIS_NAME_KEY = "hisName";
 	public static final String HIS_AVATAR_KEY = "hisAvatar";
-	
+	public static final String HIS_MOBILE_KEY = "hismobile";
 	private HisRootFragment hisRootFragment;
 	
 	@Override

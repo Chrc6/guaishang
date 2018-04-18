@@ -36,6 +36,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,7 @@ public class HisRootFragment extends BaseTopicFragment implements
 		OnClickListener, FollowListener, EditInfoListener, UserStateChangeListener{
 
 	private String hisUserID;
+	private String mobile;
 	private TextView follow_tv;
 	private InfoPersonalHisLayout infoLinearLayout;
 
@@ -102,7 +104,7 @@ public class HisRootFragment extends BaseTopicFragment implements
 						ImageLoader.getInstance().displayImage(bean.getBackground(),
 								activity.backgroundImageView,activity.getBackgroundOptions());
 					}
-					
+
 					activity.header_name_tv.setCompoundDrawables(null, null,
 							drawable, null);
 					activity.header_fans_tv
@@ -111,6 +113,7 @@ public class HisRootFragment extends BaseTopicFragment implements
 							+ bean.getFollowsCount());
 					activity.follow_tv.setText(ValueUtil
 							.getRelationTypeString(bean.getFriendship()));
+					activity.mobile = bean.getMobile();
 					if(activity.getActivity()!=null){
 
 						activity.infoLinearLayout.initView(activity.getActivity(), bean);
@@ -313,7 +316,7 @@ public class HisRootFragment extends BaseTopicFragment implements
 		case R.id.chat_tv:
 			jumpToChatActivity(hisUserID,getActivity().getIntent().getStringExtra(HisRootActivity.HIS_NAME_KEY),
 					(AvatarBean) getActivity().getIntent().getSerializableExtra(HisRootActivity.HIS_AVATAR_KEY),
-					EaseConstant.CHATTYPE_SINGLE);
+					EaseConstant.CHATTYPE_SINGLE,mobile);
 			break;
 		case R.id.follow_tv:
 			progress.show();

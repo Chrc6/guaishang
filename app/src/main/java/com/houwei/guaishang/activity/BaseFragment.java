@@ -83,8 +83,8 @@ public class BaseFragment extends Fragment {
 	}
 	
 	public void jumpToChatActivity(final String hisUserID,
-			final String hisRealName,final AvatarBean headImageBean,final int chatType) {
-		getBaseActivity().jumpToChatActivity(hisUserID, hisRealName, headImageBean, chatType);
+			final String hisRealName,final AvatarBean headImageBean,final int chatType,final  String mobile) {
+		getBaseActivity().jumpToChatActivity(hisUserID, hisRealName, headImageBean, chatType,mobile);
 	}
 
 
