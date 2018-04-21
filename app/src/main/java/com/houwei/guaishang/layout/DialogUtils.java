@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
@@ -206,6 +207,19 @@ public class DialogUtils {
                 .dismissAnim(mBasOut);
         //.show();
         return dialog;
+    }
+
+    public static Dialog getCustomDialog(Context context,
+                                         int resLayoutId) {
+        Dialog dialog = new Dialog(context);
+        Window dialogWindow = dialog.getWindow();
+        dialogWindow.setGravity(Gravity.CENTER);//设置dialog的位置
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);//取消dialog的默认标题
+        View view = LayoutInflater.from(context).inflate(resLayoutId,null);
+        dialog.setContentView(view);
+        dialog.setCanceledOnTouchOutside(true);//点击其他位置可以取消dialog
+        return dialog;
+
     }
 
     /**

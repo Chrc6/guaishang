@@ -347,6 +347,23 @@
         <item name="android:background">@drawable/arrow_right</item>
     </style>
 
+    <style name="RatingBar" parent="@android:style/Widget.RatingBar">
+        <!--自定义星星图片-->
+       <!-- <item name="android:progressDrawable">@drawable/yota_ratingbar_progress_drawable</item>-->
+        <item name="android:minHeight">15dp</item>
+        <item name="android:maxHeight">15dp</item>
+        <item name="android:stepSize">0.5</item>
+        <item name="android:clickable">true</item>
+        <item name="android:isIndicator">false</item>
+    </style>
+
+    <style name="toggle_button">
+        <item name="android:background">@drawable/toggle_btn</item>
+        <item name="android:textOn"/>
+        <item name="android:textOff"/>
+        <item name="android:checked">true</item>
+    </style>
+
     <style name="MemoTitleTextStyle">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>

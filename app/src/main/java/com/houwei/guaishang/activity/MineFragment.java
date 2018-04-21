@@ -217,12 +217,12 @@ public class MineFragment extends BaseFragment implements OnClickListener,
 		Intent i = null;
 		switch (arg0.getId()) {
 		case R.id.mine_ll:
-//			UserBean bean = myUserBeanManager.getInstance();
-//			jumpToHisInfoActivity(bean.getUserid(), bean.getName(),
-//					bean.getAvatar());
+			UserBean bean = myUserBeanManager.getInstance();
+			jumpToHisInfoActivity(bean.getUserid(), bean.getName(),
+					bean.getAvatar());
 //			new OrderBuyDialog(getActivity()).show();
-			Intent intent = new Intent(getActivity(),RechargeDialogActivity.class);
-			getActivity().startActivity(intent);
+//			Intent intent = new Intent(getActivity(),RechargeDialogActivity.class);
+//			getActivity().startActivity(intent);
 			break;
 		case R.id.fans_ll:
 			i = new Intent(getActivity(), FriendShipActivity.class);

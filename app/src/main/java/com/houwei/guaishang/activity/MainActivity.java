@@ -49,7 +49,8 @@ public class MainActivity extends MainHuanXinActivity implements
 	private int currentTabIndex;//当前选中的tab
 	
 	private TopicRootFragment topicFragment;
-	private MineFragment mineFragment;
+	private MineFragmentNew mineFragment;
+//	private MineFragment mineFragment;
 
 	private String videoPath;
 
@@ -122,7 +123,8 @@ public class MainActivity extends MainHuanXinActivity implements
 					FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 					
 					if (null == mineFragment) {
-						mineFragment = new MineFragment();
+						mineFragment = new MineFragmentNew();
+//						mineFragment = new MineFragment();
                     }
                 
 					hideCurrentFragment(transaction);

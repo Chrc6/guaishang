@@ -23,10 +23,22 @@ import com.luck.picture.lib.entity.LocalMedia;
 public class GridMeAdapter extends ListBaseAdapter<LocalMedia>{
     Context context;
     private DeleteInter inter;
+    private boolean hideDelete;
+
     public GridMeAdapter(Context context,DeleteInter inter) {
         super(context);
+        init(context,inter,false);
+    }
+
+    public GridMeAdapter(Context context,DeleteInter inter, boolean hideDelete) {
+        super(context);
+        init(context,inter,hideDelete);
+    }
+
+    private void init(Context context,DeleteInter inter, boolean hideDelete) {
         this.context=context;
         this.inter=inter;
+        this.hideDelete = hideDelete;
     }
 
     @Override
@@ -39,7 +51,7 @@ public class GridMeAdapter extends ListBaseAdapter<LocalMedia>{
         LocalMedia bean = getDataList().get(position);
         ImageView imageView=holder.getView(R.id.image);
         Button btnDelete=holder.getView(R.id.delete_btn);
-        if(TextUtils.isEmpty(bean.getPath())){
+        if(TextUtils.isEmpty(bean.getPath()) || hideDelete){
             Glide.with(context).load(R.drawable.picture_update_icon).into(imageView);
             btnDelete.setVisibility(View.GONE);
         }else{

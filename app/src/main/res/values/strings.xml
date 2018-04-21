@@ -345,4 +345,14 @@
     <string name="analysis_error">数据解析出错</string>
     <string name="bad_net">网络信号差，连接超时!</string>
     <string name="no_more">没有更多数据了！</string>
+
+    <!--我的 页面-->
+    <string name="mine_phone">电话：%1$s</string>
+    <string name="mine_mobile_phone">手机号：%1$s</string>
+    <string name="mine_address">地址：%1$s</string>
+    <string name="mine_bank">开户行：%1$s</string>
+    <string name="mine_account">账号：%1$s</string>
+    <string name="mine_authentication">是否实名认证：%1$s</string>
+    <string name="mine_trade_count">￥ %1$s</string>
+    <string name="mine_money_count">%1$d个</string>
 </resources>
