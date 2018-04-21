@@ -308,6 +308,7 @@
              adjustPan 不对界面参数任何影响
         		adjustResize和默认一样
         -->
+        <activity android:name=".debug.DebugActivity"/>
         <activity
             android:name=".activity.TopicReleaseActivity"
             android:screenOrientation="portrait" />

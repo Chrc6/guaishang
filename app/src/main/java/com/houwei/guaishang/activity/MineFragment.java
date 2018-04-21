@@ -22,6 +22,7 @@ import com.houwei.guaishang.bean.FloatResponse;
 import com.houwei.guaishang.bean.IntResponse;
 import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.data.DBReq;
+import com.houwei.guaishang.debug.DebugActivity;
 import com.houwei.guaishang.manager.MyUserBeanManager;
 import com.houwei.guaishang.manager.ChatManager.OnMyActionMessageGetListener;
 import com.houwei.guaishang.manager.ChatManager.OnMyActionMessageHadReadListener;
@@ -139,6 +140,14 @@ public class MineFragment extends BaseFragment implements OnClickListener,
 		if (myUserBeanManager.getInstance() == null) {
 			point_tv.setText("0金币");
 		}
+
+		getView().findViewById(R.id.debug_layout).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(), DebugActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 	protected void initListener() {
