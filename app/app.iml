@@ -148,6 +148,7 @@
     <orderEntry type="library" exported="" name="__local_jars__:C.\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\ShareSDK-Core-3.1.0.jar:unspecified@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:recyclerview-v7-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="org.greenrobot:greendao-api:3.1.0@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android:flexbox-0.2.2" level="project" />
     <orderEntry type="library" exported="" name="__local_jars__:C.\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\MobTools-2017.0914.1125.jar:unspecified@jar" level="project" />
     <orderEntry type="library" exported="" name="com.makeramen:roundedimageview-2.3.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="junit:junit:4.12@jar" level="project" />

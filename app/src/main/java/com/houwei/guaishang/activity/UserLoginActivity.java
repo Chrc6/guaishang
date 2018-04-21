@@ -4,6 +4,7 @@ import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.baidu.tts.tools.SharedPreferencesUtils;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.bean.UserResponse;
 import com.houwei.guaishang.data.DBReq;
@@ -14,7 +15,9 @@ import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.JsonParser;
 import com.houwei.guaishang.tools.PublicStaticData;
 import com.houwei.guaishang.tools.ShareSDKUtils;
+import com.houwei.guaishang.tools.Utils;
 import com.houwei.guaishang.tools.ValueUtil;
+import com.mob.tools.utils.SharePrefrenceHelper;
 
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +31,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import cn.jpush.android.api.JPushInterface;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
@@ -63,7 +67,8 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 				
 					// 保存用户信息并开启推送
 					activity.getITopicApplication().getMyUserBeanManager()
-							.storeUserInfoAndNotity(response.getData());
+							.storeUserInfoAndNotity(reference.get().getApplicationContext(),response.getData());
+
 					// 展开数据库
 					 DBReq.getInstence(activity.getITopicApplication());
 				

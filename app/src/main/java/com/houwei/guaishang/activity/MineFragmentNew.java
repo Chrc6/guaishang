@@ -421,15 +421,17 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         Intent i = null;
         switch (arg0.getId()) {
             case R.id.iv_user_head:
-                if (mChangeHeadDialog != null && !mChangeHeadDialog.isShowing()) {
-                    mChangeHeadDialog.show();
-                    WindowManager windowManager = getActivity().getWindowManager();
-                    Display display = windowManager.getDefaultDisplay();
-                    WindowManager.LayoutParams lp = mChangeHeadDialog.getWindow().getAttributes();
-                    lp.width = (int)(display.getWidth());
-                    lp.height=(int)300;//设置宽度
-                    mChangeHeadDialog.getWindow().setAttributes(lp);
-                }
+//                if (mChangeHeadDialog != null && !mChangeHeadDialog.isShowing()) {
+//                    mChangeHeadDialog.show();
+//                    WindowManager windowManager = getActivity().getWindowManager();
+//                    Display display = windowManager.getDefaultDisplay();
+//                    WindowManager.LayoutParams lp = mChangeHeadDialog.getWindow().getAttributes();
+//                    lp.width = (int)(display.getWidth());
+//                    lp.height=(int)300;//设置宽度
+//                    mChangeHeadDialog.getWindow().setAttributes(lp);
+//                }
+                Intent intent = new Intent(getActivity(),OrderChatActivity.class);
+                getActivity().startActivity(intent);
                 break;
             case R.id.rl_sell:
                 i = new Intent(getActivity(), TopicMineActivity.class);
@@ -729,31 +731,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
                     upLoadPicture(selectList2.get(0).getPath(), "user/id_card");
                     break;
                 case GRID_TYPE:
-                    selectList3.clear();
-                    selectList3 = PictureSelector.obtainMultipleResult(data);
-                    if (selectList3.isEmpty()) {
-                        return;
-                    }
-                    if (selectList3.size() < 9) {
-                        for (LocalMedia bean : selectList3) {
-                            if (TextUtils.isEmpty(bean.getPath())) {
-                                selectList3.remove(bean);
-                            }
-                        }
-                        LocalMedia localMedia = new LocalMedia();
-                        localMedia.setPath("");
-                        selectList3.add(localMedia);
-                    }
-                    mAdapter.clear();
-                    lRecyclerViewAdapter.notifyDataSetChanged();
-                    mAdapter.setDataList(selectList3);
-                    recyclerView.refresh();
-                    uploadMul(selectList3);
-                    break;
-            }
-            switch (requestCode) {
-                case GRID_TYPE:
-//					selectList3.clear();
+//                    selectList3.clear();
                     List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
                     selectList3.addAll(selectList);
                     if (selectList3.isEmpty()) {

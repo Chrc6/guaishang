@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.baidu.tts.tools.SharedPreferencesUtils;
 import com.houwei.guaishang.activity.BaseActivity;
 import com.houwei.guaishang.activity.MissionActivity;
 import com.houwei.guaishang.bean.AvatarBean;
@@ -18,6 +19,7 @@ import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.JsonParser;
 import com.houwei.guaishang.tools.JsonUtil;
 import com.houwei.guaishang.tools.LogUtil;
+import com.houwei.guaishang.tools.Utils;
 import com.houwei.guaishang.tools.ValueUtil;
 import com.houwei.guaishang.bean.FloatResponse;
 import com.houwei.guaishang.manager.MyUserBeanManager.CheckMoneyListener;
@@ -32,6 +34,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
+
+import cn.jpush.android.api.JPushInterface;
 
 public class MyUserBeanManager {
 
@@ -135,7 +139,11 @@ public class MyUserBeanManager {
 	 * 保存新的用户json并发出观察者通知
 	 * 目前只有登录 和 注册 之后会调用，并且是在环信登录之前
 	 */
-	public void storeUserInfoAndNotity(UserBean ub) {
+	public void storeUserInfoAndNotity(Context context,UserBean ub) {
+		String alias = Utils.getImei(context) + ub.getUserid();
+		SharedPreferencesUtils.putString(context, "JPush_alias", alias);
+		JPushInterface.setAlias(context,1, alias);
+
 		//保存用户json到SharedPreferences，和全局变量
 		storeUserInfo(ub);
 		//刷新全局变量：当前用户付款过的红包动态

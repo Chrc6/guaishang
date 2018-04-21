@@ -52,11 +52,15 @@ public class GridMeAdapter extends ListBaseAdapter<LocalMedia>{
         ImageView imageView=holder.getView(R.id.image);
         Button btnDelete=holder.getView(R.id.delete_btn);
         if(TextUtils.isEmpty(bean.getPath()) || hideDelete){
-            Glide.with(context).load(R.drawable.picture_update_icon).into(imageView);
+
             btnDelete.setVisibility(View.GONE);
         }else{
-            Glide.with(context).load(bean.getPath()).into(imageView);
             btnDelete.setVisibility(View.VISIBLE);
+        }
+        if(TextUtils.isEmpty(bean.getPath())){
+            Glide.with(context).load(R.drawable.picture_update_icon).into(imageView);
+        }else{
+            Glide.with(context).load(bean.getPath()).into(imageView);
         }
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
