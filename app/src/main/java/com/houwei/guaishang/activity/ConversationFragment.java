@@ -137,7 +137,7 @@ public class ConversationFragment extends BaseFragment implements
 
 					if (group != null) {
 						jumpToChatActivity(userid, group.getGroupName(), null,
-								EaseConstant.CHATTYPE_GROUP);
+								EaseConstant.CHATTYPE_GROUP,"");
 					} else {
 						showErrorToast("错误的群组");
 					}
@@ -170,7 +170,7 @@ public class ConversationFragment extends BaseFragment implements
 						}
 					}
 					jumpToChatActivity(userid, hisRealName, hisAvatarBean,
-							EaseConstant.CHATTYPE_SINGLE);
+							EaseConstant.CHATTYPE_SINGLE,"");
 
 				}
 
@@ -303,8 +303,7 @@ public class ConversationFragment extends BaseFragment implements
 
 	/**
 	 * 获取所有会话
-	 * 
-	 * @param context
+	 *
 	 * @return +
 	 */
 	private List<EMConversation> loadConversationsWithRecentChat() {
@@ -348,8 +347,7 @@ public class ConversationFragment extends BaseFragment implements
 
 	/**
 	 * 根据最后一条消息的时间排序
-	 * 
-	 * @param usernames
+	 *
 	 */
 	private void sortConversationByLastChatTime(
 			List<Pair<Long, EMConversation>> conversationList) {

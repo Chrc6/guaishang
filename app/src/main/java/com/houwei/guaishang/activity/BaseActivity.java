@@ -166,12 +166,12 @@ public  class BaseActivity extends FragmentActivity {
 	
 	
 	
-	public void jumpToChatActivity(final String hisUserID, final String hisRealName,final AvatarBean headImageBean,final int chatType) {
+	public void jumpToChatActivity(final String hisUserID, final String hisRealName,final AvatarBean headImageBean,final int chatType,final String mobile) {
 		if(!checkLogined()){
 			return;
 		}
 		if (getITopicApplication().getHuanXinManager().getHxSDKHelper().isLoggedIn()) {			
-			intentToChatActivity(hisUserID, hisRealName, headImageBean,chatType);
+			intentToChatActivity(hisUserID, hisRealName, headImageBean,chatType,mobile);
 		} else{
 		
 			final	MProgressDialog progress = new MProgressDialog(this, false);
@@ -185,7 +185,7 @@ public  class BaseActivity extends FragmentActivity {
 				public void onHuanXinLoginSuccess() {
 					// TODO Auto-generated method stub
 					progress.dismiss();
-					intentToChatActivity(hisUserID, hisRealName, headImageBean,chatType);
+					intentToChatActivity(hisUserID, hisRealName, headImageBean,chatType,mobile);
 				}
 				
 				@Override
@@ -238,7 +238,7 @@ public  class BaseActivity extends FragmentActivity {
 	}
 
 	private void intentToChatActivity(String hisUserID,
-			String hisRealName,AvatarBean headImageBean,int chatType){
+			String hisRealName,AvatarBean headImageBean,int chatType,String mobile){
 		Intent i = new Intent(this, ChatEaseActivity.class);
 		if (headImageBean == null) {
 			headImageBean = new AvatarBean();
@@ -247,6 +247,7 @@ public  class BaseActivity extends FragmentActivity {
 		i.putExtra(HisRootActivity.HIS_NAME_KEY, hisRealName);
 		i.putExtra(HisRootActivity.HIS_AVATAR_KEY, headImageBean);
 		i.putExtra(EaseConstant.EXTRA_CHATTYPE, chatType);
+		i.putExtra(HisRootActivity.HIS_MOBILE_KEY,mobile);
 		startActivity(i);
 	}
 	private void intentToChatActivityCom(TopicBean bean, int position,String hisUserID,

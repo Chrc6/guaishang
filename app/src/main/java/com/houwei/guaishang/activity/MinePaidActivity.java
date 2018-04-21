@@ -339,7 +339,7 @@ public class MinePaidActivity extends BaseActivity{
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
 					jumpToChatActivity(tb.getMemberId(),
-							tb.getMemberName(), tb.getMemberAvatar(),EaseConstant.CHATTYPE_SINGLE);
+							tb.getMemberName(), tb.getMemberAvatar(),EaseConstant.CHATTYPE_SINGLE,"");
 				}
 			});
 			

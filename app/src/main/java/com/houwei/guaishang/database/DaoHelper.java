@@ -1,7 +1,7 @@
 package com.houwei.guaishang.database;
 
-import android.content.Context;
-
+import com.easemob.util.PathUtil;
+import com.houwei.guaishang.database.entity.ChatInfoDataDao;
 import com.houwei.guaishang.database.entity.DaoMaster;
 import com.houwei.guaishang.database.entity.DaoSession;
 import com.houwei.guaishang.database.entity.HomeTopicCacheDataDao;
@@ -33,5 +33,9 @@ public class DaoHelper {
 
     public HomeTopicCacheDataDao getHomeTopicCacheDataDao() {
         return daoSession.getHomeTopicCacheDataDao();
+    }
+
+    public ChatInfoDataDao getChatInfoDataDao(){
+        return daoSession.getChatInfoDataDao();
     }
 }
