@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -308,7 +309,7 @@ public class MineFragment extends BaseFragment implements OnClickListener,
 			header_mobile_tv.setText("" + ub.getMobile());
 		}
 
-
+		Log.d("lei","头像地址："+ub.getAvatar().findOriginalUrl()+"头像小地址："+ub.getAvatar().findSmallUrl());
 		ImageLoader.getInstance().displayImage(ub.getAvatar().findOriginalUrl(), avator_iv);
 
 		avator_iv.setOnClickListener(new View.OnClickListener() {

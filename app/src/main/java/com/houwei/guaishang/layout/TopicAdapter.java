@@ -50,6 +50,7 @@ import com.houwei.guaishang.view.OrderBuyDialog;
 import com.houwei.guaishang.views.CircleBitmapDisplayer1;
 import com.houwei.guaishang.views.SpannableTextView;
 import com.houwei.guaishang.views.SpannableTextView.MemberClickListener;
+import com.houwei.guaishang.widget.FloatButton;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -57,6 +58,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -86,6 +88,9 @@ public class TopicAdapter extends BaseAdapter {
 
     //	设置list跳转不同详情页
     private int jumpType;
+
+    //头像列表
+    private ArrayList<String> mIconList = new ArrayList<>();
     public TopicAdapter(BaseActivity mContext, List<TopicBean> list, int jumpType) {
         this.list = list;
         this.mInflater = LayoutInflater.from(mContext);
@@ -131,30 +136,29 @@ public class TopicAdapter extends BaseAdapter {
             holder.avator = (ImageView) convertView.findViewById(R.id.avator);
             holder.imageMyOrder = (ImageView) convertView.findViewById(R.id.image_myorder);
             holder.header_name = (TextView) convertView.findViewById(R.id.header_name);
-            holder.recyclerView = (LRecyclerView) convertView.findViewById(R.id.recyclerView_offer);
+//            holder.recyclerView = (LRecyclerView) convertView.findViewById(R.id.recyclerView_offer);
             holder.header_location = (TextView) convertView.findViewById(R.id.header_location);
-            holder.follow_btn = (Button) convertView.findViewById(R.id.follow_btn);
             holder.imgTitle = (ImageView) convertView.findViewById(R.id.img_title);
             holder.tvCount = (TextView) convertView.findViewById(R.id.tv_count);
             holder.barNum = (NumberProgressBar) convertView.findViewById(R.id.bar_num);
             holder.content = (TextView) convertView.findViewById(R.id.content);
-            holder.header_time = (TextView) convertView.findViewById(R.id.header_time);
+//            holder.header_time = (TextView) convertView.findViewById(R.id.header_time);
             holder.zan_count_btn = (PraiseTextView) convertView
                     .findViewById(R.id.zan_count_btn);
-            holder.review_count_btn = (TextView) convertView
-                    .findViewById(R.id.review_count_btn);
+
             holder.delete_btn = (TextView) convertView
                     .findViewById(R.id.delete_btn);
             holder.price_tv = (TextView) convertView
                     .findViewById(R.id.price_tv);
-            holder.praise_ll = convertView.findViewById(R.id.praise_ll);
-            holder.comment_ll = convertView.findViewById(R.id.comment_ll);
+//            holder.praise_ll = convertView.findViewById(R.id.praise_ll);
+//            holder.comment_ll = convertView.findViewById(R.id.comment_ll);
             holder.share_ll = convertView.findViewById(R.id.share_ll);
             holder.share_count_btn = (TextView) convertView.findViewById(R.id.share_count_btn);
-            holder.order_btn = (Button) convertView.findViewById(R.id.order_btn);
-            holder.chat_btn = (Button) convertView.findViewById(R.id.chat_btn);
-            holder.linearLayoutForListView = (LinearLayoutForListView) convertView.findViewById(R.id.linearLayoutForListView);
-            holder.linearLayoutForListView.setDisableDivider(true);
+            holder.order_btn = (FloatButton)convertView.findViewById(R.id.order_btn);
+            holder.order_count = (TextView) convertView.findViewById(R.id.count);
+//            holder.chat_btn = (Button) convertView.findViewById(R.id.chat_btn);
+//            holder.linearLayoutForListView = (LinearLayoutForListView) convertView.findViewById(R.id.linearLayoutForListView);
+//            holder.linearLayoutForListView.setDisableDivider(true);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -167,28 +171,42 @@ public class TopicAdapter extends BaseAdapter {
             holder.barNum.setMax(max);
             holder.barNum.setProgress(progress);
             if(progress==max){
-                holder.order_btn.setVisibility(View.INVISIBLE);
-            }else{
-                holder.order_btn.setVisibility(View.VISIBLE);
+                //已结束
+                holder.order_btn.setStatu(3);
+                holder.order_btn.setBrief("");
+                holder.order_count.setVisibility(View.GONE);
+            }else if (TextUtils.equals(mContext.getUserID(),memberId)){
+                //自己发的单
+                //测试
+                mIconList.clear();
+                for (int i = 0; i < 7; i++) {
+                    mIconList.add("http://www.guaishangfaming.com//media/topic/photo/2018-04-21/3b2f505d68fc31dbbb40e456a5f573cf.jpg");
+                }
+                holder.order_count.setVisibility(View.VISIBLE);
+                holder.order_count.setText(mIconList.size()+"");
+                holder.order_btn.setStatu(2);
+                holder.order_btn.setmAvatarList(mIconList);
+            }else {
+                holder.order_count.setVisibility(View.GONE);
+                holder.order_btn.setStatu(1);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         if(TextUtils.equals(mContext.getUserID(),memberId)){
-            holder.order_btn.setVisibility(View.INVISIBLE);
             holder.imageMyOrder.setVisibility(View.VISIBLE);
-            holder.recyclerView.setVisibility(View.VISIBLE);
-            initRecyclerView(bean,holder.recyclerView,bean.getOfferPrice());
+//            holder.recyclerView.setVisibility(View.VISIBLE);
+//            initRecyclerView(bean,holder.recyclerView,bean.getOfferPrice());
         }else{
-            holder.recyclerView.setVisibility(View.GONE);
-            holder.order_btn.setVisibility(View.VISIBLE);
+//            holder.recyclerView.setVisibility(View.GONE);
             holder.imageMyOrder.setVisibility(View.INVISIBLE);
         }
 
         //imageLoader.displayImage(bean.getMemberAvatar().findSmallUrl(), holder.avator);
-        imageLoader.displayImage(bean.getMemberAvatar().findSmallUrl(), holder.avator, mContext.getITopicApplication().getOtherManage().getCircleOptionsDisplayImageOptions());
+//        imageLoader.displayImage(bean.getMemberAvatar().findSmallUrl(), holder.avator, mContext.getITopicApplication().getOtherManage().getCircleOptionsDisplayImageOptions());
+        ImageLoader.getInstance().displayImage(bean.getMemberAvatar().findSmallUrl(), holder.avator);
         imageLoader.displayImage(bean.getCover(), holder.imgTitle, mContext.getITopicApplication().getOtherManage().getRectDisplayImageOptions());
-        holder.content.setText(faceManager.
+        holder.content.setText("详情： "+faceManager.
                         convertNormalStringToSpannableString(mContext, bean.getContent()),
                 BufferType.SPANNABLE);
         FaceManager.extractMention2Link(holder.content);
@@ -213,8 +231,8 @@ public class TopicAdapter extends BaseAdapter {
             }
         });
 
-        holder.linearLayoutForListView.setAdapter(new CommentItemAdapter(
-                mContext, bean.getComments()));
+//        holder.linearLayoutForListView.setAdapter(new CommentItemAdapter(
+//                mContext, bean.getComments()));
 
 
         String locationTemp = bean.getDistance() != null ? bean.getDistanceString() : bean.getAddress();
@@ -231,10 +249,9 @@ public class TopicAdapter extends BaseAdapter {
 
         holder.header_location.setText(location);
         holder.header_name.setText(bean.getMemberName());
-        holder.header_time.setText(bean.getTimeString());
+//        holder.header_time.setText(bean.getTimeString());
 //        holder.linearLayoutForListView.setVisibility((bean.getComments() == null || bean.getComments().isEmpty()) ? View.GONE : View.VISIBLE);
-        holder.linearLayoutForListView.setVisibility(View.GONE);
-        holder.review_count_btn.setText("" + bean.getCommentCount());
+//        holder.linearLayoutForListView.setVisibility(View.GONE);
         holder.price_tv.setText("￥" + bean.getPrice());
         holder.share_count_btn.setText(bean.getShareNum()+"");
 
@@ -271,31 +288,31 @@ public class TopicAdapter extends BaseAdapter {
 //                tv.clickPraise(mContext, bean);
 //            }
 //        });
-        holder.comment_ll.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                // TODO Auto-generated method stub
-                if(TextUtils.equals(mContext.getUserID(),memberId)){
-                    Intent intent=new Intent(mContext,TopicDetailMeActivity.class);
-                    intent.putExtra("TopicBean", bean);
-                    intent.putExtra("position", 0);
-                    mContext.startActivityForResult(intent, 0);
-                    return;
-                }
-                Intent i = new Intent();
-                if(jumpType==0){
-                    i.setClass(mContext, TopicDetailActivity.class);
-                }else{
-                    i.setClass(mContext, TopicDetailMeActivity.class);
-
-                }
-                i.putExtra("TopicBean", bean);
-                i.putExtra("position", 0);
-                i.putExtra("needPay", !bean.getOffer());
-                mContext.startActivityForResult(i, 0);
-            }
-        });
+//        holder.comment_ll.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View arg0) {
+//                // TODO Auto-generated method stub
+//                if(TextUtils.equals(mContext.getUserID(),memberId)){
+//                    Intent intent=new Intent(mContext,TopicDetailMeActivity.class);
+//                    intent.putExtra("TopicBean", bean);
+//                    intent.putExtra("position", 0);
+//                    mContext.startActivityForResult(intent, 0);
+//                    return;
+//                }
+//                Intent i = new Intent();
+//                if(jumpType==0){
+//                    i.setClass(mContext, TopicDetailActivity.class);
+//                }else{
+//                    i.setClass(mContext, TopicDetailMeActivity.class);
+//
+//                }
+//                i.putExtra("TopicBean", bean);
+//                i.putExtra("position", 0);
+//                i.putExtra("needPay", bean.getOffer());
+//                mContext.startActivityForResult(i, 0);
+//            }
+//        });
 
         holder.avator.setOnClickListener(new View.OnClickListener() {
 
@@ -381,37 +398,25 @@ public class TopicAdapter extends BaseAdapter {
             }
         });
 
-        holder.chat_btn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                // TODO Auto-generated method stub
-                /*mContext.jumpToChatActivity(bean.getMemberId(),
-                        bean.getMemberName(), bean.getMemberAvatar(), EaseConstant.CHATTYPE_SINGLE);*/
-
-                rxPermissions.request(Manifest.permission.CALL_PHONE)
-                        .subscribe(new Consumer<Boolean>() {
-                            @Override
-                            public void accept(@NonNull Boolean aBoolean) throws Exception {
-                                if (aBoolean) {
-                                    //用intent启动拨打电话
-                                    String number = bean.getMobile();
-                                    if(TextUtils.isEmpty(number)){
-                                        ToastUtils.toastForShort(mContext,"电话号码不能为空");
-                                        return;
-                                    }
-                                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + number));
-                                    if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-                                        mContext.startActivity(intent);
-                                    }
-                                }
-                            }
-                        });
-
-            }
-        });
 
 //		holder.order_btn.setText(ValueUtil.getTopicTypeBuyButtonString(bean.getType()));
+        holder.order_btn.setFloatBtnClickListener(new FloatButton.FloatBtnClickListener() {
+            @Override
+            public void galb() {
+                orderBuyOrNextPage(bean,true);
+            }
+
+            @Override
+            public void goChatView() {
+                // TODO: 2018/4/21 跳转到聊天页面
+                ToastUtils.toastForShort(mContext,"跳转聊天页面");
+            }
+
+            @Override
+            public void doNothing() {
+                ToastUtils.toastForShort(mContext,"啥也不做");
+            }
+        });
         holder.order_btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -430,27 +435,27 @@ public class TopicAdapter extends BaseAdapter {
 //        }
 
 
-        holder.follow_btn.setText(ValueUtil.getRelationTypeStringSimple(bean.getFriendship()));
-        holder.follow_btn.setBackgroundResource(ValueUtil.getRelationTypeDrawableSimple(bean.getFriendship()));
-        holder.follow_btn.setTextColor(ValueUtil.getRelationTextColorSimple(bean.getFriendship()));
-        holder.follow_btn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                if (mContext.checkLogined()) {
-                    if(!bean.getMemberId().equals(mContext.getUserID())){
-                        if (onTopicBeanFollowClickListener != null) {
-                            onTopicBeanFollowClickListener.onTopicBeanFollowClick(bean);
-                        }
-                    }
-
-                }
-                /*if (onTopicBeanFollowClickListener != null) {
-                    onTopicBeanFollowClickListener.onTopicBeanFollowClick(bean);
-                }*/
-            }
-        });
+//        holder.follow_btn.setText(ValueUtil.getRelationTypeStringSimple(bean.getFriendship()));
+//        holder.follow_btn.setBackgroundResource(ValueUtil.getRelationTypeDrawableSimple(bean.getFriendship()));
+//        holder.follow_btn.setTextColor(ValueUtil.getRelationTextColorSimple(bean.getFriendship()));
+//        holder.follow_btn.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+//                if (mContext.checkLogined()) {
+//                    if(!bean.getMemberId().equals(mContext.getUserID())){
+//                        if (onTopicBeanFollowClickListener != null) {
+//                            onTopicBeanFollowClickListener.onTopicBeanFollowClick(bean);
+//                        }
+//                    }
+//
+//                }
+//                /*if (onTopicBeanFollowClickListener != null) {
+//                    onTopicBeanFollowClickListener.onTopicBeanFollowClick(bean);
+//                }*/
+//            }
+//        });
 
         holder.content.setOnClickListener(new View.OnClickListener() {
 
@@ -473,7 +478,7 @@ public class TopicAdapter extends BaseAdapter {
                 }
                 i.putExtra("TopicBean", bean);
                 i.putExtra("position", 0);
-                i.putExtra("needPay", !bean.getOffer());
+                i.putExtra("needPay", bean.getOffer());
                 mContext.startActivityForResult(i, 0);
 
             }
@@ -500,7 +505,7 @@ public class TopicAdapter extends BaseAdapter {
                 }
                 i.putExtra("TopicBean", bean);
                 i.putExtra("position", 0);
-                i.putExtra("needPay", !bean.getOffer());
+                i.putExtra("needPay", bean.getOffer());
                 mContext.startActivityForResult(i, 0);
 
             }
@@ -548,7 +553,7 @@ public class TopicAdapter extends BaseAdapter {
         manager.setAutoMeasureEnabled(true);
         final OfferAdapter mAdapter = new OfferAdapter(mContext);
 //        TopicLinearLayoutManager manager1=new TopicLinearLayoutManager(mContext,mAdapter);
-        recyclerViewOffer.setLayoutManager(manager);
+//        recyclerViewOffer.setLayoutManager(manager);
         mAdapter.setDataList(beans);
         mAdapter.setTopicBean(topicBean);
         final LRecyclerViewAdapter lRecyclerViewAdapter=new LRecyclerViewAdapter(mAdapter);
@@ -610,18 +615,18 @@ public class TopicAdapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
-        private TextView content, header_name, header_time, header_location,tvCount;
+        private TextView content, header_name,  header_location,tvCount;
         private PraiseTextView zan_count_btn;
         private ImageView avator,imgTitle,imgIndicate,imageMyOrder;
-        private TextView review_count_btn, delete_btn,tvProgress;
-        private View praise_ll, comment_ll, share_ll;
+        private TextView  delete_btn,tvProgress;
+        private View share_ll;
         private TextView share_count_btn;
-        private LinearLayoutForListView linearLayoutForListView;
+//        private LinearLayoutForListView linearLayoutForListView;
         private NumberProgressBar barNum;
-        private LRecyclerView recyclerView;
+//        private LRecyclerView recyclerView;
 
-        private Button chat_btn, order_btn, follow_btn;
-
+        private FloatButton order_btn;
+        private TextView order_count;
         private TextView price_tv;
 
 

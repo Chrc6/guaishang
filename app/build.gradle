@@ -159,5 +159,5 @@ dependencies {
     compile 'cn.jiguang.sdk:jcore:1.1.9'  // 此处以JCore 1.1.9 版本为例。
 
     compile 'org.greenrobot:eventbus:3.0.0'
-
+    compile 'com.google.android:flexbox:0.2.2'
 }

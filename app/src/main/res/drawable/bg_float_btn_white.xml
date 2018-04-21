@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="oval"
+    >
+    <solid
+        android:color="@color/white"
+        />
+
+    <stroke
+        android:color="@color/bar_grey"
+        />
+    <padding
+        android:bottom="@dimen/dp_10"
+        android:top="@dimen/dp_10"
+        android:right="@dimen/dp_10"
+        android:left="@dimen/dp_10"
+        />
+</shape>

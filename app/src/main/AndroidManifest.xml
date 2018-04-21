@@ -309,6 +309,7 @@
         		adjustResize和默认一样
         -->
         <activity android:name=".debug.DebugActivity"/>
+        <activity android:name=".debug.IconTestActy"/>
         <activity
             android:name=".activity.TopicReleaseActivity"
             android:screenOrientation="portrait" />

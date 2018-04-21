@@ -1,5 +1,6 @@
 package com.houwei.guaishang.debug;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class DebugActivity extends BaseActivity {
 
     @OnClick(R.id.test_icon)
     public void onClick() {
-
+        Intent intent = new Intent(this,IconTestActy.class);
+        startActivity(intent);
     }
 }

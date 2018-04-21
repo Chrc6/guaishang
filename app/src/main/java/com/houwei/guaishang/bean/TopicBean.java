@@ -30,7 +30,8 @@ public class TopicBean implements Serializable {
 	private String address;//地址
 	private String mobile;//地址
 
-	private boolean offer;//是否抢过单
+	private int offer;//单的状态
+	private int rata;//评价分
 	private String brand;//行业名称
 
 	private int shareNum;
@@ -144,12 +145,21 @@ public class TopicBean implements Serializable {
 		this.brand = brand;
 	}
 
-	public boolean getOffer() {
+
+	public int getOffer() {
 		return offer;
 	}
 
-	public void setOffer(boolean offer) {
+	public void setOffer(int offer) {
 		this.offer = offer;
+	}
+
+	public int getRata() {
+		return rata;
+	}
+
+	public void setRata(int rata) {
+		this.rata = rata;
 	}
 
 	public AvatarBean getMemberAvatar() {

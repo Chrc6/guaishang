@@ -18,6 +18,9 @@
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="210dp">
             <ImageView
                 android:id="@+id/img_title"
@@ -32,145 +35,95 @@
                 android:layout_height="48dp"
                 android:background="@mipmap/brand_order"
                 />
-        </RelativeLayout>
 
-        <com.houwei.guaishang.layout.LinearLayoutForListView
-            android:id="@+id/linearLayoutForListView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="14dp"
-            android:layout_marginTop="8dp"
-            android:background="#fff"
-            android:orientation="vertical"
-            android:paddingBottom="2dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingTop="2dp"
-            android:visibility="gone" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/avator"
-                    android:layout_width="@dimen/photo_listitem_tiny_size"
-                    android:layout_height="@dimen/photo_listitem_tiny_size"
-                    android:layout_marginLeft="8dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/user_photo" />
-
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_below="@+id/image_myorder"
+                android:layout_marginTop="-20dp"
+                >
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="14dp">
+                    android:id="@+id/avator_layout"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/bg_circle_black"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    >
+                <com.houwei.guaishang.view.CircleImageView
+                    android:id="@+id/avator"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:src="@drawable/user_photo"
+                    android:background="@drawable/bg_circle_black"
+
+                    />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/avator_layout"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_rectangle_black"
+                    android:paddingTop="@dimen/dp5"
+                    android:paddingBottom="@dimen/dp5"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="@dimen/dp5"
+                    android:layout_marginLeft="-7dp"
+                    >
                     <TextView
                         android:id="@+id/header_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="测试的"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-                    <!--<LinearLayout
-                        android:id="@+id/id_content_left"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:orientation="vertical">
-
-                    </LinearLayout>-->
+                        android:textSize="13sp"
+                        android:textColor="@color/white"
+                        android:text="广州用户公司"
+                        />
                     <TextView
                         android:maxLength="12"
-                        android:id="@+id/header_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:id="@+id/header_location"
+                        android:layout_below="@+id/header_name"
                         android:drawableLeft="@drawable/attr_top"
                         android:drawablePadding="4dp"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:textColor="@color/text_gray_color"
-                        android:textSize="12sp"
-                        android:layout_alignParentBottom="true"
-                        android:text="上海市"/>
+                        android:textSize="11sp"
+                        android:textColor="@color/white"
+                        android:text="广东省佛山市"
+                        />
 
-                    <Button
-                        android:id="@+id/delete_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:background="@null"
-                        android:duplicateParentState="true"
-                        android:focusable="false"
-                        android:paddingBottom="4dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:paddingTop="4dp"
-                        android:text="删除"
-                        android:textColor="@color/red_color"
-                        android:textSize="12sp"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:id="@+id/header_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/header_location"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_toRightOf="@id/header_location"
-                        android:drawableLeft="@drawable/top_img"
-                        android:drawablePadding="4dp"
-                        android:text="2013-4-4"
-                        android:textColor="@color/text_gray_color"
-                        android:textSize="12sp" />
-
-                    <Button
-                        android:id="@+id/chat_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/id_content_left"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="6dp"
-                        android:layout_toLeftOf="@+id/follow_btn"
-                        android:background="@null"
-                        android:drawableLeft="@mipmap/phone"
-                        android:drawablePadding="4dp"
-                        android:focusable="false"
-
-                        android:paddingLeft="6dp"
-
-                        android:paddingTop="4dp"
-                        android:textColor="@color/text_black_color"
-                        android:textSize="14sp" />
-
-                    <Button
-                        android:id="@+id/follow_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="12dp"
-                        android:background="@mipmap/attention_un1"
-                        android:focusable="false"
-                        android:paddingBottom="4dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingTop="4dp"
-
-                        android:textColor="@color/white_color"
-                        android:textSize="13sp"
-                        android:layout_marginEnd="12dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true" />
                 </RelativeLayout>
-            </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="170dp"
+                android:padding="@dimen/dp_10"
+                android:background="@drawable/bg__btn_gral"
+                >
+            <com.houwei.guaishang.widget.FloatButton
+                android:id="@+id/order_btn"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+               ></com.houwei.guaishang.widget.FloatButton>
+                <TextView
+                    android:id="@+id/count"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:textSize="10sp"
+                    android:textColor="#666666"
+                    android:padding="@dimen/dp5"
+                    android:gravity="center"
+                    android:text="6"
+                    android:background="@drawable/bg_float_btn_red"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
 
             <TextView
                 android:id="@+id/content"
@@ -185,7 +138,22 @@
                 android:textColor="#000"
                 android:textColorLink="#0082CB"
                 android:textSize="14sp" />
-
+        <Button
+            android:id="@+id/delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@null"
+            android:duplicateParentState="true"
+            android:focusable="false"
+            android:paddingBottom="4dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="4dp"
+            android:text="删除"
+            android:textColor="@color/red_color"
+            android:textSize="12sp"
+            android:visibility="gone" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
@@ -242,41 +210,17 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/comment_ll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/praise_ll"
-                    android:addStatesFromChildren="true"
-                    android:clickable="true"
-                    android:duplicateParentState="true"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/review_count_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:drawableTop="@mipmap/comment"
-                        android:focusable="false"
-                        android:gravity="center"
-                        android:textColor="@color/text_gray_color"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
 
                 <LinearLayout
                     android:id="@+id/share_ll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/comment_ll"
+                    android:layout_toRightOf="@id/praise_ll"
                     android:addStatesFromChildren="true"
                     android:clickable="true"
                     android:duplicateParentState="true"
                     android:gravity="center"
+                    android:layout_marginLeft="@dimen/dp_10"
                     >
                     <TextView
                         android:id="@+id/share_count_btn"
@@ -297,43 +241,23 @@
                     android:layout_centerVertical="true"
                     android:layout_marginBottom="8dp"
                     android:layout_marginRight="40dp"
-                    android:layout_toLeftOf="@+id/order_btn"
                     android:gravity="center"
                     android:text="120元"
                     android:textColor="#000"
                     android:textSize="16sp" />
 
-
-
-                <Button
-                    android:id="@+id/order_btn"
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignBottom="@+id/praise_ll"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/l_buy_selector"
-                    android:focusable="false"
-                    android:gravity="center"
-                    android:text="抢单"
-                    android:textColor="@color/white_color"
-                    android:textSize="16sp" />
             </RelativeLayout>
 
         </LinearLayout>
 
     </LinearLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <com.github.jdsjlzx.recyclerview.LRecyclerView
-                android:id="@+id/recyclerView_offer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                ></com.github.jdsjlzx.recyclerview.LRecyclerView>
-        </RelativeLayout>
-    </LinearLayout>
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<com.github.jdsjlzx.recyclerview.LRecyclerView-->
+                <!--android:id="@+id/recyclerView_offer"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--&gt;</com.github.jdsjlzx.recyclerview.LRecyclerView>-->
+        <!--</RelativeLayout>-->
 </android.support.v7.widget.CardView>

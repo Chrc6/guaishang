@@ -15,6 +15,10 @@
             android:text="测试图片页面"
             android:gravity="center"
             />
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_10"
+            android:background="#4577dc"
+            />
     </LinearLayout>
 </ScrollView>
