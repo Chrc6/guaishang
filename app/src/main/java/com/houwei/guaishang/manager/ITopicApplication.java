@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
 import com.houwei.guaishang.tools.ApplicationProvider;
 import com.houwei.guaishang.view.MyImageLoader;
@@ -78,6 +79,7 @@ public class ITopicApplication extends MobApplication {
 
 
 		SDKInitializer.initialize(getApplicationContext());//百度地图
+		Fresco.initialize(this);
 	}
 
 	@Override

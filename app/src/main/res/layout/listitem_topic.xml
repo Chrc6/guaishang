@@ -70,7 +70,7 @@
                     android:paddingBottom="@dimen/dp5"
                     android:paddingLeft="10dp"
                     android:paddingRight="@dimen/dp5"
-                    android:layout_marginLeft="-7dp"
+                    android:layout_marginLeft="-10dp"
                     >
                     <TextView
                         android:id="@+id/header_name"
@@ -91,8 +91,17 @@
                         android:textSize="11sp"
                         android:textColor="@color/white"
                         android:text="广东省佛山市"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/dp_10"
                         />
-
+                <RatingBar
+                    android:id="@+id/bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_toRightOf="@+id/header_location"
+                    android:layout_below="@+id/header_name"
+                    style="@style/MaterialRatingBar"
+                    />
                 </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>

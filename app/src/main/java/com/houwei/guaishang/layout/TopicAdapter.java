@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
 
@@ -40,6 +41,7 @@ import com.houwei.guaishang.layout.PictureGridLayout.RedPacketClickListener;
 import com.houwei.guaishang.manager.FaceManager;
 import com.houwei.guaishang.manager.ITopicApplication;
 import com.houwei.guaishang.manager.MyUserBeanManager;
+import com.houwei.guaishang.preview.PreviewActivity;
 import com.houwei.guaishang.tools.DealResult;
 import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.ShareUtil2;
@@ -156,6 +158,7 @@ public class TopicAdapter extends BaseAdapter {
             holder.share_count_btn = (TextView) convertView.findViewById(R.id.share_count_btn);
             holder.order_btn = (FloatButton)convertView.findViewById(R.id.order_btn);
             holder.order_count = (TextView) convertView.findViewById(R.id.count);
+            holder.ratingBar = (RatingBar) convertView.findViewById(R.id.bar);
 //            holder.chat_btn = (Button) convertView.findViewById(R.id.chat_btn);
 //            holder.linearLayoutForListView = (LinearLayoutForListView) convertView.findViewById(R.id.linearLayoutForListView);
 //            holder.linearLayoutForListView.setDisableDivider(true);
@@ -246,7 +249,9 @@ public class TopicAdapter extends BaseAdapter {
         if(locationTemp.contains("市")){
             location = location.substring(0, (location.indexOf("市")+1));
         }
-
+        // TODO: 2018/4/21 设置评分
+        holder.ratingBar.setRating(3);
+        holder.ratingBar.setIsIndicator(true);
         holder.header_location.setText(location);
         holder.header_name.setText(bean.getMemberName());
 //        holder.header_time.setText(bean.getTimeString());
@@ -483,6 +488,17 @@ public class TopicAdapter extends BaseAdapter {
 
             }
         });
+
+        holder.imgTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<String> list = new ArrayList<String>();
+                list.add(bean.getCover());
+                Intent intent = new Intent(mContext, PreviewActivity.class);
+                intent.putExtra("list",list);
+                mContext.startActivity(intent);
+            }
+        });
         convertView.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -628,7 +644,7 @@ public class TopicAdapter extends BaseAdapter {
         private FloatButton order_btn;
         private TextView order_count;
         private TextView price_tv;
-
+        private RatingBar ratingBar;
 
     }
 
