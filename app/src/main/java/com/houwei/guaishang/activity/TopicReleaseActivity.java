@@ -132,7 +132,7 @@ public class TopicReleaseActivity extends BasePhotoGridActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_release);
+		setContentView(R.layout.activity_release_new2);
 		myUserBeanManager = getITopicApplication().getMyUserBeanManager();
 		initView();
 		initListener();
@@ -303,16 +303,16 @@ public class TopicReleaseActivity extends BasePhotoGridActivity implements
 				finish();
 			}
 		});
-		findViewById(R.id.title_right).setOnClickListener(
-				new View.OnClickListener() {
-
-					public void onClick(View v) {
-						// TODO Auto-generated method stub
-						if (checkLogined()) {
-							doneClick();
-						}
-					}
-				});
+//		findViewById(R.id.title_right).setOnClickListener(
+//				new View.OnClickListener() {
+//
+//					public void onClick(View v) {
+//						// TODO Auto-generated method stub
+//						if (checkLogined()) {
+//							doneClick();
+//						}
+//					}
+//				});
 		content_et.setOnTouchListener(new View.OnTouchListener() {
 
 			@Override

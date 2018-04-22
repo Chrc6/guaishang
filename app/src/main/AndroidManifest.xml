@@ -315,7 +315,8 @@
         <activity android:name=".debug.IconTestActy" />
         <activity
             android:name=".activity.TopicReleaseActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent"/>
         <activity
             android:name=".activity.TopicDetailActivity"
             android:screenOrientation="portrait" />

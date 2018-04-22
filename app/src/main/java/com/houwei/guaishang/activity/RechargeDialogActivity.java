@@ -107,7 +107,8 @@ public class RechargeDialogActivity extends RechargeBaseActivity implements View
         mapOptional.put("userid", getUserID());
 //        mapOptional.put("topicid", topicId);
         mapOptional.put("price", ""+ money);
-        mapOptional.put("to_memberid", to_memberid);
+//        mapOptional.put("to_memberid", to_memberid);
+        mapOptional.put("isrecharge", "1");
         String title = "购买商品";
         pay(title, mapOptional);
     }

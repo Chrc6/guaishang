@@ -43,12 +43,13 @@
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
+            <!--android:inputType="number"-->
             <EditText
                 android:id="@+id/ev_money_input"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:inputType="number"
+
                 android:hint="1"
                 android:textColor="@color/chat_gray_color"
                 android:textColorHint="@color/chat_gray_color"
