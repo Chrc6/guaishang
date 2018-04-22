@@ -14,8 +14,11 @@ public class Utils {
 
     public static String getImei(Context context) {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
             String imei = telephonyManager.getDeviceId();
+            return imei;
+        } else {
+
         }
         return "";
     }

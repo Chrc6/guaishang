@@ -67,7 +67,7 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 				
 					// 保存用户信息并开启推送
 					activity.getITopicApplication().getMyUserBeanManager()
-							.storeUserInfoAndNotity(reference.get().getApplicationContext(),response.getData());
+							.storeUserInfoAndNotity(response.getData());
 
 					// 展开数据库
 					 DBReq.getInstence(activity.getITopicApplication());

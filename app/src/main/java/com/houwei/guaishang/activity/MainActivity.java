@@ -5,16 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 
+import com.baidu.tts.tools.SharedPreferencesUtils;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.bean.CommentPushBean;
 import com.houwei.guaishang.bean.FansPushBean;
 import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.bean.VersionResponse.VersionBean;
 import com.houwei.guaishang.data.DBReq;
+import com.houwei.guaishang.event.TopicSelectEvent;
 import com.houwei.guaishang.layout.MenuTwoButtonDialog;
 import com.houwei.guaishang.manager.ChatManager.OnMyActionMessageGetListener;
 import com.houwei.guaishang.manager.ChatManager.OnMyActionMessageHadReadListener;
@@ -22,12 +25,18 @@ import com.houwei.guaishang.manager.ITopicApplication;
 import com.houwei.guaishang.manager.MyUserBeanManager.UserStateChangeListener;
 import com.houwei.guaishang.manager.VersionManager.LastVersion;
 import com.houwei.guaishang.tools.ToastUtils;
+import com.houwei.guaishang.tools.Utils;
 import com.houwei.guaishang.tools.VoiceUtils;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 
+import cn.jpush.android.api.JPushInterface;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 
@@ -54,7 +63,7 @@ public class MainActivity extends MainHuanXinActivity implements
 
 	private String videoPath;
 
-	//
+	private boolean showTopicFragment;
 
 	private ArrayList<ImageItem> selImageList; //当前选择的所有图片
 	private int maxImgCount = 1;
@@ -63,6 +72,8 @@ public class MainActivity extends MainHuanXinActivity implements
 	public static final int REQUEST_CODE_PREVIEW = 101;
 	ArrayList<ImageItem> images = null;
 	private RxPermissions rxPermissions;
+	private RadioGroup rgOpterator;
+	private RadioButton topicRadioButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +83,7 @@ public class MainActivity extends MainHuanXinActivity implements
 		}
 		setContentView(R.layout.activity_main);
 		rxPermissions = new RxPermissions(this);
+		EventBus.getDefault().register(this);
 		initView();
 		initListener();
 		afterContentView();
@@ -89,7 +101,8 @@ public class MainActivity extends MainHuanXinActivity implements
 		//未读评论 赞
 		checkUnReadActionCount(DBReq.getInstence(this).getTotalUnReadCommentCount());
 		
-		RadioGroup rgOpterator = (RadioGroup) findViewById(R.id.rgOperator);
+		rgOpterator = (RadioGroup) findViewById(R.id.rgOperator);
+		topicRadioButton = (RadioButton) findViewById(R.id.topic_radio);
 		
 		currentTabIndex = rgOpterator.getCheckedRadioButtonId();
 				
@@ -257,6 +270,22 @@ public class MainActivity extends MainHuanXinActivity implements
 		app.getVersionManager().checkNewVersion();
 	}
 
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void topicFragmentSelect(TopicSelectEvent event) {
+		showTopicFragment = true;
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (showTopicFragment) {
+			if (topicRadioButton != null) {
+				topicRadioButton.setChecked(true);
+			}
+			showTopicFragment = false;
+		}
+	}
+
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
@@ -265,6 +294,7 @@ public class MainActivity extends MainHuanXinActivity implements
 		app.getMyUserBeanManager().removeUserStateChangeListener(this);
 		app.getVersionManager().removeListener(this);
 //		ShareSDK.stopSDK(this);
+		EventBus.getDefault().unregister(this);
 		super.onDestroy();
 
 	}
@@ -297,15 +327,27 @@ public class MainActivity extends MainHuanXinActivity implements
 
 
 	@Override
-	public void onUserLogin(UserBean ub) {
+	public void onUserLogin(final UserBean ub) {
 		// TODO Auto-generated method stub
+		rxPermissions.request(Manifest.permission.READ_PHONE_STATE)
+				.subscribe(new Consumer<Boolean>() {
+					@Override
+					public void accept(@NonNull Boolean aBoolean) throws Exception {
+						String alias = ub.getUserid();
+						if(aBoolean){
+							alias = Utils.getImei(MainActivity.this) + ub.getUserid();
+						}
+						SharedPreferencesUtils.putString(MainActivity.this, "JPush_alias", alias);
+						JPushInterface.setAlias(MainActivity.this,1, alias);
+					}
+				});
 	}
 
 
 	@Override
 	public void onUserLogout() {
 		// TODO Auto-generated method stub
-		finish();
+//		finish();
 	}
 
 	
@@ -383,7 +425,7 @@ public class MainActivity extends MainHuanXinActivity implements
 			case TopicReleaseActivity.RELEASE_SUCCESS:
 				if (data != null && data.getStringExtra("brand") != null) {
 					String brand = data.getStringExtra("brand");
-					VoiceUtils.getInstance(this).getSyntheszer().speak("发布成功，买"+brand+"就上咚咚砸单");
+					VoiceUtils.getInstance(this).speak("发布成功，买"+brand+"就上咚咚砸单");
 				}
 				if(topicFragment!=null){
 					topicFragment.refreshList(0);

@@ -73,8 +73,7 @@ public class UserRegInfoPersonalActivity extends UserRegInfoBaseActivity impleme
 					activity.showErrorToast("注册成功");
 					activity.progress.setMessage("自动登录中");
 					// 保存用户信息并开启推送
-					activity.getITopicApplication().getMyUserBeanManager().storeUserInfoAndNotity(
-							reference.get().getApplicationContext(),response.getData());
+					activity.getITopicApplication().getMyUserBeanManager().storeUserInfoAndNotity(response.getData());
 					// 展开数据库
 					DBReq.getInstence(activity.getITopicApplication());
 					

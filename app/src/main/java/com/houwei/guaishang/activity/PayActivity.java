@@ -157,7 +157,6 @@ public class PayActivity extends PayBaseActivity {
 		showSuccessTips("支付成功！");
 		EventBus.getDefault().post(new TopicHomeEvent());
 		VoiceUtils.getInstance(ApplicationProvider.privode())
-				.getSyntheszer()
 				.speak("砸单成功，买"+brand+"就上咚咚砸单");
 		Intent i = new Intent(PayActivity.this, MainActivity.class);
 		startActivity(i);

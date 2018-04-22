@@ -139,11 +139,7 @@ public class MyUserBeanManager {
 	 * 保存新的用户json并发出观察者通知
 	 * 目前只有登录 和 注册 之后会调用，并且是在环信登录之前
 	 */
-	public void storeUserInfoAndNotity(Context context,UserBean ub) {
-		String alias = Utils.getImei(context) + ub.getUserid();
-		SharedPreferencesUtils.putString(context, "JPush_alias", alias);
-		JPushInterface.setAlias(context,1, alias);
-
+	public void storeUserInfoAndNotity(UserBean ub) {
 		//保存用户json到SharedPreferences，和全局变量
 		storeUserInfo(ub);
 		//刷新全局变量：当前用户付款过的红包动态
