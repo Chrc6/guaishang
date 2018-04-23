@@ -42,11 +42,12 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:layout_marginRight="@dimen/dp_10"
                 android:layout_marginTop="@dimen/dp_10"
-                android:background="@color/white">
+                android:padding="@dimen/dp5"
+                android:background="@drawable/order_buy_dialog_item_background">
 
                 <ImageView
                     android:id="@+id/iv_license"
-                    android:layout_width="160dp"
+                    android:layout_width="127dp"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/ll_info"
                     android:layout_alignTop="@+id/ll_info"
@@ -203,7 +204,7 @@
                         android:layout_marginLeft="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/tv_trade_title"
-                        android:text="@string/mine_trade_count"
+                        android:text="0元"
                         android:textColor="#101010"
                         android:textSize="@dimen/dp_14" />
 
@@ -269,7 +270,7 @@
                         android:layout_marginLeft="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/tv_money_title"
-                        android:text="@string/mine_trade_count"
+                        android:text="0个"
                         android:textColor="#101010"
                         android:textSize="@dimen/dp_14" />
 
@@ -322,9 +323,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_toRightOf="@+id/tv_speak_title"
-                        style="@style/toggle_button"/>
+                        android:layout_alignParentRight="true"/>
 
                     <View
                         android:layout_width="match_parent"

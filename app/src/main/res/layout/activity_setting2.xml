@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.houwei.guaishang.activity.SettingActivity">
+
+    <RelativeLayout
+        android:id="@+id/title_rl"
+        style="@style/titleBackGroundStyle">
+
+        <ImageView style="@style/titleBackStyle" />
+
+        <TextView
+            style="@style/titleTextStyle"
+            android:text="系统设置" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:src="@mipmap/logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="7dp"
+            android:text="咚咚抢单"
+            android:textColor="#101010"
+            android:textSize="@dimen/dp_18" />
+
+        <RelativeLayout
+            android:id="@+id/rl_function_desc"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="功能介绍"
+                android:textColor="#101010"
+                android:textSize="@dimen/dp_14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/text_gray_color" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="客服投诉"
+                android:textColor="#101010"
+                android:textSize="@dimen/dp_14" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="45dp"
+                android:text="400-800-2000"
+                android:textColor="#101010"
+                android:textSize="@dimen/dp_14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/text_gray_color" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_version_update"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="版本更新"
+                android:textColor="#101010"
+                android:textSize="@dimen/dp_14" />
+
+            <TextView
+                android:id="@+id/tv_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="45dp"
+                android:text=""
+                android:textColor="#101010"
+                android:textSize="@dimen/dp_14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/text_gray_color" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_agreement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:layout_gravity="center_horizontal"
+            android:text="《咚咚抢单软件许可及服务协议》"
+            android:textColor="#101010"
+            android:textSize="@dimen/dp_14" />
+
+        <TextView
+            android:id="@+id/tv_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:layout_gravity="center_horizontal"
+            android:text="《咚咚隐私保护指引》"
+            android:textColor="#101010"
+            android:textSize="@dimen/dp_14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_gravity="center_horizontal"
+            android:text="苏州厚为版权所有"
+            android:textColor="#101010"
+            android:textSize="@dimen/dp_14" />
+
+        <TextView
+            android:id="@+id/tv_exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="47dp"
+            android:layout_marginRight="47dp"
+            android:layout_marginTop="46dp"
+            android:background="@drawable/red_round"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp5"
+            android:paddingBottom="@dimen/dp5"
+            android:text="退出登录"
+            android:textColor="#101010"
+            android:textSize="14dp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_return"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="47dp"
+            android:layout_marginRight="47dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/green_round"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp5"
+            android:paddingBottom="@dimen/dp5"
+            android:text="返回主页"
+            android:textColor="#101010"
+            android:textSize="14dp" >
+        </TextView>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -65,21 +65,19 @@
 
     <!-- 蓝牙分享所需的权限 -->
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
-    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED"></uses-permission>
-
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
 
-    <!--极光推送-->
+    <!-- 极光推送 -->
     <uses-permission android:name="com.houwei.guaishang.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
-
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
     <application
@@ -92,8 +90,13 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="AMxg4D7ItWlEmGQ9ciXpvtcm8NNOxnN8" />
-        <meta-data android:name="Mob-AppKey" android:value="15b5b9e067b56"/>
-        <meta-data android:name="Mob-AppSecret" android:value="7b60e80917dd1d9b1f90223b02215b9b"/>
+        <meta-data
+            android:name="Mob-AppKey"
+            android:value="15b5b9e067b56" />
+        <meta-data
+            android:name="Mob-AppSecret"
+            android:value="7b60e80917dd1d9b1f90223b02215b9b" />
+
         <activity
             android:name=".activity.WelcomeActivity"
             android:label="@string/app_name">
@@ -152,13 +155,13 @@
             android:name=".activity.VideoCommentsActivity"
             android:screenOrientation="portrait" />
 
-        <!--微信分享回调 -->
+        <!-- 微信分享回调 -->
         <activity
             android:name=".wxapi.WXEntryActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".activity.ChatEaseActivity"
             android:launchMode="singleTop"
@@ -308,38 +311,39 @@
              adjustPan 不对界面参数任何影响
         		adjustResize和默认一样
         -->
-        <activity android:name=".debug.DebugActivity"/>
-        <activity android:name=".debug.IconTestActy"/>
-        <activity android:name=".preview.PreviewActivity"/>
+        <activity android:name=".debug.DebugActivity" />
+        <activity android:name=".debug.IconTestActy" />
         <activity
             android:name=".activity.TopicReleaseActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent"/>
         <activity
             android:name=".activity.TopicDetailActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.newui.TopicDetailComActivity"></activity>
+        <activity android:name=".activity.newui.TopicDetailComActivity" />
 
         <!-- shareSDK -->
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
 
             <!-- 调用新浪原生SDK，需要注册的回调activity -->
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="tencent1105597476" />
             </intent-filter>
-
         </activity>
         <!-- <activity -->
         <!-- android:name="cn.smssdk.SMSSDKUIShell" -->
@@ -384,7 +388,7 @@
             </intent-filter>
         </receiver>
 
-        <!--极光receiver-->
+        <!-- 极光receiver -->
         <receiver
             android:name=".JPushReceiver"
             android:enabled="true">
@@ -395,6 +399,7 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION" />
                 <action android:name="cn.jpush.android.intent.CONNECTION" />
+
                 <category android:name="com.houwei.guaishang" />
             </intent-filter>
         </receiver>
@@ -402,10 +407,10 @@
         <!-- Umeng Analytics start.怪商 -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="57b81e1067e58e1593000fc3"></meta-data>
+            android:value="57b81e1067e58e1593000fc3" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="itopic"></meta-data>
+            android:value="itopic" />
         <!-- Umeng Analytics end -->
 
 
@@ -415,11 +420,9 @@
             android:enabled="true"
             android:process=":remote">
             <intent-filter>
-                <action android:name="com.baidu.location.service_v2.2"></action>
+                <action android:name="com.baidu.location.service_v2.2" />
             </intent-filter>
         </service>
-
-
 
         <!-- WXPay sdk begin -->
         <activity
@@ -447,21 +450,27 @@
             android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
             android:theme="@style/ImagePickerThemeFullScreen" />
         <activity android:name=".activity.newui.ReleaseActivity" />
-        <activity android:name=".activity.newui.TestActivity"></activity>
-        <activity android:name=".activity.newui.TopicDetailMeActivity"></activity>
+        <activity android:name=".activity.newui.TestActivity" />
+        <activity android:name=".activity.newui.TopicDetailMeActivity" />
+        <activity
+            android:name="cn.sharesdk.tencent.qq.ReceiveActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
-
-        <activity android:name="cn.sharesdk.tencent.qq.ReceiveActivity"
-            android:launchMode="singleTask"     android:noHistory="true">
-            <intent-filter>         <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="tencent1105597476" />
-            </intent-filter></activity>
-        <!--QQ分享必须配置上面的activity tencent后面的appid改成你自己的QQ的appid即可-->
 
-        <!--友盟QQ分享-->
-        <!--<activity
+                <data android:scheme="tencent1105597476" />
+            </intent-filter>
+        </activity>
+        <!-- QQ分享必须配置上面的activity tencent后面的appid改成你自己的QQ的appid即可 -->
+
+
+        <!-- 友盟QQ分享 -->
+        <!--
+        <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
             android:noHistory="true" >
@@ -479,8 +488,11 @@
             android:name="com.tencent.connect.common.AssistActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>-->
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        -->
 
+        <activity android:name=".activity.OrderChatActivity" />
+        <activity android:name=".activity.SettingActivity"></activity>
     </application>
 
 </manifest>

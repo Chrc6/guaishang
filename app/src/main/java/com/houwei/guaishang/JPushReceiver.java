@@ -29,11 +29,11 @@ public class JPushReceiver extends BroadcastReceiver {
         if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
             String content = "";
             content = bundle.getString(JPushInterface.EXTRA_MESSAGE);
-            VoiceUtils.getInstance(ApplicationProvider.privode()).getSyntheszer().speak(content);
+            VoiceUtils.getInstance(ApplicationProvider.privode()).speak(content);
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
             String content = "";
             content = bundle.getString(JPushInterface.EXTRA_ALERT);
-            VoiceUtils.getInstance(ApplicationProvider.privode()).getSyntheszer().speak(content);
+            VoiceUtils.getInstance(ApplicationProvider.privode()).speak(content);
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             Log.d(TAG, "用户点击打开了通知");
             // 在这里可以自己写代码去定义用户点击后的行为

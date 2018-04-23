@@ -6,6 +6,7 @@ import com.baidu.tts.client.SpeechError;
 import com.baidu.tts.client.SpeechSynthesizer;
 import com.baidu.tts.client.SpeechSynthesizerListener;
 import com.baidu.tts.client.TtsMode;
+import com.baidu.tts.tools.SharedPreferencesUtils;
 
 /**
  * 百度语音工具类
@@ -35,6 +36,8 @@ public class VoiceUtils {
     private static final String ENGLISH_SPEECH_MALE_MODEL_NAME = "bd_etts_speech_male_en.dat";
     private static final String ENGLISH_TEXT_MODEL_NAME = "bd_etts_text_en.dat";
 
+    public static final String VOICE_REMIND = "voice_remind";
+
     // 发音人（在线引擎），可用参数为0,1,2,3。。。
     // （服务器端会动态增加，各值含义参考文档，以文档说明为准。0--普通女声，4--情感女声，3--普通男声，6--特殊男声。。。）
     private int speaker = 4;
@@ -63,6 +66,15 @@ public class VoiceUtils {
     //获取解析器
     public SpeechSynthesizer getSyntheszer(){
         return mSpeechSynthesizer;
+    }
+
+    public void speak(String content) {
+        boolean needVoiceRemind
+                = SharedPreferencesUtils.getBoolean(ApplicationProvider.privode(),VOICE_REMIND,true);
+        if (mSpeechSynthesizer != null
+                && needVoiceRemind) {
+            mSpeechSynthesizer.speak(content);
+        }
     }
 
     //初始化解析器

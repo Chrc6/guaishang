@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.baidu.tts.tools.SharedPreferencesUtils;
 import com.bumptech.glide.Glide;
 import com.easemob.EMEventListener;
 import com.easemob.EMNotifierEvent;
@@ -51,11 +52,13 @@ import com.houwei.guaishang.manager.MyUserBeanManager;
 import com.houwei.guaishang.manager.MyUserBeanManager.CheckMoneyListener;
 import com.houwei.guaishang.manager.MyUserBeanManager.CheckPointListener;
 import com.houwei.guaishang.manager.MyUserBeanManager.UserStateChangeListener;
+import com.houwei.guaishang.tools.ApplicationProvider;
 import com.houwei.guaishang.tools.BitmapSelectorUtil;
 import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.JsonParser;
 import com.houwei.guaishang.tools.SPUtils;
 import com.houwei.guaishang.tools.ToastUtils;
+import com.houwei.guaishang.tools.VoiceUtils;
 import com.houwei.guaishang.view.CircleImageView;
 import com.houwei.guaishang.views.SwitchView;
 import com.luck.picture.lib.PictureSelectionModel;
@@ -248,6 +251,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         mUserHeadIv = (CircleImageView) getView().findViewById(R.id.iv_user_head);
         mUserHeadIv.setOnClickListener(this);
         mLicenseIv = (ImageView) getView().findViewById(R.id.iv_license);
+        mLicenseIv.setOnClickListener(this);
         mUserNameTv = (TextView) getView().findViewById(R.id.tv_user_name);
 
         mChangeHeadDialog = DialogUtils.getCustomDialog(getActivity(),R.layout.fragment_mine_headpic_change_layout);
@@ -255,8 +259,6 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         changeHeadConfirm.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                flag = HEAD_TYPE;
-                selectList1.clear();
                 mChangeHeadDialog.dismiss();
                 showBottomPopupWin();
             }
@@ -271,23 +273,23 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
 
         mMoneyTv = (TextView) getView().findViewById(R.id.tv_money_count);
         mTradeCountTv = (TextView) getView().findViewById(R.id.tv_money_count);
+        mTradeCountTv.setOnClickListener(this);
 
         recyclerView = (LRecyclerView) getView().findViewById(R.id.recycle_view);
 
         toggleButton = (ToggleButton) getView().findViewById(R.id.sv_view);
+
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 System.out.println("准备执行：onCheckedChanged");
-                if(isChecked==true){
-                    toggleButton.setBackgroundResource(R.drawable.toggle_btn_unchecked);
-                }
-                else {
-                    toggleButton.setBackgroundResource(R.drawable.toggle_btn_checked_blue);
-                }
+                iniToggleBtn(isChecked);
             }
         });
+        boolean needVoiceRemind
+                = SharedPreferencesUtils.getBoolean(getActivity(),VoiceUtils.VOICE_REMIND,true);
+        iniToggleBtn(!needVoiceRemind);//跟287行的有点不一样
 
         onUserInfoChanged(myUserBeanManager.getInstance());
 
@@ -300,6 +302,16 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
 
         initProgressDialog(false, null);
         initRcycle();
+    }
+
+    private void iniToggleBtn(boolean isChecked) {
+        if(isChecked){
+            toggleButton.setBackgroundResource(R.drawable.toggle_btn_unchecked);
+            SharedPreferencesUtils.putBoolean(getActivity(),VoiceUtils.VOICE_REMIND,false);
+        } else {
+            toggleButton.setBackgroundResource(R.drawable.toggle_btn_checked_blue);
+            SharedPreferencesUtils.putBoolean(getActivity(),VoiceUtils.VOICE_REMIND,true);
+        }
     }
 
     private void initData() {
@@ -337,8 +349,8 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
                     @Override
                     public void onClick(View arg0) {
                         // TODO Auto-generated method stub
-                        Intent i = new Intent(getActivity(),
-                                MineSystemActivity.class);
+//                        Intent i = new Intent(getActivity(), MineSystemActivity.class);
+                        Intent i = new Intent(getActivity(), SettingActivity.class);
                         startActivity(i);
                     }
                 });
@@ -421,17 +433,20 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         Intent i = null;
         switch (arg0.getId()) {
             case R.id.iv_user_head:
-//                if (mChangeHeadDialog != null && !mChangeHeadDialog.isShowing()) {
-//                    mChangeHeadDialog.show();
-//                    WindowManager windowManager = getActivity().getWindowManager();
-//                    Display display = windowManager.getDefaultDisplay();
-//                    WindowManager.LayoutParams lp = mChangeHeadDialog.getWindow().getAttributes();
-//                    lp.width = (int)(display.getWidth());
-//                    lp.height=(int)300;//设置宽度
-//                    mChangeHeadDialog.getWindow().setAttributes(lp);
-//                }
-                Intent intent = new Intent(getActivity(),OrderChatActivity.class);
-                getActivity().startActivity(intent);
+                if (mChangeHeadDialog != null && !mChangeHeadDialog.isShowing()) {
+                    flag = HEAD_TYPE;
+                    selectList1.clear();
+                    showDialog();
+                }
+//                Intent intent = new Intent(getActivity(),OrderChatActivity.class);
+//                getActivity().startActivity(intent);
+                break;
+            case R.id.iv_license:
+                if (mChangeHeadDialog != null && !mChangeHeadDialog.isShowing()) {
+                    flag = CARD_TYPE;
+                    selectList2.clear();
+                    showDialog();
+                }
                 break;
             case R.id.rl_sell:
                 i = new Intent(getActivity(), TopicMineActivity.class);
@@ -458,6 +473,16 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         }
     }
 
+    private void showDialog() {
+        mChangeHeadDialog.show();
+        WindowManager windowManager = getActivity().getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        WindowManager.LayoutParams lp = mChangeHeadDialog.getWindow().getAttributes();
+        lp.width = (int)(display.getWidth());
+        lp.height=(int)300;//设置宽度
+        mChangeHeadDialog.getWindow().setAttributes(lp);
+    }
+
     @Override
     public void onUserInfoChanged(final UserBean ub) {
         // 如果走的是回调，这里ub不可能是null
@@ -474,7 +499,11 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         mAccountTv.setText(getUserInfoStr(R.string.mine_account, ""));
         mAuthenticationTv.setText(getUserInfoStr(R.string.mine_authentication, ""));
 
-        ImageLoader.getInstance().displayImage(ub.getAvatar().findOriginalUrl(), mUserHeadIv);
+        if (ub.getAvatar() != null && ub.getAvatar().findOriginalUrl() != null) {
+            ImageLoader.getInstance().displayImage(ub.getAvatar().findOriginalUrl(), mUserHeadIv);
+        } else {
+            mUserHeadIv.setImageResource(R.drawable.user_photo);
+        }
 
 //        mUserHeadIv.setOnClickListener(new OnClickListener() {
 //
@@ -509,6 +538,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
     public void onUserLogout() {
         // TODO Auto-generated method stub
         // 用户退出，按道理讲，这里应该把所有控件设为“未登录”
+        onUserInfoChanged(new UserBean());
     }
 
     @Override

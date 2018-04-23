@@ -81,6 +81,7 @@ public class OfferAdapter extends ListBaseAdapter<OffersBean.OfferBean> {
                 i.putExtra("price",Float.valueOf(bean.getPrice()));
                 i.putExtra("topicId", bean.getOrderId());
                 i.putExtra("to_memberid", bean.getOfferId());
+                i.putExtra("offer_id", bean.getId());
                 context.startActivity(i);
             }
         });
