@@ -12,6 +12,9 @@ import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.easemob.EaseCommonUtils;
 import com.houwei.guaishang.easemob.EaseConstant;
 import com.houwei.guaishang.easemob.EaseUI;
+import com.houwei.guaishang.huanxin.ChatActivity;
+import com.houwei.guaishang.huanxin.ChatFragment;
+import com.houwei.guaishang.huanxin.ChatInfo;
 import com.houwei.guaishang.layout.MProgressDialog;
 import com.houwei.guaishang.manager.ITopicApplication;
 import com.houwei.guaishang.manager.MyUserBeanManager;
@@ -239,15 +242,23 @@ public  class BaseActivity extends FragmentActivity {
 
 	private void intentToChatActivity(String hisUserID,
 			String hisRealName,AvatarBean headImageBean,int chatType,String mobile){
-		Intent i = new Intent(this, ChatEaseActivity.class);
+		Intent i = new Intent(this, ChatActivity.class);
 		if (headImageBean == null) {
 			headImageBean = new AvatarBean();
 		}
-		i.putExtra(HisRootActivity.HIS_ID_KEY, hisUserID);
-		i.putExtra(HisRootActivity.HIS_NAME_KEY, hisRealName);
-		i.putExtra(HisRootActivity.HIS_AVATAR_KEY, headImageBean);
-		i.putExtra(EaseConstant.EXTRA_CHATTYPE, chatType);
-		i.putExtra(HisRootActivity.HIS_MOBILE_KEY,mobile);
+        ChatInfo chatInfo = new ChatInfo();
+        chatInfo.setMobile(mobile);
+        chatInfo.setHisUserID(hisUserID);
+        chatInfo.setHisRealName(hisRealName);
+        chatInfo.setChatType(chatType);
+        chatInfo.setHeadImageBean(headImageBean);
+		i.putExtra(ChatActivity.Chat_info,chatInfo);
+//        i.putExtra(ChatActivity.Chat_info,chatInfo);
+//		i.putExtra(HisRootActivity.HIS_ID_KEY, hisUserID);
+//		i.putExtra(HisRootActivity.HIS_NAME_KEY, hisRealName);
+//		i.putExtra(HisRootActivity.HIS_AVATAR_KEY, headImageBean);
+//		i.putExtra(EaseConstant.EXTRA_CHATTYPE, chatType);
+//		i.putExtra(HisRootActivity.HIS_MOBILE_KEY,mobile);
 		startActivity(i);
 	}
 	private void intentToChatActivityCom(TopicBean bean, int position,String hisUserID,

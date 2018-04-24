@@ -29,7 +29,7 @@ public class ChatBindInfoDBHelper {
         }
     }
 
-    public void add(String name,String price,String time){
+    public void add(String name,String price,String time,String mobile){
         deleteByName(name);
         if (chatBindInfoDataDao != null){
             ChatInfoData data = new ChatInfoData();
@@ -37,6 +37,7 @@ public class ChatBindInfoDBHelper {
             data.setName(name);
             data.setPrice(price);
             data.setTime(time);
+            data.setMobile(mobile);
             chatBindInfoDataDao.insert(data);
         }
     }

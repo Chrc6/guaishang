@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -126,22 +127,29 @@ public class FloatButton extends RelativeLayout {
         iconLayout.setFlexWrap(FlexboxLayout.FLEX_WRAP_WRAP);
         iconLayout.setJustifyContent(FlexboxLayout.ALIGN_ITEMS_CENTER);
         int size = mAvatarList.size();
-        for (int i = 0; i < size; i++) {
-            if (i > 7){
-                break;
-            }
+        if (size == 1){
             CircleImageView imageView = new CircleImageView(context);
-            FlexboxLayout.LayoutParams layoutParams = new FlexboxLayout.LayoutParams(dip2px(20),dip2px(20));
-            if (i == 2 || i == 5 ) {
-                layoutParams.wrapBefore = true;
-            }else {
-                layoutParams.wrapBefore = false;
-            }
+            FlexboxLayout.LayoutParams layoutParams = new FlexboxLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             imageView.setLayoutParams(layoutParams);
-            ImageLoader.getInstance().displayImage(mAvatarList.get(i), imageView);
+            ImageLoader.getInstance().displayImage(mAvatarList.get(0), imageView);
             iconLayout.addView(imageView);
+        }else {
+            for (int i = 0; i < size; i++) {
+                if (i > 7) {
+                    break;
+                }
+                CircleImageView imageView = new CircleImageView(context);
+                FlexboxLayout.LayoutParams layoutParams = new FlexboxLayout.LayoutParams(dip2px(20), dip2px(20));
+                if (i == 2 || i == 5) {
+                    layoutParams.wrapBefore = true;
+                } else {
+                    layoutParams.wrapBefore = false;
+                }
+                imageView.setLayoutParams(layoutParams);
+                ImageLoader.getInstance().displayImage(mAvatarList.get(i), imageView);
+                iconLayout.addView(imageView);
+            }
         }
-//        count.setText(mNewsCount);
     }
 
 

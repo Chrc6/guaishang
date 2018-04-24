@@ -219,7 +219,7 @@
         <item name="android:fadingEdge">none</item>
        <item name="android:scrollbarStyle"> outsideOverlay</item>
            <item name="android:listSelector">@color/transparent</item>
-        <item name="android:divider">#0E3464</item>
+        <item name="android:divider">@null</item>
         <item name="android:headerDividersEnabled">false</item>
         <item name="android:dividerHeight">9dp</item>
 
@@ -797,5 +797,10 @@
     　　<item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
     　　
     　　</style>
-
+    <style name="MaterialRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/rating_list</item>
+        <item name="android:numColumns">5</item>
+        <item name="android:minHeight">24dip</item>
+        <item name="android:maxHeight">24dip</item>
+    </style>
 </resources>

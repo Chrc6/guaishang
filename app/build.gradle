@@ -160,4 +160,6 @@ dependencies {
 
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.google.android:flexbox:0.2.2'
+    compile 'me.relex:photodraweeview:1.0.0'
+    compile 'com.facebook.fresco:fresco:1.0.0'
 }

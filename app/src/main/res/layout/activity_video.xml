@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0E3464"
+    android:background="@color/red_color"
     android:scrollbarAlwaysDrawVerticalTrack="false"
     android:scrollbarStyle="outsideOverlay"
     android:orientation="vertical">
@@ -14,7 +14,7 @@
         style="@style/titleBackGroundStyle"
         android:layout_height="30dp"
         android:paddingLeft="8dp"
-        android:background="#0E3464">
+        android:background="@color/red_color">
 
 
         <ImageView
@@ -60,7 +60,6 @@
             android:id="@+id/fixed_tabs"
             android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:background="#0E3464"
             android:gravity="center"
             android:layout_toLeftOf="@+id/image_add"/>
         <ImageView
@@ -82,10 +81,10 @@
         android:id="@+id/viewpager"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#0E3464"
         android:scrollbarAlwaysDrawVerticalTrack="false"
         android:scrollbarStyle="outsideOverlay"
         android:paddingLeft="8dp"
+        android:background="@color/gray_color"
         android:paddingRight="8dp" />
 
 </LinearLayout>
