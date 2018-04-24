@@ -316,7 +316,7 @@
         <activity
             android:name=".activity.TopicReleaseActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent"/>
+            android:theme="@style/RechargDialogActivity"/>
         <activity
             android:name=".activity.TopicDetailActivity"
             android:screenOrientation="portrait" />

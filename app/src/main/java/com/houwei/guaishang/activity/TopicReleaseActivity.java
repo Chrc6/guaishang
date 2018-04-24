@@ -15,6 +15,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -132,6 +133,7 @@ public class TopicReleaseActivity extends BasePhotoGridActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_release_new2);
 		myUserBeanManager = getITopicApplication().getMyUserBeanManager();
 		initView();
@@ -157,6 +159,7 @@ public class TopicReleaseActivity extends BasePhotoGridActivity implements
 	protected void initView() {
 		// TODO Auto-generated method stub
 		super.initView();
+		gridView.setNumColumns(3);
 		redpacket_checkbox = (CheckBox)findViewById(R.id.redpacket_checkbox);
 		avator = (ImageView) findViewById(R.id.avator);
 		header_name = (TextView) findViewById(R.id.header_name);

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/ActivityBackgroundStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#11ffffff">
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/back"
@@ -20,27 +19,35 @@
         android:layout_gravity="center"
         android:background="@color/background_color">-->
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingLeft="26dp"
-            android:paddingRight="26dp"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_marginRight="6dp"
+            android:background="@drawable/background_round"
             android:orientation="vertical"
-            android:background="@color/background_color">
+            android:paddingLeft="26dp"
+            android:paddingRight="26dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/gray_round"
                 android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_22"
+                android:background="@drawable/white_round"
                 android:orientation="vertical">
 
                 <com.houwei.guaishang.views.InputControlEditText
                     android:id="@+id/content_et"
                     android:layout_width="fill_parent"
                     android:layout_height="100dp"
-                    android:background="@color/gray_light_color"
+                    android:background="@drawable/white_round"
                     android:gravity="top"
                     android:hint="订单详情写到这里，无要求可以不写！"
                     android:imeOptions="actionSend"
@@ -65,12 +72,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_10"
                 android:layout_marginBottom="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@drawable/white_round"
                 android:orientation="horizontal"
                 android:paddingBottom="7dp"
-                android:paddingTop="7dp"
-                android:background="@color/gray_light_color">
+                android:paddingTop="7dp">
 
                 <TextView
                     android:id="@+id/tv_choose_industry"
@@ -225,22 +232,28 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <com.houwei.guaishang.views.UnScrollGridView
-                android:id="@+id/gridView"
-                style="@style/GridViewStyle"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="@dimen/dp_10"
-                android:background="@color/white_color" />
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
+                android:background="@drawable/white_round">
+
+                <com.houwei.guaishang.views.UnScrollGridView
+                    android:id="@+id/gridView"
+                    style="@style/GridViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"/>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="50dp"
                 android:background="@drawable/red_round"
                 android:gravity="center"
                 android:padding="8dp"
@@ -251,7 +264,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/gray_light_color"
+                android:background="@color/background_color"
                 android:orientation="horizontal"
                 android:paddingBottom="7dp"
                 android:paddingLeft="8dp"
@@ -321,48 +334,49 @@
                 android:text="一次只能发布一张"
                 android:visibility="gone" />
         </LinearLayout>
-    <!--</ScrollView>-->
+        <!--</ScrollView>-->
 
-    <View
-        android:id="@+id/bottom_praise_line"
-        style="@style/LineStyle"
-        android:visibility="gone" />
+        <View
+            android:id="@+id/bottom_praise_line"
+            style="@style/LineStyle"
+            android:visibility="gone" />
 
-    <LinearLayout
-        android:id="@+id/bottom_praise_ll"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/gray_light_color"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/face_btn"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/bottom_praise_ll"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:padding="6dp"
-            android:src="@drawable/compose_emoticonbutton_background_highlighted" />
+            android:background="@color/gray_light_color"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
-        <ImageView
-            android:id="@+id/gallery_btn"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/face_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:padding="6dp"
+                android:src="@drawable/compose_emoticonbutton_background_highlighted" />
+
+            <ImageView
+                android:id="@+id/gallery_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:padding="6dp"
+                android:src="@drawable/compose_toolbar_picture_highlighted" />
+        </LinearLayout>
+
+        <View style="@style/LineStyle" />
+
+        <!-- 按表情出来的表情面板 -->
+
+        <FrameLayout
+            android:id="@+id/emojicon_menu_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:padding="6dp"
-            android:src="@drawable/compose_toolbar_picture_highlighted" />
+            android:background="#f0f0f0"
+            android:visibility="gone"></FrameLayout>
     </LinearLayout>
-
-    <View style="@style/LineStyle" />
-
-    <!-- 按表情出来的表情面板 -->
-
-    <FrameLayout
-        android:id="@+id/emojicon_menu_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#f0f0f0"
-        android:visibility="gone"></FrameLayout>
 
 </LinearLayout>

@@ -52,7 +52,7 @@ public class BasePhotoGridActivity extends BaseActivity implements SelectPhotoLi
 	 */
 	private int MAX_DEFAULT_NUM = 9;
 	
-	private UnScrollGridView gridView;
+	protected UnScrollGridView gridView;
 	//调用拍照，拍出来的原图的url
 	private String camera_pic_path;
 

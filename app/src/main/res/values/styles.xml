@@ -278,6 +278,10 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/blue_circle_checkbox</item>
+    </style>
+
     <style name="MDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>

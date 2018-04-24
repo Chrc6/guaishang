@@ -27,6 +27,7 @@ import com.houwei.guaishang.manager.VersionManager.LastVersion;
 import com.houwei.guaishang.tools.ToastUtils;
 import com.houwei.guaishang.tools.Utils;
 import com.houwei.guaishang.tools.VoiceUtils;
+import com.houwei.guaishang.view.PublishOrderDialog;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -182,7 +183,8 @@ public class MainActivity extends MainHuanXinActivity implements
 									@Override
 									public void accept(@NonNull Boolean aBoolean) throws Exception {
 											if(aBoolean){
-												MenuTwoButtonDialog dialog = new MenuTwoButtonDialog(MainActivity.this, new MenuTwoButtonDialog.ButtonClick() {
+												PublishOrderDialog.getInstance(MainActivity.this).show();
+												/*MenuTwoButtonDialog dialog = new MenuTwoButtonDialog(MainActivity.this, new MenuTwoButtonDialog.ButtonClick() {
 
 													@Override
 													public void onSureButtonClick(int index) {
@@ -192,13 +194,13 @@ public class MainActivity extends MainHuanXinActivity implements
 															case 0:
 																i.putExtra("type",0);
 																startActivityForResult(i,0);
-//									/**
+//									*//**
 //									 * 0.4.7 目前直接调起相机不支持裁剪，如果开启裁剪后不会返回图片，请注意，后续版本会解决
 //									 *
 //									 * 但是当前直接依赖的版本已经解决，考虑到版本改动很少，所以这次没有上传到远程仓库
 //									 *
 //									 * 如果实在有所需要，请直接下载源码引用。
-//									 */
+//									 *//*
 //									//打开选择,本次允许选择的数量
 //                               		 ImagePicker.getInstance().setSelectLimit(9);
 //									Intent intent = new Intent(MainActivity.this, ImageGridActivity.class);
@@ -220,9 +222,9 @@ public class MainActivity extends MainHuanXinActivity implements
 //										ImagePicker.getInstance().setOutPutX(200);//保存文件的宽度。单位像素
 //										ImagePicker.getInstance().setOutPutY(200);//保存文件的高度。单位像素
 //										Intent intent1 = new Intent(MainActivity.this, ImageGridActivity.class);
-                                /* 如果需要进入选择的时候显示已经选中的图片，
+                                *//* 如果需要进入选择的时候显示已经选中的图片，
                                  * 详情请查看ImagePickerActivity
-                                 * */
+                                 * *//*
 //                                intent1.putExtra(ImageGridActivity.EXTRAS_IMAGES,images);
 //										startActivityForResult(intent1, REQUEST_CODE_SELECT);
 																break;
@@ -239,7 +241,7 @@ public class MainActivity extends MainHuanXinActivity implements
 												});
 												dialog.title_tv.setText("现在拍照");
 												dialog.tv2.setText("从相册里选取");
-												dialog.show();
+												dialog.show();*/
 											}
 									}
 								});
