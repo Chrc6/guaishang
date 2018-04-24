@@ -3,21 +3,12 @@
 
     <item
         is-multidex="true"
-        jar="E:\guaishang\guaishang\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="86ca401f0c1ce71652c6bcd1e81cb72f7b99b6ec">
-        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_53904b2f700b972a0f8306ebfdef4712366ee051\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\lenovo\.android\build-cache\e5ba6d4935f7bdb9f49eb369f2a2fa880b455041\output\jars\classes.jar"
-        jumboMode="true"
+        jar="C:\Users\chrc\.android\build-cache\0289c9b5908e96dd79d0acabf4045cb843185a24\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.3"
         sha1="17e703fa2462337827dc2140a436bea33711584c">
-        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_24fc47ffc50223469da08629e3387f0767590541\classes.dex" />
+        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_938b5770d8e182f610cbca9a0e72df68e38bdc7d\classes.dex" />
     </item>
 
 </items>
