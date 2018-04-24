@@ -27,6 +27,7 @@ import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.BaseActivity;
 import com.houwei.guaishang.activity.Constant;
+import com.houwei.guaishang.activity.OrderChatActivity;
 import com.houwei.guaishang.activity.TopicDetailActivity;
 import com.houwei.guaishang.activity.newui.TopicDetailMeActivity;
 import com.houwei.guaishang.adapter.OfferAdapter;
@@ -415,6 +416,8 @@ public class TopicAdapter extends BaseAdapter {
             public void goChatView() {
                 // TODO: 2018/4/21 跳转到聊天页面
                 ToastUtils.toastForShort(mContext,"跳转聊天页面");
+                Intent intent = new Intent(mContext, OrderChatActivity.class);
+                mContext.startActivity(intent);
             }
 
             @Override

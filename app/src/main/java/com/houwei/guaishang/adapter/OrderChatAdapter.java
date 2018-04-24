@@ -40,7 +40,7 @@ public class OrderChatAdapter extends RecyclerView.Adapter<OrderChatAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         final UserBean userBean = list.get(position);
         ImageLoader.getInstance().displayImage(userBean.getAvatar().findOriginalUrl(), holder.headIv);
         holder.nameTv.setText(userBean.getName());
@@ -48,7 +48,7 @@ public class OrderChatAdapter extends RecyclerView.Adapter<OrderChatAdapter.View
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onClick(userBean.getUserid());
+                    listener.onItemClick(position, userBean.getUserid());
                 }
             });
         }
@@ -74,6 +74,6 @@ public class OrderChatAdapter extends RecyclerView.Adapter<OrderChatAdapter.View
     }
 
     public interface AdapterItemClickListener {
-        void onClick(String userId);
+        void onItemClick(int postion, String userId);
     }
 }
