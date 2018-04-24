@@ -316,6 +316,7 @@
         <activity android:name=".huanxin.ChatActivity"
             android:launchMode="singleTask"
             />
+        <activity android:name=".preview.PreviewActivity"/>
         <activity
             android:name=".activity.TopicReleaseActivity"
             android:screenOrientation="portrait"

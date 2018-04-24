@@ -182,7 +182,7 @@ public class TopicAdapter extends BaseAdapter {
                 //自己发的单
                 //测试
                 mIconList.clear();
-                for (int i = 0; i < 7; i++) {
+                for (int i = 0; i < 1; i++) {
                     mIconList.add("http://www.guaishangfaming.com//media/topic/photo/2018-04-21/3b2f505d68fc31dbbb40e456a5f573cf.jpg");
                 }
                 holder.order_count.setVisibility(View.VISIBLE);
