@@ -29,6 +29,8 @@ import com.houwei.guaishang.easemob.EaseNotifier.EaseNotificationInfoProvider;
 import com.houwei.guaishang.easemob.EaseUI.EaseEmojiconInfoProvider;
 import com.houwei.guaishang.easemob.EaseUI.EaseSettingsProvider;
 import com.houwei.guaishang.easemob.EaseUI.EaseUserProfileProvider;
+import com.houwei.guaishang.huanxin.ChatActivity;
+import com.houwei.guaishang.huanxin.ChatInfo;
 import com.houwei.guaishang.manager.ITopicApplication;
 import com.houwei.guaishang.tools.JsonParser;
 import com.houwei.guaishang.tools.LogUtil;
@@ -268,7 +270,8 @@ public class DemoHelper {
                 }else if(isVoiceCalling){
                 }else{
                     ChatType chatType = message.getChatType();
-                    if (chatType == ChatType.Chat) { // 单聊信息
+                    if (chatType == ChatType.Chat) {
+                        // 单聊信息
                         
                     	if (message.getBooleanAttribute("toMain", false)) {
                     		intent.setClass(appContext, MainActivity.class);
@@ -281,21 +284,26 @@ public class DemoHelper {
                     	if (hisAvatarBean == null) {
                     		hisAvatarBean = new AvatarBean();
                 		}
-                    	intent.putExtra(HisRootActivity.HIS_ID_KEY, message.getFrom());
-                    	intent.putExtra(HisRootActivity.HIS_NAME_KEY, hisRealName);
-                    	intent.putExtra(HisRootActivity.HIS_AVATAR_KEY, hisAvatarBean);
-                    	intent.putExtra(EaseConstant.EXTRA_CHATTYPE, chatType);
 
+                        ChatInfo chatInfo = new ChatInfo();
+                        chatInfo.setMobile("");
+                        chatInfo.setHisUserID(message.getFrom());
+                        chatInfo.setHisRealName(hisRealName);
+                        chatInfo.setChatType(EaseConstant.CHATTYPE_SINGLE);
+                        chatInfo.setHeadImageBean(hisAvatarBean);
+                        intent.putExtra(ChatActivity.Chat_info,chatInfo);
                     } else { // 群聊信息
                         // message.getTo()为群聊id
                     	String hisRealName = message.getStringAttribute(
 								HisRootActivity.RECEIVER_NAME_KEY, "");
-                    	
-                        intent.putExtra(EaseConstant.EXTRA_CHATTYPE,chatType == ChatType.GroupChat? Constant.CHATTYPE_GROUP:Constant.CHATTYPE_CHATROOM);
-                        intent.putExtra(HisRootActivity.HIS_ID_KEY, message.getTo());
-                    	intent.putExtra(HisRootActivity.HIS_NAME_KEY, hisRealName);
-                    	intent.putExtra(HisRootActivity.HIS_AVATAR_KEY, new AvatarBean());
-                        
+
+                        ChatInfo chatInfo = new ChatInfo();
+                        chatInfo.setMobile("");
+                        chatInfo.setHisUserID(message.getTo());
+                        chatInfo.setHisRealName(hisRealName);
+                        chatInfo.setChatType(chatType == ChatType.GroupChat? Constant.CHATTYPE_GROUP:Constant.CHATTYPE_CHATROOM);
+                        chatInfo.setHeadImageBean(new AvatarBean());
+                        intent.putExtra(ChatActivity.Chat_info,chatInfo);
                     }
                 }
                 return intent;

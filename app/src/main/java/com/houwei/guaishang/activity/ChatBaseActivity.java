@@ -209,7 +209,7 @@ public class ChatBaseActivity extends BaseActivity implements EMEventListener {
 					ToastUtils.toastForShort(ChatBaseActivity.this,"输入的交付日期不能为空");
 					return;
 				}
-				ChatBindInfoDBHelper.g().add(toChatUsername,editPrice.getText().toString(),editTime.getText().toString());
+				ChatBindInfoDBHelper.g().add(toChatUsername,editPrice.getText().toString(),editTime.getText().toString(),mobile);
 
 				editPrice.setEnabled(false);
 				editTime.setEnabled(false);
@@ -788,10 +788,9 @@ public class ChatBaseActivity extends BaseActivity implements EMEventListener {
 			}
 		});
 	}
-
 	/**
 	 * 扩展菜单栏item点击事件
-	 * 
+	 *
 	 */
 	class MyItemClickListener implements
 			EaseChatExtendMenu.EaseChatExtendMenuItemClickListener {
@@ -804,23 +803,24 @@ public class ChatBaseActivity extends BaseActivity implements EMEventListener {
 				}
 			}
 			switch (itemId) {
-			case ITEM_TAKE_PICTURE: // 拍照
-				selectPicFromCamera();
-				break;
-			case ITEM_PICTURE:
-				selectPicFromLocal(); // 图库选择图片
-				break;
-			case ITEM_LOCATION: // 位置
-				startActivityForResult(new Intent(ChatBaseActivity.this,
-						BaiduMapActivity.class), REQUEST_CODE_MAP);
-				break;
+				case ITEM_TAKE_PICTURE: // 拍照
+					selectPicFromCamera();
+					break;
+				case ITEM_PICTURE:
+					selectPicFromLocal(); // 图库选择图片
+					break;
+				case ITEM_LOCATION: // 位置
+					startActivityForResult(new Intent(ChatBaseActivity.this,
+							BaiduMapActivity.class), REQUEST_CODE_MAP);
+					break;
 
-			default:
-				break;
+				default:
+					break;
 			}
 		}
 
 	}
+
 	
 	
 	private void addAttribute(EMMessage message) {
@@ -1115,8 +1115,7 @@ public class ChatBaseActivity extends BaseActivity implements EMEventListener {
 	/**
 	 * 监测群组解散或者被T事件
 	 * 
-	 */
-	class GroupListener extends EaseGroupRemoveListener {
+	 */class GroupListener extends EaseGroupRemoveListener {
 
 		@Override
 		public void onUserRemoved(final String groupId, String groupName) {
@@ -1147,6 +1146,7 @@ public class ChatBaseActivity extends BaseActivity implements EMEventListener {
 		}
 
 	}
+
 
 	protected EaseChatFragmentListener chatFragmentListener;
 

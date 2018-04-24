@@ -18,6 +18,8 @@ public class ChatInfoData {
     private String price;
     @Property(nameInDb = "TIME")
     private String time;
+    @Property(nameInDb = "MOBILE")
+    private String mobile;
     public String getTime() {
         return this.time;
     }
@@ -42,12 +44,20 @@ public class ChatInfoData {
     public void setId(Long id) {
         this.id = id;
     }
-    @Generated(hash = 1449433244)
-    public ChatInfoData(Long id, String name, String price, String time) {
+    public String getMobile() {
+        return this.mobile;
+    }
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+    @Generated(hash = 1767418837)
+    public ChatInfoData(Long id, String name, String price, String time,
+            String mobile) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.time = time;
+        this.mobile = mobile;
     }
     @Generated(hash = 1455114105)
     public ChatInfoData() {
