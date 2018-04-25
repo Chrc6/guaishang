@@ -53,6 +53,7 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
             bean.setSmall("https://www.baidu.com/img/bd_logo1.png");
             userBean.setAvatar(bean);
             userBean.setName("测试数据"+i);
+            userBean.setUserid("641");
             list.add(userBean);
         }
     }
