@@ -19,10 +19,15 @@ import java.util.List;
  * Created by *** on 2018/4/21.
  */
 
-public class OrderChatAdapter extends RecyclerView.Adapter<OrderChatAdapter.ViewHolder>{
+public class OrderChatAdapter extends RecyclerView.Adapter{
+
+    private final int HEAD_TYPE = 1;
+    private final int CONTENT_TYPE = 2;
 
     private List<UserBean> list;
     private AdapterItemClickListener listener;
+
+    private int focusPosition = 1;
 
     public OrderChatAdapter(List list) {
         this.list = list;
@@ -32,43 +37,88 @@ public class OrderChatAdapter extends RecyclerView.Adapter<OrderChatAdapter.View
         this.listener = listener;
     }
 
+    private void setFocusItemPosition(int position) {
+        this.focusPosition = position;
+    }
+
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order_chat_layout,parent,false);
-        ViewHolder holder = new ViewHolder(view);
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return HEAD_TYPE;
+        }
+        return CONTENT_TYPE;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        RecyclerView.ViewHolder holder = null;
+        if (viewType == HEAD_TYPE) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order_chat_head_layout,parent,false);
+            holder = new HeadViewHolder(view);
+        } else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order_chat_layout,parent,false);
+            holder = new ViewHolder(view);
+        }
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
-        final UserBean userBean = list.get(position);
-        ImageLoader.getInstance().displayImage(userBean.getAvatar().findOriginalUrl(), holder.headIv);
-        holder.nameTv.setText(userBean.getName());
-        if (listener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listener.onItemClick(position, userBean.getUserid());
-                }
-            });
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+        if (getItemViewType(position) == HEAD_TYPE) {
+            HeadViewHolder viewHolder = (HeadViewHolder) holder;
+            int count = 0;
+            if (list != null) {
+                count = list.size();
+            }
+            viewHolder.nameTv.setText("抢单人/"+count+"人");
+        } else {
+            ViewHolder viewHolder = (ViewHolder) holder;
+            final UserBean userBean = list.get(position - 1);
+            ImageLoader.getInstance().displayImage(userBean.getAvatar().findOriginalUrl(), viewHolder.headIv);
+            viewHolder.nameTv.setText(userBean.getName());
+            if (listener != null) {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listener.onItemClick(position - 1, userBean.getUserid());
+                        setFocusItemPosition(position);
+                    }
+                });
+            }
+            if (focusPosition == position) {
+                holder.itemView.setBackground(holder.itemView.getContext().getResources().getDrawable(R.drawable.order_chat_item_click));
+            } else {
+                holder.itemView.setBackground(holder.itemView.getContext().getResources().getDrawable(R.drawable.order_chat_item_normal));
+            }
         }
     }
 
     @Override
     public int getItemCount() {
         if (list != null && list.size() > 0) {
-            return list.size();
+            return list.size() + 1;
         }
-        return 0;
+        return 1;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
         public ImageView headIv;
         public TextView nameTv;
+        public View view_rot;
 
         public ViewHolder(View view) {
             super(view);
             headIv = (ImageView) view.findViewById(R.id.iv_head);
+            nameTv = (TextView) view.findViewById(R.id.tv_name);
+            view_rot = view.findViewById(R.id.view_rot);
+        }
+    }
+
+    class HeadViewHolder extends RecyclerView.ViewHolder{
+        public TextView nameTv;
+
+        public HeadViewHolder(View view) {
+            super(view);
             nameTv = (TextView) view.findViewById(R.id.tv_name);
         }
     }

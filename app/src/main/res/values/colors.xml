@@ -117,4 +117,8 @@
     <color name="my_bg">#0e3464</color>
     <color name="progress_text">#ff9900</color>
 
+
+    <color name="color_e8e8e8">#e8e8e8</color>
+    <color name="color_000000">#000000</color>
+
 </resources>

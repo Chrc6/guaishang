@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp"
+    android:background="@drawable/order_chat_item_background">
 
     <com.houwei.guaishang.view.CircleImageView
         android:id="@+id/iv_head"
-        android:layout_width="60dp"
-        android:layout_height="60dp" />
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="@dimen/dp5"/>
+
+    <View
+        android:id="@+id/view_rot"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_alignRight="@+id/iv_head"
+        android:layout_alignTop="@+id/iv_head"
+        android:background="@drawable/red_circle"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_toRightOf="@+id/iv_head"
         android:layout_gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:singleLine="true"
         android:textSize="@dimen/dp_14"
-        android:textColor="#101010"
+        android:textColor="#ffffff"
         android:text="测试人"/>
 
-</LinearLayout>
+</RelativeLayout>

@@ -7,7 +7,8 @@
         android:id="@+id/ll_back"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:background="#333038">
 
         <ImageView
             style="@style/titleBackStyle"
@@ -16,17 +17,31 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="83dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_back"
+        android:background="#e8e8e8"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle_view"
-        android:layout_width="100dp"
+        android:layout_width="83dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ll_back"/>
+        android:background="@drawable/black_round"
+        android:layout_below="@+id/ll_back" />
 
-    <FrameLayout
-        android:id="@+id/fl_container"
+    <com.houwei.guaishang.layout.NoScrollViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toRightOf="@+id/recycle_view"
         android:layout_below="@+id/ll_back"/>
+
+    <!--<FrameLayout-->
+        <!--android:id="@+id/fl_container"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_toRightOf="@+id/recycle_view"-->
+        <!--android:layout_below="@+id/ll_back"/>-->
 
 </RelativeLayout>

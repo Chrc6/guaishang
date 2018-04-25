@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.FrameLayout;
 
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.adapter.OrderChatAdapter;
+import com.houwei.guaishang.adapter.OrderChatViewPagerAdapter;
 import com.houwei.guaishang.bean.AvatarBean;
 import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.easemob.EaseConstant;
@@ -22,7 +24,7 @@ import java.util.List;
 
 public class OrderChatActivity extends BaseActivity implements View.OnClickListener,OrderChatAdapter.AdapterItemClickListener {
 
-    private FrameLayout frameLayout;
+    private ViewPager mViewPager;
     private RecyclerView mRecyclerView;
     private OrderChatAdapter mAdapter;
     private List<UserBean> list;
@@ -68,25 +70,13 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
         mAdapter = new OrderChatAdapter(list);
         mAdapter.setItemOnclickListener(this);
         mRecyclerView.setAdapter(mAdapter);
-        frameLayout = (FrameLayout) findViewById(R.id.fl_container);
+
+        mViewPager = (ViewPager) findViewById(R.id.view_pager);
+        mViewPager.setAdapter(new OrderChatViewPagerAdapter(getSupportFragmentManager(),list));
 
         findViewById(R.id.ll_back).setOnClickListener(this);
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        for (int i = 0; i < list.size(); i++) {
-            UserBean userBean = list.get(i);
-            ChatInfo chatInfo = new ChatInfo();
-            chatInfo.setMobile("");
-            chatInfo.setHisUserID(userBean.getUserid());
-            chatInfo.setHisRealName(userBean.getName());
-            chatInfo.setChatType(EaseConstant.CHATTYPE_SINGLE);
-            chatInfo.setHeadImageBean(userBean.getAvatar());
-            ChatFragment fragment = ChatFragment.getInstance(chatInfo);
-            fragments.add(fragment);
-            transaction.add(fragment,fragment.getClass().getName());
-        }
-        transaction.replace(R.id.fl_container, fragments.get(0));
-        transaction.commit();
+
     }
 
     @Override
@@ -101,24 +91,8 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onItemClick(int postion, String userId) {
         //fragment聊天页面 切换
-        for (int i = 0; i < fragments.size(); i++) {
-            if (i == postion) {
-                showFragment(fragments.get(i));
-            } else {
-                hideFragment(fragments.get(i));
-            }
-        }
-    }
-
-    private void showFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.show(fragment);
-        transaction.commit();
-    }
-
-    private void hideFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.hide(fragment);
-        transaction.commit();
+        mViewPager.setCurrentItem(postion);
+        mAdapter.notifyDataSetChanged();
+        mRecyclerView.scrollToPosition(postion);
     }
 }
