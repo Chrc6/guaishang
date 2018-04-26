@@ -70,7 +70,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
-
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <!-- 极光推送 -->
     <uses-permission android:name="com.houwei.guaishang.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
