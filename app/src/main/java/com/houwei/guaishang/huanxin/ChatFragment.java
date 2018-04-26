@@ -266,6 +266,7 @@ public class ChatFragment extends BaseFragment implements EMEventListener {
 
                 editPrice.setEnabled(false);
                 editTime.setEnabled(false);
+                sure.setVisibility(View.GONE);
             }
         });
     }
@@ -296,9 +297,14 @@ public class ChatFragment extends BaseFragment implements EMEventListener {
     }
 
     private void initListener() {
-//       setTitleName(chatInfo.getHisRealName());
+        View titleLaout = rootView.findViewById(R.id.title_layout);
         TextView  title = (TextView) rootView.findViewById(R.id.title);
-        title.setText(chatInfo.getHisRealName());
+        if (chatInfo.isHideTitle()){
+               titleLaout.setVisibility(View.GONE);
+        }else {
+            title.setVisibility(View.VISIBLE);
+            title.setText(chatInfo.getHisRealName());
+        }
         setRefreshLayoutListener();
         if (chatFragmentListener == null) {
             chatFragmentListener = new ChatBaseActivity.EaseChatFragmentListener() {

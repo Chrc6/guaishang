@@ -30,7 +30,7 @@
             android:id="@+id/edit_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="价格"
+            android:hint="总价"
             android:textColor="#acb2c1"
             android:textSize="13sp"
             android:layout_marginRight="@dimen/dp5"
@@ -45,7 +45,7 @@
             android:id="@+id/edit_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="日期"
+            android:hint="周期"
             android:textColor="#acb2c1"
             android:textSize="13sp"
             android:layout_marginLeft="@dimen/dp5"
@@ -59,11 +59,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:text="确定"
+        android:text="提交报价"
         android:layout_marginRight="15dp"
-        android:textColor="#4577dc"
+        android:textColor="@color/white"
         android:textSize="@dimen/sp_14"
         android:padding="@dimen/dp5"
+        android:background="@drawable/bg_rectangle_black"
         />
 
 </RelativeLayout>
