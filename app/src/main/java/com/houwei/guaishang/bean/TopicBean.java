@@ -30,10 +30,10 @@ public class TopicBean implements Serializable {
 	private String address;//地址
 	private String mobile;//地址
 
-	private int offer;//单的状态
+	private int isOffer;//单的状态
 	private int rata;//评价分
 	private String brand;//行业名称
-
+	private String jifen;
 	private int shareNum;
 	private boolean praised;//我是否点过赞
 	private int praiseCount;
@@ -97,6 +97,14 @@ public class TopicBean implements Serializable {
 		this.mobile = mobile;
 	}
 
+	public String getJifen() {
+		return jifen;
+	}
+
+	public void setJifen(String jifen) {
+		this.jifen = jifen;
+	}
+
 	public String getSumPrice() {
 		return sumPrice;
 	}
@@ -147,11 +155,11 @@ public class TopicBean implements Serializable {
 
 
 	public int getOffer() {
-		return offer;
+		return isOffer;
 	}
 
 	public void setOffer(int offer) {
-		this.offer = offer;
+		this.isOffer = offer;
 	}
 
 	public int getRata() {

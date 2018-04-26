@@ -26,6 +26,8 @@ public class FloatButton extends RelativeLayout {
     private static final int  Galb = 1;//抢单状态
     private static final int Galb_self = 2;//自己发的单状态
     private static final int  Finish = 3;//结束状态
+    private static final int Has_Galb = 4;//已抢
+    private static final int Wait_Galb = 5;//等待抢单
 
     private BaseActivity context;
     private List<String> mAvatarList;//头像列表
@@ -69,6 +71,12 @@ public class FloatButton extends RelativeLayout {
                         case Finish:
                             floatBtnClickListener.doNothing();
                             break;
+                        case Has_Galb:
+                            floatBtnClickListener.doNothing();
+                            break;
+                        case Wait_Galb:
+                            floatBtnClickListener.doNothing();
+                            break;
                     }
                 }
             }
@@ -105,6 +113,18 @@ public class FloatButton extends RelativeLayout {
             galb_self.setVisibility(VISIBLE);
             galb_layout.setVisibility(GONE);
             rootView.setBackground(context.getResources().getDrawable(R.drawable.bg_float_btn_white));
+        }else if (statu == Has_Galb){
+            galb_self.setVisibility(GONE);
+            brief.setVisibility(GONE);
+            galb_layout.setVisibility(VISIBLE);
+            galb.setText("已抢");
+            rootView.setBackground(context.getResources().getDrawable(R.drawable.bg_float_btn_gral));
+        }else if (statu == Wait_Galb){
+            galb_self.setVisibility(GONE);
+            brief.setVisibility(GONE);
+            galb_layout.setVisibility(VISIBLE);
+            galb.setText("等待抢单");
+            rootView.setBackground(context.getResources().getDrawable(R.drawable.bg_float_btn_red));
         }
     }
 
@@ -119,7 +139,7 @@ public class FloatButton extends RelativeLayout {
             mAvatarList.clear();
             mAvatarList.addAll(list);
         }
-        notifyAvatarRefresh();
+            notifyAvatarRefresh();
     }
 
     private void notifyAvatarRefresh(){

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.houwei.guaishang.R;
+import com.houwei.guaishang.bean.OffersBean;
 import com.houwei.guaishang.bean.UserBean;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -24,7 +25,7 @@ public class OrderChatAdapter extends RecyclerView.Adapter{
     private final int HEAD_TYPE = 1;
     private final int CONTENT_TYPE = 2;
 
-    private List<UserBean> list;
+    private  List<OffersBean.OfferBean> list;
     private AdapterItemClickListener listener;
 
     private int focusPosition = 1;
@@ -73,14 +74,14 @@ public class OrderChatAdapter extends RecyclerView.Adapter{
             viewHolder.nameTv.setText("抢单人/"+count+"人");
         } else {
             ViewHolder viewHolder = (ViewHolder) holder;
-            final UserBean userBean = list.get(position - 1);
-            ImageLoader.getInstance().displayImage(userBean.getAvatar().findOriginalUrl(), viewHolder.headIv);
-            viewHolder.nameTv.setText(userBean.getName());
+            final OffersBean.OfferBean offerBean = list.get(position - 1);
+            ImageLoader.getInstance().displayImage(offerBean.getAvatar(), viewHolder.headIv);
+            viewHolder.nameTv.setText(offerBean.getName());
             if (listener != null) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        listener.onItemClick(position - 1, userBean.getUserid());
+                        listener.onItemClick(position - 1, offerBean.getUserId());
                         setFocusItemPosition(position);
                     }
                 });
