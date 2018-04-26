@@ -50,7 +50,7 @@ public class ITopicApplication extends MobApplication {
 		super.onCreate();
 		MultiDex.install(this);
 		MobSDK.init(this,"15b5b9e067b56","7b60e80917dd1d9b1f90223b02215b9b");
-
+		application = this;
 		//极光初始化
 		JPushInterface.setDebugMode(true);
 		JPushInterface.init(this);
@@ -86,6 +86,10 @@ public class ITopicApplication extends MobApplication {
 	public void onTerminate() {
 		// TODO Auto-generated method stub
 		super.onTerminate();
+	}
+
+	public static Context getContext(){
+		return application;
 	}
 
 	public void checkInit() {

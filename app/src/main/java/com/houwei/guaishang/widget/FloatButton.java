@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.google.android.flexbox.FlexboxLayout;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.BaseActivity;
+import com.houwei.guaishang.sp.UserUtil;
+import com.houwei.guaishang.util.LoginJumperUtil;
 import com.houwei.guaishang.view.CircleImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -26,6 +28,8 @@ public class FloatButton extends RelativeLayout {
     private static final int  Galb = 1;//抢单状态
     private static final int Galb_self = 2;//自己发的单状态
     private static final int  Finish = 3;//结束状态
+    private static final int Has_Galb = 4;//已抢
+    private static final int Wait_Galb = 5;//等待抢单
 
     private BaseActivity context;
     private List<String> mAvatarList;//头像列表
@@ -47,7 +51,7 @@ public class FloatButton extends RelativeLayout {
     }
 
 
-    private void initView(Context context){
+    private void initView(final Context context){
         View view = LayoutInflater.from(context).inflate(R.layout.layout_float,null);
         rootView = (RelativeLayout) view.findViewById(R.id.root_view);
         galb = (TextView) view.findViewById(R.id.galb);
@@ -58,6 +62,10 @@ public class FloatButton extends RelativeLayout {
         rootView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!UserUtil.isInLoginStata()){
+                    LoginJumperUtil.jumperLogin(context);
+                    return;
+                }
                 if (floatBtnClickListener != null){
                     switch (status){
                         case Galb:
@@ -67,6 +75,12 @@ public class FloatButton extends RelativeLayout {
                             floatBtnClickListener.goChatView();
                             break;
                         case Finish:
+                            floatBtnClickListener.doNothing();
+                            break;
+                        case Has_Galb:
+                            floatBtnClickListener.doNothing();
+                            break;
+                        case Wait_Galb:
                             floatBtnClickListener.doNothing();
                             break;
                     }
@@ -105,6 +119,18 @@ public class FloatButton extends RelativeLayout {
             galb_self.setVisibility(VISIBLE);
             galb_layout.setVisibility(GONE);
             rootView.setBackground(context.getResources().getDrawable(R.drawable.bg_float_btn_white));
+        }else if (statu == Has_Galb){
+            galb_self.setVisibility(GONE);
+            brief.setVisibility(GONE);
+            galb_layout.setVisibility(VISIBLE);
+            galb.setText("已抢");
+            rootView.setBackground(context.getResources().getDrawable(R.drawable.bg_float_btn_gral));
+        }else if (statu == Wait_Galb){
+            galb_self.setVisibility(GONE);
+            brief.setVisibility(GONE);
+            galb_layout.setVisibility(VISIBLE);
+            galb.setText("等待抢单");
+            rootView.setBackground(context.getResources().getDrawable(R.drawable.bg_float_btn_red));
         }
     }
 
@@ -119,7 +145,7 @@ public class FloatButton extends RelativeLayout {
             mAvatarList.clear();
             mAvatarList.addAll(list);
         }
-        notifyAvatarRefresh();
+            notifyAvatarRefresh();
     }
 
     private void notifyAvatarRefresh(){

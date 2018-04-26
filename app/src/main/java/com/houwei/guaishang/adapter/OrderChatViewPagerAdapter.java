@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.houwei.guaishang.bean.AvatarBean;
+import com.houwei.guaishang.bean.OffersBean;
 import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.easemob.EaseConstant;
 import com.houwei.guaishang.huanxin.ChatFragment;
@@ -17,22 +19,26 @@ import java.util.List;
 
 public class OrderChatViewPagerAdapter extends FragmentPagerAdapter {
 
-    private List<UserBean> userBeans;
+    private  List<OffersBean.OfferBean> userBeans;
 
-    public OrderChatViewPagerAdapter(FragmentManager fm, List<UserBean> userBeans) {
+    public OrderChatViewPagerAdapter(FragmentManager fm, List<OffersBean.OfferBean> offerPriceList) {
         super(fm);
-        this.userBeans = userBeans;
+        this.userBeans = offerPriceList;
     }
 
     @Override
     public Fragment getItem(int position) {
-        UserBean userBean = userBeans.get(position);
+        OffersBean.OfferBean offerBean = userBeans.get(position);
         ChatInfo chatInfo = new ChatInfo();
-        chatInfo.setMobile("");
-        chatInfo.setHisUserID(userBean.getUserid());
-        chatInfo.setHisRealName(userBean.getName());
+        chatInfo.setMobile(offerBean.getMobile());
+        chatInfo.setHisUserID(offerBean.getUserid());
+        chatInfo.setHisRealName(offerBean.getName());
         chatInfo.setChatType(EaseConstant.CHATTYPE_SINGLE);
-        chatInfo.setHeadImageBean(userBean.getAvatar());
+        AvatarBean avatarBean = new AvatarBean();
+        avatarBean.setOriginal(offerBean.getAvatar());
+        avatarBean.setSmall(offerBean.getAvatar());
+        chatInfo.setHeadImageBean(avatarBean);
+        chatInfo.setHideTitle(true);
         ChatFragment fragment = ChatFragment.getInstance(chatInfo);
         return fragment;
     }

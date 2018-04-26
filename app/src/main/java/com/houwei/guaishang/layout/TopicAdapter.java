@@ -61,6 +61,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -183,13 +184,23 @@ public class TopicAdapter extends BaseAdapter {
                 //自己发的单
                 //测试
                 mIconList.clear();
-                for (int i = 0; i < 1; i++) {
-                    mIconList.add("http://www.guaishangfaming.com//media/topic/photo/2018-04-21/3b2f505d68fc31dbbb40e456a5f573cf.jpg");
+                List<OffersBean.OfferBean> offerPrice = bean.getOfferPrice();
+                int size = offerPrice.size();
+                if (size == 0){
+                    holder.order_count.setVisibility(View.GONE);
+                    holder.order_btn.setStatu(5);
+                }else {
+                    for (int i = 0; i < size; i++) {
+                        mIconList.add(offerPrice.get(i).getAvatar());
+                    }
+                    holder.order_count.setVisibility( View.VISIBLE);
+                    holder.order_count.setText(mIconList.size() + "");
+                    holder.order_btn.setStatu(2);
+                    holder.order_btn.setmAvatarList(mIconList);
                 }
-                holder.order_count.setVisibility(View.VISIBLE);
-                holder.order_count.setText(mIconList.size()+"");
-                holder.order_btn.setStatu(2);
-                holder.order_btn.setmAvatarList(mIconList);
+            }else if (Integer.valueOf(bean.getOffer()) == 1){
+                holder.order_count.setVisibility(View.GONE);
+                holder.order_btn.setStatu(4);
             }else {
                 holder.order_count.setVisibility(View.GONE);
                 holder.order_btn.setStatu(1);
@@ -251,7 +262,12 @@ public class TopicAdapter extends BaseAdapter {
             location = location.substring(0, (location.indexOf("市")+1));
         }
         // TODO: 2018/4/21 设置评分
-        holder.ratingBar.setRating(3);
+        if (!TextUtils.isEmpty(bean.getJifen())) {
+            Integer jifen = Integer.valueOf(bean.getJifen());
+            holder.ratingBar.setRating(jifen);
+        }else {
+            holder.ratingBar.setRating(0);
+        }
         holder.ratingBar.setIsIndicator(true);
         holder.header_location.setText(location);
         holder.header_name.setText(bean.getMemberName());
@@ -261,64 +277,8 @@ public class TopicAdapter extends BaseAdapter {
         holder.price_tv.setText("￥" + bean.getPrice());
         holder.share_count_btn.setText(bean.getShareNum()+"");
 
-//        holder.jcVideoPlayer.setUp(bean.getVideourl(), "");
-        //ImageLoader.getInstance().displayImage(bean.getCover(), holder.jcVideoPlayer.thumbImageView, kkk(mContext));
-//        ImageLoader.getInstance().displayImage(bean.getCover(),holder.jcVideoPlayer.thumbImageView,options);
-//		Bitmap bitmap = ImageLoader.getInstance().loadImageSync(bean.getCover());
-//		holder.jcVideoPlayer.thumbImageView,kkk()
-//		float[] outerR = new float[] { 120, 120, 0, 0, 0, 0, 0, 0 };
-//		RoundRectShape rectShape=new RoundRectShape(outerR, null, null);
-//		ShapeDrawable mDrawables= new ShapeDrawable(rectShape);
-//		mDrawables.getPaint().setColor(Color.RED);
-//		mDrawables.draw(new Canvas(bitmap.copy(Bitmap.Config.ARGB_8888,true)));
-//holder.jcVideoPlayer.thumbImageView.setImageBitmap(bitmap);
-//        if (bean.isPraised()) {
-//            holder.zan_count_btn.setCompoundDrawables(null, attention, null, null);
-//        } else {
-//            holder.zan_count_btn.setCompoundDrawables(null, attentionUn, null, null);
-//        }
         holder.zan_count_btn.setText(bean.getSumPrice());
-       /* holder.zan_count_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dealPraise(holder.zan_count_btn,bean);
-            }
-        });*/
-//        holder.zan_count_btn.setPraiseState(mContext, bean);
-//        holder.praise_ll.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                // TODO Auto-generated method stub
-//                PraiseTextView tv = (PraiseTextView) v.findViewById(R.id.zan_count_btn);
-//                tv.clickPraise(mContext, bean);
-//            }
-//        });
-//        holder.comment_ll.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View arg0) {
-//                // TODO Auto-generated method stub
-//                if(TextUtils.equals(mContext.getUserID(),memberId)){
-//                    Intent intent=new Intent(mContext,TopicDetailMeActivity.class);
-//                    intent.putExtra("TopicBean", bean);
-//                    intent.putExtra("position", 0);
-//                    mContext.startActivityForResult(intent, 0);
-//                    return;
-//                }
-//                Intent i = new Intent();
-//                if(jumpType==0){
-//                    i.setClass(mContext, TopicDetailActivity.class);
-//                }else{
-//                    i.setClass(mContext, TopicDetailMeActivity.class);
-//
-//                }
-//                i.putExtra("TopicBean", bean);
-//                i.putExtra("position", 0);
-//                i.putExtra("needPay", bean.getOffer());
-//                mContext.startActivityForResult(i, 0);
-//            }
-//        });
+
 
         holder.avator.setOnClickListener(new View.OnClickListener() {
 
@@ -415,14 +375,14 @@ public class TopicAdapter extends BaseAdapter {
             @Override
             public void goChatView() {
                 // TODO: 2018/4/21 跳转到聊天页面
-                ToastUtils.toastForShort(mContext,"跳转聊天页面");
                 Intent intent = new Intent(mContext, OrderChatActivity.class);
+                List<OffersBean.OfferBean> offerPriceList = bean.getOfferPrice();
+                intent.putExtra(OrderChatActivity.Parse_List,(Serializable) offerPriceList);
                 mContext.startActivity(intent);
             }
 
             @Override
             public void doNothing() {
-                ToastUtils.toastForShort(mContext,"啥也不做");
             }
         });
         holder.order_btn.setOnClickListener(new View.OnClickListener() {

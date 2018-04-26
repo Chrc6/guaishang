@@ -29,6 +29,7 @@ import android.os.Build;
 import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
 
+import com.houwei.guaishang.MessageEvent;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.HisRootActivity;
 import com.houwei.guaishang.activity.MainActivity;
@@ -39,6 +40,10 @@ import com.easemob.chat.EMMessage;
 import com.easemob.chat.TextMessageBody;
 import com.easemob.util.EMLog;
 import com.easemob.util.EasyUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * 新消息提醒class
@@ -83,6 +88,9 @@ public class EaseNotifier {
      */
     public EaseNotifier init(Context context){
         appContext = context;
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
         notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         packageName = appContext.getApplicationInfo().packageName;
@@ -142,10 +150,16 @@ public class EaseNotifier {
             sendNotification(message, true);
 
         }
-        
+        sendEvent(message);
         viberateAndPlayTone(message);
     }
-    
+
+    private void sendEvent(EMMessage message){
+        MessageEvent event = new MessageEvent();
+        event.setId(message.getFrom());
+        EventBus.getDefault().post(this);
+    }
+
     public synchronized void onNewMesg(List<EMMessage> messages) {
         if(EMChatManager.getInstance().isSlientMessage(messages.get(messages.size()-1))){
             return;
@@ -422,5 +436,10 @@ public class EaseNotifier {
          * @return null为使用默认
          */
         Intent getLaunchIntent(EMMessage message);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void on3EventMainThread(MessageEvent messageEvent){
+
     }
 }

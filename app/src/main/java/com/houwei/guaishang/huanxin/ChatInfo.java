@@ -15,6 +15,7 @@ public class ChatInfo implements Serializable {
     private AvatarBean headImageBean;
     private int chatType;//聊天方式 群聊 还是单聊
     private String mobile;
+    private boolean hideTitle;
 
     public ChatInfo() {
     }
@@ -57,5 +58,13 @@ public class ChatInfo implements Serializable {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public boolean isHideTitle() {
+        return hideTitle;
+    }
+
+    public void setHideTitle(boolean hideTitle) {
+        this.hideTitle = hideTitle;
     }
 }

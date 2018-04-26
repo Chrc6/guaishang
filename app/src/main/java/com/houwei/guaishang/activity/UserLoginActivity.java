@@ -8,9 +8,12 @@ import com.baidu.tts.tools.SharedPreferencesUtils;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.bean.UserResponse;
 import com.houwei.guaishang.data.DBReq;
+import com.houwei.guaishang.event.LoginSuccessEvent;
 import com.houwei.guaishang.manager.HuanXinManager;
 import com.houwei.guaishang.manager.MyUserBeanManager;
 import com.houwei.guaishang.manager.HuanXinManager.HuanXinLoginListener;
+import com.houwei.guaishang.sp.UserInfo;
+import com.houwei.guaishang.sp.UserUtil;
 import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.JsonParser;
 import com.houwei.guaishang.tools.PublicStaticData;
@@ -30,6 +33,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import cn.jpush.android.api.JPushInterface;
 import cn.sharesdk.framework.ShareSDK;
@@ -73,6 +78,11 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 					 DBReq.getInstence(activity.getITopicApplication());
 				
 					 activity.getITopicApplication().getHuanXinManager().loginHuanXinService(activity, response.getData().getUserid(),response.getData().getName(), activity);
+					UserInfo info = new UserInfo();
+					info.setUserId(response.getData().getUserid());
+					info.setUserName(response.getData().getName());
+					UserUtil.setUserInfo(info);
+                    EventBus.getDefault().post(new LoginSuccessEvent());
 				} else {
 					activity.progress.dismiss();
 					activity.showErrorToast(response.getMessage());
@@ -90,12 +100,25 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().isRegistered(this);
+        }
 		initView();
 		initListener();		
 	}
 
-	private void initView() {
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().unregister(this);
+        }
+    }
+
+    private void initView() {
 		// TODO Auto-generated method stub
+
+
 		initProgressDialog(false, null);
 		user_name_et = (EditText) findViewById(R.id.username_et);
 		user_pw_et = (EditText) findViewById(R.id.check_pw_et);
