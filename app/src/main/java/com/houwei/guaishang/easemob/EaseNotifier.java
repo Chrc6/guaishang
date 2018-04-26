@@ -29,6 +29,7 @@ import android.os.Build;
 import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
 
+import com.houwei.guaishang.MessageEvent;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.HisRootActivity;
 import com.houwei.guaishang.activity.MainActivity;
@@ -142,10 +143,15 @@ public class EaseNotifier {
             sendNotification(message, true);
 
         }
-        
+        sendEvent(message);
         viberateAndPlayTone(message);
     }
-    
+
+    private void sendEvent(EMMessage message){
+        MessageEvent event = new MessageEvent();
+        event.setId(message.getFrom());
+    }
+
     public synchronized void onNewMesg(List<EMMessage> messages) {
         if(EMChatManager.getInstance().isSlientMessage(messages.get(messages.size()-1))){
             return;

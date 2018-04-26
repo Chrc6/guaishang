@@ -19,7 +19,7 @@
         android:layout_alignRight="@+id/iv_head"
         android:layout_alignTop="@+id/iv_head"
         android:background="@drawable/red_circle"
-        android:visibility="gone"/>
+        />
 
     <TextView
         android:id="@+id/tv_name"

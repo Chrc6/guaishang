@@ -70,6 +70,7 @@ public class OffersBean extends BaseResponse implements Serializable{
         private Object picture;
         private Object idCard;
 
+        private boolean isNotify;
         public String getAddress() {
             return address;
         }
@@ -265,6 +266,14 @@ public class OffersBean extends BaseResponse implements Serializable{
 
         public void setIdCard(Object idCard) {
             this.idCard = idCard;
+        }
+
+        public boolean isNotify() {
+            return isNotify;
+        }
+
+        public void setNotify(boolean notify) {
+            isNotify = notify;
         }
     }
 }

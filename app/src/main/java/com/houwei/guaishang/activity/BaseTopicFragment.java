@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
+import com.houwei.guaishang.MessageEvent;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.bean.FloatResponse;
 import com.houwei.guaishang.bean.IntResponse;
@@ -19,6 +20,8 @@ import com.houwei.guaishang.database.DaoHelper;
 import com.houwei.guaishang.database.entity.HomeTopicCacheData;
 import com.houwei.guaishang.database.entity.HomeTopicCacheDataDao;
 import com.houwei.guaishang.easemob.PreferenceManager;
+import com.houwei.guaishang.event.LoginSuccessEvent;
+import com.houwei.guaishang.event.LogouSuccess;
 import com.houwei.guaishang.layout.PictureGridLayout;
 import com.houwei.guaishang.layout.PraiseTextView;
 import com.houwei.guaishang.layout.RedPacketDialog;
@@ -33,6 +36,10 @@ import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.JsonParser;
 import com.houwei.guaishang.video.Utils;
 import com.houwei.guaishang.views.PagedListView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -293,6 +300,9 @@ public abstract class BaseTopicFragment extends BaseFragment implements
 
 	protected void initView() {
 		// TODO Auto-generated method stub
+		if (!EventBus.getDefault().isRegistered(this)){
+			EventBus.getDefault().isRegistered(this);
+		}
 		initProgressDialog();
 		app = getITopicApplication();
 		getITopicApplication().getHomeManager().addOnTopicPraiseCountChangeListener(this);
@@ -301,8 +311,15 @@ public abstract class BaseTopicFragment extends BaseFragment implements
 		
 	}
 
-	
-	private void onRedPacketClick(final String topicId,final String to_memberid){
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		if (EventBus.getDefault().isRegistered(this)){
+			EventBus.getDefault().unregister(this);
+		}
+	}
+
+	private void onRedPacketClick(final String topicId, final String to_memberid){
 		if(checkLogined()){
 			RedPacketDialog followDialog = new RedPacketDialog(
 					getBaseActivity(), new RedPacketDialog.SureButtonClick() {
@@ -620,4 +637,14 @@ public abstract class BaseTopicFragment extends BaseFragment implements
 			}
 		}
 	};
+
+	//接收登录登出事件
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void on3EventMainThread(LoginSuccessEvent event){
+		refresh();
+	}
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void on3EventMainThread(LogouSuccess event){
+		refresh();
+	}
 }

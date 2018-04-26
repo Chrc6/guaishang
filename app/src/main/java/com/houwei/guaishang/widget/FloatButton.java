@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.google.android.flexbox.FlexboxLayout;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.BaseActivity;
+import com.houwei.guaishang.sp.UserUtil;
+import com.houwei.guaishang.util.LoginJumperUtil;
 import com.houwei.guaishang.view.CircleImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -49,7 +51,7 @@ public class FloatButton extends RelativeLayout {
     }
 
 
-    private void initView(Context context){
+    private void initView(final Context context){
         View view = LayoutInflater.from(context).inflate(R.layout.layout_float,null);
         rootView = (RelativeLayout) view.findViewById(R.id.root_view);
         galb = (TextView) view.findViewById(R.id.galb);
@@ -60,6 +62,10 @@ public class FloatButton extends RelativeLayout {
         rootView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!UserUtil.isInLoginStata()){
+                    LoginJumperUtil.jumperLogin(context);
+                    return;
+                }
                 if (floatBtnClickListener != null){
                     switch (status){
                         case Galb:

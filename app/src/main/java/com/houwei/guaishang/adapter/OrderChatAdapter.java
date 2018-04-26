@@ -75,7 +75,9 @@ public class OrderChatAdapter extends RecyclerView.Adapter{
         } else {
             ViewHolder viewHolder = (ViewHolder) holder;
             final OffersBean.OfferBean offerBean = list.get(position - 1);
+            boolean notify = offerBean.isNotify();
             ImageLoader.getInstance().displayImage(offerBean.getAvatar(), viewHolder.headIv);
+            viewHolder.view_rot.setVisibility(notify ? View.VISIBLE : View.GONE);
             viewHolder.nameTv.setText(offerBean.getName());
             if (listener != null) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {

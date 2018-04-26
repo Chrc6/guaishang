@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.houwei.guaishang.MessageEvent;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.adapter.OrderChatAdapter;
 import com.houwei.guaishang.adapter.OrderChatViewPagerAdapter;
@@ -19,6 +20,10 @@ import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.easemob.EaseConstant;
 import com.houwei.guaishang.huanxin.ChatFragment;
 import com.houwei.guaishang.huanxin.ChatInfo;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,15 +38,25 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
     private  List<OffersBean.OfferBean> offerPriceList;
     private List<Fragment> fragments;
 
-    private long orderId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_chat);
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
         parseIntent();
         initData();
         initView();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().unregister(this);
+        }
     }
 
     private void initData() {
@@ -104,4 +119,19 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
         mAdapter.notifyDataSetChanged();
         mRecyclerView.scrollToPosition(postion);
     }
+
+
+    @Subscribe (threadMode = ThreadMode.MAIN)
+    public void on3EventMainThread(MessageEvent messageEvent){
+        String id = messageEvent.getId();
+        int size = offerPriceList.size();
+        for (int i = 0; i < size; i++) {
+            if (id.equals(offerPriceList.get(i).getUserId())){
+                offerPriceList.get(i).setNotify(true);
+            }else {
+                offerPriceList.get(i).setNotify(false);
+            }
+        }
+    }
+
 }

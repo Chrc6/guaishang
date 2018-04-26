@@ -13,9 +13,12 @@ import android.widget.TextView;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.bean.VersionResponse;
 import com.houwei.guaishang.easemob.DemoModel;
+import com.houwei.guaishang.event.LoginSuccessEvent;
+import com.houwei.guaishang.event.LogouSuccess;
 import com.houwei.guaishang.event.TopicSelectEvent;
 import com.houwei.guaishang.layout.DialogUtils;
 import com.houwei.guaishang.manager.VersionManager;
+import com.houwei.guaishang.sp.UserUtil;
 import com.houwei.guaishang.tools.ShareSDKUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -31,9 +34,13 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting2);
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().isRegistered(this);
+        }
         initView();
         initListener();
     }
+
 
     private void initListener() {
         // TODO Auto-generated method stub
@@ -90,6 +97,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
             case R.id.tv_confirm:
                 getITopicApplication().getMyUserBeanManager().clean();
                 ShareSDKUtils.removeAccount();
+                UserUtil.setUserInfo(null);
+                EventBus.getDefault().post(new LogouSuccess());
                 finish();
                 break;
             case R.id.tv_cancle:
@@ -143,6 +152,9 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     protected void onDestroy() {
         // TODO Auto-generated method stub
         getITopicApplication().getVersionManager().removeListener(this);
+        if (EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().unregister(this);
+        }
         super.onDestroy();
     }
 
