@@ -43,6 +43,7 @@ import com.houwei.guaishang.bean.IntResponse;
 import com.houwei.guaishang.bean.StringResponse;
 import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.data.DBReq;
+import com.houwei.guaishang.event.UpdateMoneyEvent;
 import com.houwei.guaishang.inter.DeleteInter;
 import com.houwei.guaishang.layout.DialogUtils;
 import com.houwei.guaishang.layout.PhotoPopupWindow;
@@ -70,6 +71,10 @@ import com.luck.picture.lib.dialog.CustomDialog;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.tools.PictureFileUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -113,6 +118,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
 
     private boolean isCheckingMoney;
     private String userid;
+    private int moneyCount;
 
     private class MyHandler extends Handler {
         private WeakReference<Context> reference;
@@ -182,6 +188,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        EventBus.getDefault().register(this);
         initView();
         initData();
         initListener();
@@ -232,7 +239,8 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
     @Override
     public void onCheckPointFinish(IntResponse intResponse) {
         // TODO Auto-generated method stub
-        mMoneyTv.setText(intResponse.getData() + "个");
+        moneyCount = intResponse.getData();
+        mMoneyTv.setText(moneyCount + "个");
         isCheckingMoney = false;
     }
 
@@ -541,6 +549,12 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         onUserInfoChanged(new UserBean());
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void updateMoney(UpdateMoneyEvent event) {
+        myUserBeanManager.startCheckMoneyRun();
+    }
+
+
     @Override
     public void onDestroy() {
         // TODO Auto-generated method stub
@@ -551,6 +565,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         myUserBeanManager.removeUserStateChangeListener(this);
         myUserBeanManager.removeCheckPointListener(this);
         myUserBeanManager.removeOnCheckMoneyListener(this);
+        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
 

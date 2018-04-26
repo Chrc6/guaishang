@@ -504,7 +504,7 @@ public class TopicAdapter extends BaseAdapter {
                         //Log.i("WXCH","SSSSSS:" + res);
                         if(res.contains("1")){
                             OrderBuyDialog.getInstance(mContext)
-                                    .setData(PreferenceManager.getInstance().getUserPoint(), bean)
+                                    .setData(PreferenceManager.getInstance().getUserPoint(), bean, mContext)
                                     .show();
                         }else if (fromBtnClick){
                             ToastUtils.toastForShort(mContext, "此单您已抢过");

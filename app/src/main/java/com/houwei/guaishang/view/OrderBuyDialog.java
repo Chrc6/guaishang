@@ -31,9 +31,16 @@ import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.BaseActivity;
 import com.houwei.guaishang.activity.RechargeDialogActivity;
 import com.houwei.guaishang.bean.TopicBean;
+import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.easemob.EaseConstant;
+import com.houwei.guaishang.event.UpdateMoneyEvent;
 import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.ShareUtil2;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.List;
@@ -58,6 +65,7 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
 
     private float money = -1;//余额
     private TopicBean bean;
+    private BaseActivity activity;
 
     public OrderBuyDialog(Context context) {
         super(context,R.style.RechargiDialog);
@@ -75,9 +83,10 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
         return instance;
     };
 
-    public OrderBuyDialog setData(float money,TopicBean bean) {
+    public OrderBuyDialog setData(float money,TopicBean bean,BaseActivity activity) {
         this.money = money;
         this.bean = bean;
+        this.activity = activity;
         return instance;
     }
 
@@ -143,6 +152,19 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
                     @Override
                     public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
                             //送10元券
+                        OkGo.<String>post(HttpUtil.IP + "user/modify1")
+                                .params("userid", activity.getUserID())
+                                .params("is_share", "1")
+                                .execute(new StringCallback() {
+                                    @Override
+                                    public void onSuccess(Response<String> response) {
+                                        EventBus.getDefault().post(new UpdateMoneyEvent());
+                                    }
+                                    @Override
+                                    public void onError(Response<String> response) {
+                                        super.onError(response);
+                                    }
+                                });
                     }
 
                     @Override
