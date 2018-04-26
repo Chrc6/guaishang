@@ -4,6 +4,7 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.Type;
 import com.easemob.util.EasyUtils;
+import com.houwei.guaishang.MessageEvent;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.newui.TopicDetailComActivity;
 import com.houwei.guaishang.bean.AvatarBean;
@@ -42,6 +43,9 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * 除了每次打开的欢迎页面之外 的所有activity都需要继承本类。
@@ -311,4 +315,8 @@ public  class BaseActivity extends FragmentActivity {
 		return brandId;
 	}
 
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void on3EventMainThread(MessageEvent messageEvent){
+
+	}
 }

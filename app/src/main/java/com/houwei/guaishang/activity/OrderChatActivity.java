@@ -126,7 +126,7 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
         String id = messageEvent.getId();
         int size = offerPriceList.size();
         for (int i = 0; i < size; i++) {
-            if (id.equals(offerPriceList.get(i).getUserId())){
+            if (id.equals(offerPriceList.get(i).getUserid())){
                 offerPriceList.get(i).setNotify(true);
             }else {
                 offerPriceList.get(i).setNotify(false);

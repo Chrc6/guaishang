@@ -83,7 +83,7 @@ public class OrderChatAdapter extends RecyclerView.Adapter{
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        listener.onItemClick(position - 1, offerBean.getUserId());
+                        listener.onItemClick(position - 1, offerBean.getUserid());
                         setFocusItemPosition(position);
                     }
                 });

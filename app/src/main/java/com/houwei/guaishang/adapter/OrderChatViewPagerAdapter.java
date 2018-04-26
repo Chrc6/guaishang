@@ -31,7 +31,7 @@ public class OrderChatViewPagerAdapter extends FragmentPagerAdapter {
         OffersBean.OfferBean offerBean = userBeans.get(position);
         ChatInfo chatInfo = new ChatInfo();
         chatInfo.setMobile(offerBean.getMobile());
-        chatInfo.setHisUserID(offerBean.getUserId());
+        chatInfo.setHisUserID(offerBean.getUserid());
         chatInfo.setHisRealName(offerBean.getName());
         chatInfo.setChatType(EaseConstant.CHATTYPE_SINGLE);
         AvatarBean avatarBean = new AvatarBean();

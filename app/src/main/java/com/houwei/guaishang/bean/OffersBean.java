@@ -47,7 +47,6 @@ public class OffersBean extends BaseResponse implements Serializable{
     public static class OfferBean implements Serializable{
         private String id;
         private String orderId;
-        private String userId;
         private String offerId;
         private String price;
         private String cycle;
@@ -103,13 +102,6 @@ public class OffersBean extends BaseResponse implements Serializable{
             this.orderId = orderId;
         }
 
-        public String getUserId() {
-            return userId;
-        }
-
-        public void setUserId(String userId) {
-            this.userId = userId;
-        }
 
         public String getOfferId() {
             return offerId;
