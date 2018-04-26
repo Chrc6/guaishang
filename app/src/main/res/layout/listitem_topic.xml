@@ -6,138 +6,116 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
     app:cardBackgroundColor="@color/black_color">
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:layout_height="wrap_content">
+
     <LinearLayout
-        android:id="@+id/ll_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <RelativeLayout
+
+        <LinearLayout
+            android:id="@+id/ll_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:background="@drawable/card_shape_raduis"
-            android:layout_height="210dp">
-            <ImageView
-                android:id="@+id/img_title"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY" />
-            <ImageView
-                android:id="@+id/image_myorder"
-                android:layout_margin="-2dp"
-                android:layout_below="@+id/title_bottom_ll"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@mipmap/brand_order"
-                />
+                android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:layout_below="@+id/image_myorder"
-                android:layout_marginTop="-20dp"
-                >
                 <RelativeLayout
-                    android:id="@+id/avator_layout"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:background="@drawable/bg_circle_black"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    >
-                <com.houwei.guaishang.view.CircleImageView
-                    android:id="@+id/avator"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:src="@drawable/user_photo"
-                    android:background="@drawable/bg_circle_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp"
+                    android:background="@drawable/card_shape_raduis">
 
-                    />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/avator_layout"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/bg_rectangle_black"
-                    android:paddingTop="@dimen/dp5"
-                    android:paddingBottom="@dimen/dp5"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="@dimen/dp5"
-                    android:layout_marginLeft="-10dp"
-                    >
-                    <TextView
-                        android:id="@+id/header_name"
+                    <ImageView
+                        android:id="@+id/img_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/image_myorder"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_below="@+id/title_bottom_ll"
+                        android:layout_margin="-2dp"
+                        android:background="@mipmap/brand_order" />
+
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="13sp"
-                        android:textColor="@color/white"
-                        android:text="广州用户公司"
-                        />
-                    <TextView
-                        android:maxLength="12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/header_location"
-                        android:layout_below="@+id/header_name"
-                        android:drawableLeft="@drawable/attr_top"
-                        android:drawablePadding="4dp"
-                        android:textSize="11sp"
-                        android:textColor="@color/white"
-                        android:text="广东省佛山市"
-                        android:gravity="center"
-                        android:layout_marginTop="@dimen/dp_10"
-                        />
-                <RatingBar
-                    android:id="@+id/bar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:layout_toRightOf="@+id/header_location"
-                    android:layout_below="@+id/header_name"
-                    style="@style/MaterialRatingBar"
-                    />
+                        android:layout_height="65dp"
+                        android:layout_below="@+id/image_myorder"
+                        android:layout_marginTop="-20dp"
+                        android:background="@drawable/topic_avartar_bg">
+
+                        <RelativeLayout
+                            android:id="@+id/avator_layout"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_centerVertical="true"
+                            android:gravity="center">
+
+                            <com.houwei.guaishang.view.CircleImageView
+                                android:id="@+id/avator"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:src="@drawable/user_photo" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_toRightOf="@+id/avator_layout"
+
+                            android:paddingLeft="10dp"
+                            android:paddingRight="@dimen/dp5"
+                           >
+
+                            <TextView
+                                android:id="@+id/header_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="广州用户公司"
+                                android:textColor="@color/white"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:id="@+id/header_location"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/header_name"
+                                android:layout_marginTop="@dimen/dp5"
+                                android:drawableLeft="@drawable/attr_top"
+                                android:drawablePadding="4dp"
+                                android:gravity="center"
+                                android:maxLength="12"
+                                android:text="广东省佛山市"
+                                android:textColor="@color/white"
+                                android:textSize="9sp" />
+
+                            <RatingBar
+                                android:id="@+id/bar"
+                                style="@style/MaterialRatingBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="17dp"
+                                android:layout_below="@+id/header_name"
+                                android:layout_toRightOf="@+id/header_location" />
+                        </RelativeLayout>
+                    </RelativeLayout>
                 </RelativeLayout>
+
+
             </RelativeLayout>
-        </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="150dp"
-                android:padding="@dimen/dp_10"
-                android:background="@drawable/bg__btn_gral"
-                >
-            <com.houwei.guaishang.widget.FloatButton
-                android:id="@+id/order_btn"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-               ></com.houwei.guaishang.widget.FloatButton>
-                <TextView
-                    android:id="@+id/count"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:textSize="10sp"
-                    android:textColor="#666666"
-                    android:padding="@dimen/dp5"
-                    android:gravity="center"
-                    android:text="6"
-                    android:background="@drawable/bg_float_btn_red"
-                    />
-            </RelativeLayout>
-        </RelativeLayout>
 
             <TextView
                 android:id="@+id/content"
-                android:layout_width="wrap_content"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
@@ -147,23 +125,25 @@
                 android:text="内容"
                 android:textColor="#fff"
                 android:textColorLink="#0082CB"
-                android:textSize="14sp" />
-        <Button
-            android:id="@+id/delete_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:background="@null"
-            android:duplicateParentState="true"
-            android:focusable="false"
-            android:paddingBottom="4dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:paddingTop="4dp"
-            android:text="删除"
-            android:textColor="@color/red_color"
-            android:textSize="12sp"
-            android:visibility="gone" />
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/delete_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:background="@null"
+                android:duplicateParentState="true"
+                android:focusable="false"
+                android:paddingBottom="4dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="4dp"
+                android:text="删除"
+                android:textColor="@color/red_color"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
@@ -172,22 +152,23 @@
                 android:layout_marginRight="8dp"
                 android:background="@drawable/l_line"
                 android:visibility="gone" />
+
             <com.houwei.guaishang.view.NumberProgressBar
+                android:id="@+id/bar_num"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 app:progress_reached_color="@color/orange_transparent"
-                app:progress_text_color="@color/orange_transparent"
-                android:layout_width="match_parent"
-                android:layout_height="28dp"
-                android:id="@+id/bar_num"/>
+                app:progress_text_color="@color/orange_transparent" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tv_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:paddingRight="8dp" />
+                android:paddingRight="8dp"
+                android:visibility="gone" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -206,12 +187,18 @@
                     android:duplicateParentState="true"
                     android:gravity="center">
 
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:scaleType="fitCenter"
+                        android:src="@mipmap/attention" />
+
                     <com.houwei.guaishang.layout.PraiseTextView
                         android:id="@+id/zan_count_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:drawableLeft="@mipmap/attention"
                         android:focusable="false"
                         android:gravity="center"
                         android:textColor="@color/text_gray_color"
@@ -224,26 +211,31 @@
                     android:id="@+id/share_ll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
                     android:layout_toRightOf="@id/praise_ll"
                     android:addStatesFromChildren="true"
                     android:clickable="true"
                     android:duplicateParentState="true"
-                    android:gravity="center"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    >
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:scaleType="fitCenter"
+                        android:src="@mipmap/l_share_false" />
+
                     <TextView
                         android:id="@+id/share_count_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@mipmap/l_share_false"
                         android:focusable="false"
                         android:gravity="center"
                         android:textColor="@color/text_gray_color"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/price_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -253,7 +245,8 @@
                     android:gravity="center"
                     android:text="120元"
                     android:textColor="#000"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:visibility="gone" />
 
             </RelativeLayout>
 
@@ -261,4 +254,32 @@
 
     </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="170dp"
+            android:background="@drawable/bg__btn_gral"
+            android:padding="@dimen/dp_10">
+
+            <com.houwei.guaishang.widget.FloatButton
+                android:id="@+id/order_btn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"></com.houwei.guaishang.widget.FloatButton>
+
+            <TextView
+                android:id="@+id/count"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/bg_float_btn_red"
+                android:gravity="center"
+                android:padding="@dimen/dp5"
+                android:text="6"
+                android:textColor="#666666"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
 </android.support.v7.widget.CardView>
