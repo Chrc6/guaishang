@@ -12,5 +12,11 @@ public class DeviceUtils {
         String ID= TelephonyMgr.getDeviceId();
         return ID;
     }
+
+//    dp--px
+    public static final int dip2px(Context context,float dpValue){
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return(int)(dpValue * scale+0.5f);
+    }
 }
 

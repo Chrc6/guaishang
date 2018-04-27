@@ -40,7 +40,7 @@ public class TopicBean implements Serializable {
 	private int commentCount;
 //	private List<CommentBean> praiseMembers;//点赞的人，可能为nil
 	private List<CommentBean> comments;//最多3条评论，可能为nil
-	
+	private Payment payment;//订单信息
 	//无用
 	private int redpacket;//0普通动态，1红包照片
 	
@@ -238,7 +238,13 @@ public class TopicBean implements Serializable {
 		this.praised = praised;
 	}
 
+	public Payment getPayment() {
+		return payment;
+	}
 
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
 
 	public int getZanDrawable() {
 		return praised ? R.drawable.listitem_praise

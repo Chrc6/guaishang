@@ -161,9 +161,10 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
                     @Override
                     public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
                             //送10元券
-                        OkGo.<String>post(HttpUtil.IP + "user/modify1")
+                        OkGo.<String>post(HttpUtil.IP + "user/modify")
                                 .params("userid", activity.getUserID())
-                                .params("is_share", "1")
+                                .params("event", "is_share")
+                                .params("value", "1")
                                 .execute(new StringCallback() {
                                     @Override
                                     public void onSuccess(Response<String> response) {
@@ -174,6 +175,7 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
                                         super.onError(response);
                                     }
                                 });
+
                     }
 
                     @Override

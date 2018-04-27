@@ -30,7 +30,8 @@ public class UserBean implements Serializable {
 	private int followsCount;
 	private int fansCount;
 	private int topicCount;
-
+	private String event;
+	private String value;
 	//查看他人接口才有
 	private int friendship;
 
@@ -171,5 +172,21 @@ public class UserBean implements Serializable {
 
 	public void setBackground(String background) {
 		this.background = background == null?"":background;
+	}
+
+	public String getEvent() {
+		return event;
+	}
+
+	public void setEvent(String event) {
+		this.event = event;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
 	}
 }
