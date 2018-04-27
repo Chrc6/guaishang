@@ -112,6 +112,7 @@
         <activity
             android:name=".activity.MineCustomerActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".profile.ProfileEditActivity"/>
         <activity
             android:name=".activity.PayActivity"
             android:screenOrientation="portrait" />

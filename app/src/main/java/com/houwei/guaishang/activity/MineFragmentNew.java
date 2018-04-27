@@ -53,6 +53,8 @@ import com.houwei.guaishang.manager.MyUserBeanManager;
 import com.houwei.guaishang.manager.MyUserBeanManager.CheckMoneyListener;
 import com.houwei.guaishang.manager.MyUserBeanManager.CheckPointListener;
 import com.houwei.guaishang.manager.MyUserBeanManager.UserStateChangeListener;
+import com.houwei.guaishang.profile.ProfileEditActivity;
+import com.houwei.guaishang.sp.UserUtil;
 import com.houwei.guaishang.tools.ApplicationProvider;
 import com.houwei.guaishang.tools.BitmapSelectorUtil;
 import com.houwei.guaishang.tools.HttpUtil;
@@ -60,6 +62,7 @@ import com.houwei.guaishang.tools.JsonParser;
 import com.houwei.guaishang.tools.SPUtils;
 import com.houwei.guaishang.tools.ToastUtils;
 import com.houwei.guaishang.tools.VoiceUtils;
+import com.houwei.guaishang.util.LoginJumperUtil;
 import com.houwei.guaishang.view.CircleImageView;
 import com.houwei.guaishang.views.SwitchView;
 import com.luck.picture.lib.PictureSelectionModel;
@@ -214,9 +217,13 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         if (!fragmentIsHidden && !isCheckingMoney && myUserBeanManager.getInstance() != null) {
             isCheckingMoney = true;
             if (MyUserBeanManager.MISSION_ENABLE) {
-                myUserBeanManager.startCheckPointRun();
+                if (UserUtil.isInLoginStata()) {
+                    myUserBeanManager.startCheckPointRun();
+                }
             }
-            myUserBeanManager.startCheckMoneyRun();
+            if (UserUtil.isInLoginStata()) {
+                myUserBeanManager.startCheckMoneyRun();
+            }
         }
 
         refreshUI();
@@ -247,7 +254,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
     @Override
     public void onCheckMoneyFinish(FloatResponse intResponse) {
         // TODO Auto-generated method stub
-        mTradeCountTv.setText(getActivity().getResources().getString(R.string.mine_trade_count, String.valueOf(intResponse.getData())));
+        mTradeCountTv.setText("￥"+ String.valueOf(intResponse.getData())+"个");
         isCheckingMoney = false;
     }
 
@@ -261,7 +268,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         mLicenseIv = (ImageView) getView().findViewById(R.id.iv_license);
         mLicenseIv.setOnClickListener(this);
         mUserNameTv = (TextView) getView().findViewById(R.id.tv_user_name);
-
+        mUserNameTv.setOnClickListener(this);
         mChangeHeadDialog = DialogUtils.getCustomDialog(getActivity(),R.layout.fragment_mine_headpic_change_layout);
         TextView changeHeadConfirm = (TextView) mChangeHeadDialog.findViewById(R.id.tv_confirm);
         changeHeadConfirm.setOnClickListener(new OnClickListener() {
@@ -475,7 +482,16 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
                 i = new Intent(getActivity(), MineMoneyLogRootActivity.class);
                 startActivity(i);
                 break;
-
+            case R.id.tv_user_name:
+                if (UserUtil.isInLoginStata()) {
+                    Intent intent = new Intent(getActivity(), ProfileEditActivity.class);
+                    intent.putExtra(ProfileEditActivity.Parse_intent, 1);
+                    intent.putExtra(ProfileEditActivity.Parse_extra, mUserNameTv.getText());
+                    startActivityForResult(intent, ProfileEditActivity.NAME);
+                }else {
+                    LoginJumperUtil.jumperLogin(getActivity());
+                }
+                break;
             default:
                 break;
         }
@@ -810,7 +826,14 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
                     recyclerView.refresh();
                     uploadMul(selectList3);
                     break;
+
+                case ProfileEditActivity.NAME:
+                    String result = data.getStringExtra("result");
+                    mUserNameTv.setText(result);
+                    break;
             }
         }
     }
+
+
 }

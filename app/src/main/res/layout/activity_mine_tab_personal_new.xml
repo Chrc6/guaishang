@@ -208,7 +208,6 @@
                         android:layout_marginLeft="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/tv_trade_title"
-                        android:text="0元"
                         android:textColor="#101010"
                         android:textSize="@dimen/dp_14" />
 
@@ -236,9 +235,9 @@
 
                     <!--style="?android:attr/ratingBarStyleSmall"-->
                     <RatingBar
-                        style="@style/RatingBar"
+                        style="@style/MaterialRatingBar"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="17dp"
                         android:layout_marginLeft="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/tv_grade_title"
@@ -274,7 +273,6 @@
                         android:layout_marginLeft="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/tv_money_title"
-                        android:text="0个"
                         android:textColor="#101010"
                         android:textSize="@dimen/dp_14" />
 
