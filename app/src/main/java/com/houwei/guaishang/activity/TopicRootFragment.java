@@ -86,49 +86,51 @@ public class TopicRootFragment extends BaseFragment implements PageSelectedListe
 	}
     String user_id = "";
 	private void getIndustryData() {
-		progress.show();
-        String url = "";
-        if(checkLogined()){
-            //url = HttpUtil.IP+"topic/my_brand";
-            url = HttpUtil.IP+"topic/brand";
-            user_id = getUserID();
-        }
-		url = HttpUtil.IP+"topic/brand";
-		//IndustryBean.ItemsBean itemsBean = new IndustryBean.ItemsBean();
-
-		//List<IndustryBean.ItemsBean> itemsBeen = new ArrayList<>();
-
-
-		OkGo.<String>post(url)
-                //.params("user_id",userId)
-				.execute(new StringCallback() {
-					@Override
-					public void onSuccess(Response<String> response) {
-						progress.dismiss();
-						DealResult dr=new DealResult();
-						IndustryBean bean=dr.dealData(getActivity(),response,new TypeToken<BaseBean<IndustryBean>>(){}.getType());
-						if(bean==null){
-							return;
-						}
-						final List<IndustryBean.ItemsBean> itemsBeans =bean.getItems();
-						if(itemsBeans.isEmpty()){
-							return;
-						}
-						//Log.i("WXCH","itemsBeen:"+itemsBeans);
-						for(int i=0; i<itemsBeans.size();i++){
-							IndustryBean.ItemsBean item = itemsBeans.get(i);
-							Log.i("WXCH","ItemsBean Id:"+item.getId()+",BrandName:"+item.getBrandName());
-						}
-						showPop(itemsBeans,user_id);
-
-					}
-
-					@Override
-					public void onError(Response<String> response) {
-						super.onError(response);
-						progress.dismiss();
-					}
-				});
+		Intent intent = new Intent(getActivity(),BrandSelectActivity.class);
+		startActivityForResult(intent,BrandSelectActivity.SELECT_BRAND);
+//		progress.show();
+//        String url = "";
+//        if(checkLogined()){
+//            //url = HttpUtil.IP+"topic/my_brand";
+//            url = HttpUtil.IP+"topic/brand";
+//            user_id = getUserID();
+//        }
+//		url = HttpUtil.IP+"topic/brand";
+//		//IndustryBean.ItemsBean itemsBean = new IndustryBean.ItemsBean();
+//
+//		//List<IndustryBean.ItemsBean> itemsBeen = new ArrayList<>();
+//
+//
+//		OkGo.<String>post(url)
+//                //.params("user_id",userId)
+//				.execute(new StringCallback() {
+//					@Override
+//					public void onSuccess(Response<String> response) {
+//						progress.dismiss();
+//						DealResult dr=new DealResult();
+//						IndustryBean bean=dr.dealData(getActivity(),response,new TypeToken<BaseBean<IndustryBean>>(){}.getType());
+//						if(bean==null){
+//							return;
+//						}
+//						final List<IndustryBean.ItemsBean> itemsBeans =bean.getItems();
+//						if(itemsBeans.isEmpty()){
+//							return;
+//						}
+//						//Log.i("WXCH","itemsBeen:"+itemsBeans);
+//						for(int i=0; i<itemsBeans.size();i++){
+//							IndustryBean.ItemsBean item = itemsBeans.get(i);
+//							Log.i("WXCH","ItemsBean Id:"+item.getId()+",BrandName:"+item.getBrandName());
+//						}
+//						showPop(itemsBeans,user_id);
+//
+//					}
+//
+//					@Override
+//					public void onError(Response<String> response) {
+//						super.onError(response);
+//						progress.dismiss();
+//					}
+//				});
 	}
 
 	private void showPop(List<IndustryBean.ItemsBean> itemsBeen, String user_id) {
@@ -209,6 +211,10 @@ public class TopicRootFragment extends BaseFragment implements PageSelectedListe
 		switch (resultCode) {
 		case TopicReleaseActivity.RELEASE_SUCCESS:
 			refreshList(0);
+			break;
+		case BrandSelectActivity.SELECT_BRAND:
+			String brandParam = data.getStringExtra(BrandSelectActivity.BRAND_PARAM);
+			commit(brandParam);
 			break;
 		default:
 			break;

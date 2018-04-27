@@ -24,6 +24,7 @@ import com.houwei.guaishang.R;
 import com.houwei.guaishang.bean.BaseResponse;
 import com.houwei.guaishang.bean.FloatResponse;
 import com.houwei.guaishang.bean.IntResponse;
+import com.houwei.guaishang.easemob.PreferenceManager;
 import com.houwei.guaishang.manager.MyUserBeanManager.CheckMoneyListener;
 import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.JsonParser;
@@ -140,6 +141,8 @@ public class PayBaseActivity extends BaseActivity implements CheckMoneyListener 
 		}
 		alipay_cb = (CheckBox) findViewById(R.id.alipay_cb);
 		weixin_cb = (CheckBox) findViewById(R.id.weixin_cb);
+
+		balanceMoney = PreferenceManager.getInstance().getUserCoins();
 
 //		getITopicApplication().getMyUserBeanManager().addOnCheckMoneyListener(this);
 //		getITopicApplication().getMyUserBeanManager().startCheckMoneyRun();

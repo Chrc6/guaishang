@@ -235,6 +235,7 @@
 
                     <!--style="?android:attr/ratingBarStyleSmall"-->
                     <RatingBar
+                        android:id="@+id/ratingbar"
                         style="@style/MaterialRatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="17dp"

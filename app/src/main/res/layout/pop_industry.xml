@@ -1,27 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:zhy="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/ll_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_color">
-    <TextView
-        android:textColor="@color/black"
-        android:padding="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="关注的行业（多选）"/>
-    <com.zhy.view.flowlayout.TagFlowLayout
-        android:id="@+id/id_flowlayout"
-        zhy:max_select="-1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp">
-    </com.zhy.view.flowlayout.TagFlowLayout>
+    android:orientation="vertical">
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp100"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/background_round"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="关注的行业（多选）"
+            android:textColor="@color/black" />
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/id_flowlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:padding="8dp"
+            zhy:max_select="-1"></com.zhy.view.flowlayout.TagFlowLayout>
+
+        <EditText
+            android:id="@+id/et_brand"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginRight="33dp"
+            android:singleLine="true"
+            android:hint="没有自己选的行业，自己创建一行写到这里"
+            android:background="@drawable/white_round" />
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="175dp"
+            android:layout_height="27dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/red_round"
+            android:gravity="center"
+            android:text="确认"
+            android:textColor="#101010"
+            android:textSize="@dimen/dp_14" />
+    </LinearLayout>
 
 </LinearLayout>

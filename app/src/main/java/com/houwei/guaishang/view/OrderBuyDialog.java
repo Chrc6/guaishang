@@ -31,6 +31,7 @@ import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.BaseActivity;
 import com.houwei.guaishang.activity.PayActivity;
 import com.houwei.guaishang.activity.RechargeDialogActivity;
+import com.houwei.guaishang.activity.TopicDetailActivity;
 import com.houwei.guaishang.bean.TopicBean;
 import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.easemob.EaseConstant;
@@ -138,13 +139,10 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
                 if (money < 1) {
                     goToRechargeActivity();
                 } else {
-                    Intent i=new Intent(activity, PayActivity.class);
-                    i.putExtra("orderTitle", bean.getContent());
-                    i.putExtra("cover", bean.getCover());
-                    i.putExtra("brand", bean.getBrand());
-                    i.putExtra("price",Float.valueOf(bean.getPrice()) * 100);
-                    i.putExtra("topicId", bean.getTopicId());
-                    i.putExtra("to_memberid", bean.getMemberId());
+                    Intent i=new Intent(activity, TopicDetailActivity.class);
+                    i.putExtra("TopicBean", bean);
+                    i.putExtra("position", 0);
+                    i.putExtra("needPay", bean.getOffer());
                     activity.startActivity(i);
 //                    Intent i = new Intent();
 //                    i.putExtra("TopicBean", bean);
@@ -206,7 +204,7 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
 
     @Override
     public void show() {
-        if (instance != null && !instance.isShowing()) {
+        if (instance != null && !instance.isShowing() && activity != null) {
             super.show();
         }
     }

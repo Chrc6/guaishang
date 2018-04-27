@@ -15,6 +15,7 @@ import com.houwei.guaishang.bean.IntResponse;
 import com.houwei.guaishang.bean.ModifyResponse;
 import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.data.DBReq;
+import com.houwei.guaishang.easemob.PreferenceManager;
 import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.JsonParser;
 import com.houwei.guaishang.tools.JsonUtil;
@@ -193,6 +194,7 @@ public class MyUserBeanManager {
 	}
 	
 	public void clean() {
+		PreferenceManager.getInstance().setUserCoins(0);
 		instanceUser = null;
 		mContext.getHuanXinManager().logout(null);
 		mContext.getHomeManager().resetPaidTopicPhotoArray();

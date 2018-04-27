@@ -121,6 +121,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/RechargDialogActivity" />
         <activity
+            android:name=".activity.BrandSelectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/RechargDialogActivity" />
+        <activity
             android:name=".activity.RechargeBaseActivity"
             android:screenOrientation="portrait" />
         <activity

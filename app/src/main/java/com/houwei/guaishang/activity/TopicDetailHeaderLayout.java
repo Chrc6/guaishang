@@ -405,7 +405,6 @@ public class TopicDetailHeaderLayout extends LinearLayout {
 
 		private void offerMsg(String money, String time,String remark, boolean needPay) {
 			progress.show();
-			int payMoney = needPay ? 1 * 100 : 0;//单位：个，目前1元 = 100金币
 			OkGo.<String>post(HttpUtil.IP+"topic/rob")
 					.params("order_id",topicBean.getTopicId())
 					.params("user_id",topicBean.getMemberId())

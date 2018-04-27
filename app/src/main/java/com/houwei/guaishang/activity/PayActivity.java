@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.houwei.guaishang.bean.event.TopicHomeEvent;
+import com.houwei.guaishang.sp.UserUtil;
 import com.houwei.guaishang.tools.ApplicationProvider;
 import com.houwei.guaishang.tools.VoiceUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -68,12 +69,13 @@ public class PayActivity extends PayBaseActivity {
 	protected void initView() {
 		// TODO Auto-generated method stub
 		super.initView();
-		price = getIntent().getFloatExtra("price", (float)0.01);
-		topicId = getIntent().getStringExtra("topicId");
-		orderTitle = getIntent().getStringExtra("orderTitle");
-		to_memberid = getIntent().getStringExtra("to_memberid");
-		brand = getIntent().getStringExtra("brand");
-		String cover = getIntent().getStringExtra("cover");
+		Intent intent = getIntent();
+		price = intent.getFloatExtra("price", (float)0.01);
+		topicId = intent.getStringExtra("topicId");
+		orderTitle = intent.getStringExtra("orderTitle");
+		to_memberid = intent.getStringExtra("to_memberid");
+		brand = intent.getStringExtra("brand");
+		String cover = intent.getStringExtra("cover");
 		moneyRequire = price;// 默认全部支付
 
 		ImageView avatar = (ImageView) findViewById(R.id.avatar);
@@ -143,7 +145,7 @@ public class PayActivity extends PayBaseActivity {
 				resetResultButton();
 			}
 		});
-		getBalenceMoneyFromNetwork(0);
+		getBalenceMoneyFromNetwork(getBalanceMoney());
 	}
 
 	// 重新设置还需要多少钱

@@ -21,6 +21,7 @@ import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -44,6 +45,7 @@ import com.houwei.guaishang.bean.StringResponse;
 import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.data.DBReq;
 import com.houwei.guaishang.easemob.PreferenceManager;
+import com.houwei.guaishang.event.LogouSuccess;
 import com.houwei.guaishang.event.UpdateMoneyEvent;
 import com.houwei.guaishang.inter.DeleteInter;
 import com.houwei.guaishang.layout.DialogUtils;
@@ -104,6 +106,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
     private CircleImageView mUserHeadIv;
     private ImageView mLicenseIv;
     private TextView mUserNameTv;
+    private RatingBar ratingbar;
     private TextView mMoneyTv, mTradeCountTv;
     private TextView mPhoneTv, mMobilePhoneTv, mAddressTv, mBankTv, mAccountTv, mAuthenticationTv;
     private ToggleButton toggleButton;
@@ -122,7 +125,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
 
     private boolean isCheckingMoney;
     private String userid;
-    private int moneyCount;
+    private float moneyCount;
 
     private class MyHandler extends Handler {
         private WeakReference<Context> reference;
@@ -205,12 +208,11 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         if (!hidden && !isCheckingMoney && myUserBeanManager.getInstance() != null) {
             refreshUI();
             isCheckingMoney = true;
-            if (MyUserBeanManager.MISSION_ENABLE) {
-                myUserBeanManager.startCheckPointRun();
-            }
+//            if (MyUserBeanManager.MISSION_ENABLE) {
+//                myUserBeanManager.startCheckPointRun();
+//            }
             myUserBeanManager.startCheckMoneyRun();
         }
-        String alias = SharedPreferencesUtils.getString(getActivity(), "JPush_alias","");
     }
 
     @Override
@@ -218,11 +220,11 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         super.onResume();
         if (!fragmentIsHidden && !isCheckingMoney && myUserBeanManager.getInstance() != null) {
             isCheckingMoney = true;
-            if (MyUserBeanManager.MISSION_ENABLE) {
-                if (UserUtil.isInLoginStata()) {
-                    myUserBeanManager.startCheckPointRun();
-                }
-            }
+//            if (MyUserBeanManager.MISSION_ENABLE) {
+//                if (UserUtil.isInLoginStata()) {
+//                    myUserBeanManager.startCheckPointRun();
+//                }
+//            }
             if (UserUtil.isInLoginStata()) {
                 myUserBeanManager.startCheckMoneyRun();
             }
@@ -248,8 +250,8 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
     @Override
     public void onCheckPointFinish(IntResponse intResponse) {
         // TODO Auto-generated method stub
-        moneyCount = intResponse.getData();
-        PreferenceManager.getInstance().setUserCoins(moneyCount);
+//        moneyCount = intResponse.getData();
+//        PreferenceManager.getInstance().setUserCoins(moneyCount);
         mMoneyTv.setText(moneyCount + "个");
         isCheckingMoney = false;
     }
@@ -257,7 +259,10 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
     @Override
     public void onCheckMoneyFinish(FloatResponse intResponse) {
         // TODO Auto-generated method stub
-        mTradeCountTv.setText("￥"+ String.valueOf(intResponse.getData())+"个");
+        moneyCount = intResponse.getData();
+//        mTradeCountTv.setText("￥"+ moneyCount+"个");
+        mMoneyTv.setText("￥"+ moneyCount+"个");
+        PreferenceManager.getInstance().setUserCoins(moneyCount);
         isCheckingMoney = false;
     }
 
@@ -289,8 +294,10 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         mAccountTv = (TextView) getView().findViewById(R.id.tv_account);
         mAuthenticationTv = (TextView) getView().findViewById(R.id.tv_authentication);
 
+        ratingbar = (RatingBar) getView().findViewById(R.id.ratingbar);
+
         mMoneyTv = (TextView) getView().findViewById(R.id.tv_money_count);
-        mTradeCountTv = (TextView) getView().findViewById(R.id.tv_money_count);
+        mTradeCountTv = (TextView) getView().findViewById(R.id.tv_trade_count);
         mTradeCountTv.setOnClickListener(this);
 
         recyclerView = (LRecyclerView) getView().findViewById(R.id.recycle_view);
@@ -506,7 +513,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         Display display = windowManager.getDefaultDisplay();
         WindowManager.LayoutParams lp = mChangeHeadDialog.getWindow().getAttributes();
         lp.width = (int)(display.getWidth());
-        lp.height=(int)300;//设置宽度
+        lp.height=(int)400;//设置宽度
         mChangeHeadDialog.getWindow().setAttributes(lp);
     }
 
@@ -531,6 +538,9 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         } else {
             mUserHeadIv.setImageResource(R.drawable.user_photo);
         }
+
+        ratingbar.setNumStars(0);
+        mMoneyTv.setText("");
 
 //        mUserHeadIv.setOnClickListener(new OnClickListener() {
 //
@@ -572,7 +582,6 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
     public void updateMoney(UpdateMoneyEvent event) {
         myUserBeanManager.startCheckMoneyRun();
     }
-
 
     @Override
     public void onDestroy() {

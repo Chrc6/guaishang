@@ -224,7 +224,14 @@ public class HttpUtil {
 			outputStream.write(data.getBytes());
 		}
 
-		inputStream = httpUrlConnection.getInputStream();
+		if (httpUrlConnection.getResponseCode() == HttpURLConnection.HTTP_OK
+				|| httpUrlConnection.getResponseCode() == HttpURLConnection.HTTP_CREATED
+				|| httpUrlConnection.getResponseCode() == HttpURLConnection.HTTP_ACCEPTED) {
+			inputStream = httpUrlConnection.getInputStream();
+		} else {
+			inputStream = httpUrlConnection.getErrorStream();
+		}
+
 		BufferedReader reader = new BufferedReader(new InputStreamReader(
 				inputStream, "utf-8"));
 		StringBuilder buffer = new StringBuilder();
