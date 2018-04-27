@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
@@ -34,6 +35,7 @@ import com.houwei.guaishang.adapter.OfferAdapter;
 import com.houwei.guaishang.bean.AvatarBean;
 import com.houwei.guaishang.bean.CommentBean;
 import com.houwei.guaishang.bean.OffersBean;
+import com.houwei.guaishang.bean.Payment;
 import com.houwei.guaishang.bean.PraiseBean;
 import com.houwei.guaishang.bean.TopicBean;
 import com.houwei.guaishang.easemob.EaseConstant;
@@ -50,6 +52,7 @@ import com.houwei.guaishang.tools.ToastUtils;
 import com.houwei.guaishang.tools.ValueUtil;
 import com.houwei.guaishang.view.NumberProgressBar;
 import com.houwei.guaishang.view.OrderBuyDialog;
+import com.houwei.guaishang.view.ProgressView;
 import com.houwei.guaishang.views.CircleBitmapDisplayer1;
 import com.houwei.guaishang.views.SpannableTextView;
 import com.houwei.guaishang.views.SpannableTextView.MemberClickListener;
@@ -93,10 +96,13 @@ public class TopicAdapter extends BaseAdapter {
     //	设置list跳转不同详情页
     private int jumpType;
 
+    //请求类型（0 是全部  1 是 已订单）
+    private int type;
     //头像列表
     private ArrayList<String> mIconList = new ArrayList<>();
-    public TopicAdapter(BaseActivity mContext, List<TopicBean> list, int jumpType) {
+    public TopicAdapter(BaseActivity mContext, List<TopicBean> list, int jumpType,int type) {
         this.list = list;
+        this.type = type;
         this.mInflater = LayoutInflater.from(mContext);
         this.mContext = mContext;
         this.userId = mContext.getITopicApplication().getMyUserBeanManager().getUserId();
@@ -147,8 +153,8 @@ public class TopicAdapter extends BaseAdapter {
             holder.barNum = (NumberProgressBar) convertView.findViewById(R.id.bar_num);
             holder.content = (TextView) convertView.findViewById(R.id.content);
 //            holder.header_time = (TextView) convertView.findViewById(R.id.header_time);
-            holder.zan_count_btn = (PraiseTextView) convertView
-                    .findViewById(R.id.zan_count_btn);
+//            holder.zan_count_btn = (PraiseTextView) convertView
+//                    .findViewById(R.id.zan_count_btn);
 
             holder.delete_btn = (TextView) convertView
                     .findViewById(R.id.delete_btn);
@@ -161,6 +167,10 @@ public class TopicAdapter extends BaseAdapter {
             holder.order_btn = (FloatButton)convertView.findViewById(R.id.order_btn);
             holder.order_count = (TextView) convertView.findViewById(R.id.count);
             holder.ratingBar = (RatingBar) convertView.findViewById(R.id.bar);
+            holder.progressView = (ProgressView) convertView.findViewById(R.id.bar_status);
+            holder.VProdectLayout = (LinearLayout) convertView.findViewById(R.id.product_layout);
+            holder.price = (TextView) convertView.findViewById(R.id.price);
+            holder.time = (TextView) convertView.findViewById(R.id.time);
 //            holder.chat_btn = (Button) convertView.findViewById(R.id.chat_btn);
 //            holder.linearLayoutForListView = (LinearLayoutForListView) convertView.findViewById(R.id.linearLayoutForListView);
 //            holder.linearLayoutForListView.setDisableDivider(true);
@@ -169,6 +179,32 @@ public class TopicAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         final TopicBean bean = list.get(position);
+
+        //处理下全部订单和已订单的ui差别
+        if (type == 0){
+            //全部订单
+            holder.ratingBar.setVisibility(View.VISIBLE);
+            holder.progressView.setVisibility(View.GONE);
+            holder.VProdectLayout.setVisibility(View.GONE);
+        }else {
+            //已订单
+            Payment payment = bean.getPayment();
+            if (payment != null){
+                holder.ratingBar.setVisibility(View.GONE);
+                holder.progressView.setVisibility(View.VISIBLE);
+                holder.VProdectLayout.setVisibility(View.VISIBLE);
+                holder.progressView.setProgress(payment.getStatus());
+                holder.price.setText(payment.getPrice());
+                holder.time.setText(payment.getCycle());
+            }else {
+                holder.ratingBar.setVisibility(View.VISIBLE);
+                holder.progressView.setVisibility(View.GONE);
+                holder.VProdectLayout.setVisibility(View.GONE);
+            }
+
+
+        }
+
         final String memberId = bean.getMemberId();
         try {
             int max = Integer.valueOf(bean.getSetRob());
@@ -274,10 +310,10 @@ public class TopicAdapter extends BaseAdapter {
 //        holder.header_time.setText(bean.getTimeString());
 //        holder.linearLayoutForListView.setVisibility((bean.getComments() == null || bean.getComments().isEmpty()) ? View.GONE : View.VISIBLE);
 //        holder.linearLayoutForListView.setVisibility(View.GONE);
-        holder.price_tv.setText("￥" + bean.getPrice());
+        holder.price_tv.setText("" + (int)bean.getPrice());
         holder.share_count_btn.setText(bean.getShareNum()+"");
 
-        holder.zan_count_btn.setText(bean.getSumPrice());
+//        holder.zan_count_btn.setText(bean.getSumPrice());
 
 
         holder.avator.setOnClickListener(new View.OnClickListener() {
@@ -504,7 +540,7 @@ public class TopicAdapter extends BaseAdapter {
                         //Log.i("WXCH","SSSSSS:" + res);
                         if(res.contains("1")){
                             OrderBuyDialog.getInstance(mContext)
-                                    .setData(PreferenceManager.getInstance().getUserPoint(), bean, mContext)
+                                    .setData(PreferenceManager.getInstance().getUserPoint(), bean)
                                     .show();
                         }else if (fromBtnClick){
                             ToastUtils.toastForShort(mContext, "此单您已抢过");
@@ -595,7 +631,7 @@ public class TopicAdapter extends BaseAdapter {
 
     public static class ViewHolder {
         private TextView content, header_name,  header_location,tvCount;
-        private PraiseTextView zan_count_btn;
+//        private PraiseTextView zan_count_btn;
         private ImageView avator,imgTitle,imgIndicate,imageMyOrder;
         private TextView  delete_btn,tvProgress;
         private View share_ll;
@@ -603,7 +639,9 @@ public class TopicAdapter extends BaseAdapter {
 //        private LinearLayoutForListView linearLayoutForListView;
         private NumberProgressBar barNum;
 //        private LRecyclerView recyclerView;
-
+        private ProgressView progressView;
+        private LinearLayout VProdectLayout;
+        private TextView price,time;
         private FloatButton order_btn;
         private TextView order_count;
         private TextView price_tv;

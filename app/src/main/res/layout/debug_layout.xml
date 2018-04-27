@@ -20,5 +20,10 @@
             android:layout_height="@dimen/dp_10"
             android:background="#4577dc"
             />
+
+        <com.houwei.guaishang.view.ProgressView
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
     </LinearLayout>
 </ScrollView>

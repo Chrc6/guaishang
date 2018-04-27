@@ -32,7 +32,7 @@ public class TopicFootprintFragment extends TopicHomeFragment{
 	 * 表示调用的接口是getlist（默认） 子类可以修改，比如返回getpraiselist 表示查询我赞的动态
 	 */
 	protected String getApi() {
-		return "topic/getmyfootprintlist";
+		return "topic/getlistpayment";
 	}
 	
 

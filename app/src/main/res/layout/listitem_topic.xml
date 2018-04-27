@@ -11,248 +11,280 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
         <LinearLayout
-            android:id="@+id/ll_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
+                android:id="@+id/ll_content"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="210dp"
-                    android:background="@drawable/card_shape_raduis">
-
-                    <ImageView
-                        android:id="@+id/img_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="fitXY" />
-
-                    <ImageView
-                        android:id="@+id/image_myorder"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_below="@+id/title_bottom_ll"
-                        android:layout_margin="-2dp"
-                        android:background="@mipmap/brand_order" />
+                    android:layout_height="wrap_content">
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="65dp"
-                        android:layout_below="@+id/image_myorder"
-                        android:layout_marginTop="-20dp"
-                        android:background="@drawable/topic_avartar_bg">
+                        android:layout_width="match_parent"
+                        android:layout_height="210dp"
+                        android:background="@drawable/card_shape_raduis">
 
-                        <RelativeLayout
-                            android:id="@+id/avator_layout"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_centerVertical="true"
-                            android:gravity="center">
+                        <ImageView
+                            android:id="@+id/img_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY" />
 
-                            <com.houwei.guaishang.view.CircleImageView
-                                android:id="@+id/avator"
-                                android:layout_width="55dp"
-                                android:layout_height="55dp"
-                                android:src="@drawable/user_photo" />
-                        </RelativeLayout>
+                        <ImageView
+                            android:id="@+id/image_myorder"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_below="@+id/title_bottom_ll"
+                            android:layout_margin="-2dp"
+                            android:background="@mipmap/brand_order" />
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="-10dp"
-                            android:layout_toRightOf="@+id/avator_layout"
+                            android:layout_height="65dp"
+                            android:layout_below="@+id/image_myorder"
+                            android:layout_marginTop="-20dp"
+                            android:background="@drawable/topic_avartar_bg">
 
-                            android:paddingLeft="10dp"
-                            android:paddingRight="@dimen/dp5"
-                           >
+                            <RelativeLayout
+                                android:id="@+id/avator_layout"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_centerVertical="true"
+                                android:gravity="center">
 
-                            <TextView
-                                android:id="@+id/header_name"
+                                <com.houwei.guaishang.view.CircleImageView
+                                    android:id="@+id/avator"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:src="@drawable/user_photo" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="广州用户公司"
-                                android:textColor="@color/white"
-                                android:textSize="13sp" />
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="-10dp"
+                                android:layout_toRightOf="@+id/avator_layout"
 
-                            <TextView
-                                android:id="@+id/header_location"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/header_name"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:drawableLeft="@drawable/attr_top"
-                                android:drawablePadding="4dp"
-                                android:gravity="center"
-                                android:maxLength="12"
-                                android:text="广东省佛山市"
-                                android:textColor="@color/white"
-                                android:textSize="9sp" />
+                                android:paddingLeft="10dp"
+                                android:paddingRight="@dimen/dp5">
 
-                            <RatingBar
-                                android:id="@+id/bar"
-                                style="@style/MaterialRatingBar"
-                                android:layout_width="wrap_content"
-                                android:layout_height="17dp"
-                                android:layout_below="@+id/header_name"
-                                android:layout_toRightOf="@+id/header_location" />
+                                <TextView
+                                    android:id="@+id/header_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="广州用户公司"
+                                    android:textColor="@color/white"
+                                    android:textSize="13sp" />
+
+                                <TextView
+                                    android:id="@+id/header_location"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/header_name"
+                                    android:layout_marginTop="@dimen/dp5"
+                                    android:drawableLeft="@drawable/attr_top"
+                                    android:drawablePadding="4dp"
+                                    android:gravity="center"
+                                    android:maxLength="12"
+                                    android:text="广东省佛山市"
+                                    android:textColor="@color/white"
+                                    android:textSize="9sp" />
+
+                                <RatingBar
+                                    android:id="@+id/bar"
+                                    style="@style/MaterialRatingBar"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="17dp"
+                                    android:layout_below="@+id/header_name"
+                                    android:layout_toRightOf="@+id/header_location" />
+                            </RelativeLayout>
                         </RelativeLayout>
                     </RelativeLayout>
+
+
                 </RelativeLayout>
 
-
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/content"
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="14dp"
-                android:layout_marginTop="4dp"
-                android:background="@drawable/transparent_gray_circle"
-                android:text="内容"
-                android:textColor="#fff"
-                android:textColorLink="#0082CB"
-                android:textSize="12sp" />
-
-            <Button
-                android:id="@+id/delete_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:background="@null"
-                android:duplicateParentState="true"
-                android:focusable="false"
-                android:paddingBottom="4dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="4dp"
-                android:text="删除"
-                android:textColor="@color/red_color"
-                android:textSize="12sp"
-                android:visibility="gone" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/l_line"
-                android:visibility="gone" />
-
-            <com.houwei.guaishang.view.NumberProgressBar
-                android:id="@+id/bar_num"
-                android:layout_width="match_parent"
-                android:layout_height="28dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                app:progress_reached_color="@color/orange_transparent"
-                app:progress_text_color="@color/orange_transparent" />
-
-            <TextView
-                android:id="@+id/tv_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:paddingRight="8dp"
-                android:visibility="gone" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:duplicateParentState="true"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/praise_ll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:addStatesFromChildren="true"
-                    android:clickable="true"
-                    android:duplicateParentState="true"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="@dimen/dp_10"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/attention" />
-
-                    <com.houwei.guaishang.layout.PraiseTextView
-                        android:id="@+id/zan_count_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:focusable="false"
-                        android:gravity="center"
-                        android:textColor="@color/text_gray_color"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/share_ll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:layout_toRightOf="@id/praise_ll"
-                    android:addStatesFromChildren="true"
-                    android:clickable="true"
-                    android:duplicateParentState="true"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_marginRight="@dimen/dp_10"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/l_share_false" />
-
-                    <TextView
-                        android:id="@+id/share_count_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:focusable="false"
-                        android:gravity="center"
-                        android:textColor="@color/text_gray_color"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
                 <TextView
-                    android:id="@+id/price_tv"
+                    android:id="@+id/content"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/transparent_gray_circle"
+                    android:text="内容"
+                    android:textColor="#fff"
+                    android:textColorLink="#0082CB"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/delete_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginRight="40dp"
-                    android:gravity="center"
-                    android:text="120元"
-                    android:textColor="#000"
-                    android:textSize="16sp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@null"
+                    android:duplicateParentState="true"
+                    android:focusable="false"
+                    android:paddingBottom="4dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="4dp"
+                    android:text="删除"
+                    android:textColor="@color/red_color"
+                    android:textSize="12sp"
                     android:visibility="gone" />
 
-            </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/l_line"
+                    android:visibility="gone" />
+
+                <com.houwei.guaishang.view.NumberProgressBar
+                    android:id="@+id/bar_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    app:progress_reached_color="@color/orange_transparent"
+                    app:progress_text_color="@color/orange_transparent" />
+                <com.houwei.guaishang.view.ProgressView
+                    android:id="@+id/bar_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:visibility="gone"
+                    />
+                <TextView
+                    android:id="@+id/tv_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingRight="8dp"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:duplicateParentState="true"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/prise_ll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:addStatesFromChildren="true"
+                        android:clickable="true"
+                        android:duplicateParentState="true"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="@dimen/dp_10"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/attention" />
+                        <TextView
+                            android:id="@+id/price_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:gravity="center"
+                            android:textColor="@color/text_gray_color"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/share_ll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_toRightOf="@id/prise_ll"
+                        android:clickable="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginRight="@dimen/dp_10"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/l_share_false" />
+
+                        <TextView
+                            android:id="@+id/share_count_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:gravity="center"
+                            android:textColor="@color/text_gray_color"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/product_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:background="@drawable/bg_produce"
+                        android:paddingLeft="@dimen/dp_10"
+                        android:paddingRight="@dimen/dp_10"
+                        android:paddingTop="@dimen/dp5"
+                        android:paddingBottom="@dimen/dp5"
+                        android:layout_marginRight="15dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        >
+                        <TextView
+                            android:id="@+id/price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="总价"
+                            android:textColor="#acb2c1"
+                            android:textSize="13sp"
+                            android:layout_marginRight="@dimen/dp5"
+                            android:background="@null"
+                            />
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#666666"
+                            />
+                        <TextView
+                            android:id="@+id/time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="周期"
+                            android:textColor="#acb2c1"
+                            android:textSize="13sp"
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:background="@null"
+                            />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
 
         <RelativeLayout
             android:layout_width="80dp"

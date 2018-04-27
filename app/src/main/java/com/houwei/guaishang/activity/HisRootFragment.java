@@ -262,7 +262,7 @@ public class HisRootFragment extends BaseTopicFragment implements
 		parallaxListView.addHeaderView(infoLinearLayout);
 
 		list = new ArrayList<TopicBean>();
-		adapter = new TopicAdapter(getBaseActivity(), list, 0);
+		adapter = new TopicAdapter(getBaseActivity(), list, 0,0);
 		parallaxListView.setAdapter(adapter);
 
 		parallaxListView.setImageViewToParallax(backgroundImageView);

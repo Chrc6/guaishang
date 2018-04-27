@@ -89,7 +89,7 @@ public abstract class BaseTopicFragment extends BaseFragment implements
 					Log.i("WXCH","list:"+activity.list);
 					activity.listView.onFinishLoading(response.getData()
 							.hasMore());
-					activity.adapter = new TopicAdapter(activity.getBaseActivity(), activity.list,getJumpType());
+					activity.adapter = new TopicAdapter(activity.getBaseActivity(), activity.list,getJumpType(),DEFAULT_REFRESH_TYPE);
 					activity.adapter
 							.setOnTopicBeanDeleteListener(new TopicAdapter.TopicBeanDeleteListener() {
 
