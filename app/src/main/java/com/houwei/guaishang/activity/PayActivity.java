@@ -114,6 +114,7 @@ public class PayActivity extends PayBaseActivity {
 				mapOptional.put("topicid", topicId);
 				mapOptional.put("price", ""+price);
 				mapOptional.put("to_memberid", to_memberid);
+				mapOptional.put("offer_id", PayActivity.this.getUserID());
 				String title = "购买商品";
 				pay(title, mapOptional);
 			}
