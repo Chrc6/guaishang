@@ -40,6 +40,7 @@ public class PreferenceManager {
 	private static String SHARED_KEY_CURRENTUSER_AVATAR = "SHARED_KEY_CURRENTUSER_AVATAR";
 
 	private static String SHARED_KEY_USER_POINT = "SHARED_KEY_USER_POINT";
+	private static String SHARED_KEY_USER_COINS = "SHARED_KEY_USER_COINS";
 
 	private PreferenceManager(Context cxt) {
 		mSharedPreferences = cxt.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
@@ -170,11 +171,19 @@ public class PreferenceManager {
 		return mSharedPreferences.getFloat(SHARED_KEY_USER_POINT,0);
 	}
 
+	public void setUserCoins(float point){
+		editor.putFloat(SHARED_KEY_USER_COINS, point);
+		editor.commit();
+	}
+
+	public float getUserCoins() {
+		return mSharedPreferences.getFloat(SHARED_KEY_USER_COINS,0);
+	}
+
 	public void setUserPoint(float point){
 		editor.putFloat(SHARED_KEY_USER_POINT, point);
 		editor.commit();
 	}
-
 
 	public void removeCurrentUserInfo() {
 		editor.remove(SHARED_KEY_CURRENTUSER_NICK);

@@ -43,6 +43,7 @@ import com.houwei.guaishang.bean.IntResponse;
 import com.houwei.guaishang.bean.StringResponse;
 import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.data.DBReq;
+import com.houwei.guaishang.easemob.PreferenceManager;
 import com.houwei.guaishang.event.UpdateMoneyEvent;
 import com.houwei.guaishang.inter.DeleteInter;
 import com.houwei.guaishang.layout.DialogUtils;
@@ -206,6 +207,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
             }
             myUserBeanManager.startCheckMoneyRun();
         }
+        String alias = SharedPreferencesUtils.getString(getActivity(), "JPush_alias","");
     }
 
     @Override
@@ -240,6 +242,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
     public void onCheckPointFinish(IntResponse intResponse) {
         // TODO Auto-generated method stub
         moneyCount = intResponse.getData();
+        PreferenceManager.getInstance().setUserCoins(moneyCount);
         mMoneyTv.setText(moneyCount + "个");
         isCheckingMoney = false;
     }

@@ -20,4 +20,8 @@
         android:padding="8dp">
     </com.zhy.view.flowlayout.TagFlowLayout>
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
 </LinearLayout>

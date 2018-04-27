@@ -336,9 +336,6 @@ public class MainActivity extends MainHuanXinActivity implements
 					@Override
 					public void accept(@NonNull Boolean aBoolean) throws Exception {
 						String alias = ub.getUserid();
-						if(aBoolean){
-							alias = Utils.getImei(MainActivity.this) + ub.getUserid();
-						}
 						SharedPreferencesUtils.putString(MainActivity.this, "JPush_alias", alias);
 						JPushInterface.setAlias(MainActivity.this,1, alias);
 					}

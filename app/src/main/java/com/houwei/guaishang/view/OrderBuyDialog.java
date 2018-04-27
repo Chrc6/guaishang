@@ -29,6 +29,7 @@ import android.widget.TextView;
 
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.BaseActivity;
+import com.houwei.guaishang.activity.PayActivity;
 import com.houwei.guaishang.activity.RechargeDialogActivity;
 import com.houwei.guaishang.bean.TopicBean;
 import com.houwei.guaishang.bean.UserBean;
@@ -137,11 +138,19 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
                 if (money < 1) {
                     goToRechargeActivity();
                 } else {
-                    Intent i = new Intent();
-                    i.putExtra("TopicBean", bean);
-                    i.putExtra("position", 0);
-                    ((BaseActivity)mContext).jumpToChatActivityCom(bean,0,bean.getMemberId(),
-                            bean.getMemberName(), bean.getMemberAvatar(), EaseConstant.CHATTYPE_SINGLE,true);
+                    Intent i=new Intent(activity, PayActivity.class);
+                    i.putExtra("orderTitle", bean.getContent());
+                    i.putExtra("cover", bean.getCover());
+                    i.putExtra("brand", bean.getBrand());
+                    i.putExtra("price",Float.valueOf(bean.getPrice()) * 100);
+                    i.putExtra("topicId", bean.getTopicId());
+                    i.putExtra("to_memberid", bean.getMemberId());
+                    activity.startActivity(i);
+//                    Intent i = new Intent();
+//                    i.putExtra("TopicBean", bean);
+//                    i.putExtra("position", 0);
+//                    ((BaseActivity)mContext).jumpToChatActivityCom(bean,0,bean.getMemberId(),
+//                            bean.getMemberName(), bean.getMemberAvatar(), EaseConstant.CHATTYPE_SINGLE,true);
                 }
                 break;
             case R.id.ll_share:
