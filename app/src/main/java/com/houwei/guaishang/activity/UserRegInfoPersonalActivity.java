@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.houwei.guaishang.event.LoginSuccessEvent;
+import com.houwei.guaishang.sp.UserInfo;
+import com.houwei.guaishang.sp.UserUtil;
 import com.houwei.guaishang.tools.ToastUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.houwei.guaishang.R;
@@ -34,6 +37,8 @@ import com.houwei.guaishang.tools.JsonParser;
 import com.houwei.guaishang.tools.ValueUtil;
 import com.houwei.guaishang.views.AnimationYoYo;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+
+import org.greenrobot.eventbus.EventBus;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
@@ -76,7 +81,11 @@ public class UserRegInfoPersonalActivity extends UserRegInfoBaseActivity impleme
 					activity.getITopicApplication().getMyUserBeanManager().storeUserInfoAndNotity(response.getData());
 					// 展开数据库
 					DBReq.getInstence(activity.getITopicApplication());
-					
+					UserInfo info = new UserInfo();
+					info.setUserId(response.getData().getUserid());
+					info.setUserName(response.getData().getName());
+					UserUtil.setUserInfo(info);
+					EventBus.getDefault().post(new LoginSuccessEvent());
 					//告诉php服务器我刚才注册成功了，php服务器收到这个接口后，会推送小秘书默认消息
 		            //为什么不是在php收到注册接口之后直接推送消息呢？因为php服务器推送消息无法异步，会导致注册超时
 					//activity.getITopicApplication().getHuanXinManager().doPushAction(1, new HashMap<String, String>());
