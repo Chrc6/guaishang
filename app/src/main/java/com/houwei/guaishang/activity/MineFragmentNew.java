@@ -66,6 +66,7 @@ import com.houwei.guaishang.tools.JsonParser;
 import com.houwei.guaishang.tools.SPUtils;
 import com.houwei.guaishang.tools.ToastUtils;
 import com.houwei.guaishang.tools.VoiceUtils;
+import com.houwei.guaishang.util.AvatarChangeUtil;
 import com.houwei.guaishang.util.LoginJumperUtil;
 import com.houwei.guaishang.view.CircleImageView;
 import com.houwei.guaishang.views.SwitchView;
@@ -89,6 +90,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -97,9 +99,9 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         OnMyActionMessageHadReadListener, CheckPointListener, EMEventListener, CheckMoneyListener
         , DeleteInter {
 
-    private final int HEAD_TYPE = 10;
-    private final int CARD_TYPE = 11;
-    private final int GRID_TYPE = 12;
+    private final int HEAD_TYPE = 10;//头像
+    private final int CARD_TYPE = 11;//营业执照
+    private final int GRID_TYPE = 12;//产品照
     private int flag = 0;
 
     public final static int NETWORK_SUCCESS_DATA_ERROR = 0x06;
@@ -121,8 +123,8 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
 
     private List<LocalMedia> selectList1 = new ArrayList<>();
     private List<LocalMedia> selectList2 = new ArrayList<>();
-    private List<LocalMedia> selectList3 = new ArrayList<>();
-
+    private List<LocalMedia> selectList3 = new ArrayList<>();//只处理页面相关的
+    private List<LocalMedia> selectList4= new ArrayList<>();//保存本地图片的列表
     private MyUserBeanManager myUserBeanManager;
 
     private MyHandler handler = new MyHandler(getActivity());
@@ -130,7 +132,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
     private boolean isCheckingMoney;
     private String userid;
     private float moneyCount;
-
+    private UserBean ub;
     private class MyHandler extends Handler {
         private WeakReference<Context> reference;
 
@@ -151,7 +153,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
                         switch (flag) {
                             case HEAD_TYPE:
                                 SPUtils.put(getActivity(), "headimage", HttpUtil.IP_NOAPI + retMap.getData());
-                                UserBean ub = getITopicApplication().getMyUserBeanManager()
+                                 ub = getITopicApplication().getMyUserBeanManager()
                                         .getInstance();
                                 ub.getAvatar().setSmall(retMap.getData());
                                 ub.getAvatar().setOriginal(retMap.getData());
@@ -165,20 +167,45 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
                                 break;
                             case CARD_TYPE:
                                 SPUtils.put(getActivity(), "cardimage", HttpUtil.IP_NOAPI + retMap.getData());
+                                ub = getITopicApplication().getMyUserBeanManager()
+                                        .getInstance();
+                                ub.setLicense(retMap.getData());
+//                                ub.setAvatar();
+                                getITopicApplication().getMyUserBeanManager().storeUserInfo(ub);
+                                getITopicApplication().getMyUserBeanManager().notityUserInfoChanged(ub);
+
+                                if (UserUtil.getUserInfo() != null){
+                                    UserInfo info = UserUtil.getUserInfo();
+                                    info.setLicense(retMap.getData());
+                                    UserUtil.setUserInfo(info);
+                                }
+                                uploadLicense(retMap.getData());
                                 break;
                             case GRID_TYPE:
                                 String res = "";
+                                UserBean ub = getITopicApplication()
+                                        .getMyUserBeanManager().getInstance();
                                 List<StringResponse.PictureBean> lists = retMap.getPictures();
                                 if (lists.isEmpty()) {
                                     return;
                                 }
+                                res = ub.getPicture();
                                 for (StringResponse.PictureBean bean : lists) {
-                                    res = res + HttpUtil.IP_NOAPI + bean.getSmall() + ",";
+                                    res = res + bean.getOriginal()+",";
                                 }
                                 if (res.endsWith(",")) {
                                     res = res.substring(0, res.length() - 1);
                                 }
                                 SPUtils.put(getActivity(), "gridimage", res);
+
+
+                                ub.setPicture(res);
+                                getITopicApplication()
+                                        .getMyUserBeanManager().storeUserInfo(ub);
+                                getITopicApplication()
+                                        .getMyUserBeanManager()
+                                        .notityUserInfoChanged(ub);
+
                                 break;
                         }
 
@@ -278,7 +305,6 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         // TODO Auto-generated method stub
         myUserBeanManager = getITopicApplication().getMyUserBeanManager();
         myUserBeanManager.addOnUserStateChangeListener(this);
-
         mUserHeadIv = (CircleImageView) getView().findViewById(R.id.iv_user_head);
         mUserHeadIv.setOnClickListener(this);
         mLicenseIv = (ImageView) getView().findViewById(R.id.iv_license);
@@ -309,7 +335,8 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         mTradeCountTv.setOnClickListener(this);
 
         recyclerView = (LRecyclerView) getView().findViewById(R.id.recycle_view);
-
+        initProgressDialog(false, null);
+        initRcycle();
         toggleButton = (ToggleButton) getView().findViewById(R.id.sv_view);
 
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
@@ -333,8 +360,8 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
             mMoneyTv.setText("0个");
         }
 
-        initProgressDialog(false, null);
-        initRcycle();
+
+
     }
 
     private void iniToggleBtn(boolean isChecked) {
@@ -539,12 +566,37 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         mAccountTv.setText(getUserInfoStr(R.string.mine_account, ""));
         mAuthenticationTv.setText(getUserInfoStr(R.string.mine_authentication, ""));
 
+
         if (ub.getAvatar() != null && ub.getAvatar().findOriginalUrl() != null) {
             ImageLoader.getInstance().displayImage(ub.getAvatar().findOriginalUrl(), mUserHeadIv);
         } else {
             mUserHeadIv.setImageResource(R.drawable.user_photo);
         }
 
+        if (ub.getLicense() != null){
+            ImageLoader.getInstance().displayImage(AvatarChangeUtil.findOriginalUrl(ub.getLicense()),mLicenseIv);
+        }
+
+        String picture = ub.getPicture();
+        if (!TextUtils.isEmpty(picture)) {
+            String[] picArray = picture.split(",");
+            selectList3.clear();
+            for (int i = 0; i < picArray.length; i++) {
+                LocalMedia media = new LocalMedia();
+//                media.setPath(AvatarChangeUtil.findOriginalUrl(picArray[i]));
+                media.setPath(picArray[i]);
+                selectList3.add(media);
+            }
+            LocalMedia localMedia = new LocalMedia();
+            localMedia.setPath("");
+            selectList3.add(localMedia);
+            if (mAdapter != null) {
+                mAdapter.clear();
+                lRecyclerViewAdapter.notifyDataSetChanged();
+                mAdapter.setDataList(selectList3);
+                recyclerView.refresh();
+            }
+        }
         ratingbar.setNumStars(0);
         mMoneyTv.setText("");
 
@@ -751,6 +803,23 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
                     }
                 });
     }
+    private void uploadLicense(String path){
+        OkGo.<String>post(HttpUtil.IP + "user/modify")
+                .params("userid", UserUtil.getUserInfo().getUserId())
+                .params("event", "license")
+                .params("value", path)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+
+                    }
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        ToastUtils.toastForShort(getActivity(),"修改营业执照失败");
+                    }
+                });
+    }
 
     // 如果不是切割的upLoadBitmap就很大
     private void upLoadPicture(String newPicturePath, String port) {
@@ -825,43 +894,27 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
                 case CARD_TYPE:
                     selectList2.clear();
                     selectList2 = PictureSelector.obtainMultipleResult(data);
-                    Glide.with(getActivity()).load(selectList2.get(0).getPath()).into(mLicenseIv);
                     upLoadPicture(selectList2.get(0).getPath(), "user/id_card");
                     break;
                 case GRID_TYPE:
-//                    selectList3.clear();
+//                    selectList4.clear();
                     List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
-                    selectList3.addAll(selectList);
-                    if (selectList3.isEmpty()) {
-                        return;
-                    }
+//                    selectList4.addAll(selectList);
+//                    if (selectList.isEmpty()) {
+//                        return;
+//                    }
+//
+//                    if (selectList4.size() >= 8) {
+//                        int count = 9;
+//                        List tempList = new ArrayList();
+//                        for (int i = 0; i < count; i++) {
+//                            tempList.add(selectList4.get(i));
+//                        }
+//                        selectList4.clear();
+//                        selectList4.addAll(tempList);
+//                    }
 
-                    if (selectList3.size() >= 9) {
-                        int count = 9;
-                        List tempList = new ArrayList();
-                        for (int i = 0; i < count; i++) {
-                            tempList.add(selectList3.get(i));
-                        }
-                        selectList3.clear();
-                        selectList3.addAll(tempList);
-                    }
-
-                    for (int i = 0; i < selectList3.size(); i++) {
-                        LocalMedia localMedia = selectList3.get(i);
-                        if (TextUtils.isEmpty(localMedia.getPath())) {
-                            selectList3.remove(localMedia);
-                            i--;
-                        }
-                    }
-                    LocalMedia localMedia = new LocalMedia();
-                    localMedia.setPath("");
-                    selectList3.add(localMedia);
-
-                    mAdapter.clear();
-                    lRecyclerViewAdapter.notifyDataSetChanged();
-                    mAdapter.setDataList(selectList3);
-                    recyclerView.refresh();
-                    uploadMul(selectList3);
+                    uploadMul(selectList);
                     break;
 
                 case ProfileEditActivity.NAME:

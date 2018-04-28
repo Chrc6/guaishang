@@ -14,6 +14,7 @@ import com.houwei.guaishang.activity.newui.MyInfoActivity;
 import com.houwei.guaishang.inter.DeleteInter;
 import com.houwei.guaishang.layout.ListBaseAdapter;
 import com.houwei.guaishang.layout.SuperViewHolder;
+import com.houwei.guaishang.util.AvatarChangeUtil;
 import com.luck.picture.lib.entity.LocalMedia;
 
 /**
@@ -60,7 +61,7 @@ public class GridMeAdapter extends ListBaseAdapter<LocalMedia>{
         if(TextUtils.isEmpty(bean.getPath())){
             Glide.with(context).load(R.drawable.picture_update_icon).into(imageView);
         }else{
-            Glide.with(context).load(bean.getPath()).into(imageView);
+            Glide.with(context).load(AvatarChangeUtil.findOriginalUrl(bean.getPath())).into(imageView);
         }
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
