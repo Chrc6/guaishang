@@ -57,6 +57,7 @@ import com.houwei.guaishang.manager.MyUserBeanManager.CheckMoneyListener;
 import com.houwei.guaishang.manager.MyUserBeanManager.CheckPointListener;
 import com.houwei.guaishang.manager.MyUserBeanManager.UserStateChangeListener;
 import com.houwei.guaishang.profile.ProfileEditActivity;
+import com.houwei.guaishang.sp.UserInfo;
 import com.houwei.guaishang.sp.UserUtil;
 import com.houwei.guaishang.tools.ApplicationProvider;
 import com.houwei.guaishang.tools.BitmapSelectorUtil;
@@ -76,6 +77,9 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.dialog.CustomDialog;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.tools.PictureFileUtils;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.greenrobot.eventbus.EventBus;
@@ -113,7 +117,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
     private LRecyclerView recyclerView;
     private GridMeAdapter mAdapter;
     private LRecyclerViewAdapter lRecyclerViewAdapter;
-    private Dialog mChangeHeadDialog;
+//    private Dialog mChangeHeadDialog;
 
     private List<LocalMedia> selectList1 = new ArrayList<>();
     private List<LocalMedia> selectList2 = new ArrayList<>();
@@ -154,6 +158,10 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
 //                                ub.setAvatar();
                                 getITopicApplication().getMyUserBeanManager().storeUserInfo(ub);
                                 getITopicApplication().getMyUserBeanManager().notityUserInfoChanged(ub);
+
+                                uploadAvatar(retMap.getData());
+                                UserInfo userInfo = UserUtil.getUserInfo();
+                                userInfo.setAvatar(retMap.getData());
                                 break;
                             case CARD_TYPE:
                                 SPUtils.put(getActivity(), "cardimage", HttpUtil.IP_NOAPI + retMap.getData());
@@ -277,15 +285,15 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         mLicenseIv.setOnClickListener(this);
         mUserNameTv = (TextView) getView().findViewById(R.id.tv_user_name);
         mUserNameTv.setOnClickListener(this);
-        mChangeHeadDialog = DialogUtils.getCustomDialog(getActivity(),R.layout.fragment_mine_headpic_change_layout);
-        TextView changeHeadConfirm = (TextView) mChangeHeadDialog.findViewById(R.id.tv_confirm);
-        changeHeadConfirm.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mChangeHeadDialog.dismiss();
-                showBottomPopupWin();
-            }
-        });
+//        mChangeHeadDialog = DialogUtils.getCustomDialog(getActivity(),R.layout.fragment_mine_headpic_change_layout);
+//        TextView changeHeadConfirm = (TextView) mChangeHeadDialog.findViewById(R.id.tv_confirm);
+//        changeHeadConfirm.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mChangeHeadDialog.dismiss();
+//                showBottomPopupWin();
+//            }
+//        });
 
         mPhoneTv = (TextView) getView().findViewById(R.id.tv_phone);
         mMobilePhoneTv = (TextView) getView().findViewById(R.id.tv_mobile_phone);
@@ -458,20 +466,18 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         Intent i = null;
         switch (arg0.getId()) {
             case R.id.iv_user_head:
-                if (mChangeHeadDialog != null && !mChangeHeadDialog.isShowing()) {
-                    flag = HEAD_TYPE;
-                    selectList1.clear();
-                    showDialog();
-                }
+                flag = HEAD_TYPE;
+                selectList1.clear();
+                showBottomPopupWin();
 //                Intent intent = new Intent(getActivity(),OrderChatActivity.class);
 //                getActivity().startActivity(intent);
                 break;
             case R.id.iv_license:
-                if (mChangeHeadDialog != null && !mChangeHeadDialog.isShowing()) {
-                    flag = CARD_TYPE;
-                    selectList2.clear();
-                    showDialog();
-                }
+                flag = CARD_TYPE;
+                selectList2.clear();
+                showBottomPopupWin();
+//                if (mChangeHeadDialog != null && !mChangeHeadDialog.isShowing()) {
+//                }
                 break;
             case R.id.rl_sell:
                 i = new Intent(getActivity(), TopicMineActivity.class);
@@ -507,15 +513,15 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         }
     }
 
-    private void showDialog() {
-        mChangeHeadDialog.show();
-        WindowManager windowManager = getActivity().getWindowManager();
-        Display display = windowManager.getDefaultDisplay();
-        WindowManager.LayoutParams lp = mChangeHeadDialog.getWindow().getAttributes();
-        lp.width = (int)(display.getWidth());
-        lp.height=(int)400;//设置宽度
-        mChangeHeadDialog.getWindow().setAttributes(lp);
-    }
+//    private void showDialog() {
+//        mChangeHeadDialog.show();
+//        WindowManager windowManager = getActivity().getWindowManager();
+//        Display display = windowManager.getDefaultDisplay();
+//        WindowManager.LayoutParams lp = mChangeHeadDialog.getWindow().getAttributes();
+//        lp.width = (int)(display.getWidth());
+//        lp.height=(int)400;//设置宽度
+//        mChangeHeadDialog.getWindow().setAttributes(lp);
+//    }
 
     @Override
     public void onUserInfoChanged(final UserBean ub) {
@@ -728,11 +734,30 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         }
     }
 
+    private void uploadAvatar(String path){
+        OkGo.<String>post(HttpUtil.IP + "user/modify")
+                .params("userid", UserUtil.getUserInfo().getUserId())
+                .params("event", "avatar")
+                .params("value", path)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+
+                    }
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        ToastUtils.toastForShort(getActivity(),"修改头像失败");
+                    }
+                });
+    }
+
     // 如果不是切割的upLoadBitmap就很大
     private void upLoadPicture(String newPicturePath, String port) {
         progress.show();
         new Thread(new UpdateStringRun(newPicturePath, port)).start();
     }
+
 
     private class UpdateStringRun implements Runnable {
         private File upLoadBitmapFile;
@@ -842,6 +867,20 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
                 case ProfileEditActivity.NAME:
                     String result = data.getStringExtra("result");
                     mUserNameTv.setText(result);
+
+                    UserBean ub = getITopicApplication()
+                            .getMyUserBeanManager().getInstance();
+                   ub.setName(result);
+                   getITopicApplication()
+                            .getMyUserBeanManager().storeUserInfo(ub);
+                    getITopicApplication()
+                            .getMyUserBeanManager()
+                            .notityUserInfoChanged(ub);
+
+                    //同时改变sp
+                    UserInfo userInfo = UserUtil.getUserInfo();
+                    userInfo.setUserName(result);
+                    UserUtil.setUserInfo(userInfo);
                     break;
             }
         }

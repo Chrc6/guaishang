@@ -9,6 +9,15 @@ import java.io.Serializable;
 public class UserInfo implements Serializable{
     private String userId;
     private String userName;
+    private String avatar;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public String getUserId() {
         return userId;
