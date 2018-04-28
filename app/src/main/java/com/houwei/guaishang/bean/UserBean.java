@@ -35,6 +35,9 @@ public class UserBean implements Serializable {
 	//查看他人接口才有
 	private int friendship;
 
+	//营业执照
+	private String license;
+	private String picture;
 	
 	public AvatarBean getAvatar() {
 		return avatar;
@@ -45,11 +48,16 @@ public class UserBean implements Serializable {
 		this.avatar = avatar;
 	}
 
+	public String getLicense() {
+		return license;
+	}
 
-	
+	public void setLicense(String license) {
+		this.license = license;
+	}
 
 
-	
+
 	public String getUserid() {
 		return userid;
 	}
@@ -188,5 +196,13 @@ public class UserBean implements Serializable {
 
 	public void setValue(String value) {
 		this.value = value;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 }

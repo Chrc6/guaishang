@@ -9,6 +9,15 @@ import java.io.Serializable;
 public class UserInfo implements Serializable{
     private String userId;
     private String userName;
+    private String avatar;
+    private String license;
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public String getUserId() {
         return userId;
@@ -24,5 +33,13 @@ public class UserInfo implements Serializable{
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getLicense() {
+        return license;
+    }
+
+    public void setLicense(String license) {
+        this.license = license;
     }
 }

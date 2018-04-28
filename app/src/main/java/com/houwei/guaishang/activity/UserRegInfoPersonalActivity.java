@@ -84,6 +84,7 @@ public class UserRegInfoPersonalActivity extends UserRegInfoBaseActivity impleme
 					UserInfo info = new UserInfo();
 					info.setUserId(response.getData().getUserid());
 					info.setUserName(response.getData().getName());
+					info.setAvatar(response.getData().getAvatar().getOriginal());
 					UserUtil.setUserInfo(info);
 					EventBus.getDefault().post(new LoginSuccessEvent());
 					//告诉php服务器我刚才注册成功了，php服务器收到这个接口后，会推送小秘书默认消息
