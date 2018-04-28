@@ -34,7 +34,10 @@ import com.houwei.guaishang.R;
 import com.houwei.guaishang.easemob.DemoHelper;
 import com.houwei.guaishang.easemob.EaseCommonUtils;
 import com.houwei.guaishang.easemob.EaseConstant;
+import com.houwei.guaishang.event.LogouSuccess;
+import com.houwei.guaishang.sp.UserUtil;
 import com.houwei.guaishang.tools.LogUtil;
+import com.houwei.guaishang.tools.ShareSDKUtils;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -48,6 +51,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Root界面，在这里只处理与环信长连接相关的代码
@@ -413,6 +418,12 @@ public class MainHuanXinActivity extends BaseActivity implements
 									int which) {
 								dialog.dismiss();
 								conflictBuilder = null;
+								//清楚上个用户缓存，刷新首页和我的页
+								getITopicApplication().getMyUserBeanManager().clean();
+								ShareSDKUtils.removeAccount();
+								UserUtil.setUserInfo(null);
+								EventBus.getDefault().post(new LogouSuccess());
+
 								finish();
 								startActivity(new Intent(
 										MainHuanXinActivity.this,
