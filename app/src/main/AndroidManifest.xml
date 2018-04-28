@@ -120,6 +120,9 @@
             android:name=".activity.RechargeDialogActivity"
             android:screenOrientation="portrait"
             android:theme="@style/RechargDialogActivity" />
+        <activity android:name=".activity.OrderChatActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/RechargDialogActivity"/>
         <activity
             android:name=".activity.BrandSelectActivity"
             android:screenOrientation="portrait"
@@ -500,7 +503,6 @@
             android:configChanges="orientation|keyboardHidden|screenSize"/>
         -->
 
-        <activity android:name=".activity.OrderChatActivity" />
         <activity android:name=".activity.SettingActivity"></activity>
     </application>
 

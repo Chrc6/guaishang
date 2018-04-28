@@ -7,8 +7,7 @@
         android:id="@+id/ll_back"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:gravity="center_vertical"
-        android:background="#333038">
+        android:gravity="center_vertical">
 
         <ImageView
             style="@style/titleBackStyle"
@@ -17,31 +16,26 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="83dp"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/ll_back"
-        android:background="#e8e8e8"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycle_view"
-        android:layout_width="83dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/black_round"
-        android:layout_below="@+id/ll_back" />
-
-    <com.houwei.guaishang.layout.NoScrollViewPager
-        android:id="@+id/view_pager"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@+id/recycle_view"
-        android:layout_below="@+id/ll_back"/>
+        android:layout_height="490dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/ll_back"
+        android:background="@drawable/background_round">
 
-    <!--<FrameLayout-->
-        <!--android:id="@+id/fl_container"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_toRightOf="@+id/recycle_view"-->
-        <!--android:layout_below="@+id/ll_back"/>-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_view"
+            android:layout_width="83dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/black_round" />
+
+        <com.houwei.guaishang.layout.NoScrollViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/recycle_view"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -575,6 +575,8 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
 
         if (ub.getLicense() != null){
             ImageLoader.getInstance().displayImage(AvatarChangeUtil.findOriginalUrl(ub.getLicense()),mLicenseIv);
+        } else {
+            mLicenseIv.setImageResource(R.drawable.picture_update_icon);
         }
 
         String picture = ub.getPicture();
@@ -590,13 +592,16 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
             LocalMedia localMedia = new LocalMedia();
             localMedia.setPath("");
             selectList3.add(localMedia);
-            if (mAdapter != null) {
-                mAdapter.clear();
-                lRecyclerViewAdapter.notifyDataSetChanged();
-                mAdapter.setDataList(selectList3);
-                recyclerView.refresh();
-            }
+        } else {
+            selectList3.clear();
         }
+        if (mAdapter != null) {
+            mAdapter.clear();
+            lRecyclerViewAdapter.notifyDataSetChanged();
+            mAdapter.setDataList(selectList3);
+            recyclerView.refresh();
+        }
+
         ratingbar.setNumStars(0);
         mMoneyTv.setText("");
 
