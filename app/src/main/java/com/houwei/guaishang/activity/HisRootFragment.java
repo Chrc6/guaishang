@@ -316,7 +316,7 @@ public class HisRootFragment extends BaseTopicFragment implements
 		case R.id.chat_tv:
 			jumpToChatActivity(hisUserID,getActivity().getIntent().getStringExtra(HisRootActivity.HIS_NAME_KEY),
 					(AvatarBean) getActivity().getIntent().getSerializableExtra(HisRootActivity.HIS_AVATAR_KEY),
-					EaseConstant.CHATTYPE_SINGLE,mobile);
+					EaseConstant.CHATTYPE_SINGLE,mobile,true);
 			break;
 		case R.id.follow_tv:
 			progress.show();

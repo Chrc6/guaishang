@@ -142,7 +142,7 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
                     Intent i=new Intent(activity, TopicDetailActivity.class);
                     i.putExtra("TopicBean", bean);
                     i.putExtra("position", 0);
-                    i.putExtra("needPay", bean.getOffer());
+                    i.putExtra("needPay", Integer.valueOf(bean.getIsOffer()));
                     activity.startActivity(i);
 //                    Intent i = new Intent();
 //                    i.putExtra("TopicBean", bean);

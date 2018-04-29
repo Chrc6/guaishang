@@ -138,7 +138,8 @@ public class JsonParser {
 	}
 
 	
-	public static TopicListResponse getTopicListResponse(String json) {
+	public static TopicListResponse
+	getTopicListResponse(String json) {
 		TopicListResponse response = JsonUtil.getObject(json, TopicListResponse.class);
 		return response;
 	}

@@ -68,7 +68,7 @@ public class GroupPublicDetailsActivity extends BaseActivity {
 										@Override
 										public void onClick(View arg0) {
 											// TODO Auto-generated method stub
-											jumpToChatActivity(group.getGroupId(), group.getGroupName(), null, EaseConstant.CHATTYPE_GROUP,"");
+											jumpToChatActivity(group.getGroupId(), group.getGroupName(), null, EaseConstant.CHATTYPE_GROUP,"",false);
 										}
 									});
 							 }
@@ -99,7 +99,7 @@ public class GroupPublicDetailsActivity extends BaseActivity {
 							runOnUiThread(new Runnable() {
 								public void run() {
 									progress.dismiss();
-									jumpToChatActivity(groupInfo.getGroupId(), groupInfo.getGroupName(), null,EaseConstant.CHATTYPE_GROUP,"");
+									jumpToChatActivity(groupInfo.getGroupId(), groupInfo.getGroupName(), null,EaseConstant.CHATTYPE_GROUP,"",false);
 								}
 							});
 						} catch (final EaseMobException e) {

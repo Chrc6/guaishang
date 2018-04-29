@@ -201,7 +201,7 @@ public class ChatFragment extends BaseFragment implements EMEventListener {
     private void initChatBindInfo() {
         VChatBindGp = (RelativeLayout)rootView.findViewById(R.id.edit_char_info_gp);
         //单聊初始化   群聊不初始化
-        if (chatType != EaseConstant.CHATTYPE_SINGLE ) {
+        if (chatType != EaseConstant.CHATTYPE_SINGLE  || !chatInfo.isShowPriceInfo()) {
             VChatBindGp.setVisibility(View.GONE);
             return;
         }

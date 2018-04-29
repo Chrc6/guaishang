@@ -39,6 +39,7 @@ public class OrderChatViewPagerAdapter extends FragmentPagerAdapter {
         avatarBean.setSmall(offerBean.getAvatar());
         chatInfo.setHeadImageBean(avatarBean);
         chatInfo.setHideTitle(true);
+        chatInfo.setShowPriceInfo(true);
         ChatFragment fragment = ChatFragment.getInstance(chatInfo);
         return fragment;
     }

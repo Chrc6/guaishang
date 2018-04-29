@@ -189,7 +189,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
                                 if (lists.isEmpty()) {
                                     return;
                                 }
-                                res = ub.getPicture();
+//                                res = ub.getPicture();
                                 for (StringResponse.PictureBean bean : lists) {
                                     res = res + bean.getOriginal()+",";
                                 }
@@ -421,9 +421,6 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mAdapter = new GridMeAdapter(getActivity(), this, true);
         selectList3 = new ArrayList<LocalMedia>();
-        LocalMedia localMedia = new LocalMedia();
-        localMedia.setPath("");
-        selectList3.add(localMedia);
         mAdapter.setDataList(selectList3);
         lRecyclerViewAdapter = new LRecyclerViewAdapter(mAdapter);
         recyclerView.setAdapter(lRecyclerViewAdapter);
@@ -444,7 +441,15 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
                     flag = GRID_TYPE;
                     showBottomPopupWin();
                 } else {
-                    PictureSelector.create(getActivity()).externalPicturePreview(position, selectList3);
+                    List<LocalMedia> selectList4= new ArrayList<>();
+                    for (int i = 0; i < selectList3.size(); i++) {
+                        LocalMedia media = selectList3.get(i);
+                        if (!TextUtils.isEmpty(media.getPath())) {
+                            media.setPath(AvatarChangeUtil.findOriginalUrl(media.getPath()));
+                            selectList4.add(media);
+                        }
+                    }
+                    PictureSelector.create(getActivity()).externalPicturePreview(position, selectList4);
                 }
             }
         });
@@ -583,17 +588,28 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         if (!TextUtils.isEmpty(picture)) {
             String[] picArray = picture.split(",");
             selectList3.clear();
-            for (int i = 0; i < picArray.length; i++) {
-                LocalMedia media = new LocalMedia();
+            if (picArray.length > 0) {
+                for (int i = 0; i < picArray.length; i++) {
+                    if (!TextUtils.isEmpty(picArray[i])) {
+                        LocalMedia media = new LocalMedia();
 //                media.setPath(AvatarChangeUtil.findOriginalUrl(picArray[i]));
-                media.setPath(picArray[i]);
-                selectList3.add(media);
+                        media.setPath(picArray[i]);
+                        selectList3.add(media);
+                    }
+                }
+                LocalMedia localMedia = new LocalMedia();
+                localMedia.setPath("");
+                selectList3.add(localMedia);
+            }else {
+                LocalMedia localMedia = new LocalMedia();
+                localMedia.setPath("");
+                selectList3.add(localMedia);
             }
+        }else {
+            selectList3.clear();
             LocalMedia localMedia = new LocalMedia();
             localMedia.setPath("");
             selectList3.add(localMedia);
-        } else {
-            selectList3.clear();
         }
         if (mAdapter != null) {
             mAdapter.clear();
@@ -944,5 +960,14 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         }
     }
 
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void on3EventMainThread(LogouSuccess event){
+        getITopicApplication()
+                .getMyUserBeanManager().storeUserInfo(null);
+        getITopicApplication()
+                .getMyUserBeanManager()
+                .notityUserInfoChanged(null);
+    }
 
 }
