@@ -34,6 +34,8 @@
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingTop="1dp"
+            android:paddingRight="1dp"
             android:layout_toRightOf="@+id/recycle_view"/>
 
     </RelativeLayout>

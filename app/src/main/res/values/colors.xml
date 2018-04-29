@@ -121,5 +121,8 @@
     <color name="color_e8e8e8">#e8e8e8</color>
     <color name="color_000000">#000000</color>
     <color name="color_101010">#101010</color>
+    <color name="color_333039">#333039</color>
+    <color name="color_bbbbbb">#bbbbbb</color>
+    <color name="color_cd000000">#cd000000</color>
 
 </resources>

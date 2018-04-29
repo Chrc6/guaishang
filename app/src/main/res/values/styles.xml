@@ -798,7 +798,7 @@
     </style>
 
     <style name ="OrderChatActivity">
-        　　<item name="android:windowBackground">@color/color_101010</item>
+        　　<item name="android:windowBackground">@color/color_cd000000</item>
         　　<item name="android:windowIsTranslucent">true</item>
         　　<item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
     　　

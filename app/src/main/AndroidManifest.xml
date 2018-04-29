@@ -122,7 +122,7 @@
             android:theme="@style/RechargDialogActivity" />
         <activity android:name=".activity.OrderChatActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/RechargDialogActivity"/>
+            android:theme="@style/OrderChatActivity"/>
         <activity
             android:name=".activity.BrandSelectActivity"
             android:screenOrientation="portrait"

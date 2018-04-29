@@ -91,7 +91,11 @@ public class OrderChatAdapter extends RecyclerView.Adapter{
             if (focusPosition == position) {
                 holder.itemView.setBackground(holder.itemView.getContext().getResources().getDrawable(R.drawable.order_chat_item_click));
             } else {
-                holder.itemView.setBackground(holder.itemView.getContext().getResources().getDrawable(R.drawable.order_chat_item_normal));
+                if (position == getItemCount() - 1) {
+                    holder.itemView.setBackground(holder.itemView.getContext().getResources().getDrawable(R.drawable.order_chat_last_item_normal));
+                } else {
+                    holder.itemView.setBackground(holder.itemView.getContext().getResources().getDrawable(R.drawable.order_chat_item_normal));
+                }
             }
         }
     }
