@@ -173,12 +173,14 @@ public  class BaseActivity extends FragmentActivity {
 	
 	
 	
-	public void jumpToChatActivity(final String hisUserID, final String hisRealName,final AvatarBean headImageBean,final int chatType,final String mobile) {
+	public void jumpToChatActivity(final String hisUserID, final String hisRealName,
+								   final AvatarBean headImageBean,
+								   final int chatType, final String mobile, final boolean showPrice) {
 		if(!checkLogined()){
 			return;
 		}
 		if (getITopicApplication().getHuanXinManager().getHxSDKHelper().isLoggedIn()) {			
-			intentToChatActivity(hisUserID, hisRealName, headImageBean,chatType,mobile);
+			intentToChatActivity(hisUserID, hisRealName, headImageBean,chatType,mobile,showPrice);
 		} else{
 		
 			final	MProgressDialog progress = new MProgressDialog(this, false);
@@ -192,7 +194,7 @@ public  class BaseActivity extends FragmentActivity {
 				public void onHuanXinLoginSuccess() {
 					// TODO Auto-generated method stub
 					progress.dismiss();
-					intentToChatActivity(hisUserID, hisRealName, headImageBean,chatType,mobile);
+					intentToChatActivity(hisUserID, hisRealName, headImageBean,chatType,mobile,showPrice);
 				}
 				
 				@Override
@@ -245,7 +247,7 @@ public  class BaseActivity extends FragmentActivity {
 	}
 
 	private void intentToChatActivity(String hisUserID,
-			String hisRealName,AvatarBean headImageBean,int chatType,String mobile){
+			String hisRealName,AvatarBean headImageBean,int chatType,String mobile,boolean showPrice){
 		Intent i = new Intent(this, ChatActivity.class);
 		if (headImageBean == null) {
 			headImageBean = new AvatarBean();
@@ -256,6 +258,7 @@ public  class BaseActivity extends FragmentActivity {
         chatInfo.setHisRealName(hisRealName);
         chatInfo.setChatType(chatType);
         chatInfo.setHeadImageBean(headImageBean);
+		chatInfo.setShowPriceInfo(showPrice);
 		i.putExtra(ChatActivity.Chat_info,chatInfo);
 //        i.putExtra(ChatActivity.Chat_info,chatInfo);
 //		i.putExtra(HisRootActivity.HIS_ID_KEY, hisUserID);

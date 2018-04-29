@@ -137,7 +137,7 @@ public class ConversationFragment extends BaseFragment implements
 
 					if (group != null) {
 						jumpToChatActivity(userid, group.getGroupName(), null,
-								EaseConstant.CHATTYPE_GROUP,"");
+								EaseConstant.CHATTYPE_GROUP,"",false);
 					} else {
 						showErrorToast("错误的群组");
 					}
@@ -170,7 +170,7 @@ public class ConversationFragment extends BaseFragment implements
 						}
 					}
 					jumpToChatActivity(userid, hisRealName, hisAvatarBean,
-							EaseConstant.CHATTYPE_SINGLE,"");
+							EaseConstant.CHATTYPE_SINGLE,"",false);
 
 				}
 
