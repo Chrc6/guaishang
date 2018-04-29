@@ -227,14 +227,17 @@ public class TopicAdapter extends BaseAdapter {
                     holder.order_btn.setStatu(5);
                 }else {
                     for (int i = 0; i < size; i++) {
-                        mIconList.add(offerPrice.get(i).getAvatar());
+                        String avatar = offerPrice.get(i).getAvatar();
+                        if (!mIconList.contains(avatar)) {
+                            mIconList.add(avatar);
+                        }
                     }
                     holder.order_count.setVisibility( View.VISIBLE);
                     holder.order_count.setText(mIconList.size() + "");
                     holder.order_btn.setStatu(2);
                     holder.order_btn.setmAvatarList(mIconList);
                 }
-            }else if (Integer.valueOf(bean.getOffer()) == 1){
+            }else if (Integer.valueOf(Integer.valueOf(bean.getIsOffer())) == 1){
                 holder.order_count.setVisibility(View.GONE);
                 holder.order_btn.setStatu(4);
             }else {
@@ -482,7 +485,7 @@ public class TopicAdapter extends BaseAdapter {
                 }
                 i.putExtra("TopicBean", bean);
                 i.putExtra("position", 0);
-                i.putExtra("needPay", bean.getOffer());
+                i.putExtra("needPay", Integer.valueOf(bean.getIsOffer()));
                 mContext.startActivityForResult(i, 0);
 
             }
@@ -520,7 +523,7 @@ public class TopicAdapter extends BaseAdapter {
                 }
                 i.putExtra("TopicBean", bean);
                 i.putExtra("position", 0);
-                i.putExtra("needPay", bean.getOffer());
+                i.putExtra("needPay", Integer.valueOf(bean.getIsOffer()));
                 mContext.startActivityForResult(i, 0);
 
             }
