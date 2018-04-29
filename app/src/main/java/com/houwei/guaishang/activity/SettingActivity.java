@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.houwei.guaishang.R;
+import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.bean.VersionResponse;
 import com.houwei.guaishang.easemob.DemoModel;
 import com.houwei.guaishang.event.LoginSuccessEvent;
@@ -98,6 +99,12 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 getITopicApplication().getMyUserBeanManager().clean();
                 ShareSDKUtils.removeAccount();
                 UserUtil.setUserInfo(null);
+
+                getITopicApplication()
+                        .getMyUserBeanManager().storeUserInfo(null);
+                getITopicApplication()
+                        .getMyUserBeanManager()
+                        .notityUserInfoChanged(null);
                 EventBus.getDefault().post(new LogouSuccess());
                 finish();
                 break;
