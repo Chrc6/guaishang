@@ -190,14 +190,14 @@ public class TopicAdapter extends BaseAdapter {
             //已订单
             Payment payment = bean.getPayment();
             if (payment != null){
-                holder.ratingBar.setVisibility(View.GONE);
+                holder.barNum.setVisibility(View.GONE);
                 holder.progressView.setVisibility(View.VISIBLE);
                 holder.VProdectLayout.setVisibility(View.VISIBLE);
                 holder.progressView.setProgress(payment.getStatus());
                 holder.price.setText(payment.getPrice());
                 holder.time.setText(payment.getCycle());
             }else {
-                holder.ratingBar.setVisibility(View.VISIBLE);
+                holder.barNum.setVisibility(View.VISIBLE);
                 holder.progressView.setVisibility(View.GONE);
                 holder.VProdectLayout.setVisibility(View.GONE);
             }
@@ -416,7 +416,19 @@ public class TopicAdapter extends BaseAdapter {
                 // TODO: 2018/4/21 跳转到聊天页面
                 Intent intent = new Intent(mContext, OrderChatActivity.class);
                 List<OffersBean.OfferBean> offerPriceList = bean.getOfferPrice();
-                intent.putExtra(OrderChatActivity.Parse_List,(Serializable) offerPriceList);
+                ArrayList<OffersBean.OfferBean> tempList = new ArrayList<OffersBean.OfferBean>();
+                int size = offerPriceList.size();
+                for (int i = 0; i < size; i++) {
+                    OffersBean.OfferBean offerBean = offerPriceList.get(i);
+                    tempList.add(offerBean);
+                    for (int j = 0; j < size; j++) {
+                        OffersBean.OfferBean tempBean = offerPriceList.get(i);
+                        if (offerBean != tempBean && offerBean.getUserid().equals(tempBean.getUserid())){
+                            tempList.remove(offerBean);
+                        }
+                    }
+                }
+                intent.putExtra(OrderChatActivity.Parse_List,(Serializable) tempList);
                 mContext.startActivity(intent);
             }
 

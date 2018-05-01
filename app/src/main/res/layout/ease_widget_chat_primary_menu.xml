@@ -20,11 +20,11 @@
         android:orientation="horizontal"
         android:paddingLeft="4dp" >
 
-        <Button
+        <ImageView
             android:id="@+id/btn_set_mode_voice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/chatting_setmode_voice_btn"
+           android:src="@drawable/message_voice_background"
             android:onClick="setModeVoice"
             android:paddingBottom="6dp"
             android:paddingLeft="3dp"

@@ -239,25 +239,21 @@ public class ProgressView extends View {
 
 
     public void setProgress(int len){
+        this.status = len;
         switch (len){
-            case 10:
+            case 1:
                 progress = 25;
-                status = 1;
                 break;
-            case 11:
+            case 2:
                 progress = 50;
-                status = 2;
                 break;
-            case 12:
+            case 3:
                 progress = 75;
-                status = 3;
                 break;
-            case 13:
+            case 4:
                 progress = 100;
-                status = 4;
                 break;
         }
-        this.progress = len;
         invalidate();
     }
 
