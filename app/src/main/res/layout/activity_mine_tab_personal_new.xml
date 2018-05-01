@@ -55,24 +55,25 @@
                     <ImageView
                         android:id="@+id/iv_license"
                         android:layout_width="127dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/ll_info"
-                        android:layout_alignTop="@+id/ll_info"
+                        android:layout_height="171dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/picture_update_icon" />
 
                     <LinearLayout
                         android:id="@+id/ll_info"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="171dp"
                         android:layout_marginLeft="@dimen/dp_10"
                         android:layout_toRightOf="@+id/iv_license"
+                        android:paddingTop="@dimen/dp5"
+                        android:paddingBottom="@dimen/dp5"
+                        android:gravity="center_vertical"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tv_phone"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="23dp"
                             android:text="@string/mine_phone"
                             android:textColor="#101010"
                             android:textSize="@dimen/dp_14" />
@@ -80,7 +81,7 @@
                         <TextView
                             android:id="@+id/tv_mobile_phone"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="23dp"
                             android:text="@string/mine_mobile_phone"
                             android:textColor="#101010"
                             android:textSize="@dimen/dp_14" />
@@ -88,7 +89,7 @@
                         <TextView
                             android:id="@+id/tv_address"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="23dp"
                             android:text="@string/mine_address"
                             android:textColor="#101010"
                             android:textSize="@dimen/dp_14" />
@@ -96,7 +97,7 @@
                         <TextView
                             android:id="@+id/tv_bank"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="23dp"
                             android:text="@string/mine_bank"
                             android:textColor="#101010"
                             android:textSize="@dimen/dp_14" />
@@ -104,7 +105,7 @@
                         <TextView
                             android:id="@+id/tv_account"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="23dp"
                             android:text="@string/mine_account"
                             android:textColor="#101010"
                             android:textSize="@dimen/dp_14" />
@@ -112,7 +113,7 @@
                         <TextView
                             android:id="@+id/tv_authentication"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="23dp"
                             android:text="@string/mine_authentication"
                             android:textColor="#101010"
                             android:textSize="@dimen/dp_14" />
