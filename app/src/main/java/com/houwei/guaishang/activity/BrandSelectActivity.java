@@ -201,7 +201,7 @@ public class BrandSelectActivity extends BaseActivity implements View.OnClickLis
         if (Utils.isNetworkConnected(this)) {
             OkGo.<String>post(HttpUtil.IP+"user/useraddbrand")
                     .tag(this)
-                    .params("userid", getUserID())
+                    .params("usid", getUserID())
                     .params("name", extraBrand)
                     .execute(new StringCallback() {
                         @Override
