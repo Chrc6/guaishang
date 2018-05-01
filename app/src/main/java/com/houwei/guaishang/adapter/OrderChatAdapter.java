@@ -1,6 +1,7 @@
 package com.houwei.guaishang.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -90,7 +91,9 @@ public class OrderChatAdapter extends RecyclerView.Adapter{
             }
             if (focusPosition == position) {
                 holder.itemView.setBackground(holder.itemView.getContext().getResources().getDrawable(R.drawable.order_chat_item_click));
+                ((ViewHolder) holder).nameTv.setTextColor(Color.parseColor("#101010"));
             } else {
+                ((ViewHolder) holder).nameTv.setTextColor(Color.parseColor("#ffffff"));
                 if (position == getItemCount() - 1) {
                     holder.itemView.setBackground(holder.itemView.getContext().getResources().getDrawable(R.drawable.order_chat_last_item_normal));
                 } else {
