@@ -29,6 +29,7 @@ import org.greenrobot.eventbus.EventBus;
 public class PayActivity extends PayBaseActivity {
 	
 	private String  to_memberid;
+	private String  offer_id;
 	private float price;
 	private String  topicId;
 	private String  orderTitle;
@@ -74,6 +75,7 @@ public class PayActivity extends PayBaseActivity {
 		topicId = intent.getStringExtra("topicId");
 		orderTitle = intent.getStringExtra("orderTitle");
 		to_memberid = intent.getStringExtra("to_memberid");
+		offer_id = intent.getStringExtra("offer_id");
 		brand = intent.getStringExtra("brand");
 		String cover = intent.getStringExtra("cover");
 		moneyRequire = price;// 默认全部支付
@@ -114,7 +116,7 @@ public class PayActivity extends PayBaseActivity {
 				mapOptional.put("topicid", topicId);
 				mapOptional.put("price", ""+price);
 				mapOptional.put("to_memberid", to_memberid);
-				mapOptional.put("offer_id", PayActivity.this.getUserID());
+				mapOptional.put("offer_id", offer_id);
 				String title = "购买商品";
 				pay(title, mapOptional);
 			}

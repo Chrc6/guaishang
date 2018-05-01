@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.houwei.guaishang.tools.DealResult;
 import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.SPUtils;
 import com.houwei.guaishang.video.JCVideoPlayer;
+import com.houwei.guaishang.video.Utils;
 import com.houwei.guaishang.views.ViewPagerTabButton;
 import com.houwei.guaishang.views.ViewPagerTabsAdapter;
 import com.houwei.guaishang.views.ViewPagerTabsView;
@@ -214,7 +216,9 @@ public class TopicRootFragment extends BaseFragment implements PageSelectedListe
 			break;
 		case BrandSelectActivity.SELECT_BRAND:
 			String brandParam = data.getStringExtra(BrandSelectActivity.BRAND_PARAM);
-			commit(brandParam);
+			if (!TextUtils.isEmpty(brandParam)) {
+				commit(brandParam);
+			}
 			break;
 		default:
 			break;

@@ -74,6 +74,14 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
         mContext = context;
     }
 
+    public OrderBuyDialog(BaseActivity context, float money, TopicBean bean) {
+        super(context,R.style.RechargiDialog);
+        mContext = context;
+        activity = context;
+        this.money = money;
+        this.bean = bean;
+    }
+
     public static OrderBuyDialog getInstance(Context context) {
         if (instance == null) {
             synchronized (OrderBuyDialog.class) {
@@ -86,10 +94,8 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
     };
 
     public OrderBuyDialog setData(float money,TopicBean bean,BaseActivity activity) {
-        this.money = money;
-        this.bean = bean;
-        this.activity = activity;
-        return instance;
+//        return instance;
+        return new OrderBuyDialog(activity,money,bean);
     }
 
     @Override
@@ -119,6 +125,7 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
         rbShare = (CheckBox) view.findViewById(R.id.rb_share);
         rbShare.setSelected(true);
         rbPay = (CheckBox) view.findViewById(R.id.rb_pay);
+        rbPay.setSelected(false);
 
         llShare.setOnClickListener(this);
         llPay.setOnClickListener(this);
@@ -204,8 +211,8 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
 
     @Override
     public void show() {
-        if (instance != null && !instance.isShowing() && activity != null) {
+//        if (instance != null && !instance.isShowing() && activity != null) {
             super.show();
-        }
+//        }
     }
 }

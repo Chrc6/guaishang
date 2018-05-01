@@ -542,9 +542,10 @@ public class TopicAdapter extends BaseAdapter {
                         String res=response.body().toString().trim();
                         //Log.i("WXCH","SSSSSS:" + res);
                         if(res.contains("1")){
-                            OrderBuyDialog.getInstance(mContext)
-                                    .setData(PreferenceManager.getInstance().getUserCoins(), bean, mContext)
-                                    .show();
+//                            OrderBuyDialog.getInstance(mContext)
+//                                    .setData(PreferenceManager.getInstance().getUserCoins(), bean, mContext)
+//                                    .show();
+                            new OrderBuyDialog(mContext, PreferenceManager.getInstance().getUserCoins(), bean).show();
                         }else if (fromBtnClick){
                             ToastUtils.toastForShort(mContext, "此单您已抢过");
                         } else {

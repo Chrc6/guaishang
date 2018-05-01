@@ -14,14 +14,19 @@ import com.baidu.tts.tools.SharedPreferencesUtils;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.bean.CommentPushBean;
 import com.houwei.guaishang.bean.FansPushBean;
+import com.houwei.guaishang.bean.FloatResponse;
 import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.bean.VersionResponse.VersionBean;
+import com.houwei.guaishang.bean.event.TopicHomeEvent;
 import com.houwei.guaishang.data.DBReq;
+import com.houwei.guaishang.easemob.PreferenceManager;
+import com.houwei.guaishang.event.LoginSuccessEvent;
 import com.houwei.guaishang.event.TopicSelectEvent;
 import com.houwei.guaishang.layout.MenuTwoButtonDialog;
 import com.houwei.guaishang.manager.ChatManager.OnMyActionMessageGetListener;
 import com.houwei.guaishang.manager.ChatManager.OnMyActionMessageHadReadListener;
 import com.houwei.guaishang.manager.ITopicApplication;
+import com.houwei.guaishang.manager.MyUserBeanManager;
 import com.houwei.guaishang.manager.MyUserBeanManager.UserStateChangeListener;
 import com.houwei.guaishang.manager.VersionManager.LastVersion;
 import com.houwei.guaishang.tools.ToastUtils;
@@ -51,7 +56,7 @@ import io.reactivex.functions.Consumer;
  */
 public class MainActivity extends MainHuanXinActivity implements
 		 UserStateChangeListener,
-		OnMyActionMessageGetListener, OnMyActionMessageHadReadListener, LastVersion {
+		OnMyActionMessageGetListener, OnMyActionMessageHadReadListener, LastVersion, MyUserBeanManager.CheckMoneyListener {
 
 	private TextView unReadActionCountTV, unReadFansCountTV;
 	private ITopicApplication app;
@@ -268,6 +273,7 @@ public class MainActivity extends MainHuanXinActivity implements
 		app.getChatManager().addOnMyActionMessageGetListener(this);
 		app.getChatManager().addOnMyActionMessageHadReadListener(this);
 		app.getMyUserBeanManager().addOnUserStateChangeListener(this);
+		app.getMyUserBeanManager().addOnCheckMoneyListener(this);
 		app.getVersionManager().setOnLastVersion(this);
 		app.getVersionManager().checkNewVersion();
 	}
@@ -275,6 +281,22 @@ public class MainActivity extends MainHuanXinActivity implements
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void topicFragmentSelect(TopicSelectEvent event) {
 		showTopicFragment = true;
+	}
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void loginSuccess(LoginSuccessEvent event) {
+		getITopicApplication().getMyUserBeanManager().startCheckMoneyRun();
+	}
+
+	//支付成功回调
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void onEvent(TopicHomeEvent event){
+		getITopicApplication().getMyUserBeanManager().startCheckMoneyRun();
+	}
+
+	@Override
+	public void onCheckMoneyFinish(FloatResponse intResponse) {
+		float moneyCount = intResponse.getData();
+		PreferenceManager.getInstance().setUserCoins(moneyCount);
 	}
 
 	@Override

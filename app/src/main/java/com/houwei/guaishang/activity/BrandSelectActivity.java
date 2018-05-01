@@ -22,12 +22,12 @@ import com.google.gson.reflect.TypeToken;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.bean.BaseBean;
 import com.houwei.guaishang.bean.IndustryBean;
-import com.houwei.guaishang.bean.event.TopicHomeEvent;
 import com.houwei.guaishang.layout.PopInter;
 import com.houwei.guaishang.tools.DealResult;
 import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.SPUtils;
 import com.houwei.guaishang.tools.ScreenUtils;
+import com.houwei.guaishang.video.Utils;
 import com.houwei.guaishang.views.ViewPagerTabsView;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -53,6 +53,7 @@ public class BrandSelectActivity extends BaseActivity implements View.OnClickLis
 
     public final static int SELECT_BRAND = 0x24;
     public final static String BRAND_PARAM = "brand_param";
+    public final static String EXTRAN_BRAND = "extra_brand";
 
     private TagFlowLayout flowlayout;
     private EditText mBrandEt;
@@ -135,7 +136,13 @@ public class BrandSelectActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_confirm:
-
+                if (mBrandEt != null && mBrandEt.getText() != null) {
+                    String extraBrand = mBrandEt.getText().toString();
+                    if (!"".equals(extraBrand) && !"null".equals(extraBrand)) {
+                        commitNewBrand(extraBrand);
+                    }
+                }
+                finish();
                 break;
             case R.id.ll_container:
                 finish();
@@ -190,6 +197,30 @@ public class BrandSelectActivity extends BaseActivity implements View.OnClickLis
                 });
     }
 
+    private void commitNewBrand(String extraBrand) {
+        if (Utils.isNetworkConnected(this)) {
+            OkGo.<String>post(HttpUtil.IP+"user/useraddbrand")
+                    .tag(this)
+                    .params("userid", getUserID())
+                    .params("name", extraBrand)
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onSuccess(Response<String> response) {
+                            String res=response.body().toString().trim();
+                            //Log.i("WXCH","SSSSSS:" + res);
+                            if(res.contains("1")){
+
+                            }
+                        }
+
+                        @Override
+                        public void onError(Response<String> response) {
+                            super.onError(response);
+                        }
+                    });
+        }
+    }
+
     @Override
     public void finish() {
         String param = "";
@@ -203,8 +234,10 @@ public class BrandSelectActivity extends BaseActivity implements View.OnClickLis
             Log.d("WXCH","param:"+param);
 
         }
+
         Intent intent = new Intent();
         intent.putExtra(BRAND_PARAM,param);
+
         setResult(SELECT_BRAND,intent);
         super.finish();
     }
