@@ -376,7 +376,6 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
 
     private void initData() {
         userid = getITopicApplication().getMyUserBeanManager().getUserId();
-        onUserInfoChanged(new UserBean());
     }
 
     protected void initListener() {
