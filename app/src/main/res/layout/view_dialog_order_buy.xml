@@ -33,7 +33,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginLeft="20dp"
-                android:src="@mipmap/logo"/>
+                android:src="@drawable/share_pyq"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="15dp"
-                android:text="分享朋友圈送10元券"/>
+                android:text="分享朋友圈免费抢单"/>
 
             <CheckBox
                 android:id="@+id/rb_share"

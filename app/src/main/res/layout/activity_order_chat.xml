@@ -21,14 +21,14 @@
         android:layout_height="490dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="35dp"
         android:layout_below="@+id/ll_back"
         android:background="@drawable/background_round">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycle_view"
             android:layout_width="83dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/black_round" />
 
         <com.houwei.guaishang.layout.NoScrollViewPager
