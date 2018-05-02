@@ -423,8 +423,8 @@ public class TopicAdapter extends BaseAdapter {
                     boolean hanSameOfferBean = false;
                     for (int z = 0; z < tempList.size(); z++) {
                         if (tempList.get(z).getUserid().equals(offerBean.getUserid())) {
-                            tempList.remove(offerBean);
                             hanSameOfferBean = true;
+                            break;
                         }
                     }
                     if (!hanSameOfferBean) {
