@@ -376,6 +376,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
 
     private void initData() {
         userid = getITopicApplication().getMyUserBeanManager().getUserId();
+        onUserInfoChanged(new UserBean());
     }
 
     protected void initListener() {
@@ -556,14 +557,19 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
 //    }
 
     @Override
-    public void onUserInfoChanged(final UserBean ub) {
+    public void onUserInfoChanged(UserBean ub) {
         // 如果走的是回调，这里ub不可能是null
         // onCreated还可以主动调用这个方法，这时候可能是null
         if (ub == null) {
-            return;
+            ub = new UserBean();
         }
 
-        mUserNameTv.setText("" + ub.getName());
+        if (TextUtils.isEmpty(ub.getName())) {
+            mUserNameTv.setText("");
+        } else {
+            mUserNameTv.setText(ub.getName());
+        }
+
         mPhoneTv.setText(getUserInfoStr(R.string.mine_phone, ""));
         mMobilePhoneTv.setText(getUserInfoStr(R.string.mine_mobile_phone, ub.getMobile()));
         mAddressTv.setText(getUserInfoStr(R.string.mine_address, ""));

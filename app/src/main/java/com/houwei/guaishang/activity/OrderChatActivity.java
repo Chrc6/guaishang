@@ -93,9 +93,18 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
         //设置RecyclerView 布局
         mRecyclerView.setLayoutManager(layoutmanager);
         //设置Adapter
+        if (offerPriceList == null) {
+            offerPriceList = new ArrayList<>();
+        }
         mAdapter = new OrderChatAdapter(offerPriceList);
         mAdapter.setItemOnclickListener(this);
         mRecyclerView.setAdapter(mAdapter);
+
+        if (offerPriceList.size() < 2) {
+            mRecyclerView.setVisibility(View.GONE);
+        } else {
+            mRecyclerView.setVisibility(View.VISIBLE);
+        }
 
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
         mViewPager.setAdapter(new OrderChatViewPagerAdapter(getSupportFragmentManager(),offerPriceList));

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/red_color"
+    android:background="#ff0000"
     android:scrollbarAlwaysDrawVerticalTrack="false"
     android:scrollbarStyle="outsideOverlay"
     android:orientation="vertical">
@@ -14,7 +14,7 @@
         style="@style/titleBackGroundStyle"
         android:layout_height="30dp"
         android:paddingLeft="8dp"
-        android:background="@color/red_color">
+        android:background="#ff0000">
 
 
         <ImageView

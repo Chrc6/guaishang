@@ -13,6 +13,6 @@
     android:paddingTop="2dp"
     android:paddingLeft="2dp"
     android:paddingRight="2dp"
-    android:textColor="@color/viewpager_tab_tv_color"
+    android:textColor="#101010"
     android:textSize="16dp"
     tools:text="测试" />

@@ -77,11 +77,12 @@ public class ViewPagerTabButton extends Button {
         linePaint.setColor(isSelected() ? mLineColorSelected : mLineColor);
 
         final int height = isSelected() ? mLineHeightSelected : mLineHeight;
-        if (isSelected()) {
-            setBackgroundResource(R.drawable.shap_btn);
-        } else {
-            setBackgroundColor(Color.TRANSPARENT);
-        }
+        setBackgroundResource(R.drawable.pager_tab_bg);
+//        if (isSelected()) {
+//            setBackgroundResource(R.drawable.pager_tabs_selected_background);
+//        } else {
+//            setBackgroundColor(R.drawable.pager_tabs_normal_background);
+//        }
         // draw the line
 //        canvas.drawRect(0, getMeasuredHeight() - height, getMeasuredWidth(), getMeasuredHeight(), linePaint);
 

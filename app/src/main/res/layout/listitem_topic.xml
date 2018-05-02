@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
-    app:cardBackgroundColor="@color/black_color">
+    app:cardBackgroundColor="#2b323a">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,6 +35,8 @@
                             android:id="@+id/img_title"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/dp_4"
+                            android:layout_marginRight="@dimen/dp_4"
                             android:scaleType="fitXY" />
 
                         <ImageView
@@ -81,7 +83,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="广州用户公司"
-                                    android:textColor="@color/white"
+                                    android:textColor="#cfd4d8"
                                     android:textSize="13sp" />
 
                                 <TextView
@@ -95,14 +97,15 @@
                                     android:gravity="center"
                                     android:maxLength="12"
                                     android:text="广东省佛山市"
-                                    android:textColor="@color/white"
-                                    android:textSize="9sp" />
+                                    android:textColor="#5f666e"
+                                    android:textSize="10dp" />
 
                                 <RatingBar
                                     android:id="@+id/bar"
                                     style="@style/MaterialRatingBar"
                                     android:layout_width="wrap_content"
                                     android:layout_height="17dp"
+                                    android:layout_marginLeft="@dimen/dp5"
                                     android:layout_below="@+id/header_name"
                                     android:layout_toRightOf="@+id/header_location" />
                             </RelativeLayout>
@@ -114,17 +117,18 @@
 
                 <TextView
                     android:id="@+id/content"
-                    android:layout_width="240dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="14dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="84dp"
+                    android:layout_marginTop="16dp"
+                    android:maxLines="2"
                     android:background="@drawable/transparent_gray_circle"
                     android:text="内容"
-                    android:textColor="#fff"
+                    android:textColor="#cfd4d8"
                     android:textColorLink="#0082CB"
-                    android:textSize="12sp" />
+                    android:textSize="12dp" />
 
                 <Button
                     android:id="@+id/delete_btn"
@@ -158,6 +162,7 @@
                     android:layout_height="28dp"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
+                    android:layout_marginTop="3dp"
                     app:progress_reached_color="@color/orange_transparent"
                     app:progress_text_color="@color/orange_transparent" />
                 <com.houwei.guaishang.view.ProgressView
@@ -207,8 +212,8 @@
                             android:layout_height="wrap_content"
                             android:focusable="false"
                             android:gravity="center"
-                            android:textColor="@color/text_gray_color"
-                            android:textSize="12sp" />
+                            android:textColor="#636365"
+                            android:textSize="14dp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -235,8 +240,8 @@
                             android:layout_height="wrap_content"
                             android:focusable="false"
                             android:gravity="center"
-                            android:textColor="@color/text_gray_color"
-                            android:textSize="12sp" />
+                            android:textColor="#636365"
+                            android:textSize="14dp" />
                     </LinearLayout>
 
                     <LinearLayout
