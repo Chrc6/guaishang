@@ -70,12 +70,12 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
     private BaseActivity activity;
 
     public OrderBuyDialog(Context context) {
-        super(context,R.style.RechargiDialog);
+        super(context,R.style.OrderBugDialog);
         mContext = context;
     }
 
     public OrderBuyDialog(BaseActivity context, float money, TopicBean bean) {
-        super(context,R.style.RechargiDialog);
+        super(context,R.style.OrderBugDialog);
         mContext = context;
         activity = context;
         this.money = money;

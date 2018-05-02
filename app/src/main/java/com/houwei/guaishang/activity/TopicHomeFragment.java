@@ -50,8 +50,15 @@ public class TopicHomeFragment extends BaseTopicFragment{
 		super.initView();
 		pullToRefreshView = (PullToRefreshPagedListView) getView().findViewById(R.id.listView);
 		listView = pullToRefreshView.getRefreshableView();
-		mEmptyLayout = LayoutInflater.from(getActivity()).inflate(
-				R.layout.listview_empty, null);
+
+		if (DEFAULT_REFRESH_TYPE == 1) {
+			mEmptyLayout = LayoutInflater.from(getActivity()).inflate(
+					R.layout.listview_orders_empty, null);
+		} else {
+			mEmptyLayout = LayoutInflater.from(getActivity()).inflate(
+					R.layout.listview_empty, null);
+		}
+
 		pullToRefreshView.setRefreshing();
 		refresh();
 	}

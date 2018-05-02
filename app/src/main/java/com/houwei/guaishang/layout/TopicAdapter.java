@@ -420,13 +420,17 @@ public class TopicAdapter extends BaseAdapter {
                 int size = offerPriceList.size();
                 for (int i = 0; i < size; i++) {
                     OffersBean.OfferBean offerBean = offerPriceList.get(i);
-                    tempList.add(offerBean);
-                    for (int j = 0; j < size; j++) {
-                        OffersBean.OfferBean tempBean = offerPriceList.get(i);
-                        if (offerBean != tempBean && offerBean.getUserid().equals(tempBean.getUserid())){
+                    boolean hanSameOfferBean = false;
+                    for (int z = 0; z < tempList.size(); z++) {
+                        if (tempList.get(z).getUserid().equals(offerBean.getUserid())) {
                             tempList.remove(offerBean);
+                            hanSameOfferBean = true;
                         }
                     }
+                    if (!hanSameOfferBean) {
+                        tempList.add(offerBean);
+                    }
+
                 }
                 intent.putExtra(OrderChatActivity.Parse_List,(Serializable) tempList);
                 mContext.startActivity(intent);
