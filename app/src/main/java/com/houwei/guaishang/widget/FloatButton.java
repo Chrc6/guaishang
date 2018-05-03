@@ -114,7 +114,7 @@ public class FloatButton extends RelativeLayout {
             galb_self.setVisibility(GONE);
             galb_layout.setVisibility(VISIBLE);
             galb.setText("已结束");
-            rootView.setBackground(context.getResources().getDrawable(R.drawable.bg_float_btn_gral));
+            rootView.setBackground(context.getResources().getDrawable(R.drawable.bg_float_btn_finish));
         }else if (statu == Galb_self){
             galb_self.setVisibility(VISIBLE);
             galb_layout.setVisibility(GONE);

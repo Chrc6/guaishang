@@ -76,6 +76,7 @@
                 android:layout_marginTop="@dimen/dp_10"
                 android:background="@drawable/white_round"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:paddingBottom="7dp"
                 android:paddingTop="7dp">
 
@@ -257,7 +258,7 @@
                 android:background="@drawable/red_round"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="发布订单"
+                android:text="发布"
                 android:textColor="#101010"
                 android:textSize="14dp" />
 

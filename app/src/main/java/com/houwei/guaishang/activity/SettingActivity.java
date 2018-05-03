@@ -31,6 +31,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     private DemoModel model;
 
+    private TextView mExit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +76,13 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         mDialog.findViewById(R.id.tv_confirm).setOnClickListener(this);
         mDialog.findViewById(R.id.tv_cancle).setOnClickListener(this);
 
+        mExit = (TextView) findViewById(R.id.tv_exit);
+
+        if (UserUtil.isInLoginStata()){
+            mExit.setVisibility(View.VISIBLE);
+        }else {
+            mExit.setVisibility(View.GONE);
+        }
     }
 
 

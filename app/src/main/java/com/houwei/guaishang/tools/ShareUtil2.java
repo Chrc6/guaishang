@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -75,8 +77,13 @@ public class ShareUtil2 {
 		LinearLayout mPopView = (LinearLayout) mLayoutInfalter.inflate(
 				R.layout.bottom_share_popupwindow, null);
 		SharePopupWindow mPopupWin = new SharePopupWindow(context, mPopView);
-		mPopupWin.setAnimationStyle(R.style.BottomPopupAnimation);
-		mPopupWin.showAtLocation(context.getWindow().getDecorView(), Gravity.BOTTOM, 0,0);
+//		mPopupWin.setAnimationStyle(R.style.BottomPopupAnimation);
+		WindowManager wm = (WindowManager) context
+				.getSystemService(Context.WINDOW_SERVICE);
+
+		int width = wm.getDefaultDisplay().getWidth();
+		mPopupWin.setWidth(width * 6 / 7);
+		mPopupWin.showAtLocation(context.getWindow().getDecorView(), Gravity.CENTER, 0,0);
 		mPopupWin.setOnShareClickedListener(new  SharePopupWindow.ShareClickedListener() {
 
 			@Override
