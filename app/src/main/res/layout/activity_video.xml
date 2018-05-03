@@ -36,13 +36,6 @@
                 android:layout_height="wrap_content" />
     </RelativeLayout>
 
-    <View
-
-        style="@style/LineStyle"
-        android:layout_height="1dp"
-
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -52,24 +45,37 @@
             android:id="@+id/image_add1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:background="@null"
             android:padding="6dp"
             android:src="@drawable/add" />
+
+        <TextView
+            android:layout_toRightOf="@+id/image_add1"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center"
+            android:layout_toLeftOf="@+id/image_add"
+            android:layout_alignTop="@+id/image_add1"
+            android:layout_alignBottom="@+id/image_add1"
+            android:textSize="18dp"
+            android:textColor="#ffffff"
+            android:text="咚咚抢单"/>
+
         <com.houwei.guaishang.views.ViewPagerTabsView
             android:layout_toRightOf="@+id/image_add1"
             android:id="@+id/fixed_tabs"
             android:layout_width="match_parent"
             android:layout_height="44dp"
+            android:layout_below="@+id/image_add1"
             android:gravity="center"
             android:layout_toLeftOf="@+id/image_add"/>
+
         <ImageView
             android:layout_marginRight="8dp"
             android:layout_alignParentRight="true"
             android:id="@+id/image_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:background="@null"
             android:padding="6dp"
             android:src="@drawable/add" />

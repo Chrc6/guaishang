@@ -97,9 +97,10 @@
 
             <ImageView
                 android:id="@+id/iv_ali"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_marginLeft="10dp"
+                android:scaleType="fitXY"
                 android:src="@mipmap/logo"/>
 
             <TextView
@@ -136,10 +137,11 @@
 
             <ImageView
                 android:id="@+id/iv_wx"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/logo"/>
+                android:scaleType="fitXY"
+                android:src="@drawable/share_weixin"/>
 
             <TextView
                 android:layout_width="wrap_content"

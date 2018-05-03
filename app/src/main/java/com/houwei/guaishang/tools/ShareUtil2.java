@@ -82,7 +82,9 @@ public class ShareUtil2 {
 				.getSystemService(Context.WINDOW_SERVICE);
 
 		int width = wm.getDefaultDisplay().getWidth();
-		mPopupWin.setWidth(width * 6 / 7);
+		int height = wm.getDefaultDisplay().getHeight();
+		mPopupWin.setWidth(width);
+		mPopupWin.setHeight(height);
 		mPopupWin.showAtLocation(context.getWindow().getDecorView(), Gravity.CENTER, 0,0);
 		mPopupWin.setOnShareClickedListener(new  SharePopupWindow.ShareClickedListener() {
 
