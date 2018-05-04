@@ -3,10 +3,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="#F2F2F2"
     >
 
-    <RelativeLayout style="@style/titleBackGroundStyle">
+    <RelativeLayout style="@style/titleWhiteGroundStyle">
 
         <TextView
             style="@style/titleTextStyle"
@@ -32,7 +32,7 @@
         android:gravity="center"
         android:textSize="16sp"
         android:textColor="@color/white"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="25dp"
         android:background="@drawable/bg_corner_4577dc"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"

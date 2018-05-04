@@ -38,7 +38,13 @@ public class UserBean implements Serializable {
 	//营业执照
 	private String license;
 	private String picture;
-	
+
+	private String bank;
+	private String bankNum;
+	private String address;
+	private String gudingPhone;
+
+
 	public AvatarBean getAvatar() {
 		return avatar;
 	}
@@ -56,7 +62,37 @@ public class UserBean implements Serializable {
 		this.license = license;
 	}
 
+	public String getBank() {
+		return bank;
+	}
 
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+
+	public String getBankNum() {
+		return bankNum;
+	}
+
+	public void setBankNum(String bankNum) {
+		this.bankNum = bankNum;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getGudingPhone() {
+		return gudingPhone;
+	}
+
+	public void setGudingPhone(String gudingPhone) {
+		this.gudingPhone = gudingPhone;
+	}
 
 	public String getUserid() {
 		return userid;

@@ -29,7 +29,8 @@
         <color name="card_transparent_color">#4d000000</color>
      <color name="gray_transparent_color">#4dEEEEEE</color>
        <drawable name="white_rect">#FFF</drawable>
-
+    <color name="settings_item_pressed">#ededed</color>
+    <color name="settings_item_normal">#ffffff</color>
      <drawable name="black_transparent_light">#55000000</drawable>
     <drawable name="black_transparent">#aa000000</drawable>
     

@@ -104,6 +104,14 @@
         <item name="android:layout_height">48dp</item>
         <item name="android:background">#d31c20</item>
     </style>
+    <style name="titleWhiteGroundStyle">
+        <item name="android:id">@id/title_layout</item>
+
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">#F2F2F2</item>
+    </style>
     <!-- 标题栏背景 -->
     <style name="titleBackGroundStyle1">
         <item name="android:id">@id/title_layout</item>
