@@ -94,7 +94,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@+id/header_name"
-                                    android:layout_marginTop="@dimen/dp5"
                                     android:drawableLeft="@drawable/attr_top"
                                     android:drawablePadding="4dp"
                                     android:gravity="center"
@@ -107,7 +106,7 @@
                                     android:id="@+id/bar"
                                     style="@style/MaterialRatingBar"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="17dp"
+                                    android:layout_height="16dp"
                                     android:layout_marginLeft="@dimen/dp5"
                                     android:layout_below="@+id/header_name"
                                     android:layout_toRightOf="@+id/header_location" />
@@ -165,7 +164,7 @@
                     android:layout_height="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="15dp"
                     app:progress_reached_color="@color/orange_transparent"
                     app:progress_text_color="@color/orange_transparent" />
                 <com.houwei.guaishang.view.ProgressView
@@ -174,6 +173,7 @@
                     android:layout_height="50dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp"
                     android:visibility="gone"
                     />
                 <TextView
@@ -295,25 +295,30 @@
 
         </LinearLayout>
 
-        <View
-            android:id="@+id/order_btn_bg"
+        <RelativeLayout
             android:layout_width="85dp"
             android:layout_height="85dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="170dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            >
+        <View
+            android:id="@+id/order_btn_bg"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:background="@drawable/topic_order_bg"/>
-
         <RelativeLayout
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="170dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
             >
-
             <com.houwei.guaishang.widget.FloatButton
                 android:id="@+id/order_btn"
                 android:layout_width="80dp"
-                android:layout_height="80dp"></com.houwei.guaishang.widget.FloatButton>
+                android:layout_height="80dp"
+                ></com.houwei.guaishang.widget.FloatButton>
 
             <TextView
                 android:id="@+id/count"
@@ -328,6 +333,6 @@
                 android:textColor="#666666"
                 android:textSize="10sp" />
         </RelativeLayout>
-
+        </RelativeLayout>
     </RelativeLayout>
 </android.support.v7.widget.CardView>

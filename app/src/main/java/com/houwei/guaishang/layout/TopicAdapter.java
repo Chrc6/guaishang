@@ -198,8 +198,8 @@ public class TopicAdapter extends BaseAdapter {
                 holder.progressView.setVisibility(View.VISIBLE);
                 holder.VProdectLayout.setVisibility(View.VISIBLE);
                 holder.progressView.setProgress(payment.getStatus());
-                holder.price.setText(payment.getPrice());
-                holder.time.setText(payment.getCycle());
+                holder.price.setText("总价"+payment.getPrice()+"元");
+                holder.time.setText("周期"+payment.getCycle()+"天");
             }else {
                 holder.barNum.setVisibility(View.VISIBLE);
                 holder.progressView.setVisibility(View.GONE);

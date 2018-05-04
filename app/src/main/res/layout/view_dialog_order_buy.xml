@@ -41,8 +41,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="15dp"
+                android:textColor="#101010"
+                android:textSize="14sp"
                 android:text="分享朋友圈免费抢单"/>
 
             <CheckBox
@@ -82,8 +82,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="15dp"
+                    android:textColor="#101010"
                     android:text="抢单支付1个金币"/>
 
                 <TextView
@@ -93,8 +92,8 @@
                     android:layout_weight="1"
                     android:layout_marginTop="2dp"
                     android:gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="10dp"
+                    android:textColor="#101010"
+                    android:textSize="8sp"
                     android:text="现有金币--个，点此充值"/>
 
             </LinearLayout>
