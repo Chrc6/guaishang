@@ -35,9 +35,11 @@
                             android:id="@+id/img_title"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/dp_4"
-                            android:layout_marginRight="@dimen/dp_4"
-                            android:scaleType="fitXY" />
+                            android:scaleType="fitXY"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                    />
 
                         <ImageView
                             android:id="@+id/image_myorder"
@@ -63,8 +65,8 @@
 
                                 <com.houwei.guaishang.view.CircleImageView
                                     android:id="@+id/avator"
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
                                     android:src="@drawable/user_photo" />
                             </RelativeLayout>
 
@@ -83,8 +85,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="广州用户公司"
-                                    android:textColor="#cfd4d8"
-                                    android:textSize="13sp" />
+                                    android:textColor="#CFD4D8"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:id="@+id/header_location"
@@ -98,7 +101,7 @@
                                     android:maxLength="12"
                                     android:text="广东省佛山市"
                                     android:textColor="#5f666e"
-                                    android:textSize="10dp" />
+                                    android:textSize="12sp" />
 
                                 <RatingBar
                                     android:id="@+id/bar"
@@ -128,7 +131,7 @@
                     android:text="内容"
                     android:textColor="#cfd4d8"
                     android:textColorLink="#0082CB"
-                    android:textSize="12dp" />
+                    android:textSize="14sp" />
 
                 <Button
                     android:id="@+id/delete_btn"
@@ -159,9 +162,9 @@
                 <com.houwei.guaishang.view.NumberProgressBar
                     android:id="@+id/bar_num"
                     android:layout_width="match_parent"
-                    android:layout_height="28dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
+                    android:layout_height="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
                     android:layout_marginTop="3dp"
                     app:progress_reached_color="@color/orange_transparent"
                     app:progress_text_color="@color/orange_transparent" />
@@ -292,8 +295,8 @@
         </LinearLayout>
 
         <View
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="170dp"
             android:background="@drawable/topic_order_bg"/>
@@ -303,8 +306,7 @@
             android:layout_height="80dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="170dp"
-            android:background="@drawable/bg__btn_gral"
-            android:padding="@dimen/dp_10">
+            >
 
             <com.houwei.guaishang.widget.FloatButton
                 android:id="@+id/order_btn"

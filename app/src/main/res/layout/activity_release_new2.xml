@@ -76,7 +76,6 @@
                 android:layout_marginTop="@dimen/dp_10"
                 android:background="@drawable/white_round"
                 android:orientation="horizontal"
-                android:visibility="gone"
                 android:paddingBottom="7dp"
                 android:paddingTop="7dp">
 

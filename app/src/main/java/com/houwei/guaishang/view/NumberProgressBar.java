@@ -157,7 +157,7 @@ public class NumberProgressBar extends View {
 
     private boolean mDrawReachedBar = true;
 
-    private boolean mIfDrawText = true;
+    private boolean mIfDrawText = false;
 
     /**
      * Listener
@@ -330,7 +330,7 @@ public class NumberProgressBar extends View {
                 positions[positions.length-1] = 1.0f;
                 //LinearGradient shader = new LinearGradient(3, 3, (mWidth-3)*section, mHeight-3, colors,null, Shader.TileMode.MIRROR);
                 //LinearGradient shader = new LinearGradient(mReachedRectF.left,mReachedRectF.top,mReachedRectF.left,mReachedRectF.bottom,mFgColorStart,mFgColorEnd, Shader.TileMode.MIRROR) ;
-                LinearGradient shader = new LinearGradient(mReachedRectF.left,mReachedRectF.top,mReachedRectF.right,mReachedRectF.bottom,colors,null, Shader.TileMode.MIRROR) ;
+                LinearGradient shader = new LinearGradient(mReachedRectF.left,mReachedRectF.top,mReachedRectF.right+10,mReachedRectF.bottom,colors,null, Shader.TileMode.MIRROR) ;
 
                 mPaint.setShader(shader);
             }
@@ -395,7 +395,7 @@ public class NumberProgressBar extends View {
         mReachedRectF.right = (getWidth() - getPaddingLeft() - getPaddingRight()) / (getMax() * 1.0f) * getProgress() + getPaddingLeft();
         mReachedRectF.bottom = getHeight() / 2.0f + mReachedBarHeight / 2.0f;
 
-        mUnreachedRectF.left = mReachedRectF.right;
+        mUnreachedRectF.left = mReachedRectF.right-10;
         mUnreachedRectF.right = getWidth() - getPaddingRight();
         mUnreachedRectF.top = getHeight() / 2.0f + -mUnreachedBarHeight / 2.0f;
         mUnreachedRectF.bottom = getHeight() / 2.0f + mUnreachedBarHeight / 2.0f;
