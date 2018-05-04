@@ -172,8 +172,8 @@
                     android:id="@+id/bar_status"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
                     android:visibility="gone"
                     />
                 <TextView
@@ -188,6 +188,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:duplicateParentState="true"
                     android:orientation="horizontal">
 
@@ -295,8 +296,9 @@
         </LinearLayout>
 
         <View
-            android:layout_width="82dp"
-            android:layout_height="82dp"
+            android:id="@+id/order_btn_bg"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="170dp"
             android:background="@drawable/topic_order_bg"/>
