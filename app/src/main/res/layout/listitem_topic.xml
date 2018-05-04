@@ -291,6 +291,13 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="170dp"
+            android:background="@drawable/topic_order_bg"/>
+
         <RelativeLayout
             android:layout_width="80dp"
             android:layout_height="80dp"
