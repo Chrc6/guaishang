@@ -284,17 +284,29 @@ public class NumberProgressBar extends View {
         } else {
             calculateDrawRectFWithoutProgressText();
         }
+
+        if (mDrawUnreachedBar) {
+            /*绘制圆角矩形，背景色为画笔颜色*/
+//            mPaint2 = new Paint();
+////设置抗锯齿效果
+//            mPaint2.setAntiAlias(true);
+////设置画笔颜色
+//            mPaint2.setColor(Color.TRANSPARENT);
+//            canvas.drawRect(mUnreachedRectF, mPaint2);
+            canvas.drawRoundRect(mUnreachedRectF, round, round, mUnreachedBarPaint);//
+        }
+
         //mPaint = new Paint();
         //mPaint.setAntiAlias(true);//设置抗锯齿效果
         //mPaint.setColor(Color.BLACK);//设置画笔颜色
         if (mDrawReachedBar) {
-            mPaint1 = new Paint();/*绘制圆角矩形，背景色为画笔颜色*/
-            mPaint1.setAntiAlias(true);//设置抗锯齿效果
-            mPaint1.setColor(Color.WHITE);//设置画笔颜色
+//            mPaint1 = new Paint();/*绘制圆角矩形，背景色为画笔颜色*/
+//            mPaint1.setAntiAlias(true);//设置抗锯齿效果
+//            canvas.drawRect(mReachedRectF, mPaint1);.setColor(Color.WHITE);//设置画笔颜色
 //            Shader shader = new LinearGradient(mReachedRectF.left, mReachedRectF.top, mReachedRectF.width(),  mReachedRectF.top, Color.parseColor("#ff0000"),
 //                    Color.parseColor("#ffd944"), Shader.TileMode.CLAMP);
 //            mReachedBarPaint.setShader(shader);
-            canvas.drawRect(mReachedRectF, mPaint1);
+//            canvas.drawRect(mReachedRectF, mPaint1);
             //canvas.drawRoundRect(mReachedRectF, round, round, mReachedBarPaint);//
 
 
@@ -330,26 +342,12 @@ public class NumberProgressBar extends View {
                 positions[positions.length-1] = 1.0f;
                 //LinearGradient shader = new LinearGradient(3, 3, (mWidth-3)*section, mHeight-3, colors,null, Shader.TileMode.MIRROR);
                 //LinearGradient shader = new LinearGradient(mReachedRectF.left,mReachedRectF.top,mReachedRectF.left,mReachedRectF.bottom,mFgColorStart,mFgColorEnd, Shader.TileMode.MIRROR) ;
-                LinearGradient shader = new LinearGradient(mReachedRectF.left,mReachedRectF.top,mReachedRectF.right+10,mReachedRectF.bottom,colors,null, Shader.TileMode.MIRROR) ;
+                LinearGradient shader = new LinearGradient(mReachedRectF.left,mReachedRectF.top,mReachedRectF.right+10,mReachedRectF.bottom,colors,null, Shader.TileMode.CLAMP) ;
 
                 mPaint.setShader(shader);
             }
-            //canvas.drawRect(mReachedRectF, mPaint);
+//            canvas.drawRect(mReachedRectF, mPaint);
             canvas.drawRoundRect(mReachedRectF, round, round, mPaint);//
-        }
-
-
-
-
-        if (mDrawUnreachedBar) {
-            /*绘制圆角矩形，背景色为画笔颜色*/
-            mPaint2 = new Paint();
-//设置抗锯齿效果
-            mPaint2.setAntiAlias(true);
-//设置画笔颜色
-            mPaint2.setColor(Color.WHITE);
-            canvas.drawRect(mUnreachedRectF, mPaint2);
-            canvas.drawRoundRect(mUnreachedRectF, round, round, mUnreachedBarPaint);//
         }
 
 
@@ -395,7 +393,7 @@ public class NumberProgressBar extends View {
         mReachedRectF.right = (getWidth() - getPaddingLeft() - getPaddingRight()) / (getMax() * 1.0f) * getProgress() + getPaddingLeft();
         mReachedRectF.bottom = getHeight() / 2.0f + mReachedBarHeight / 2.0f;
 
-        mUnreachedRectF.left = mReachedRectF.right-10;
+        mUnreachedRectF.left = getPaddingLeft();
         mUnreachedRectF.right = getWidth() - getPaddingRight();
         mUnreachedRectF.top = getHeight() / 2.0f + -mUnreachedBarHeight / 2.0f;
         mUnreachedRectF.bottom = getHeight() / 2.0f + mUnreachedBarHeight / 2.0f;

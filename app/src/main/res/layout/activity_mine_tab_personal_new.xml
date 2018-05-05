@@ -4,7 +4,9 @@
     android:background="@color/background_color"
     android:orientation="vertical">
 
-    <RelativeLayout style="@style/titleWhiteGroundStyle">
+    <RelativeLayout
+        style="@style/titleWhiteGroundStyle"
+        android:background="#d31c20">
 
         <TextView
             style="@style/titleTextStyle"

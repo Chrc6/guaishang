@@ -220,7 +220,7 @@ public class TopicAdapter extends BaseAdapter {
                 holder.order_btn.setStatu(3);
                 holder.order_btn.setBrief("");
                 holder.order_count.setVisibility(View.GONE);
-                stopFlick(holder.order_btn);
+//                stopFlick(holder.order_btn);
                 stopFlick(holder.orderBtn_bg);
             }else if (TextUtils.equals(mContext.getUserID(),memberId)){
                 //自己发的单
@@ -231,7 +231,7 @@ public class TopicAdapter extends BaseAdapter {
                 if (size == 0){
                     holder.order_count.setVisibility(View.GONE);
                     holder.order_btn.setStatu(5);
-                    startFlick(holder.order_btn);
+//                    startFlick(holder.order_btn);
                     startFlick(holder.orderBtn_bg);
                 }else {
                     for (int i = 0; i < size; i++) {
@@ -244,18 +244,18 @@ public class TopicAdapter extends BaseAdapter {
                     holder.order_count.setText(mIconList.size() + "");
                     holder.order_btn.setStatu(2);
                     holder.order_btn.setmAvatarList(mIconList);
-                    stopFlick(holder.order_btn);
+//                    stopFlick(holder.order_btn);
                     stopFlick(holder.orderBtn_bg);
                 }
             }else if (Integer.valueOf(Integer.valueOf(bean.getIsOffer())) == 1){
                 holder.order_count.setVisibility(View.GONE);
                 holder.order_btn.setStatu(4);
-                stopFlick(holder.order_btn);
+//                stopFlick(holder.order_btn);
                 stopFlick(holder.orderBtn_bg);
             }else {
                 holder.order_count.setVisibility(View.GONE);
                 holder.order_btn.setStatu(1);
-                startFlick(holder.order_btn);
+//                startFlick(holder.order_btn);
                 startFlick(holder.orderBtn_bg);
             }
         } catch (Exception e) {
@@ -814,6 +814,8 @@ public class TopicAdapter extends BaseAdapter {
             return;
 
         }
+        view.setBackground(mContext.getResources().getDrawable(R.drawable.topic_order_animate_bg));
+
         Animation alphaAnimation = new AlphaAnimation( 1, 0 );
 
         alphaAnimation.setDuration( 1000 );
@@ -834,6 +836,7 @@ public class TopicAdapter extends BaseAdapter {
         if( null == view ){
             return;
         }
+        view.setBackground(mContext.getResources().getDrawable(R.drawable.topic_order_bg));
         view.clearAnimation( );
 
     }
