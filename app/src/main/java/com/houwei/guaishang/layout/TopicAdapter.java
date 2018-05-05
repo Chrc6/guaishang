@@ -14,6 +14,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -165,6 +168,7 @@ public class TopicAdapter extends BaseAdapter {
             holder.share_ll = convertView.findViewById(R.id.share_ll);
             holder.share_count_btn = (TextView) convertView.findViewById(R.id.share_count_btn);
             holder.order_btn = (FloatButton)convertView.findViewById(R.id.order_btn);
+            holder.orderBtn_bg = convertView.findViewById(R.id.order_btn_bg);
             holder.order_count = (TextView) convertView.findViewById(R.id.count);
             holder.ratingBar = (RatingBar) convertView.findViewById(R.id.bar);
             holder.progressView = (ProgressView) convertView.findViewById(R.id.bar_status);
@@ -194,8 +198,8 @@ public class TopicAdapter extends BaseAdapter {
                 holder.progressView.setVisibility(View.VISIBLE);
                 holder.VProdectLayout.setVisibility(View.VISIBLE);
                 holder.progressView.setProgress(payment.getStatus());
-                holder.price.setText(payment.getPrice());
-                holder.time.setText(payment.getCycle());
+                holder.price.setText("总价"+payment.getPrice()+"元");
+                holder.time.setText("周期"+payment.getCycle()+"天");
             }else {
                 holder.barNum.setVisibility(View.VISIBLE);
                 holder.progressView.setVisibility(View.GONE);
@@ -216,6 +220,8 @@ public class TopicAdapter extends BaseAdapter {
                 holder.order_btn.setStatu(3);
                 holder.order_btn.setBrief("");
                 holder.order_count.setVisibility(View.GONE);
+                stopFlick(holder.order_btn);
+                stopFlick(holder.orderBtn_bg);
             }else if (TextUtils.equals(mContext.getUserID(),memberId)){
                 //自己发的单
                 //测试
@@ -225,6 +231,8 @@ public class TopicAdapter extends BaseAdapter {
                 if (size == 0){
                     holder.order_count.setVisibility(View.GONE);
                     holder.order_btn.setStatu(5);
+                    startFlick(holder.order_btn);
+                    startFlick(holder.orderBtn_bg);
                 }else {
                     for (int i = 0; i < size; i++) {
                         String avatar = offerPrice.get(i).getAvatar();
@@ -236,13 +244,19 @@ public class TopicAdapter extends BaseAdapter {
                     holder.order_count.setText(mIconList.size() + "");
                     holder.order_btn.setStatu(2);
                     holder.order_btn.setmAvatarList(mIconList);
+                    stopFlick(holder.order_btn);
+                    stopFlick(holder.orderBtn_bg);
                 }
             }else if (Integer.valueOf(Integer.valueOf(bean.getIsOffer())) == 1){
                 holder.order_count.setVisibility(View.GONE);
                 holder.order_btn.setStatu(4);
+                stopFlick(holder.order_btn);
+                stopFlick(holder.orderBtn_bg);
             }else {
                 holder.order_count.setVisibility(View.GONE);
                 holder.order_btn.setStatu(1);
+                startFlick(holder.order_btn);
+                startFlick(holder.orderBtn_bg);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -654,7 +668,7 @@ public class TopicAdapter extends BaseAdapter {
         private PraiseTextView zan_count_btn;
         private ImageView avator,imgTitle,imgIndicate,imageMyOrder;
         private TextView  delete_btn,tvProgress;
-        private View share_ll;
+        private View share_ll,orderBtn_bg;
         private TextView share_count_btn;
 //        private LinearLayoutForListView linearLayoutForListView;
         private NumberProgressBar barNum;
@@ -792,6 +806,37 @@ public class TopicAdapter extends BaseAdapter {
         this.onTopicBeanBaojiaClickListener = onTopicBeanBaojiaClickListener;
     }
 
+    //按钮闪烁动画
+    private void startFlick( View view ){
+
+        if( null == view ){
+
+            return;
+
+        }
+        Animation alphaAnimation = new AlphaAnimation( 1, 0 );
+
+        alphaAnimation.setDuration( 1000 );
+
+        alphaAnimation.setInterpolator( new LinearInterpolator( ) );
+
+        alphaAnimation.setRepeatCount( Animation.INFINITE );
+
+        alphaAnimation.setRepeatMode( Animation.REVERSE );
+
+        view.startAnimation( alphaAnimation );
+
+    }
+
+    //按钮取消闪现动画
+    private void stopFlick( View view ){
+
+        if( null == view ){
+            return;
+        }
+        view.clearAnimation( );
+
+    }
 
 }
 

@@ -19,9 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="8dp"
-            android:text="关注的行业（多选）"
-            android:textColor="@color/black" />
+            android:layout_marginTop="15dp"
+            android:text="选择行业/可多选"
+            android:textColor="#2b323a" />
 
         <com.zhy.view.flowlayout.TagFlowLayout
             android:id="@+id/id_flowlayout"
@@ -38,9 +38,11 @@
             android:layout_height="30dp"
             android:layout_marginLeft="33dp"
             android:layout_marginRight="33dp"
+            android:paddingLeft="@dimen/dp5"
+            android:paddingRight="@dimen/dp5"
             android:singleLine="true"
-            android:textSize="14dp"
-            android:textColorHint="@color/color_bbbbbb"
+            android:textSize="14sp"
+            android:textColorHint="#888888"
             android:hint="没有自己选的行业，自己创建一行写到这里"
             android:background="@drawable/white_round" />
 
@@ -55,7 +57,7 @@
             android:gravity="center"
             android:text="确认"
             android:textColor="#101010"
-            android:textSize="@dimen/dp_14" />
+            android:textSize="14sp" />
     </LinearLayout>
 
 </LinearLayout>

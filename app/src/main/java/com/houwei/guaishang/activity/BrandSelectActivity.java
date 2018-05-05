@@ -103,7 +103,7 @@ public class BrandSelectActivity extends BaseActivity implements View.OnClickLis
                 textView.setText(itemsBean.getBrandName());
                 int pw=parent.getWidth();
                 ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) textView.getLayoutParams();
-                params.width = (int)(sWidth/4.8);
+                params.width = (int)(sWidth/6.5);
 //                Log.d("CCC","w:"+(sWidth/4));
 //                params.height = ;
                 // params.setMargins(dip2px(MainActivity.this, 1), 0, 0, 0); // 可以实现设置位置信息，如居左距离，其它类推

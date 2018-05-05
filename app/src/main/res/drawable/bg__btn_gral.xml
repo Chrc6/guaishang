@@ -5,5 +5,10 @@
     <stroke
         android:color="@color/bar_grey"
         />
-
+    <padding
+        android:bottom="@dimen/dp5"
+        android:top="@dimen/dp5"
+        android:right="@dimen/dp5"
+        android:left="@dimen/dp5"
+        />
 </shape>

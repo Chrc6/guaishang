@@ -120,6 +120,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
     private GridMeAdapter mAdapter;
     private LRecyclerViewAdapter lRecyclerViewAdapter;
 //    private Dialog mChangeHeadDialog;
+    private LinearLayout  VInfoView;
 
     private List<LocalMedia> selectList1 = new ArrayList<>();
     private List<LocalMedia> selectList2 = new ArrayList<>();
@@ -360,7 +361,8 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
             mMoneyTv.setText("0个");
         }
 
-
+        VInfoView = (LinearLayout) getView().findViewById(R.id.ll_info);
+        VInfoView.setOnClickListener(this);
 
     }
 
@@ -540,6 +542,9 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
                     LoginJumperUtil.jumperLogin(getActivity());
                 }
                 break;
+            case R.id.ll_info:
+                startActivity(new Intent(getActivity(),ProfileInfoActivity.class));
+                break;
             default:
                 break;
         }
@@ -571,9 +576,9 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
 
         mPhoneTv.setText(getUserInfoStr(R.string.mine_phone, ""));
         mMobilePhoneTv.setText(getUserInfoStr(R.string.mine_mobile_phone, ub.getMobile()));
-        mAddressTv.setText(getUserInfoStr(R.string.mine_address, ""));
-        mBankTv.setText(getUserInfoStr(R.string.mine_bank, ""));
-        mAccountTv.setText(getUserInfoStr(R.string.mine_account, ""));
+        mAddressTv.setText(getUserInfoStr(R.string.mine_address, ub.getAddress()));
+        mBankTv.setText(getUserInfoStr(R.string.mine_bank, ub.getBank()));
+        mAccountTv.setText(getUserInfoStr(R.string.mine_account, ub.getBankNum()));
         mAuthenticationTv.setText(getUserInfoStr(R.string.mine_authentication, ""));
 
 

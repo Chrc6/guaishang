@@ -3,9 +3,9 @@
 
      
      
-          <solid android:color="#e51c23"/>
+          <solid android:color="#e3222e"/>
          
     
 
-        <corners android:radius="@dimen/radius_corner"/>
+        <corners android:radius="5dp"/>
      </shape>
