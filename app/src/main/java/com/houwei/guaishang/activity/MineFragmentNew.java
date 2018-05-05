@@ -134,6 +134,9 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
     private String userid;
     private float moneyCount;
     private UserBean ub;
+
+    private boolean fromShareEXMoments;
+
     private class MyHandler extends Handler {
         private WeakReference<Context> reference;
 
@@ -300,6 +303,11 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         mMoneyTv.setText("￥"+ moneyCount+"个");
         PreferenceManager.getInstance().setUserCoins(moneyCount);
         isCheckingMoney = false;
+        if (fromShareEXMoments) {
+            fromShareEXMoments = false;
+            //金币到账语音播报
+            VoiceUtils.getInstance(getActivity()).speak("十金币已到账");
+        }
     }
 
     protected void initView() {
@@ -350,7 +358,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         });
         boolean needVoiceRemind
                 = SharedPreferencesUtils.getBoolean(getActivity(),VoiceUtils.VOICE_REMIND,true);
-        iniToggleBtn(!needVoiceRemind);//跟287行的有点不一样
+        iniToggleBtn(!needVoiceRemind);
 
         onUserInfoChanged(myUserBeanManager.getInstance());
 
@@ -667,8 +675,10 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         onUserInfoChanged(new UserBean());
     }
 
+    //抢单时候分享朋友圈成功的回调，需要 发出金币的掉落的声音和发出到账的语音播报
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void updateMoney(UpdateMoneyEvent event) {
+        fromShareEXMoments = true;
         myUserBeanManager.startCheckMoneyRun();
     }
 
