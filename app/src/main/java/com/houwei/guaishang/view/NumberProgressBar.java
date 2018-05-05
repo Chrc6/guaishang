@@ -319,13 +319,13 @@ public class NumberProgressBar extends View {
             mPaint.setColor(Color.BLACK);//设置画笔颜色
             float section = mCurrentProgress / (float)mMaxProgress;
             Log.i("WXCH","section:"+section);
-            if(section <= 1.0f/3.0f){
-                if(section != 0.0f){
-                    mPaint.setColor(SECTION_COLORS[0]);
-                }else{
-                    mPaint.setColor(Color.TRANSPARENT);
-                }
-            }else{
+//            if(section <= 1.0f/3.0f){
+//                if(section != 0.0f){
+//                    mPaint.setColor(SECTION_COLORS[0]);
+//                }else{
+//                    mPaint.setColor(Color.TRANSPARENT);
+//                }
+//            }else{
                 int count = (section <= 1.0f/3.0f*2 ) ? 2 : 3;
                 Log.i("WXCH","count:"+count);
                 int[] colors = new int[count];
@@ -345,7 +345,7 @@ public class NumberProgressBar extends View {
                 LinearGradient shader = new LinearGradient(mReachedRectF.left,mReachedRectF.top,mReachedRectF.right+10,mReachedRectF.bottom,colors,null, Shader.TileMode.CLAMP) ;
 
                 mPaint.setShader(shader);
-            }
+//            }
 //            canvas.drawRect(mReachedRectF, mPaint);
             canvas.drawRoundRect(mReachedRectF, round, round, mPaint);//
         }
