@@ -59,11 +59,11 @@ public class ProfileEditActivity extends BaseActivity {
         }
     }
 
-    private void modifyName(String event,String toastTv) {
+    private void modify(String event, final String toastTv) {
         if (!TextUtils.isEmpty(editTv.getText().toString())){
             OkGo.<String>post(HttpUtil.IP + "user/modify")
                     .params("userid", UserUtil.getUserInfo().getUserId())
-                    .params("event", "name")
+                    .params("event", event)
                     .params("value", editTv.getText().toString())
                     .execute(new StringCallback() {
                         @Override
@@ -76,7 +76,7 @@ public class ProfileEditActivity extends BaseActivity {
                         @Override
                         public void onError(Response<String> response) {
                             super.onError(response);
-                            ToastUtils.toastForShort(ProfileEditActivity.this,"修改名字失败");
+                            ToastUtils.toastForShort(ProfileEditActivity.this,toastTv);
                         }
                     });
         }else {
@@ -89,22 +89,22 @@ public class ProfileEditActivity extends BaseActivity {
     public void onClick() {
         switch (type) {
             case 1:
-                modifyName("name","修改名字失败");
+                modify("name","修改名字失败");
                 break;
             case 2:
-                modifyName("mobile","修改电话失败");
+                modify("mobile","修改电话失败");
                 break;
             case 3:
-                modifyName("gudingPhone","修改固定电话失败");
+                modify("guding_phone","修改固定电话失败");
                 break;
             case 4:
-                modifyName("address","修改地址失败");
+                modify("address","修改地址失败");
                 break;
             case 5:
-                modifyName("bank","修改开户行失败");
+                modify("bank","修改开户行失败");
                 break;
             case 6:
-                modifyName("bankNum","修改开户行账号失败");
+                modify("bank_num","修改开户行账号失败");
                 break;
         }
     }

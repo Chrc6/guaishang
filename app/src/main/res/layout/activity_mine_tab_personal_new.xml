@@ -5,8 +5,8 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        style="@style/titleWhiteGroundStyle"
-        android:background="#d31c20">
+        style="@style/titleBackGroundStyle"
+        >
 
         <TextView
             style="@style/titleTextStyle"

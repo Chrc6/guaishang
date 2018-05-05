@@ -6,7 +6,7 @@
     android:background="#F2F2F2"
     >
 
-    <RelativeLayout style="@style/titleWhiteGroundStyle">
+    <RelativeLayout style="@style/titleBackGroundStyle">
 
         <TextView
             style="@style/titleTextStyle"
