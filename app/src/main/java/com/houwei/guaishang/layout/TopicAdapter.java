@@ -643,7 +643,7 @@ public class TopicAdapter extends BaseAdapter {
                             if(topicBean.isPraised()){
                                 zan_count_btn.setText((topicBean.getPraiseCount()-1)+"");
                                 topicBean.setPraiseCount(topicBean.getPraiseCount()-1);
-                                zan_count_btn.setCompoundDrawables(null,attentionUn,null,null);
+                                zan_count_btn.setCompoundDrawables(null,attention,null,null);
                                 topicBean.setPraised(false);
                             }else{
                                 zan_count_btn.setText((topicBean.getPraiseCount()+1)+"");

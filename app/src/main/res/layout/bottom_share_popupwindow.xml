@@ -74,8 +74,8 @@
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="48dp"
+                    android:layout_height="66dp"
                     android:background="@drawable/share_pyq" />
 
 
@@ -92,9 +92,9 @@
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/share_wx" />
+                    android:layout_width="48dp"
+                    android:layout_height="66dp"
+                    android:background="@drawable/share_weixin" />
 
             </LinearLayout>
             <LinearLayout
@@ -107,8 +107,8 @@
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="48dp"
+                    android:layout_height="66dp"
                     android:background="@drawable/share_qq" />
 
 
@@ -123,8 +123,8 @@
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="48dp"
+                    android:layout_height="66dp"
                     android:background="@drawable/share_weibo" />
 
 
