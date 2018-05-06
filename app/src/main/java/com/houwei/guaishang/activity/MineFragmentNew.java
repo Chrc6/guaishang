@@ -393,6 +393,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
         getITopicApplication().getChatManager()
                 .addOnMyActionMessageGetListener(this);
         getITopicApplication().getChatManager()
+
                 .addOnMyActionMessageHadReadListener(this);
         myUserBeanManager.addOnCheckPointListener(this);
         myUserBeanManager.addOnCheckMoneyListener(this);
