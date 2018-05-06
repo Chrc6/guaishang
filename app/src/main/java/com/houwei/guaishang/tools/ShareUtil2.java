@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -32,6 +33,7 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.wechat.friends.Wechat;
@@ -104,6 +106,9 @@ public class ShareUtil2 {
 						break;
 					case R.id.share_weixin_friends_ll:
 						shareToWXFriends();
+						break;
+					case R.id.share_weibo:
+						share2Sina();
 						break;
 					default:
 						break;
@@ -293,6 +298,26 @@ public class ShareUtil2 {
 		}
 
 		Platform platform = ShareSDK.getPlatform(Wechat.NAME);
+		platform.setPlatformActionListener(onPlatformActionListener);
+		platform.share(sp);
+	}
+
+
+	public  void share2Sina() {
+		SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
+		sp.setShareType(SinaWeibo.SHARE_WEBPAGE);
+		sp.setTitle(context.getResources().getString(R.string.app_name));
+		sp.setText(content);
+		sp.setUrl(url);
+
+		if (imageUrl != null) {
+			sp.setImageUrl(imageUrl);
+		} else {
+			Drawable picture_update_icon = context.getResources().getDrawable(R.drawable.ic_launcher);
+			sp.setImageData(((BitmapDrawable) picture_update_icon).getBitmap());
+		}
+
+		Platform platform = ShareSDK.getPlatform(SinaWeibo.NAME);
 		platform.setPlatformActionListener(onPlatformActionListener);
 		platform.share(sp);
 	}

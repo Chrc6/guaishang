@@ -75,29 +75,29 @@ public class ProfileInfoActivity extends BaseActivity implements MyUserBeanManag
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.name_group:
-                jump(name.getText().toString(), ProfileEditActivity.NAME);
+                jump(name.getText().toString(), ProfileEditActivity.NAME,1);
                 break;
-            case R.id.phone_group:
-                jump(phone.getText().toString(), ProfileEditActivity.Phone);
-                break;
+//            case R.id.phone_group:
+//                jump(phone.getText().toString(), ProfileEditActivity.Phone,2);
+//                break;
             case R.id.guding_phone_group:
-                jump(gudingPhone.getText().toString(), ProfileEditActivity.GuDing_Phone);
+                jump(gudingPhone.getText().toString(), ProfileEditActivity.GuDing_Phone,3);
                 break;
             case R.id.address_group:
-                jump(address.getText().toString(), ProfileEditActivity.Address);
+                jump(address.getText().toString(), ProfileEditActivity.Address,4);
                 break;
             case R.id.bank_group:
-                jump(bank.getText().toString(), ProfileEditActivity.Bank);
+                jump(bank.getText().toString(), ProfileEditActivity.Bank,5);
                 break;
             case R.id.bank_num_group:
-                jump(bankNum.getText().toString(), ProfileEditActivity.Bank_Num);
+                jump(bankNum.getText().toString(), ProfileEditActivity.Bank_Num,6);
                 break;
         }
     }
 
-    private void jump(String str, int code) {
+    private void jump(String str, int code,int type) {
         Intent intent = new Intent(this, ProfileEditActivity.class);
-        intent.putExtra(ProfileEditActivity.Parse_intent, 1);
+        intent.putExtra(ProfileEditActivity.Parse_intent, type);
         intent.putExtra(ProfileEditActivity.Parse_extra, str);
         startActivityForResult(intent, code);
     }

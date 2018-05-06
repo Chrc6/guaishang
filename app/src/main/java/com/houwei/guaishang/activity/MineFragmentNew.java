@@ -582,7 +582,7 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
             mUserNameTv.setText(ub.getName());
         }
 
-        mPhoneTv.setText(getUserInfoStr(R.string.mine_phone, ""));
+        mPhoneTv.setText(getUserInfoStr(R.string.mine_phone, ub.getGudingPhone()));
         mMobilePhoneTv.setText(getUserInfoStr(R.string.mine_mobile_phone, ub.getMobile()));
         mAddressTv.setText(getUserInfoStr(R.string.mine_address, ub.getAddress()));
         mBankTv.setText(getUserInfoStr(R.string.mine_bank, ub.getBank()));
