@@ -34,7 +34,7 @@
                 android:layout_height="48dp"
                 android:layout_marginLeft="20dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/share_pyq"/>
+                android:src="@drawable/share_friend"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -47,9 +47,12 @@
 
             <CheckBox
                 android:id="@+id/rb_share"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp" />
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/check_box"
+                android:button="@null"
+                />
 
         </LinearLayout>
 
@@ -100,9 +103,12 @@
 
             <CheckBox
                 android:id="@+id/rb_pay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp" />
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/check_box"
+                android:button="@null"
+                />
 
         </LinearLayout>
 
