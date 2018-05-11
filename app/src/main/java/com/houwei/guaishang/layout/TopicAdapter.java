@@ -171,6 +171,7 @@ public class TopicAdapter extends BaseAdapter {
             holder.orderBtn_bg = convertView.findViewById(R.id.order_btn_bg);
             holder.order_count = (TextView) convertView.findViewById(R.id.count);
             holder.ratingBar = (RatingBar) convertView.findViewById(R.id.bar);
+            holder.ratingBar.setNumStars(4);
             holder.progressView = (ProgressView) convertView.findViewById(R.id.bar_status);
             holder.VProdectLayout = (LinearLayout) convertView.findViewById(R.id.product_layout);
             holder.price = (TextView) convertView.findViewById(R.id.price);

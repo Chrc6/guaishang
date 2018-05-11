@@ -823,11 +823,9 @@
     　　</style>
     <style name="MaterialRatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/rating_list</item>
-        <item name="android:numColumns">5</item>
     </style>
     <style name="MaterialRatingBarSmall" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/rating_small</item>
-        <item name="android:numColumns">5</item>
     </style>
     <style name="TranslucentTheme" parent="AppTheme"></style>
 </resources>
