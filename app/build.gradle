@@ -137,14 +137,14 @@ dependencies {
     compile name: 'SMSSDK-3.0.0', ext: 'aar'
     compile name: 'SMSSDKGUI-3.0.0', ext: 'aar'
     compile files('libs/open_sdk_r5788_lite.jar')
-    provided files('libs/weiboSDKCore.jar')
+//    provided files('libs/weiboSDKCore.jar')
     compile files('libs/wechat-sdk-android-with-mta-1.1.6.jar')
     compile files('libs/MobCommons-2017.0914.1125.jar')
     compile files('libs/MobTools-2017.0914.1125.jar')
     compile files('libs/ShareSDK-Core-3.1.0.jar')
     compile files('libs/ShareSDK-QQ-3.1.0.jar')
     compile files('libs/ShareSDK-QZone-3.1.0.jar')
-    compile files('libs/ShareSDK-SinaWeibo-3.1.0.jar')
+//    compile files('libs/ShareSDK-SinaWeibo-3.1.0.jar')
     compile files('libs/ShareSDK-Wechat-3.1.0.jar')
     compile files('libs/ShareSDK-Wechat-Core-3.1.0.jar')
     compile files('libs/ShareSDK-Wechat-Favorite-3.1.0.jar')
