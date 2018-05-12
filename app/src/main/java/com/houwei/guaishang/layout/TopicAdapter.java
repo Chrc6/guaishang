@@ -454,6 +454,11 @@ public class TopicAdapter extends BaseAdapter {
             @Override
             public void doNothing() {
             }
+
+            @Override
+            public void chatAlone() {
+
+            }
         });
         holder.order_btn.setOnClickListener(new View.OnClickListener() {
 

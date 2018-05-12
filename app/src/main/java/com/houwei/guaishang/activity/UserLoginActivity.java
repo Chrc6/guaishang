@@ -81,7 +81,7 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 					UserInfo info = new UserInfo();
 					info.setUserId(response.getData().getUserid());
 					info.setUserName(response.getData().getName());
-					info.setAvatar(response.getData().getAvatar().getOriginal());
+					info.setAvatar(response.getData().getAvatar().findOriginalUrl());
 					UserUtil.setUserInfo(info);
                     EventBus.getDefault().post(new LoginSuccessEvent());
 				} else {
