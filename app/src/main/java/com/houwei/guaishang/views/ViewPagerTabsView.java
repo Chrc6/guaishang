@@ -22,6 +22,7 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.easemob.util.DensityUtil;
@@ -80,7 +81,6 @@ public class ViewPagerTabsView extends LinearLayout implements ViewPager.OnPageC
 	 * Sets the data behind this FixedTabsView.
 	 * 
 	 * @param adapter
-	 *          The {@link TabsAdapter} which is responsible for maintaining the
 	 *          data backing this FixedTabsView and for producing a view to
 	 *          represent an item in that data set.
 	 */
@@ -116,14 +116,16 @@ public class ViewPagerTabsView extends LinearLayout implements ViewPager.OnPageC
 			final int index = i;
 			
 			View tab = mAdapter.getView(i);
-			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, tanHeight == 1?LayoutParams.MATCH_PARENT:LayoutParams.WRAP_CONTENT, 1.0f);
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
 			int margin = DensityUtil.dip2px(getContext(), 8);
-			params.setMargins(margin*4,margin,margin*4,margin);
+			params.width = DensityUtil.dip2px(getContext(),70);
+			params.height = DensityUtil.dip2px(getContext(),25);
+			params.setMargins(margin*4,0,margin*4,margin);
 			tab.setLayoutParams(params);
 			this.addView(tab);
 			
 			mTabs.add(tab);
-			
+
 			if (i != mPager.getAdapter().getCount() - 1) {
 				this.addView(getSeparator());
 			}

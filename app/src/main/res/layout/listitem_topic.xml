@@ -65,8 +65,8 @@
 
                                 <com.houwei.guaishang.view.CircleImageView
                                     android:id="@+id/avator"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
                                     android:src="@drawable/user_photo" />
                             </RelativeLayout>
 
@@ -162,7 +162,7 @@
                 <com.houwei.guaishang.view.NumberProgressBar
                     android:id="@+id/bar_num"
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"
+                    android:layout_height="3dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:layout_marginTop="15dp"
@@ -297,37 +297,37 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="85dp"
-            android:layout_height="85dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="150dp"
             android:layout_marginRight="15dp"
             android:gravity="center"
             >
         <View
             android:id="@+id/order_btn_bg"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:background="@drawable/topic_order_bg"/>
         <RelativeLayout
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:gravity="center"
             android:layout_centerInParent="true"
             >
             <com.houwei.guaishang.widget.FloatButton
                 android:id="@+id/order_btn"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 ></com.houwei.guaishang.widget.FloatButton>
 
             <TextView
                 android:id="@+id/count"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="20dp"
+                android:layout_height="22dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:background="@drawable/bg_float_btn_red"
+                android:background="@drawable/bg_float_btn_d31c20"
                 android:gravity="center"
                 android:padding="@dimen/dp5"
                 android:text="6"
