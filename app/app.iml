@@ -105,7 +105,6 @@
     <orderEntry type="library" exported="" name="com.android.support:support-core-ui-25.3.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="com.squareup:javawriter:2.1.1@jar" level="project" />
     <orderEntry type="library" exported="" name="__local_jars__:C.\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\BaiduLBS_Android.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" exported="" name="__local_jars__:C.\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\weiboSDKCore.jar:unspecified@jar" level="project" />
     <orderEntry type="library" exported="" name="__local_jars__:C.\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\ShareSDK-Wechat-Favorite-3.1.0.jar:unspecified@jar" level="project" />
     <orderEntry type="library" exported="" name="com.google.code.findbugs:jsr305:2.0.1@jar" level="project" />
     <orderEntry type="library" exported="" name="com.jakewharton:butterknife-8.5.1" level="project" />
