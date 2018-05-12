@@ -68,6 +68,8 @@ public class OffersBean extends BaseResponse implements Serializable{
         private Object license;
         private Object picture;
         private Object idCard;
+        private String bank;
+        private String bankNum;
 
         private boolean isNotify;
         public String getAddress() {
@@ -266,6 +268,22 @@ public class OffersBean extends BaseResponse implements Serializable{
 
         public void setNotify(boolean notify) {
             isNotify = notify;
+        }
+
+        public String getBank() {
+            return bank;
+        }
+
+        public void setBank(String bank) {
+            this.bank = bank;
+        }
+
+        public String getBankNum() {
+            return bankNum;
+        }
+
+        public void setBankNum(String bankNum) {
+            this.bankNum = bankNum;
         }
     }
 }

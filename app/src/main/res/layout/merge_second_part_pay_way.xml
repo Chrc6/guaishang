@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/white_round">
+
+        <LinearLayout
+            android:id="@+id/ll_customer"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="2dp">
+
+            <TextView
+                android:id="@+id/tv_other_company_account"
+                android:layout_width="61dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="29dp"
+                android:text="对公账户"
+                android:textColor="@color/color_101010"
+                android:textSize="14dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_customer_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="#5c5c5c"
+                    android:textSize="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_customer_bank_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="#5c5c5c"
+                    android:textSize="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_bank_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="#5c5c5c"
+                    android:textSize="8dp" />
+
+            </LinearLayout>
+            
+            <ImageView
+                android:id="@+id/iv_customer"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/add"
+                android:scaleType="fitXY"/>
+
+            <CheckBox
+                android:id="@+id/cb_customer"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/check_box"
+                android:button="@null"/>
+        </LinearLayout>
+
+        <View style="@style/LineStyle"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"/>
+
+        <LinearLayout
+            android:id="@+id/ll_offline"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="2dp">
+
+            <TextView
+                android:id="@+id/tv_company_account"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="29dp"
+                android:text="线下交易"
+                android:textColor="@color/color_101010"
+                android:textSize="14dp" />
+
+            <ImageView
+                android:id="@+id/iv_offline"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/add"
+                android:scaleType="fitXY"/>
+
+            <CheckBox
+                android:id="@+id/cb_offline"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/check_box"
+                android:button="@null"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</merge>

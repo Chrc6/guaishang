@@ -1,8 +1,11 @@
 package com.houwei.guaishang.activity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,19 +17,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.houwei.guaishang.bean.event.TopicHomeEvent;
-import com.houwei.guaishang.sp.UserUtil;
 import com.houwei.guaishang.tools.ApplicationProvider;
+import com.houwei.guaishang.tools.BitmapSelectorUtil;
 import com.houwei.guaishang.tools.VoiceUtils;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.entity.LocalMedia;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.houwei.guaishang.R;
 
-import com.houwei.guaishang.bean.AvatarBean;
-import com.houwei.guaishang.bean.TopicBean;
-import com.houwei.guaishang.tools.ValueUtil;
-
 import org.greenrobot.eventbus.EventBus;
 
-public class PayActivity extends PayBaseActivity {
+public class PayActivity extends PayBaseActivity implements View.OnClickListener {
 	
 	private String  to_memberid;
 	private String  offer_id;
@@ -34,14 +35,22 @@ public class PayActivity extends PayBaseActivity {
 	private String  topicId;
 	private String  orderTitle;
 	private String  brand;
+	private String  name;
+	private String  bank;
+	private String  bankNum;
 
 	private CheckBox balance_cb;
 
 	private TextView result_tv;
+	private TextView customerNameTv, customerBankTv, customerBankNumTv;
+	private ImageView dongdongIV,customerIv,offlineIv;
+
+	private boolean dongdongDrawable, customerDrawable, offlineDrawable;
 	
 	//访问余额网络成功
 	@Override
 	protected void getBalenceMoneyFromNetwork(float balanceMoney){
+		balanceMoney = 0;//金币支付取消
 		moneyRequire = price - balanceMoney ;
 		moneyRequire = moneyRequire > 0 ? moneyRequire : 0;
 		moneyRequire = moneyRequire > price ? price : moneyRequire;
@@ -77,6 +86,11 @@ public class PayActivity extends PayBaseActivity {
 		to_memberid = intent.getStringExtra("to_memberid");
 		offer_id = intent.getStringExtra("offer_id");
 		brand = intent.getStringExtra("brand");
+
+		name = intent.getStringExtra("name");
+		bank = intent.getStringExtra("bank");
+		bankNum = intent.getStringExtra("bankNum");
+
 		String cover = intent.getStringExtra("cover");
 		moneyRequire = price;// 默认全部支付
 
@@ -88,15 +102,30 @@ public class PayActivity extends PayBaseActivity {
 		
 		
 		result_tv = (TextView) findViewById(R.id.result_tv);
-		
+
+		customerNameTv = (TextView) findViewById(R.id.tv_customer_name);
+		customerBankTv = (TextView) findViewById(R.id.tv_customer_bank_address);
+		customerBankNumTv = (TextView) findViewById(R.id.tv_bank_num);
+		customerNameTv.setText("商家："+name);
+		customerBankTv.setText("开户行："+bank);
+		customerBankNumTv.setText("账号："+bankNum);
+
 		balance_cb = (CheckBox) findViewById(R.id.balance_cb);
+
+		dongdongIV = (ImageView) findViewById(R.id.iv_dongdong);
+		customerIv = (ImageView) findViewById(R.id.iv_customer);
+		offlineIv = (ImageView) findViewById(R.id.iv_offline);
+
+		dongdongIV.setOnClickListener(this);
+		customerIv.setOnClickListener(this);
+		offlineIv.setOnClickListener(this);
 
 		int face_item_size = (int) this.getResources().getDimension(R.dimen.face_tiny_item_size);
 		order_name.setText(getITopicApplication().getFaceManager().
 				convertNormalStringToSpannableString(this,orderTitle,face_item_size),
 				BufferType.SPANNABLE);
 		order_price.setText("支付金额：" + price + "元");
-		result_tv.setText("还需支付：" + price + "元");
+		result_tv.setText(price + "");
 		resetResultButton();
 		
 	}
@@ -153,7 +182,7 @@ public class PayActivity extends PayBaseActivity {
 
 	// 重新设置还需要多少钱
 	private void resetResultButton() {
-		result_tv.setText("" + moneyRequire + "元");
+		result_tv.setText("" + moneyRequire);
 	}
 
 	// 支付成功（无论是虚拟币还是支付渠道）,由子类处理
@@ -174,5 +203,75 @@ public class PayActivity extends PayBaseActivity {
 //		 i.putExtra("to_memberid", to_memberid);
 //		 startActivity(i);
 	}
-	
+
+	@Override
+	public void onClick(View v) {
+		int type =  PAY_TYPE_DONGDONG;
+		switch (v.getId()) {
+			case R.id.iv_dongdong:
+				type = PAY_TYPE_DONGDONG;
+				break;
+			case R.id.iv_customer:
+				type = PAY_TYPE_CUSTOMER;
+				break;
+			case R.id.iv_offline:
+				type = PAY_TYPE_OFFLINE;
+				break;
+
+		}
+		BitmapSelectorUtil.gotoPic(PayActivity.this, 1, 3, false, false, type);
+	}
+
+	@Override
+	public void payBankCardPre(int type) {
+		super.payBankCardPre(type);
+		switch (type) {
+			case PAY_TYPE_DONGDONG:
+				payBankCard(dongdongDrawable);
+				break;
+			case PAY_TYPE_CUSTOMER:
+				payBankCard(customerDrawable);
+				break;
+			case PAY_TYPE_OFFLINE:
+				payBankCard(offlineDrawable);
+				break;
+
+		}
+	}
+
+	public void payBankCard(boolean uploadDrawableParam){
+		if (uploadDrawableParam) {
+			//其他三类支付 操作开始执行，目前等待接口
+			//moneyRequire
+		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == Activity.RESULT_OK) {
+			List<LocalMedia> pictures = PictureSelector.obtainMultipleResult(data);
+			String newPicturePath = pictures.get(0).getPath();
+			switch (requestCode) {
+				case PAY_TYPE_DONGDONG:
+					dongdongDrawable = true;
+					ivLoadBitmap(dongdongIV,newPicturePath);
+					break;
+				case PAY_TYPE_CUSTOMER:
+					customerDrawable = true;
+					ivLoadBitmap(customerIv,newPicturePath);
+					break;
+				case PAY_TYPE_OFFLINE:
+					offlineDrawable = true;
+					ivLoadBitmap(offlineIv,newPicturePath);
+					break;
+			}
+		}
+	}
+
+	public void ivLoadBitmap(ImageView imageView, String newPicturePath) {
+		ImageLoader.getInstance().displayImage(
+				"file://"+newPicturePath,
+				imageView,getITopicApplication().getOtherManage().getRectDisplayImageOptions());
+	}
 }

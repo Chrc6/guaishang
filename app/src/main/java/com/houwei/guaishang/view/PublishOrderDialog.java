@@ -79,8 +79,9 @@ public class PublishOrderDialog extends Dialog implements OnClickListener {
         llPhoto = (LinearLayout) view.findViewById(R.id.ll_photo_albumn);
 
         cbCamera = (CheckBox) view.findViewById(R.id.cb_camera);
-        cbCamera.setSelected(true);
+        cbCamera.setChecked(true);
         cbPhoto = (CheckBox) view.findViewById(R.id.cb_photo_albumn);
+        cbPhoto.setChecked(false);
 
         llCamera.setOnClickListener(this);
         llPhoto.setOnClickListener(this);

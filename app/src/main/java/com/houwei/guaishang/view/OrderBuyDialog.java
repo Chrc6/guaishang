@@ -13,28 +13,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.BaseActivity;
-import com.houwei.guaishang.activity.PayActivity;
 import com.houwei.guaishang.activity.RechargeDialogActivity;
 import com.houwei.guaishang.activity.TopicDetailActivity;
 import com.houwei.guaishang.bean.TopicBean;
-import com.houwei.guaishang.bean.UserBean;
-import com.houwei.guaishang.easemob.EaseConstant;
 import com.houwei.guaishang.event.UpdateMoneyEvent;
 import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.ShareUtil2;
@@ -45,7 +32,6 @@ import com.lzy.okgo.model.Response;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
-import java.util.List;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;

@@ -13,6 +13,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import cn.beecloud.BCPay;
@@ -34,7 +35,16 @@ public class PayBaseActivity extends BaseActivity implements CheckMoneyListener 
 
 	private static final int NETWORK_IDEAPAY = 0x96;
 
-	private CheckBox alipay_cb, weixin_cb;
+	protected static final int PAY_TYPE_WEIXIN = 0;
+	protected static final int PAY_TYPE_ALI = 1;
+	protected static final int PAY_TYPE_DONGDONG = 2;
+	protected static final int PAY_TYPE_CUSTOMER = 3;
+	protected static final int PAY_TYPE_OFFLINE = 4;
+
+	private CheckBox alipay_cb, weixin_cb,dongdon_cb,customer_cb,offline_cb;
+	private LinearLayout alipay_ll, weixin_ll,dongdon_ll,customer_ll,offline_ll;
+
+	protected int payType = 0;
 
 	protected float moneyRequire; // 减去钱包之后，还需要支付多少钱。子类可以随意修改
 	
@@ -141,6 +151,17 @@ public class PayBaseActivity extends BaseActivity implements CheckMoneyListener 
 		}
 		alipay_cb = (CheckBox) findViewById(R.id.alipay_cb);
 		weixin_cb = (CheckBox) findViewById(R.id.weixin_cb);
+		dongdon_cb = (CheckBox) findViewById(R.id.cb_company);
+		customer_cb = (CheckBox) findViewById(R.id.cb_customer);
+		offline_cb = (CheckBox) findViewById(R.id.cb_offline);
+
+		weixin_cb.setChecked(true);
+
+		alipay_ll = (LinearLayout) findViewById(R.id.ll_ali);
+		weixin_ll = (LinearLayout) findViewById(R.id.ll_weixin);
+		dongdon_ll = (LinearLayout) findViewById(R.id.ll_dongdong);
+		customer_ll = (LinearLayout) findViewById(R.id.ll_customer);
+		offline_ll = (LinearLayout) findViewById(R.id.ll_offline);
 
 		balanceMoney = PreferenceManager.getInstance().getUserCoins();
 
@@ -152,25 +173,73 @@ public class PayBaseActivity extends BaseActivity implements CheckMoneyListener 
 	
 	protected void initListener() {
 		// TODO Auto-generated method stub
-		alipay_cb.setOnClickListener(new View.OnClickListener() {
+		alipay_ll.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				if (alipay_cb.isChecked()) {
-					weixin_cb.setChecked(false);
-				}
+				alipay_cb.setChecked(true);
+				weixin_cb.setChecked(false);
+				dongdon_cb.setChecked(false);
+				customer_cb.setChecked(false);
+				offline_cb.setChecked(false);
+				payType = PAY_TYPE_ALI;
 			}
 		});
 
-		weixin_cb.setOnClickListener(new View.OnClickListener() {
+		weixin_ll.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				if (weixin_cb.isChecked()) {
-					alipay_cb.setChecked(false);
-				}
+				weixin_cb.setChecked(true);
+				alipay_cb.setChecked(false);
+				dongdon_cb.setChecked(false);
+				customer_cb.setChecked(false);
+				offline_cb.setChecked(false);
+				payType = PAY_TYPE_WEIXIN;
+			}
+		});
+
+		dongdon_ll.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				dongdon_cb.setChecked(true);
+				alipay_cb.setChecked(false);
+				weixin_cb.setChecked(false);
+				customer_cb.setChecked(false);
+				offline_cb.setChecked(false);
+				payType = PAY_TYPE_DONGDONG;
+			}
+		});
+
+		customer_ll.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				customer_cb.setChecked(true);
+				alipay_cb.setChecked(false);
+				dongdon_cb.setChecked(false);
+				weixin_cb.setChecked(false);
+				offline_cb.setChecked(false);
+				payType = PAY_TYPE_CUSTOMER;
+			}
+		});
+
+		offline_ll.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				offline_cb.setChecked(true);
+				alipay_cb.setChecked(false);
+				dongdon_cb.setChecked(false);
+				customer_cb.setChecked(false);
+				weixin_cb.setChecked(false);
+				payType = PAY_TYPE_OFFLINE;
 			}
 		});
 	}
@@ -184,13 +253,38 @@ public class PayBaseActivity extends BaseActivity implements CheckMoneyListener 
 			return;
 		}
 
-		if(weixin_cb.isChecked()){
-			weixinPay(title, mapOptional);
-		}else if(alipay_cb.isChecked()){
-			aliPay(title, mapOptional);
-		}else{
-			showErrorToast("请选择一种支付方式");
+//		if(weixin_cb.isChecked()){
+//			weixinPay(title, mapOptional);
+//		}else if(alipay_cb.isChecked()){
+//			aliPay(title, mapOptional);
+//		}else{
+//			showErrorToast("请选择一种支付方式");
+//		}
+
+		switch (payType) {
+			case PAY_TYPE_WEIXIN:
+				weixinPay(title, mapOptional);
+				break;
+			case PAY_TYPE_ALI:
+				aliPay(title, mapOptional);
+				break;
+			case PAY_TYPE_DONGDONG:
+				payBankCardPre(PAY_TYPE_DONGDONG);
+				break;
+			case PAY_TYPE_CUSTOMER:
+				payBankCardPre(PAY_TYPE_CUSTOMER);
+				break;
+			case PAY_TYPE_OFFLINE:
+				payBankCardPre(PAY_TYPE_OFFLINE);
+				break;
+			default:
+				break;
 		}
+	}
+
+	//子类重写
+	public void payBankCardPre(int type) {
+
 	}
 
 	// 支付成功（无论是虚拟币还是支付渠道）,由子类处理

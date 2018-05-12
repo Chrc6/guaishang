@@ -138,7 +138,7 @@ public class TopicReleaseActivity extends BasePhotoGridActivity implements
 		myUserBeanManager = getITopicApplication().getMyUserBeanManager();
 		initView();
 		initListener();
-		int type=getIntent().getIntExtra("type",2);
+		int type = getIntent().getIntExtra("type",2);
 		startPhoto(type);
 	}
 
