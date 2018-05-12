@@ -192,16 +192,16 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 			}
 		});
 		
-		findViewById(R.id.lost_password_tv).setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Intent i = new Intent(UserLoginActivity.this,
-						UserFindPasswordActivity.class);
-				startActivity(i);
-			}
-		});
+//		findViewById(R.id.lost_password_tv).setOnClickListener(new View.OnClickListener() {
+//
+//			@Override
+//			public void onClick(View arg0) {
+//				// TODO Auto-generated method stub
+//				Intent i = new Intent(UserLoginActivity.this,
+//						UserFindPasswordActivity.class);
+//				startActivity(i);
+//			}
+//		});
 		findViewById(R.id.image_qq).setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -227,11 +227,11 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 			}
 		});
 
-		TextView go_reg_tv = (TextView) findViewById(R.id.go_reg_tv);
-		go_reg_tv.setOnClickListener(new View.OnClickListener() {
+		TextView go_reg_tv = (TextView) findViewById(R.id.regist_btn);
+				go_reg_tv.setOnClickListener(new View.OnClickListener() {
 
-			@Override
-			public void onClick(View arg0) {
+					@Override
+					public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				Intent i = new Intent(UserLoginActivity.this,
 						UserRegMobileActivity.class);
