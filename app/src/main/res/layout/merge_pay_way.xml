@@ -1,107 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white_color"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp" >
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="18dp"
-            android:src="@drawable/zhifubao_icon" />
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/white_round">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="1"
-            android:orientation="vertical" >
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/alipay_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="支付宝支付"
-                android:textColor="@color/text_black_color"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="银行卡、信用卡都可以使用"
-                android:textColor="@color/text_gray_color"
-                android:textSize="11sp" />
-        </LinearLayout>
-
-        <CheckBox
-            android:id="@+id/alipay_cb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@null"
-            android:button="@drawable/checkbox_round"
-            android:gravity="center"
-            android:padding="10dp" />
-    </LinearLayout>
-
-    <View style="@style/LineStyle" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white_color"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp" >
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="18dp"
-            android:src="@drawable/weixin_icon" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="1"
-            android:orientation="vertical" >
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="18dp"
+                android:src="@drawable/weixin_icon" />
 
             <TextView
                 android:id="@+id/weixin_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="45dp"
+                android:text="咚咚平台微信支付"
+                android:textColor="@color/color_101010"
+                android:textSize="14dp" />
+
+            <CheckBox
+                android:id="@+id/weixin_cb"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/check_box"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="10dp" />
+        </LinearLayout>
+
+        <View style="@style/LineStyle"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="18dp"
+                android:src="@drawable/zhifubao_icon" />
+
+            <TextView
+                android:id="@+id/alipay_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="45dp"
+                android:text="咚咚平台支付宝支付"
+                android:textColor="@color/color_101010"
+                android:textSize="14dp" />
+
+            <CheckBox
+                android:id="@+id/alipay_cb"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/check_box"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="10dp" />
+        </LinearLayout>
+
+        <View style="@style/LineStyle"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="2dp">
+
+
+            <TextView
+                android:id="@+id/tv_company_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="微信支付"
-                android:textColor="@color/text_black_color"
-                android:textSize="15sp" />
-
+                android:layout_marginLeft="29dp"
+                android:text="咚咚平台"
+                android:textColor="@color/color_101010"
+                android:textSize="14dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="亿万用户的选择"
-                android:textColor="@color/text_gray_color"
-                android:textSize="11sp" />
-        </LinearLayout>
+                android:layout_below="@+id/tv_company_account"
+                android:layout_alignLeft="@+id/tv_company_account"
+                android:layout_alignRight="@+id/tv_company_account"
+                android:gravity="center"
+                android:text="(公司账号)"
+                android:textColor="@color/color_101010"
+                android:textSize="10dp" />
 
-        <CheckBox
-            android:id="@+id/weixin_cb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@null"
-            android:button="@drawable/checkbox_round"
-            android:gravity="center"
-            android:padding="10dp" />
+            <TextView
+                android:id="@+id/tv_company_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_company_account"
+                android:layout_marginLeft="25dp"
+                android:singleLine="true"
+                android:text="公司名称：苏州厚为物资有限公司"
+                android:textColor="#5c5c5c"
+                android:textSize="8dp" />
+
+            <TextView
+                android:id="@+id/tv_bank_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_company_account"
+                android:layout_below="@+id/tv_company_name"
+                android:layout_marginLeft="25dp"
+                android:singleLine="true"
+                android:text="开户行：中国银行东中市分行"
+                android:textColor="#5c5c5c"
+                android:textSize="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_company_account"
+                android:layout_below="@+id/tv_bank_address"
+                android:layout_marginLeft="25dp"
+                android:singleLine="true"
+                android:text="账号：8522211553225555"
+                android:textColor="#5c5c5c"
+                android:textSize="8dp" />
+
+            <CheckBox
+                android:id="@+id/weixin_cb"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/check_box"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="10dp" />
+        </RelativeLayout>
+
     </LinearLayout>
-
 </merge>

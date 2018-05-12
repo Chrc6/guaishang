@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center">
@@ -95,13 +96,15 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <ImageView
+            <TextView
                 android:id="@+id/iv_ali"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_marginLeft="10dp"
-                android:scaleType="fitXY"
-                android:src="@mipmap/logo"/>
+                android:textSize="@dimen/dp_14"
+                android:textColor="#001aff"
+                android:text="支付宝"
+                android:gravity="center"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -114,9 +117,11 @@
 
             <CheckBox
                 android:id="@+id/rb_ali"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp" />
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/check_box"
+                android:button="@null"/>
 
         </LinearLayout>
 
@@ -154,9 +159,11 @@
 
             <CheckBox
                 android:id="@+id/rb_wx"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp" />
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/check_box"
+                android:button="@null"/>
 
         </LinearLayout>
 

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/ActivityBackgroundStyle" >
+    style="@style/ActivityBackgroundStyle"
+    android:background="@color/background_color">
 
     <RelativeLayout style="@style/titleBackGroundStyle" >
 
@@ -12,12 +13,6 @@
             android:text="支付订单" />
     </RelativeLayout>
 
-    <TextView
-        style="@style/MemoTitleTextStyle"
-        android:text="基本资料" />
-
-    <View style="@style/LineStyle" />
-
     <LinearLayout
         android:id="@+id/topic_ll"
         android:layout_width="match_parent"
@@ -25,7 +20,8 @@
         android:background="@drawable/white_background"
         android:orientation="horizontal"
         android:paddingBottom="10dp"
-        android:paddingTop="10dp" >
+        android:paddingTop="10dp"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/avatar"
@@ -146,21 +142,41 @@
         </FrameLayout>
     </LinearLayout>
 
-    <View style="@style/LineStyle" />
+    <View style="@style/LineStyle"
+        android:visibility="gone"/>
 
-    <TextView
-        style="@style/MemoTitleTextStyle"
-        android:text="支付方式" />
+    <!--style="@style/MemoTitleTextStyle"-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
 
-    <View style="@style/LineStyle" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="@color/color_101010"
+            android:text="支付到咚咚平台（" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="#5ca85b"
+            android:text="推荐，有保障" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="@color/color_101010"
+            android:text="）" />
+
+    </LinearLayout>
 
     <include layout="@layout/merge_pay_way"/>
-
-    <View style="@style/LineStyle" />
-
-    <View style="@style/VerticalWeightViewStyle" />
-
-    <View style="@style/LineStyle" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -73,11 +73,13 @@ public class RechargeDialogActivity extends RechargeBaseActivity implements View
         rbALi = (CheckBox) findViewById(R.id.rb_ali);
         rbALi.setSelected(true);
         rbWX = (CheckBox) findViewById(R.id.rb_wx);
+        rbWX.setSelected(false);
 
         rbALi.setOnClickListener(this);
         rbWX.setOnClickListener(this);
         tvCancle.setOnClickListener(this);
         tvConfirm.setOnClickListener(this);
+        findViewById(R.id.fl_container).setOnClickListener(this);
     }
 
     @Override
@@ -97,6 +99,9 @@ public class RechargeDialogActivity extends RechargeBaseActivity implements View
             case R.id.tv_confirm:
                 //跳到支付
                mobilePay();
+                break;
+            case R.id.fl_container:
+                finish();
                 break;
         }
     }

@@ -132,6 +132,7 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
         rbShare.setOnClickListener(this);
         rbPay.setOnClickListener(this);
         tvRecharge.setOnClickListener(this);
+        view.findViewById(R.id.fl_container).setOnClickListener(this);
 
 
     }
@@ -199,6 +200,8 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
                 break;
             case R.id.tv_recharge:
                 goToRechargeActivity();
+                break;
+            case R.id.fl_container:
                 break;
         }
         dismiss();

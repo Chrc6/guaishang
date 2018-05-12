@@ -2,13 +2,13 @@
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:gravity="center"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:paddingLeft="@dimen/dp_10"
-    android:paddingRight="@dimen/dp_10"
+    android:layout_width="66dp"
+    android:layout_height="20dp"
+    android:layout_margin="4dp"
     android:background="@drawable/brand_tag_bg"
     android:text="Helloworld"
-    android:textColor="@color/color_101010">
+    android:textSize="12dp"
+    android:textColor="@color/color_101010"
+    android:singleLine="true">
 
 </TextView>

@@ -1,60 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/pop_layout"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
-    android:layout_alignParentBottom="true"
-     android:background="#EDEDED"
-     >
+     android:background="@color/card_transparent_color">
 
-    
-   <View android:layout_width="fill_parent"
-       android:layout_height="3dp"
-       android:background="@color/red_color"/>
-    
-    <Button
-        android:id="@+id/btn_take_photo"
-        android:layout_marginLeft="20dip"
-        android:layout_marginRight="20dip"
-        android:layout_marginTop="20dip"
-        android:layout_width="fill_parent"
-        android:padding="8dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="拍照"
-        android:textSize="17sp"
-        android:textColor="#494949"
-        android:background="@drawable/white_round_stroke"
-         />
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/background_round"
+        android:gravity="center_vertical"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_pick_photo"
-        android:layout_marginLeft="20dip"
-        android:layout_marginRight="20dip"
-        android:layout_marginTop="10dip" 
-           android:padding="8dp"
-         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="从相册选择"
-         android:background="@drawable/white_round_stroke"
-       android:textSize="17sp"
-        android:textColor="#494949"
-         />
+        <LinearLayout
+            android:id="@+id/ll_take_photo"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@drawable/order_buy_dialog_item_background">
 
-    <Button
-        android:id="@+id/btn_cancel"
-       android:layout_marginLeft="20dip"
-       android:layout_marginRight="20dip"
-       android:layout_marginTop="15dip" 
-	   android:layout_marginBottom="15dip"
-       android:layout_width="fill_parent"
-       android:layout_height="wrap_content"
-       android:text="取消"
-          android:padding="8dp"
-       android:background="@drawable/red_round"
-       android:textColor="@color/white_color"
-     android:textSize="17sp"
-       
-        />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:text="拍照"/>
+
+            <CheckBox
+                android:id="@+id/cb_take_photo"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/check_box"
+                android:button="@null"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_pick_photo"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@drawable/order_buy_dialog_item_background">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:text="从相册选择"/>
+
+            <CheckBox
+                android:id="@+id/cb_pick_photo"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/check_box"
+                android:button="@null"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 </LinearLayout>

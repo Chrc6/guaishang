@@ -6,11 +6,22 @@
 
     <RelativeLayout
         style="@style/titleBackGroundStyle"
-        >
+        android:layout_height="50dp">
 
         <TextView
             style="@style/titleTextStyle"
             android:text="咚咚抢单" />
+
+        <ImageView
+            android:layout_marginRight="8dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/image_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:padding="6dp"
+            android:src="@drawable/add" />
     </RelativeLayout>
 
     <ScrollView
@@ -246,6 +257,7 @@
                         android:layout_marginLeft="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/tv_grade_title"
+                        android:isIndicator="true"
                         />
 
                     <View

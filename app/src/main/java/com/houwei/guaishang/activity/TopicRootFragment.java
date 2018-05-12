@@ -19,6 +19,7 @@ import com.google.gson.reflect.TypeToken;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.bean.BaseBean;
 import com.houwei.guaishang.bean.IndustryBean;
+import com.houwei.guaishang.event.BrandSelectEvent;
 import com.houwei.guaishang.layout.IndustyPopWindow;
 import com.houwei.guaishang.layout.PopInter;
 import com.houwei.guaishang.tools.DealResult;
@@ -33,6 +34,10 @@ import com.houwei.guaishang.views.ViewPagerTabsView.PageSelectedListener;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +61,7 @@ public class TopicRootFragment extends BaseFragment implements PageSelectedListe
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+		EventBus.getDefault().register(this);
 		initView();
 		initListener();
 	}
@@ -86,7 +92,7 @@ public class TopicRootFragment extends BaseFragment implements PageSelectedListe
 					}
 				});
 	}
-    String user_id = "";
+
 	private void getIndustryData() {
 		Intent intent = new Intent(getActivity(),BrandSelectActivity.class);
 		startActivityForResult(intent,BrandSelectActivity.SELECT_BRAND);
@@ -179,6 +185,13 @@ public class TopicRootFragment extends BaseFragment implements PageSelectedListe
 		listViews.get(position).refresh();
 	}
 
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void brandSelect(BrandSelectEvent event) {
+		if (videoLayout1 != null) {
+			videoLayout1.refresh();
+		}
+	}
+
 	@Override
 	public void onPageSelected(int position) {
 		// TODO Auto-generated method stub
@@ -188,6 +201,7 @@ public class TopicRootFragment extends BaseFragment implements PageSelectedListe
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
+		EventBus.getDefault().unregister(this);
 		super.onDestroy();
 	}
 

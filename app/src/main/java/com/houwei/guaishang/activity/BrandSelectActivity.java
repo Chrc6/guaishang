@@ -101,14 +101,14 @@ public class BrandSelectActivity extends BaseActivity implements View.OnClickLis
                 TextView textView = (TextView) LayoutInflater.from(BrandSelectActivity.this)
                         .inflate(R.layout.tv, flowlayout, false);
                 textView.setText(itemsBean.getBrandName());
-                int pw=parent.getWidth();
-                ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) textView.getLayoutParams();
-                params.width = (int)(sWidth/6.5);
+//                int pw=parent.getWidth();
+//                ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) textView.getLayoutParams();
+//                params.width = (int)(sWidth/6.5);
 //                Log.d("CCC","w:"+(sWidth/4));
 //                params.height = ;
                 // params.setMargins(dip2px(MainActivity.this, 1), 0, 0, 0); // 可以实现设置位置信息，如居左距离，其它类推
                 // params.leftMargin = dip2px(MainActivity.this, 1);
-                textView.setLayoutParams(params);
+//                textView.setLayoutParams(params);
                 return textView;
             }
         };
@@ -158,6 +158,8 @@ public class BrandSelectActivity extends BaseActivity implements View.OnClickLis
             //url = HttpUtil.IP+"topic/my_brand";
             url = HttpUtil.IP+"topic/brand";
             user_id = getUserID();
+        } else {
+            finish();
         }
         url = HttpUtil.IP+"topic/brand";
         //IndustryBean.ItemsBean itemsBean = new IndustryBean.ItemsBean();

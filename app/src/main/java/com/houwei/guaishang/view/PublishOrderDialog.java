@@ -84,6 +84,7 @@ public class PublishOrderDialog extends Dialog implements OnClickListener {
 
         llCamera.setOnClickListener(this);
         llPhoto.setOnClickListener(this);
+        view.findViewById(R.id.fl_container).setOnClickListener(this);
 
     }
 
@@ -103,7 +104,8 @@ public class PublishOrderDialog extends Dialog implements OnClickListener {
                 i.putExtra("type",1);
                 mActivity.startActivityForResult(i,0);
                 break;
-
+            case R.id.fl_container:
+                break;
         }
         dismiss();
     }

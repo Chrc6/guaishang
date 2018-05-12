@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center">
@@ -35,15 +36,16 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:textSize="15dp"
+                android:textSize="17dp"
                 android:text="现在拍照订单"/>
 
             <CheckBox
                 android:id="@+id/cb_camera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:layout_marginRight="15dp"
-                style="@style/CustomCheckboxTheme"/>
+                android:background="@drawable/check_box"
+                android:button="@null"/>
 
         </LinearLayout>
 
@@ -62,15 +64,16 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:textSize="15dp"
+                android:textSize="17dp"
                 android:text="从相册选取订单"/>
 
             <CheckBox
                 android:id="@+id/cb_photo_albumn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:layout_marginRight="15dp"
-                style="@style/CustomCheckboxTheme"/>
+                android:background="@drawable/check_box"
+                android:button="@null"/>
 
         </LinearLayout>
 

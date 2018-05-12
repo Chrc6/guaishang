@@ -25,21 +25,19 @@
 
         <com.zhy.view.flowlayout.TagFlowLayout
             android:id="@+id/id_flowlayout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
+            android:layout_gravity="center_horizontal"
             android:padding="8dp"
             zhy:max_select="-1"></com.zhy.view.flowlayout.TagFlowLayout>
 
         <EditText
             android:id="@+id/et_brand"
-            android:layout_width="match_parent"
+            android:layout_width="292dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="33dp"
-            android:layout_marginRight="33dp"
             android:paddingLeft="@dimen/dp5"
             android:paddingRight="@dimen/dp5"
+            android:layout_gravity="center_horizontal"
             android:singleLine="true"
             android:textSize="14sp"
             android:textColorHint="#888888"
