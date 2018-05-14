@@ -95,7 +95,7 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 				break;
 			}
 		}
-	};
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

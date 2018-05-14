@@ -18,6 +18,10 @@ public class ChatInfo implements Serializable {
     private boolean showPriceInfo;
     private boolean hideTitle;
 
+    private String cid;
+    private String sid;
+    private String orderid;
+
     public ChatInfo() {
     }
 
@@ -75,5 +79,29 @@ public class ChatInfo implements Serializable {
 
     public void setShowPriceInfo(boolean showPriceInfo) {
         this.showPriceInfo = showPriceInfo;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
+    }
+
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+
+    public String getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(String orderid) {
+        this.orderid = orderid;
     }
 }

@@ -20,10 +20,19 @@ import java.util.List;
 public class OrderChatViewPagerAdapter extends FragmentPagerAdapter {
 
     private  List<OffersBean.OfferBean> userBeans;
+    private String sid;
+    private String orderId;
 
     public OrderChatViewPagerAdapter(FragmentManager fm, List<OffersBean.OfferBean> offerPriceList) {
         super(fm);
         this.userBeans = offerPriceList;
+    }
+
+    public OrderChatViewPagerAdapter(FragmentManager fm, List<OffersBean.OfferBean> userBeans, String sid, String orderId) {
+        super(fm);
+        this.userBeans = userBeans;
+        this.sid = sid;
+        this.orderId = orderId;
     }
 
     @Override
@@ -40,6 +49,9 @@ public class OrderChatViewPagerAdapter extends FragmentPagerAdapter {
         chatInfo.setHeadImageBean(avatarBean);
         chatInfo.setHideTitle(true);
         chatInfo.setShowPriceInfo(false);
+        chatInfo.setCid(offerBean.getUserid());
+        chatInfo.setSid(sid);
+        chatInfo.setOrderid(orderId);
         ChatFragment fragment = ChatFragment.getInstance(chatInfo);
         return fragment;
     }

@@ -34,6 +34,7 @@ import com.houwei.guaishang.bean.ValidateCodeResponse;
 import com.houwei.guaishang.bean.VersionResponse;
 import com.houwei.guaishang.bean.VideoBean;
 import com.houwei.guaishang.bean.VideoListResponse;
+import com.houwei.guaishang.huanxin.OrderInfoResponse;
 
 
 public class JsonParser {
@@ -136,7 +137,10 @@ public class JsonParser {
 		IntResponse response = JsonUtil.getObject(json, IntResponse.class);
 		return response;
 	}
-
+	public static OrderInfoResponse getOrderInfoResponse(String json) {
+		OrderInfoResponse response = JsonUtil.getObject(json, OrderInfoResponse.class);
+		return response;
+	}
 	
 	public static TopicListResponse
 	getTopicListResponse(String json) {
