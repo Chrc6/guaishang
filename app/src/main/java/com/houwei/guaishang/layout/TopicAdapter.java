@@ -451,6 +451,7 @@ public class TopicAdapter extends BaseAdapter {
                 intent.putExtra(OrderChatActivity.Parse_List,(Serializable) tempList);
                 intent.putExtra(OrderChatActivity.SID,bean.getMemberId());
                 intent.putExtra(OrderChatActivity.OrderId,bean.getTopicId());
+                intent.putExtra(OrderChatActivity.Brand,bean.getBrand());
                 mContext.startActivity(intent);
             }
 
@@ -471,6 +472,7 @@ public class TopicAdapter extends BaseAdapter {
                 intent.putExtra(OrderChatActivity.Parse_List,(Serializable) tempList);
                 intent.putExtra(OrderChatActivity.SID,bean.getMemberId());
                 intent.putExtra(OrderChatActivity.OrderId,bean.getTopicId());
+                intent.putExtra(OrderChatActivity.Brand,bean.getBrand());
                 mContext.startActivity(intent);
             }
         });

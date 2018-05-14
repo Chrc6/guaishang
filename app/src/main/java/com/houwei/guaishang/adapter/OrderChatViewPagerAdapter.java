@@ -13,6 +13,8 @@ import com.houwei.guaishang.huanxin.ChatInfo;
 
 import java.util.List;
 
+import cn.sharesdk.onekeyshare.themes.classic.PRTHeader;
+
 /**
  * Created by chrc on 2018/4/26.
  */
@@ -22,17 +24,18 @@ public class OrderChatViewPagerAdapter extends FragmentPagerAdapter {
     private  List<OffersBean.OfferBean> userBeans;
     private String sid;
     private String orderId;
-
+    private String brand;
     public OrderChatViewPagerAdapter(FragmentManager fm, List<OffersBean.OfferBean> offerPriceList) {
         super(fm);
         this.userBeans = offerPriceList;
     }
 
-    public OrderChatViewPagerAdapter(FragmentManager fm, List<OffersBean.OfferBean> userBeans, String sid, String orderId) {
+    public OrderChatViewPagerAdapter(FragmentManager fm, List<OffersBean.OfferBean> userBeans, String sid, String orderId, String brand) {
         super(fm);
         this.userBeans = userBeans;
         this.sid = sid;
         this.orderId = orderId;
+        this.brand = brand;
     }
 
     @Override
@@ -52,6 +55,9 @@ public class OrderChatViewPagerAdapter extends FragmentPagerAdapter {
         chatInfo.setCid(offerBean.getUserid());
         chatInfo.setSid(sid);
         chatInfo.setOrderid(orderId);
+        chatInfo.setBank(offerBean.getBank());
+        chatInfo.setBankNum(offerBean.getBankNum());
+        chatInfo.setBrand(brand);
         ChatFragment fragment = ChatFragment.getInstance(chatInfo);
         return fragment;
     }

@@ -21,6 +21,9 @@ public class ChatInfo implements Serializable {
     private String cid;
     private String sid;
     private String orderid;
+    private String brand;
+    private String bank;
+    private String bankNum;
 
     public ChatInfo() {
     }
@@ -103,5 +106,29 @@ public class ChatInfo implements Serializable {
 
     public void setOrderid(String orderid) {
         this.orderid = orderid;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
+    }
+
+    public String getBankNum() {
+        return bankNum;
+    }
+
+    public void setBankNum(String bankNum) {
+        this.bankNum = bankNum;
     }
 }

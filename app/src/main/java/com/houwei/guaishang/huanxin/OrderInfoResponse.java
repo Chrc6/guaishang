@@ -8,9 +8,9 @@ import com.houwei.guaishang.bean.BaseResponse;
 
 public class OrderInfoResponse extends BaseResponse{
 
-    private String price;
-    private String circle;
-    private boolean isOfferid;
+    private String price;//订单报价
+    private String circle;//订单周期
+    private boolean isOfferid;//是否被抢单了
     public OrderInfoResponse() {
     }
 

@@ -1,7 +1,9 @@
 package com.houwei.guaishang.huanxin;
 
 import android.content.Context;
+import android.content.Intent;
 
+import com.houwei.guaishang.activity.PayActivity;
 import com.houwei.guaishang.activity.newui.MyInfoActivity;
 import com.houwei.guaishang.bean.BaseResponse;
 import com.houwei.guaishang.bean.LocationBean;
@@ -109,9 +111,21 @@ public class ChatManager {
     }
 
     //打款
-    public void remit(){
-
+    public void remit(String brand,String price,String orderId,String sid,String cid,String name,String bank,String bankNum){
+        Intent i=new Intent(context, PayActivity.class);
+        i.putExtra("orderTitle", "");
+        i.putExtra("cover", "");
+        i.putExtra("brand", brand);
+        i.putExtra("price",Float.valueOf(price));
+        i.putExtra("topicId", orderId);
+        i.putExtra("to_memberid", cid);
+        i.putExtra("offer_id", sid);
+        i.putExtra("name", name);
+        i.putExtra("bank", bank);
+        i.putExtra("bankNum", bankNum);
+        context.startActivity(i);
     }
+
 
 
 }

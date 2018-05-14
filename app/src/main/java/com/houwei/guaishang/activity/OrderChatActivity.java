@@ -34,6 +34,7 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
     public static final String Parse_List = "parseList";
     public static final String SID = "SID";
     public static final String OrderId = "OrderId";
+    public static final String Brand = "Brand";
     private ViewPager mViewPager;
     private RecyclerView mRecyclerView;
     private OrderChatAdapter mAdapter;
@@ -42,6 +43,7 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
 
     private String sid;
     private String orderId;
+    private String brand;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +90,7 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
             offerPriceList = (ArrayList<OffersBean.OfferBean>) intent.getSerializableExtra(Parse_List);
             sid = intent.getStringExtra(SID);
             orderId = intent.getStringExtra(OrderId);
+            brand = intent.getStringExtra(Brand);
         }
     }
 
@@ -111,7 +114,7 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
         }
 
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        mViewPager.setAdapter(new OrderChatViewPagerAdapter(getSupportFragmentManager(),offerPriceList,sid,orderId));
+        mViewPager.setAdapter(new OrderChatViewPagerAdapter(getSupportFragmentManager(),offerPriceList,sid,orderId,brand));
 
         findViewById(R.id.ll_back).setOnClickListener(this);
 

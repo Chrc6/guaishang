@@ -272,7 +272,8 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
 
                 if (response.isOfferd() && chatInfo.getSid().equals(UserUtil.getUserInfo().getUserId())) {
                         //打款订货
-                    mManager.remit();
+                    mManager.remit(chatInfo.getBrand(),editPrice.getText().toString(),chatInfo.getOrderid(),chatInfo.getSid(),
+                            chatInfo.getCid(),chatInfo.getHisRealName(),chatInfo.getBank(),chatInfo.getBankNum());
 
                 } else {
                     if (TextUtils.isEmpty(editPrice.getText().toString())) {
