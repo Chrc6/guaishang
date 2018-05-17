@@ -42,19 +42,16 @@ import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.TextMessageBody;
-import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.BaiduMapActivity;
 import com.houwei.guaishang.activity.BaseFragment;
 import com.houwei.guaishang.activity.ChatBaseActivity;
-import com.houwei.guaishang.activity.ChatEaseActivity;
 import com.houwei.guaishang.activity.Constant;
 import com.houwei.guaishang.activity.GroupDetailsActivity;
 import com.houwei.guaishang.activity.HisRootActivity;
 import com.houwei.guaishang.bean.LocationBean;
 import com.houwei.guaishang.bean.UserBean;
-import com.houwei.guaishang.database.entity.ChatInfoData;
 import com.houwei.guaishang.easemob.EaseChatExtendMenu;
 import com.houwei.guaishang.easemob.EaseChatInputMenu;
 import com.houwei.guaishang.easemob.EaseChatMessageList;
@@ -66,23 +63,29 @@ import com.houwei.guaishang.easemob.EaseEmojiconMenu;
 import com.houwei.guaishang.easemob.EaseGroupRemoveListener;
 import com.houwei.guaishang.easemob.EaseUI;
 import com.houwei.guaishang.easemob.EaseVoiceRecorderView;
+import com.houwei.guaishang.huanxin.order.OrderEntity;
+import com.houwei.guaishang.huanxin.order.OrderInfoResponse;
 import com.houwei.guaishang.layout.MenuTwoButtonDialog;
 import com.houwei.guaishang.layout.SureOrCancelDialog;
 import com.houwei.guaishang.manager.FaceManager;
 import com.houwei.guaishang.manager.MyLocationManager;
 import com.houwei.guaishang.sp.UserUtil;
-import com.houwei.guaishang.sql.ChatBindInfoDBHelper;
 import com.houwei.guaishang.tools.JsonUtil;
 import com.houwei.guaishang.tools.ToastUtils;
 import com.luck.picture.lib.permissions.RxPermissions;
 
 import java.io.File;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by lenovo on 2018/4/23.
@@ -101,14 +104,7 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
     ImageView ITitleRight;//右边跳转群聊的入口
     @BindView(R.id.title_layout)
     RelativeLayout titleLayout;
-    @BindView(R.id.phone_et)
-    ImageView IPhoneEt;//打电话按钮
-    @BindView(R.id.edit_price)
-    EditText editPrice;//输入报价输入框
-    @BindView(R.id.edit_time)
-    EditText editTime;//输入周期
-    @BindView(R.id.sure)
-    TextView sure;//提交报价
+
     @BindView(R.id.title_bottom_ll)
     View titleBottomLl;
     @BindView(R.id.message_list)
@@ -201,100 +197,20 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
      * 绑定头部订单信息的控件
      */
     private RelativeLayout VChatBindGp;
-    private ChatManager mManager;
+    private ChatHeadHolder holder;
     private void initChatBindInfo() {
-        VChatBindGp = (RelativeLayout)rootView.findViewById(R.id.edit_char_info_gp);
-        //单聊初始化   群聊不初始化
-        if (chatType != EaseConstant.CHATTYPE_SINGLE ) {
+        if (chatType != EaseConstant.CHATTYPE_SINGLE){
             VChatBindGp.setVisibility(View.GONE);
             return;
         }
-        if (mManager == null){
-            mManager = new ChatManager(getActivity());
-        }
-        final OrderInfoResponse response = mManager.queryOffer(chatInfo.getCid(), chatInfo.getSid(), chatInfo.getOrderid());
-        if (response== null){
-            VChatBindGp.setVisibility(View.GONE);
-            return;
-        }else {
-            VChatBindGp.setVisibility(View.VISIBLE);
-            //如果查询结果是 已报价且 发单方不是本人 则 处理成 打款样式
-            if (response.isOfferd() && chatInfo.getSid().equals(UserUtil.getUserInfo().getUserId())) {
-                sure.setVisibility(View.VISIBLE);
-                sure.setText("打款订货");
-                editPrice.setEnabled(false);
-                editTime.setEnabled(false);
-                editPrice.setText(response.getPrice());
-                editTime.setText(response.getCircle());
-            }else if (response.isOfferd()){
-                //查询结果已报价 处理成无按钮样式
-                sure.setText("已报价");
-                editPrice.setEnabled(false);
-                editTime.setEnabled(false);
-                editPrice.setText(response.getPrice());
-                editTime.setText(response.getCircle());
-            }else {
-                sure.setVisibility(View.VISIBLE);
-                editPrice.setEnabled(true);
-                editTime.setEnabled(true);
-            }
-        }
+        VChatBindGp.setVisibility(View.VISIBLE);
 
-        if (rxPermissions == null){
-            rxPermissions = new RxPermissions(getActivity());
-        }
-        IPhoneEt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rxPermissions.request(Manifest.permission.CALL_PHONE)
-                        .subscribe(new Consumer<Boolean>() {
-                            @Override
-                            public void accept(@NonNull Boolean aBoolean) throws Exception {
-                                if (aBoolean) {
-                                    //用intent启动拨打电话
-                                    if(TextUtils.isEmpty(mobile)){
-                                        ToastUtils.toastForShort(getActivity(),"电话号码不能为空");
-                                        return;
-                                    }
-                                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + chatInfo.getMobile()));
-                                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-                                        startActivity(intent);
-                                    }
-                                }
-                            }
-                        });
-
-            }
-        });
-        sure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (response.isOfferd() && chatInfo.getSid().equals(UserUtil.getUserInfo().getUserId())) {
-                        //打款订货
-                    mManager.remit(chatInfo.getBrand(),editPrice.getText().toString(),chatInfo.getOrderid(),chatInfo.getSid(),
-                            chatInfo.getCid(),chatInfo.getHisRealName(),chatInfo.getBank(),chatInfo.getBankNum());
-
-                } else {
-                    if (TextUtils.isEmpty(editPrice.getText().toString())) {
-                        ToastUtils.toastForShort(getActivity(), "输入的价格不能为空");
-                        return;
-                    }
-                    if (TextUtils.isEmpty(editTime.getText().toString())) {
-                        ToastUtils.toastForShort(getActivity(), "输入的交付日期不能为空");
-                        return;
-                    }
-
-                    mManager.offer(currentLocationBean,editPrice.getText().toString(),
-                            editTime.getText().toString(),chatInfo.getCid(),
-                            chatInfo.getSid(),chatInfo.getOrderid());
-
-                    editPrice.setEnabled(false);
-                    editTime.setEnabled(false);
-                    sure.setVisibility(View.GONE);
-                }
-            }
-        });
+       if (holder == null){
+           holder = new ChatHeadHolder(getActivity(),chatInfo);
+       }
+       holder.sendReq();
+       VChatBindGp.removeAllViews();
+       VChatBindGp.addView(holder.getRootView());
     }
     private void initView(){
         listView = messageList.getListView();
@@ -320,6 +236,7 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
                 getActivity().finish();
             }
         });
+        VChatBindGp = (RelativeLayout) rootView.findViewById(R.id.edit_char_info_gp);
     }
 
     private void initListener() {

@@ -34,13 +34,11 @@
             android:visibility="invisible" />
     </RelativeLayout>
 
-    <include
+    <RelativeLayout
         android:id="@+id/edit_char_info_gp"
-        layout="@layout/ease_fragment_top"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_below="@+id/title_layout"
-        android:visibility="gone"
         />
 
     <View
