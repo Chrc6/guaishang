@@ -4,15 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.houwei.guaishang.activity.PayActivity;
-import com.houwei.guaishang.activity.newui.MyInfoActivity;
 import com.houwei.guaishang.bean.BaseResponse;
 import com.houwei.guaishang.bean.LocationBean;
-import com.houwei.guaishang.bean.MyInfoBean;
 import com.houwei.guaishang.bean.event.TopicHomeEvent;
 import com.houwei.guaishang.data.Contants;
+import com.houwei.guaishang.huanxin.order.OrderInfoResponse;
 import com.houwei.guaishang.tools.DealResult;
 import com.houwei.guaishang.tools.HttpUtil;
-import com.houwei.guaishang.tools.JsonParser;
 import com.houwei.guaishang.tools.SPUtils;
 import com.houwei.guaishang.tools.ToastUtils;
 import com.lzy.okgo.OkGo;
@@ -20,11 +18,6 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by ${lei} on 2018/5/14.
@@ -43,19 +36,22 @@ public class ChatManager {
      * @param sid 发单方id
      * @param orderid 订单id
      */
-    private  OrderInfoResponse orderInfoResponse;
-    public OrderInfoResponse queryOffer(String cid, String sid, final String orderid) {
+    private OrderInfoResponse orderInfoResponse;
 
-        OkGo.<String>get(HttpUtil.IP+"topic/rob")
-                .params("order_id",orderid)
+    public OrderInfoResponse queryOffer(String cid, String sid, final String orderid, final ReqCallBack callBack) {
+
+        OkGo.<String>get(HttpUtil.IP+"topic/queryoffer")
+                .params("topicid",orderid)
                 .params("user_id",cid)
-                .params("offer_id",sid)
 //					.params("payMoney",payMoney)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
                         orderInfoResponse = null;
                         orderInfoResponse = DealResult.getInstace().dealBean(context, response, OrderInfoResponse.class);
+                        if (callBack != null){
+                            callBack.call(orderInfoResponse);
+                        }
                     }
                 });
 
@@ -126,6 +122,10 @@ public class ChatManager {
         context.startActivity(i);
     }
 
+
+    public interface ReqCallBack{
+        void call(OrderInfoResponse response);
+    }
 
 
 }

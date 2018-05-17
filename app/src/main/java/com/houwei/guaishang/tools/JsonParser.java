@@ -34,7 +34,7 @@ import com.houwei.guaishang.bean.ValidateCodeResponse;
 import com.houwei.guaishang.bean.VersionResponse;
 import com.houwei.guaishang.bean.VideoBean;
 import com.houwei.guaishang.bean.VideoListResponse;
-import com.houwei.guaishang.huanxin.OrderInfoResponse;
+import com.houwei.guaishang.huanxin.order.OrderInfoResponse;
 
 
 public class JsonParser {
