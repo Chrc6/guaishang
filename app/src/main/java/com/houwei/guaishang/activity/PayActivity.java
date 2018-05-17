@@ -1,5 +1,6 @@
 package com.houwei.guaishang.activity;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -16,9 +18,13 @@ import android.widget.TextView.BufferType;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.houwei.guaishang.bean.StringResponse;
 import com.houwei.guaishang.bean.event.TopicHomeEvent;
 import com.houwei.guaishang.tools.ApplicationProvider;
 import com.houwei.guaishang.tools.BitmapSelectorUtil;
+import com.houwei.guaishang.tools.HttpUtil;
+import com.houwei.guaishang.tools.JsonParser;
+import com.houwei.guaishang.tools.ToastUtils;
 import com.houwei.guaishang.tools.VoiceUtils;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.entity.LocalMedia;
@@ -46,6 +52,9 @@ public class PayActivity extends PayBaseActivity implements View.OnClickListener
 	private ImageView dongdongIV,customerIv,offlineIv;
 
 	private boolean dongdongDrawable, customerDrawable, offlineDrawable;
+	private String picPath;
+
+	private Handler handler = new Handler();
 	
 	//访问余额网络成功
 	@Override
@@ -243,6 +252,9 @@ public class PayActivity extends PayBaseActivity implements View.OnClickListener
 		if (uploadDrawableParam) {
 			//其他三类支付 操作开始执行，目前等待接口
 			//moneyRequire
+//			new Thread(new UpdateStringRun())
+		} else {
+			ToastUtils.toastForShort(this,"请上传转账图片");
 		}
 	}
 
@@ -252,6 +264,7 @@ public class PayActivity extends PayBaseActivity implements View.OnClickListener
 		if (resultCode == Activity.RESULT_OK) {
 			List<LocalMedia> pictures = PictureSelector.obtainMultipleResult(data);
 			String newPicturePath = pictures.get(0).getPath();
+			picPath = newPicturePath;
 			switch (requestCode) {
 				case PAY_TYPE_DONGDONG:
 					dongdongDrawable = true;
@@ -273,5 +286,48 @@ public class PayActivity extends PayBaseActivity implements View.OnClickListener
 		ImageLoader.getInstance().displayImage(
 				"file://"+newPicturePath,
 				imageView,getITopicApplication().getOtherManage().getRectDisplayImageOptions());
+	}
+
+	private class UpdateStringRun implements Runnable {
+		private File upLoadBitmapFile;
+		private String newPicturePath;
+		String port;
+
+		public UpdateStringRun(String newPicturePath, String port) {
+			this.newPicturePath = newPicturePath;
+			this.upLoadBitmapFile = new File(newPicturePath);
+			this.port = port;
+		}
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			StringResponse retMap = null;
+			try {
+				String url = HttpUtil.IP + port;
+				// 如果不是切割的upLoadBitmap就很大,在这里压缩
+				retMap = JsonParser.getStringResponse2(HttpUtil.uploadFile(url,
+						upLoadBitmapFile, getUserID()));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (retMap != null) {
+				handler.post(new Runnable() {
+					@Override
+					public void run() {
+						paySuccess();
+					}
+				});
+			} else {
+				handler.post(new Runnable() {
+					@Override
+					public void run() {
+						progress.dismiss();
+						showSuccessTips("支付失败！");
+					}
+				});
+			}
+		}
 	}
 }
