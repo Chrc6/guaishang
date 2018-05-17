@@ -13,14 +13,27 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import com.houwei.guaishang.R;
+import com.houwei.guaishang.bean.UserResponse;
+import com.houwei.guaishang.data.DBReq;
+import com.houwei.guaishang.event.LoginSuccessEvent;
+import com.houwei.guaishang.manager.HuanXinManager;
+import com.houwei.guaishang.sp.UserInfo;
+import com.houwei.guaishang.sp.UserUtil;
+import com.houwei.guaishang.tools.ShareSDKUtils;
+import com.houwei.guaishang.tools.ShareSDKUtilsReg;
 import com.houwei.guaishang.views.AnimationYoYo;
 import com.mob.MobSDK;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.tencent.qq.QQ;
+import cn.sharesdk.wechat.friends.Wechat;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
@@ -29,7 +42,7 @@ import cn.smssdk.SMSSDK;
  * 用户效验手机号界面（验证码界面）
  * 本案采用的验证码是基于mob的短信smssdk，免费，且不需要服务器端接入。但是会带来一堆libssmssdk.so
  */
-public class UserRegMobileActivity extends BaseActivity {
+public class UserRegMobileActivity extends BaseActivity implements HuanXinManager.HuanXinLoginListener {
 	public final static int REG_LOGIN_SUCCESS = 0x99;
 	
 //	// 填写从短信SDK应用后台注册得到的APPKEY  guaishang 2.0
@@ -45,34 +58,72 @@ public class UserRegMobileActivity extends BaseActivity {
 	private int CURRENTDELAYTIME;
 	private final int DELAYTIME = 60;
 
-	private MyHandler handler = new MyHandler(this);
-	private static class MyHandler extends Handler {
-		
+	@Override
+	public void onHuanXinLoginSuccess() {
+
+	}
+
+	@Override
+	public void onHuanXinLoginFail(int code, String message) {
+
+	}
+
+	private UserRegMobileActivity.MyHandler handler = new UserRegMobileActivity.MyHandler(this);
+
+	public static class MyHandler extends Handler {
+
 		private WeakReference<Context> reference;
-		
-	    public MyHandler(Context context) {
-	    	reference = new WeakReference<Context>(context);
-	    }
-	    
-	    @Override
+
+		public MyHandler(Context context) {
+			reference = new WeakReference<Context>(context);
+		}
+
+		@Override
 		public void handleMessage(Message msg) {
-	    	final UserRegMobileActivity activity = (UserRegMobileActivity) reference.get();
+			final UserRegMobileActivity activity = (UserRegMobileActivity) reference.get();
 			if(activity == null){
 				return;
 			}
 			switch (msg.what) {
-			case NETWORK_OTHER: // 验证码倒计时
-				if (activity.CURRENTDELAYTIME <= 0) {
-					activity.cancelTime();
-				} else {
-					activity.CURRENTDELAYTIME--;
-					activity.check_pw_get_btn.setText(activity.CURRENTDELAYTIME + "秒后重获");
-				}
-				break;
+				case NETWORK_OTHER: // 验证码倒计时
+					if (activity.CURRENTDELAYTIME <= 0) {
+						activity.cancelTime();
+					} else {
+						activity.CURRENTDELAYTIME--;
+						activity.check_pw_get_btn.setText(activity.CURRENTDELAYTIME + "秒后重获");
+					}
+					break;
+				case NETWORK_SUCCESS_DATA_RIGHT:
+					Log.d("CCC","-->"+msg.obj);
+					UserResponse response = (UserResponse) msg.obj;
+					if (response.isSuccess()) {
+
+						// 保存用户信息并开启推送
+						activity.getITopicApplication().getMyUserBeanManager()
+								.storeUserInfoAndNotity(response.getData());
+
+						// 展开数据库
+						DBReq.getInstence(activity.getITopicApplication());
+
+						activity.getITopicApplication().getHuanXinManager().loginHuanXinService(activity, response.getData().getUserid(),response.getData().getName(), activity);
+						UserInfo info = new UserInfo();
+						info.setUserId(response.getData().getUserid());
+						info.setUserName(response.getData().getName());
+						info.setAvatar(response.getData().getAvatar().getOriginal());
+						UserUtil.setUserInfo(info);
+						EventBus.getDefault().post(new LoginSuccessEvent());
+					} else {
+						activity.progress.dismiss();
+						activity.showErrorToast(response.getMessage());
+					}
+					break;
+				default:
+					activity.progress.dismiss();
+					activity.showErrorToast();
+					break;
 			}
 		}
 	};
-
 	private SMShandler smshandler = new SMShandler(this);
 	private static class SMShandler extends Handler {
 
@@ -198,24 +249,24 @@ public class UserRegMobileActivity extends BaseActivity {
 			}
 		});
 
-		findViewById(R.id.voice_tv).setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-
-				if (phone_et.getText().toString().equals("")) {
-					showErrorToast("请输入手机号码");
-					return;
-				}
-				if (check_pw_get_btn.isClickable()) {
-					check_pw_get_btn.setClickable(false);
-					check_pw_get_btn.setText(DELAYTIME+"秒后重获");
-				}
-				progress.show();
-				SMSSDK.getVoiceVerifyCode("86",phone_et.getText().toString().trim());
-			}
-		});
+//		findViewById(R.id.voice_tv).setOnClickListener(new View.OnClickListener() {
+//
+//			@Override
+//			public void onClick(View arg0) {
+//				// TODO Auto-generated method stub
+//
+//				if (phone_et.getText().toString().equals("")) {
+//					showErrorToast("请输入手机号码");
+//					return;
+//				}
+//				if (check_pw_get_btn.isClickable()) {
+//					check_pw_get_btn.setClickable(false);
+//					check_pw_get_btn.setText(DELAYTIME+"秒后重获");
+//				}
+//				progress.show();
+//				SMSSDK.getVoiceVerifyCode("86",phone_et.getText().toString().trim());
+//			}
+//		});
 		
 		findViewById(R.id.next_btn).setOnClickListener(
 				new View.OnClickListener() {
@@ -267,7 +318,32 @@ public class UserRegMobileActivity extends BaseActivity {
 				startActivity(i);
 			}
 		});
-		
+
+
+		findViewById(R.id.image_qq).setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				ShareSDKUtilsReg utils=new ShareSDKUtilsReg(UserRegMobileActivity.this,handler);
+				utils.Login(QQ.NAME);
+			}
+		});
+		findViewById(R.id.image_wechat).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				ShareSDKUtilsReg utils=new ShareSDKUtilsReg(UserRegMobileActivity.this,handler);
+				utils.Login(Wechat.NAME);
+
+			}
+		});
+		findViewById(R.id.image_weibo).setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				ShareSDKUtilsReg utils=new ShareSDKUtilsReg(UserRegMobileActivity.this,handler);
+				utils.Login(SinaWeibo.NAME);
+			}
+		});
 	}
 
 	@Override

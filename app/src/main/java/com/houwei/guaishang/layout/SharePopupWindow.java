@@ -30,7 +30,12 @@ public class SharePopupWindow extends PopupWindow implements OnClickListener {
 		mPopView.findViewById(R.id.share_QQfriends_ll).setOnClickListener(this);
 //		mPopView.findViewById(R.id.share_qzone_ll).setOnClickListener(this);
 		mPopView.findViewById(R.id.share_weibo).setOnClickListener(this);
-		
+		mPopView.findViewById(R.id.pop_layout).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dismiss();
+			}
+		});
 		Button btn_cancel=(Button)mPopView.findViewById(R.id.btn_cancel);
 		btn_cancel.setOnClickListener(new View.OnClickListener() {
 			

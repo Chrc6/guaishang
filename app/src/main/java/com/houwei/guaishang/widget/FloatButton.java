@@ -78,7 +78,7 @@ public class FloatButton extends RelativeLayout {
                             floatBtnClickListener.doNothing();
                             break;
                         case Has_Galb:
-                            floatBtnClickListener.doNothing();
+                            floatBtnClickListener.chatAlone();
                             break;
                         case Wait_Galb:
                             floatBtnClickListener.doNothing();
@@ -120,11 +120,10 @@ public class FloatButton extends RelativeLayout {
             galb_layout.setVisibility(GONE);
             rootView.setBackground(context.getResources().getDrawable(R.drawable.bg_float_btn_white));
         }else if (statu == Has_Galb){
-            galb_self.setVisibility(GONE);
-            brief.setVisibility(GONE);
-            galb_layout.setVisibility(VISIBLE);
-            galb.setText("已抢");
-            rootView.setBackground(context.getResources().getDrawable(R.drawable.bg_float_btn_gral));
+            galb_self.setVisibility(VISIBLE);
+            galb_layout.setVisibility(GONE);
+            rootView.setBackground(context.getResources().getDrawable(R.drawable.bg_float_btn_white));
+            setSelf();
         }else if (statu == Wait_Galb){
             galb_self.setVisibility(GONE);
             brief.setVisibility(GONE);
@@ -147,8 +146,17 @@ public class FloatButton extends RelativeLayout {
         }
             notifyAvatarRefresh();
     }
+    private void setSelf(){
+        ArrayList<String> list = new ArrayList<>();
+        if (UserUtil.isInLoginStata()){
+            String avatar = UserUtil.getUserInfo().getAvatar();
+            list.add(avatar);
+        }
+        setmAvatarList(list);
+    }
 
     private void notifyAvatarRefresh(){
+        iconLayout.removeAllViews();
         iconLayout.setFlexDirection(FlexboxLayout.SCROLL_AXIS_HORIZONTAL);
         iconLayout.setFlexWrap(FlexboxLayout.FLEX_WRAP_WRAP);
         iconLayout.setJustifyContent(FlexboxLayout.ALIGN_ITEMS_CENTER);
@@ -194,5 +202,6 @@ public class FloatButton extends RelativeLayout {
         void galb();
         void goChatView();
         void doNothing();
+        void chatAlone();
     }
 }

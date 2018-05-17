@@ -18,6 +18,13 @@ public class ChatInfo implements Serializable {
     private boolean showPriceInfo;
     private boolean hideTitle;
 
+    private String cid;
+    private String sid;
+    private String orderid;
+    private String brand;
+    private String bank;
+    private String bankNum;
+
     public ChatInfo() {
     }
 
@@ -75,5 +82,53 @@ public class ChatInfo implements Serializable {
 
     public void setShowPriceInfo(boolean showPriceInfo) {
         this.showPriceInfo = showPriceInfo;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
+    }
+
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+
+    public String getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(String orderid) {
+        this.orderid = orderid;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
+    }
+
+    public String getBankNum() {
+        return bankNum;
+    }
+
+    public void setBankNum(String bankNum) {
+        this.bankNum = bankNum;
     }
 }

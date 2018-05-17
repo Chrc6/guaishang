@@ -135,7 +135,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_centerVertical">true</item>
-        <item name="android:src">@mipmap/back</item>
+        <item name="android:src">@drawable/back_light</item>
          <item name="android:paddingLeft">10dp</item>
           <item name="android:paddingRight">30dp</item>
            <item name="android:scaleType">center</item>
@@ -510,8 +510,14 @@
           <item name="android:orientation">vertical</item>
         <item name="android:background">@color/white_color</item>
     </style>
-    
-    
+
+    <style name="ActivityBackgroundStyleE5">
+        <item name="android:scrollbarStyle"> outsideOverlay</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">#e5e5e5</item>
+    </style>
       <style name="DateDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>

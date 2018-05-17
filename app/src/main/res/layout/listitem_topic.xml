@@ -208,7 +208,7 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginRight="5dp"
                             android:scaleType="fitCenter"
-                            android:src="@mipmap/attention" />
+                            android:src="@drawable/attention" />
                         <TextView
                             android:id="@+id/price_tv"
                             android:layout_width="wrap_content"
@@ -235,7 +235,7 @@
                             android:layout_height="15dp"
                             android:layout_marginRight="5dp"
                             android:scaleType="fitCenter"
-                            android:src="@mipmap/l_share_false" />
+                            android:src="@drawable/l_share_false" />
 
                         <TextView
                             android:id="@+id/share_count_btn"

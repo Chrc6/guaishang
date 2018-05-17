@@ -33,7 +33,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="20dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingBottom="40dp"
             android:paddingTop="20dp" >
 
 
@@ -68,17 +70,22 @@
                 android:id="@+id/share_weixin_moments_ll"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="66dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/share_pyq" />
 
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="朋友圈"
+                    android:textColor="#101010"
+                    android:textSize="12sp" />
             </LinearLayout>
 
 
@@ -92,10 +99,16 @@
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="66dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/share_weixin" />
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="微信"
+                    android:textColor="#101010"
+                    android:textSize="12sp" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/share_QQfriends_ll"
@@ -107,10 +120,16 @@
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="66dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/share_qq" />
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="QQ"
+                    android:textColor="#101010"
+                    android:textSize="12sp" />
 
             </LinearLayout>
             <LinearLayout
@@ -123,10 +142,16 @@
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="66dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/share_weibo" />
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="新浪"
+                    android:textColor="#101010"
+                    android:textSize="12sp" />
 
             </LinearLayout>
         </LinearLayout>

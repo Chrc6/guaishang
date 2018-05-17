@@ -3,237 +3,228 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\ShareSDK-QZone-3.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="dea402700998e6779f82356a565aed1dfc60d430">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-QZone-3.1.0_aaa3f0d0e1137cf16eaceae78e0ca9cf2243402b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\BaiduLBS_Android.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="a5cdfa8887b52fc79d86c9c81acdb6e9e2a53417">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\BaiduLBS_Android_2926296c078c9d149011e855f56ef99ba18151cc\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\com.baidu.tts_2.3.1.20170808_e39ea89.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="99489d834dfda6c1090abc3ab8870093999b8d79">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\com.baidu.tts_2.3.1.20170808_e39ea89_571e7705ecf5fa11018b8d84e123ab5d5255dee4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\MobTools-2017.0914.1125.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="5cc5255ef59c79430f7b8709cc19bf7a14efc1b5">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\MobTools-2017.0914.1125_9e02c6ab5f13763c2f71a832c47375fe784a8d57\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\ShareSDK-QQ-3.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="311a96b0128087bbb7c19b6165ef87a3980ccbf1">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-QQ-3.1.0_4743c0126d94f3d6d80b880352bb8ea99c8e2bde\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\nineoldandroids-2.4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\nineoldandroids-2.4.0_1dfb96cdbc818b1fd500ebd1dc8ed33fad02d210\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\libammsdk.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="d7c2f29c05b35e8c8713be2b81c41cf18f98b64a">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\libammsdk_9869056a451ac2060b8c4d8f7665bad12b92f71f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\open_sdk_r5788_lite.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="5080e3fb4b011f5f376e1d04870cd84480be02c3">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\open_sdk_r5788_lite_2b7a4bb8bc889ca18d97fc87e76773fbb45118f8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\weiboSDKCore.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="4c5cf981016b3c7d42b18f45950d5060b4d72763">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\weiboSDKCore_ed9711b54fdf146126a55980cecbc99fba88fc6b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\wechat-sdk-android-with-mta-1.1.6.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="379056fcb09a02bd0db722be359695ad88beb04d">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\wechat-sdk-android-with-mta-1.1.6_82393c5c322835f72b5d27fbc8d83f99e9e34691\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\ShareSDK-Wechat-Favorite-3.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="a21e1d0fe8cc137b07afb8a57015ec0de15ff365">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-Wechat-Favorite-3.1.0_61e984ad3bfa9ae32ccd75b077abbda03dfe6a0b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\alipaysdk.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="0c3384f9877b711c3f0b6556ce9ec7f63dc2426e">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\alipaysdk_16bd2ef1abfe50479f06347e528a2a7f0f406d24\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\ShareSDK-SinaWeibo-3.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="5acedc0aeb693441d031a05aff1ffdfb93b97631">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-SinaWeibo-3.1.0_7aa9e9b329cf1ca92282d705ed30e5d2e0a7c980\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\android-gif-drawable.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="30c3594e7c65ad498d4e30d1d72c84794f10f695">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\android-gif-drawable_6e0ce80200b2b5be48ac7e2281a0725f922d9c3a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\alipayutdid.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="4345fa0a5a7768f2f9c86aaab7db9e2906765193">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\alipayutdid_7b9be412da54e57a09edee6ebb897b6509e3ebf9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\happy-dns-0.2.8.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="c39e5b6125fc7e09cde2ffeeaea94f14afbed30d">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\happy-dns-0.2.8_8f3eb6ca7e7ed265cafdc96f65902b898cf99fb9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\easemobchat_2.2.6.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="6cec5fd2dd2e1804a9c54ddedbb848d855b0ea61">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\easemobchat_2.2.6_15ed42125bbf1729f4eabca43369602928de7890\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\ShareSDK-Wechat-Core-3.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="3fb3435f069578f09b2bb22dd1aad305f55f74d0">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-Wechat-Core-3.1.0_74c53b21d9060a6556a4ad7ab2ac266766dc9c99\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\beecloud-2.1.3.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="36a27b335ec315cfecd420c8ad72e9559b1404fa">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\beecloud-2.1.3_6e3cc01b909d6a1f8fb18d242f402c96a907af78\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\ShareSDK-Core-3.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="7980e9584e54571b0fad9f259eeab995e90a2997">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-Core-3.1.0_0b9193d5e1b2917bb97086f5174a0f2fc5a131ef\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\ShareSDK-Wechat-3.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="66b199a46f01c4470c13c70120e4312a4b84d368">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-Wechat-3.1.0_942d23d6f230eff3a127551d87237f2da0dfc5ee\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\fastjson-1.1.39.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="4d002c8b49ff59d6272a8d0a0057d1548d3895ac">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\fastjson-1.1.39_e89f647147a5995940eb62002bb487171afdfaaf\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\alipaysecsdk.jar"
+        jar="E:\guaishang\guaishang\app\libs\alipaysecsdk.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.3"
         sha1="7413c074c9edf523050267b93d0875151dc4b644">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\alipaysecsdk_3353cb3b154af3e21bcd67d2938fca9818eec953\classes.dex" />
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\alipaysecsdk_9be2aa7395715f1c68ff398a59dd3717d95325bb\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\ShareSDK-Wechat-Moments-3.1.0.jar"
+        jar="E:\guaishang\guaishang\app\libs\ShareSDK-Wechat-Favorite-3.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="a21e1d0fe8cc137b07afb8a57015ec0de15ff365">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-Wechat-Favorite-3.1.0_1f187db1106d1e9c3d1d59747c050d3d6ee9c438\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\libammsdk.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d7c2f29c05b35e8c8713be2b81c41cf18f98b64a">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\libammsdk_2e30bdc890646e59304347460f42abbf443de727\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\alipaysdk.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="0c3384f9877b711c3f0b6556ce9ec7f63dc2426e">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\alipaysdk_3af7857332eb5856759d90189f8f7b7873a26c62\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\ShareSDK-Wechat-Moments-3.1.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.3"
         sha1="dece32686922fe8132cd1f7adc34893900939bd9">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-Wechat-Moments-3.1.0_45ea1817307ceecc0989b57c8106ab2518c7a0f1\classes.dex" />
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-Wechat-Moments-3.1.0_3552d585816bcc6d80e09469d2fd238c0a96577f\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\universal-image-loader-1.9.2.jar"
+        jar="E:\guaishang\guaishang\app\libs\BaiduLBS_Android.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.3"
-        sha1="111169c43b8a601f571585f75d998e6027e48ff4">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\universal-image-loader-1.9.2_69f5b0ce0f0189f283d37d19b2925aa3c63e2dc7\classes.dex" />
+        sha1="a5cdfa8887b52fc79d86c9c81acdb6e9e2a53417">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\BaiduLBS_Android_0e18485a5e80344d0d9f98557f8d55cff2f244ba\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\libs\MobCommons-2017.0914.1125.jar"
+        jar="E:\guaishang\guaishang\app\libs\MobTools-2017.0914.1125.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="5cc5255ef59c79430f7b8709cc19bf7a14efc1b5">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\MobTools-2017.0914.1125_4018da510d1162c090f3d868251f653afb648d53\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\ShareSDK-SinaWeibo-3.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="5acedc0aeb693441d031a05aff1ffdfb93b97631">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-SinaWeibo-3.1.0_bd092aaef71e393c01aaffe5efd175af222e8872\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\MobCommons-2017.0914.1125.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.3"
         sha1="572d1b40ee4bcf9366f22d7a1035bb30ef715f4f">
-        <dex dex="C:\Users\chrc\Desktop\rc_guaishang_project\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\MobCommons-2017.0914.1125_2e1fc39821684ab16a80230956e52f601d95b846\classes.dex" />
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\MobCommons-2017.0914.1125_8f10e2066beeff050a9d2384a4d45bc0037bfaa6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\ShareSDK-QQ-3.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="311a96b0128087bbb7c19b6165ef87a3980ccbf1">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-QQ-3.1.0_9ecbceae86d5cacb920bcee866281ddaf510f41b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\ShareSDK-Core-3.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="7980e9584e54571b0fad9f259eeab995e90a2997">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-Core-3.1.0_8673a35a6cfa9198fc4b5af263ec35e59337537a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\android-gif-drawable.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="30c3594e7c65ad498d4e30d1d72c84794f10f695">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\android-gif-drawable_858c1d81cb9388de57d1587cc7adc4aa15e79551\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\alipayutdid.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4345fa0a5a7768f2f9c86aaab7db9e2906765193">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\alipayutdid_29ef2ebcff5180703e6c80f7bc456beb24234d32\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\nineoldandroids-2.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\nineoldandroids-2.4.0_8bef0aae6596425a44302ac090824d2c72122295\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\universal-image-loader-1.9.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="111169c43b8a601f571585f75d998e6027e48ff4">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\universal-image-loader-1.9.2_e916577a1d43b4bb1fc07e637ea46aff09eb250c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\ShareSDK-Wechat-3.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="66b199a46f01c4470c13c70120e4312a4b84d368">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-Wechat-3.1.0_aeb2582f4b41ab9587b4e25a41fac8edee281ab7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\wechat-sdk-android-with-mta-1.1.6.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="379056fcb09a02bd0db722be359695ad88beb04d">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\wechat-sdk-android-with-mta-1.1.6_49d66282e7121e0e33704e7e2f12b757c0293861\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\fastjson-1.1.39.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4d002c8b49ff59d6272a8d0a0057d1548d3895ac">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\fastjson-1.1.39_32eb8141f9e26531bfb403c6f6ba589f02a39820\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\ShareSDK-Wechat-Core-3.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="3fb3435f069578f09b2bb22dd1aad305f55f74d0">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-Wechat-Core-3.1.0_1172f28808d2c27aa85fbf3420d4ae2451aa7d72\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\easemobchat_2.2.6.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6cec5fd2dd2e1804a9c54ddedbb848d855b0ea61">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\easemobchat_2.2.6_0495e103ac3b233911fa9b67d2692e0e6cb478dc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\happy-dns-0.2.8.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c39e5b6125fc7e09cde2ffeeaea94f14afbed30d">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\happy-dns-0.2.8_2d56f121df6d65c694474e4f4576539070aec6f7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\beecloud-2.1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="36a27b335ec315cfecd420c8ad72e9559b1404fa">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\beecloud-2.1.3_6142107d70305b57d553cb9aa60b882702e4e3b0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\com.baidu.tts_2.3.1.20170808_e39ea89.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="99489d834dfda6c1090abc3ab8870093999b8d79">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\com.baidu.tts_2.3.1.20170808_e39ea89_eef6c417ffa3f4c76ac6eb384f76e3f6df4eede6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\open_sdk_r5788_lite.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="5080e3fb4b011f5f376e1d04870cd84480be02c3">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\open_sdk_r5788_lite_3dd97e9ce68b29e6ff2dbe85b51709471379c09f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\guaishang\guaishang\app\libs\ShareSDK-QZone-3.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="dea402700998e6779f82356a565aed1dfc60d430">
+        <dex dex="E:\guaishang\guaishang\app\build\intermediates\transforms\dex\debug\folders\1000\2\ShareSDK-QZone-3.1.0_60d43d7a68a1cb95a85ee7b06a8a50dc235f8fac\classes.dex" />
     </item>
 
 </items>

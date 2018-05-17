@@ -48,6 +48,7 @@ import com.houwei.guaishang.manager.FaceManager;
 import com.houwei.guaishang.manager.ITopicApplication;
 import com.houwei.guaishang.manager.MyUserBeanManager;
 import com.houwei.guaishang.preview.PreviewActivity;
+import com.houwei.guaishang.sp.UserUtil;
 import com.houwei.guaishang.tools.DealResult;
 import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.ShareUtil2;
@@ -448,11 +449,31 @@ public class TopicAdapter extends BaseAdapter {
 
                 }
                 intent.putExtra(OrderChatActivity.Parse_List,(Serializable) tempList);
+                intent.putExtra(OrderChatActivity.SID,bean.getMemberId());
+                intent.putExtra(OrderChatActivity.OrderId,bean.getTopicId());
+                intent.putExtra(OrderChatActivity.Brand,bean.getBrand());
                 mContext.startActivity(intent);
             }
 
             @Override
             public void doNothing() {
+            }
+
+            @Override
+            public void chatAlone() {
+                Intent intent = new Intent(mContext, OrderChatActivity.class);
+                ArrayList<OffersBean.OfferBean> tempList = new ArrayList<>();
+                OffersBean.OfferBean  tempBean = new OffersBean.OfferBean();
+                tempBean.setName(UserUtil.getUserInfo().getUserName());
+                tempBean.setMobile(UserUtil.getUserInfo().getMobile());
+                tempBean.setUserid(UserUtil.getUserInfo().getUserId());
+                tempBean.setAvatar(UserUtil.getUserInfo().getAvatar());
+                tempList.add(tempBean);
+                intent.putExtra(OrderChatActivity.Parse_List,(Serializable) tempList);
+                intent.putExtra(OrderChatActivity.SID,bean.getMemberId());
+                intent.putExtra(OrderChatActivity.OrderId,bean.getTopicId());
+                intent.putExtra(OrderChatActivity.Brand,bean.getBrand());
+                mContext.startActivity(intent);
             }
         });
         holder.order_btn.setOnClickListener(new View.OnClickListener() {

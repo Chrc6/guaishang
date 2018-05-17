@@ -52,6 +52,7 @@ import com.houwei.guaishang.activity.ChatEaseActivity;
 import com.houwei.guaishang.activity.Constant;
 import com.houwei.guaishang.activity.GroupDetailsActivity;
 import com.houwei.guaishang.activity.HisRootActivity;
+import com.houwei.guaishang.bean.LocationBean;
 import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.database.entity.ChatInfoData;
 import com.houwei.guaishang.easemob.EaseChatExtendMenu;
@@ -68,6 +69,8 @@ import com.houwei.guaishang.easemob.EaseVoiceRecorderView;
 import com.houwei.guaishang.layout.MenuTwoButtonDialog;
 import com.houwei.guaishang.layout.SureOrCancelDialog;
 import com.houwei.guaishang.manager.FaceManager;
+import com.houwei.guaishang.manager.MyLocationManager;
+import com.houwei.guaishang.sp.UserUtil;
 import com.houwei.guaishang.sql.ChatBindInfoDBHelper;
 import com.houwei.guaishang.tools.JsonUtil;
 import com.houwei.guaishang.tools.ToastUtils;
@@ -86,7 +89,7 @@ import io.reactivex.functions.Consumer;
  * 聊天页的fragment
  */
 
-public class ChatFragment extends BaseFragment implements EMEventListener {
+public class ChatFragment extends BaseFragment implements EMEventListener ,MyLocationManager.LocationListener {
     protected static final int REQUEST_CODE_MAP = 1;
     protected static final int REQUEST_CODE_CAMERA = 2;
     protected static final int REQUEST_CODE_LOCAL = 3;
@@ -198,31 +201,43 @@ public class ChatFragment extends BaseFragment implements EMEventListener {
      * 绑定头部订单信息的控件
      */
     private RelativeLayout VChatBindGp;
+    private ChatManager mManager;
     private void initChatBindInfo() {
         VChatBindGp = (RelativeLayout)rootView.findViewById(R.id.edit_char_info_gp);
         //单聊初始化   群聊不初始化
-        if (chatType != EaseConstant.CHATTYPE_SINGLE  || !chatInfo.isShowPriceInfo()) {
+        if (chatType != EaseConstant.CHATTYPE_SINGLE ) {
             VChatBindGp.setVisibility(View.GONE);
             return;
         }
-        VChatBindGp.setVisibility(View.VISIBLE);
-        ChatInfoData data = ChatBindInfoDBHelper.g().queryByKey(chatInfo.getHisUserID());
-        if (data == null){
-            mobile = chatInfo.getMobile();
-            sure.setVisibility(View.VISIBLE);
-            editPrice.setEnabled(true);
-            editTime.setEnabled(true);
+        if (mManager == null){
+            mManager = new ChatManager(getActivity());
+        }
+        final OrderInfoResponse response = mManager.queryOffer(chatInfo.getCid(), chatInfo.getSid(), chatInfo.getOrderid());
+        if (response== null){
+            VChatBindGp.setVisibility(View.GONE);
+            return;
         }else {
-            if (TextUtils.isEmpty(data.getMobile()) && TextUtils.isEmpty(chatInfo.getMobile())){
-                VChatBindGp.setVisibility(View.GONE);
-                return;
+            VChatBindGp.setVisibility(View.VISIBLE);
+            //如果查询结果是 已报价且 发单方不是本人 则 处理成 打款样式
+            if (response.isOfferd() && chatInfo.getSid().equals(UserUtil.getUserInfo().getUserId())) {
+                sure.setVisibility(View.VISIBLE);
+                sure.setText("打款订货");
+                editPrice.setEnabled(false);
+                editTime.setEnabled(false);
+                editPrice.setText(response.getPrice());
+                editTime.setText(response.getCircle());
+            }else if (response.isOfferd()){
+                //查询结果已报价 处理成无按钮样式
+                sure.setText("已报价");
+                editPrice.setEnabled(false);
+                editTime.setEnabled(false);
+                editPrice.setText(response.getPrice());
+                editTime.setText(response.getCircle());
+            }else {
+                sure.setVisibility(View.VISIBLE);
+                editPrice.setEnabled(true);
+                editTime.setEnabled(true);
             }
-            mobile = data.getMobile();
-            sure.setVisibility(View.GONE);
-            editPrice.setEnabled(false);
-            editTime.setEnabled(false);
-            editPrice.setText(data.getPrice());
-            editTime.setText(data.getTime());
         }
 
         if (rxPermissions == null){
@@ -254,19 +269,30 @@ public class ChatFragment extends BaseFragment implements EMEventListener {
         sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(editPrice.getText().toString())){
-                    ToastUtils.toastForShort(getActivity(),"输入的价格不能为空");
-                    return;
-                }
-                if (TextUtils.isEmpty(editTime.getText().toString())){
-                    ToastUtils.toastForShort(getActivity(),"输入的交付日期不能为空");
-                    return;
-                }
-                ChatBindInfoDBHelper.g().add(chatInfo.getHisUserID(),editPrice.getText().toString(),editTime.getText().toString(),chatInfo.getMobile());
 
-                editPrice.setEnabled(false);
-                editTime.setEnabled(false);
-                sure.setVisibility(View.GONE);
+                if (response.isOfferd() && chatInfo.getSid().equals(UserUtil.getUserInfo().getUserId())) {
+                        //打款订货
+                    mManager.remit(chatInfo.getBrand(),editPrice.getText().toString(),chatInfo.getOrderid(),chatInfo.getSid(),
+                            chatInfo.getCid(),chatInfo.getHisRealName(),chatInfo.getBank(),chatInfo.getBankNum());
+
+                } else {
+                    if (TextUtils.isEmpty(editPrice.getText().toString())) {
+                        ToastUtils.toastForShort(getActivity(), "输入的价格不能为空");
+                        return;
+                    }
+                    if (TextUtils.isEmpty(editTime.getText().toString())) {
+                        ToastUtils.toastForShort(getActivity(), "输入的交付日期不能为空");
+                        return;
+                    }
+
+                    mManager.offer(currentLocationBean,editPrice.getText().toString(),
+                            editTime.getText().toString(),chatInfo.getCid(),
+                            chatInfo.getSid(),chatInfo.getOrderid());
+
+                    editPrice.setEnabled(false);
+                    editTime.setEnabled(false);
+                    sure.setVisibility(View.GONE);
+                }
             }
         });
     }
@@ -831,6 +857,20 @@ public class ChatFragment extends BaseFragment implements EMEventListener {
         }
         inputMenu.getExtendMenu().notifyDataSetChanged();
     }
+
+
+    private LocationBean currentLocationBean;
+
+    @Override
+    public void onLocationFail() {
+
+    }
+
+    @Override
+    public void onLocationSuccess(LocationBean currentLocationBean) {
+        this.currentLocationBean = currentLocationBean;
+    }
+
     /**
      * 扩展菜单栏item点击事件
      *
