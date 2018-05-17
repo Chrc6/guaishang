@@ -383,6 +383,91 @@ public class HttpUtil {
 		return callback;
 	}
 
+	/* 上传 支付图片至服务器的方法 */
+	public static String uploadPayFile(String actionUrl, File tempPhotoFile, String offer_id)
+			throws Exception {
+		LogUtil.i(actionUrl);
+
+		String end = "\r\n";
+		String twoHyphens = "--";
+		String boundary = UUID.randomUUID().toString();
+		URL url = new URL(actionUrl);
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		/* 允许Input、Output，不使用Cache */
+		con.setDoInput(true);
+		con.setDoOutput(true);
+		con.setUseCaches(false);
+		/* setRequestProperty */
+		con.setRequestProperty("Connection", "Keep-Alive");
+		con.setRequestProperty("Charset", "UTF-8");
+
+		con.setRequestProperty("Content-Type", "multipart/form-data;boundary="
+				+ boundary);
+		/* 设置传送的method=POST */
+		con.setRequestMethod("POST");
+		con.setConnectTimeout(20 * 1000);
+		con.setReadTimeout(20 * 1000);
+		/* 设置DataOutputStream */
+		DataOutputStream ds = new DataOutputStream(con.getOutputStream());
+
+		/* 开始拼接秘钥sig参数，若不需要加密，这一段可以删除 */
+		Map<String, String> paramsMap = new HashMap<String, String>();
+		paramsMap.put("offer_id",offer_id );
+//		paramsMap.put("sig", HttpUtil.getSig(paramsMap));
+		Iterator<String> ite = paramsMap.keySet().iterator();
+		while (ite.hasNext()) {
+			String key = ite.next();
+			String value = paramsMap.get(key);
+			StringBuffer params = new StringBuffer();
+			params.append("--" + boundary + "\r\n");
+			params.append("Content-Disposition: form-data; name=\"" + key
+					+ "\"\r\n\r\n");
+			params.append(value);
+			params.append("\r\n");
+			ds.write(params.toString().getBytes());
+		}
+		/* 秘钥sig参数添加完毕 */
+
+		ds.writeBytes(twoHyphens + boundary + end);
+		ds.writeBytes("Content-Disposition: form-data; "
+				+ "name=\"photo\";filename=\"" + " Content-Type:image/jpeg "
+				+ tempPhotoFile.getName() + "\"" + end);
+		ds.writeBytes(end);
+		/* 取得文件的FileInputStream */
+		FileInputStream fStream = new FileInputStream(tempPhotoFile);
+		/* 设置每次写入1024bytes */
+		int bufferSize = 1024;
+		byte[] buffer = new byte[bufferSize];
+		int length = -1;
+		/* 从文件读取数据至缓冲区 */
+		while ((length = fStream.read(buffer)) != -1) {
+			/* 将资料写入DataOutputStream中 */
+			ds.write(buffer, 0, length);
+		}
+		ds.writeBytes(end);
+		ds.writeBytes(twoHyphens + boundary + twoHyphens + end);
+		/* close streams */
+		fStream.close();
+		ds.flush();
+
+		/* 取得Response内容 */
+		InputStream inputStream = con.getInputStream();
+
+		BufferedInputStream bs = new BufferedInputStream(inputStream);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(bs));
+		int temp = -1;
+		char[] b = new char[1];
+		StringBuilder resultbuffer = new StringBuilder();
+		while ((temp = reader.read(b, 0, b.length)) != -1) {
+			resultbuffer.append(String.valueOf(b));
+		}
+		reader.close();
+		bs.close();
+		String callback = resultbuffer.toString();
+		LogUtil.i(callback);
+		return callback;
+	}
+
 	/**
 	 * 得到sig值 这个方法只给上传图片（upload）接口用
 	 * 

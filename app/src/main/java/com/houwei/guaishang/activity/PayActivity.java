@@ -252,7 +252,7 @@ public class PayActivity extends PayBaseActivity implements View.OnClickListener
 		if (uploadDrawableParam) {
 			//其他三类支付 操作开始执行，目前等待接口
 			//moneyRequire
-//			new Thread(new UpdateStringRun())
+			new Thread(new UpdateStringRun(picPath,"Topic/paymentimg")).start();
 		} else {
 			ToastUtils.toastForShort(this,"请上传转账图片");
 		}
@@ -306,8 +306,8 @@ public class PayActivity extends PayBaseActivity implements View.OnClickListener
 			try {
 				String url = HttpUtil.IP + port;
 				// 如果不是切割的upLoadBitmap就很大,在这里压缩
-				retMap = JsonParser.getStringResponse2(HttpUtil.uploadFile(url,
-						upLoadBitmapFile, getUserID()));
+				retMap = JsonParser.getStringResponse2(HttpUtil.uploadPayFile(url,
+						upLoadBitmapFile, topicId));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
