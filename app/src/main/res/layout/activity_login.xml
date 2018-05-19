@@ -51,7 +51,6 @@
             android:layout_height="31dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginLeft="15dp"
             >
 
             <TextView
@@ -81,7 +80,6 @@
             android:layout_height="31dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginLeft="15dp"
             android:layout_marginTop="@dimen/dp_10"
             >
 
@@ -157,20 +155,23 @@
             >
             <ImageView
                 android:id="@+id/image_wechat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitCenter"
                 android:background="@drawable/share_weixin"/>
             <ImageView
                 android:id="@+id/image_qq"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitCenter"
                 android:layout_marginLeft="32dp"
                 android:background="@drawable/share_qq"/>
             <ImageView
                 android:id="@+id/image_weibo"
                 android:layout_marginLeft="32dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitCenter"
                 android:background="@drawable/share_weibo"/>
         </LinearLayout>
     </RelativeLayout>
