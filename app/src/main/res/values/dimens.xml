@@ -6,7 +6,7 @@
     <dimen name="radius_corner">4dp</dimen>
     <dimen name="circle_corner">20dp</dimen>
     <dimen name="photo_listitem_size">40dp</dimen>
-      <dimen name="photo_chat_avatar_size">43dp</dimen>
+      <dimen name="photo_chat_avatar_size">33dp</dimen>
        <dimen name="photo_listitem_large_size">55dp</dimen>
          <dimen name="photo_grid_size">80dp</dimen>
         <dimen name="face_tiny_item_size">16dp</dimen>

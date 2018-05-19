@@ -81,8 +81,8 @@ public class MineMoneyLogRootActivity extends BaseActivity implements
 		ViewPagerTabsView mFixedTabs = (ViewPagerTabsView) findViewById(R.id.fixed_tabs);
 		mFixedTabs.setOnPageSelectedListener(this);
 		ViewPagerTabsAdapter mFixedTabsAdapter = new FixedTabsAdapter(MineMoneyLogRootActivity.this);
-		mFixedTabs.setAdapter(mFixedTabsAdapter);
-		mFixedTabs.setViewPager(mPager);
+		mFixedTabs.setAdapter(mFixedTabsAdapter,false);
+		mFixedTabs.setViewPager(mPager,false);
 		
 	}
 

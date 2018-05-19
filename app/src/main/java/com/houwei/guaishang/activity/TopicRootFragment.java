@@ -170,8 +170,8 @@ public class TopicRootFragment extends BaseFragment implements PageSelectedListe
 		ViewPagerTabsView mFixedTabs = (ViewPagerTabsView) getView().findViewById(R.id.fixed_tabs);
 		mFixedTabs.setOnPageSelectedListener(this);
 		ViewPagerTabsAdapter mFixedTabsAdapter = new FixedTabsAdapter(getActivity());
-		mFixedTabs.setAdapter(mFixedTabsAdapter);
-		mFixedTabs.setViewPager(mPager);
+		mFixedTabs.setAdapter(mFixedTabsAdapter,true);
+		mFixedTabs.setViewPager(mPager,true);
 
 		videoLayout1.refresh();
 

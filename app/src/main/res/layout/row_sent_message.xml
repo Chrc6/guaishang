@@ -24,6 +24,7 @@
             android:layout_height="@dimen/photo_chat_avatar_size"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:scaleType="fitXY"
             android:layout_marginRight="@dimen/margin_chat_activity"
             android:src="@drawable/user_photo" />
 

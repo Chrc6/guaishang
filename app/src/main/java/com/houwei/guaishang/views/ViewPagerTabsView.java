@@ -84,21 +84,33 @@ public class ViewPagerTabsView extends LinearLayout implements ViewPager.OnPageC
 	 *          data backing this FixedTabsView and for producing a view to
 	 *          represent an item in that data set.
 	 */
-	public void setAdapter(ViewPagerTabsAdapter adapter) {
+	public void setAdapter(ViewPagerTabsAdapter adapter,boolean init) {
 		this.mAdapter = adapter;
 		
-		if (mPager != null && mAdapter != null) initTabs();
+		if (mPager != null && mAdapter != null) {
+			if (init) {
+				initTabs();
+			}else {
+				initMyView();
+			}
+		}
 	}
 	
 	/**
 	 * Binds the {@link ViewPager} to this View
 	 * 
 	 */
-	public void setViewPager(ViewPager pager) {
+	public void setViewPager(ViewPager pager,boolean init) {
 		this.mPager = pager;
 		mPager.setOnPageChangeListener(this);
 		
-		if (mPager != null && mAdapter != null) initTabs();
+		if (mPager != null && mAdapter != null) {
+			if (init) {
+				initTabs();
+			}else {
+				initMyView();
+			}
+		}
 	}
 	
 	/**
@@ -141,7 +153,40 @@ public class ViewPagerTabsView extends LinearLayout implements ViewPager.OnPageC
 		
 		selectTab(mPager.getCurrentItem());
 	}
-	
+
+	private void initMyView(){
+		removeAllViews();
+		mTabs.clear();
+
+		if (mAdapter == null) return;
+
+		for (int i = 0; i < mPager.getAdapter().getCount(); i++) {
+
+			final int index = i;
+			selectTab(mPager.getCurrentItem());
+			View tab = mAdapter.getView(i);
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, tanHeight == 1?LayoutParams.MATCH_PARENT:LayoutParams.WRAP_CONTENT, 1.0f);
+			int margin = DensityUtil.dip2px(getContext(), 8);
+			params.setMargins(margin*4,margin,margin*4,margin);
+			tab.setLayoutParams(params);
+			this.addView(tab);
+
+			mTabs.add(tab);
+			if (i != mPager.getAdapter().getCount() - 1) {
+				this.addView(getSeparator());
+			}
+
+			tab.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					mPager.setCurrentItem(index);
+				}
+			});
+
+		}
+
+
+	}
 	@Override
 	public void onPageScrollStateChanged(int state) {
 		if(onPageSelectedListener!=null){
