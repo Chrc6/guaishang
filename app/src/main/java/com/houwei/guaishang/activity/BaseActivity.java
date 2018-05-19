@@ -162,10 +162,10 @@ public  class BaseActivity extends FragmentActivity {
 	public void jumpToHisInfoActivity( String UserID,
 			String realName,AvatarBean headImageBean) {
 
-		 Intent i = new Intent(this, HisRootActivity.class);
-		i.putExtra(HisRootActivity.HIS_AVATAR_KEY, headImageBean);
+		 Intent i = new Intent(this, HomePageActivity.class);
+//		i.putExtra(HisRootActivity.HIS_AVATAR_KEY, headImageBean);
 		i.putExtra(HisRootActivity.HIS_ID_KEY, UserID);
-		i.putExtra(HisRootActivity.HIS_NAME_KEY, realName);
+//		i.putExtra(HisRootActivity.HIS_NAME_KEY, realName);
 		startActivity(i);
 	}
 	

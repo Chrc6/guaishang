@@ -17,6 +17,7 @@ import com.houwei.guaishang.bean.FloatResponse;
 import com.houwei.guaishang.bean.FriendShipListResponse;
 import com.houwei.guaishang.bean.GroupDetailResponse;
 import com.houwei.guaishang.bean.HisInfoResponse;
+import com.houwei.guaishang.bean.HomeInfoResponse;
 import com.houwei.guaishang.bean.IntResponse;
 import com.houwei.guaishang.bean.MissionProgressResponse;
 import com.houwei.guaishang.bean.MissionlogListResponse;
@@ -159,7 +160,10 @@ public class JsonParser {
 		HisInfoResponse response = JsonUtil.getObject(json, HisInfoResponse.class);
 		return response;
 	}
-	
+	public static HomeInfoResponse getHomeInfoResponse(String json) {
+		HomeInfoResponse response = JsonUtil.getObject(json, HomeInfoResponse.class);
+		return response;
+	}
 	public static NearMemberListResponse getNearMemberListResponse(String json) {
 		NearMemberListResponse response = JsonUtil.getObject(json, NearMemberListResponse.class);
 		return response;

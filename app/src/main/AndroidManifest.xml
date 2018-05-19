@@ -142,6 +142,7 @@
         <activity
             android:name=".activity.AlbumActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.HomePageActivity"/>
         <activity
             android:name=".activity.MineTakeMoneyActivity"
             android:screenOrientation="portrait" />
