@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:id="@+id/container"
     >
 
     <ImageView
         android:id="@+id/phone_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="33dp"
+        android:layout_height="30dp"
         android:src="@mipmap/phone"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
         />
 
+    <TextView
+        android:id="@+id/order_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_toRightOf="@+id/phone_et"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bg_chat_order"
+        android:layout_marginLeft="11dp"
+        android:paddingBottom="@dimen/dp5"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingTop="@dimen/dp5"
+        android:text="交货期7天，报价222元"
+        android:textColor="#000000"
+        android:textSize="10sp"></TextView>
+
     <LinearLayout
+        android:id="@+id/order_info_gp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -26,7 +44,10 @@
         android:paddingTop="@dimen/dp5"
         android:paddingBottom="@dimen/dp5"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:visibility="gone"
+        >
         <EditText
             android:id="@+id/edit_price"
             android:layout_width="wrap_content"
@@ -36,6 +57,7 @@
             android:textSize="13sp"
             android:layout_marginRight="@dimen/dp5"
             android:background="@null"
+            android:inputType="number"
             />
         <View
             android:layout_width="1dp"
@@ -51,6 +73,7 @@
             android:textSize="13sp"
             android:layout_marginLeft="@dimen/dp5"
             android:background="@null"
+            android:inputType="number"
             />
     </LinearLayout>
 
@@ -61,10 +84,11 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:text="提交报价"
-        android:layout_marginRight="15dp"
-        android:textColor="@color/white"
+        android:textColor="#cfd4d8"
         android:textSize="@dimen/sp_14"
+        android:layout_marginRight="15dp"
         android:padding="@dimen/dp5"
+        android:layout_marginTop="15dp"
         android:background="@drawable/bg_rectangle_black"
         />
 

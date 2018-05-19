@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -27,14 +28,7 @@ import com.luck.picture.lib.permissions.RxPermissions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.functions.Predicate;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by ${lei} on 2018/5/17.
@@ -51,11 +45,16 @@ public class ChatHeadHolder extends BaseHolder<OrderEntity> {
     TextView sure;
     @BindView(R.id.container)
     RelativeLayout container;
+    @BindView(R.id.order_tv)
+    TextView orderTv;
+    @BindView(R.id.order_info_gp)
+    LinearLayout orderInfoGp;
 
     private ChatManager mManager;
     private ChatInfo chatInfo;
     private RxPermissions rxPermissions;
     private LocationBean currentLocationBean;
+
     public ChatHeadHolder(Context context) {
         super(context);
     }
@@ -69,7 +68,7 @@ public class ChatHeadHolder extends BaseHolder<OrderEntity> {
     @Override
     protected View initView(Context context) {
         mRootView = LayoutInflater.from(context).inflate(R.layout.ease_fragment_top, null, false);
-        ButterKnife.bind(this,mRootView);
+        ButterKnife.bind(this, mRootView);
         if (mManager == null) {
             mManager = new ChatManager(context);
         }
@@ -78,7 +77,7 @@ public class ChatHeadHolder extends BaseHolder<OrderEntity> {
 
     @Override
     protected void updateUI(final Context context, final OrderEntity data) {
-        if (data == null){
+        if (data == null) {
             container.setVisibility(View.GONE);
             return;
         }
@@ -86,26 +85,31 @@ public class ChatHeadHolder extends BaseHolder<OrderEntity> {
 
         if (data.getIsOfferid().equals("1") && chatInfo.getSid().equals(UserUtil.getUserInfo().getUserId())) {
             sure.setVisibility(View.VISIBLE);
+            orderTv.setVisibility(View.VISIBLE);
+            orderInfoGp.setVisibility(View.GONE);
             sure.setText("打款订货");
             editPrice.setEnabled(false);
             editTime.setEnabled(false);
-            editPrice.setText(data.getData().get(0).getPrice());
-            editTime.setText(data.getData().get(0).getCycle());
-        }else if (data.getIsOfferid().equals("1")){
+            orderTv.setText("交货期"+data.getData().get(0).getCycle()+"天 报价"+data.getData().get(0).getPrice()+"元");
+        } else if (data.getIsOfferid().equals("1")) {
             //查询结果已报价 处理成无按钮样式
+            orderTv.setVisibility(View.GONE);
+            orderInfoGp.setVisibility(View.VISIBLE);
             sure.setText("已报价");
             editPrice.setEnabled(false);
             editTime.setEnabled(false);
-            editPrice.setText(data.getData().get(0).getPrice());
-            editTime.setText(data.getData().get(0).getCycle());
-        }else {
+            editPrice.setText(data.getData().get(0).getPrice()+"元");
+            editTime.setText("交期"+data.getData().get(0).getCycle()+"天");
+        } else {
             sure.setVisibility(View.VISIBLE);
+            orderTv.setVisibility(View.GONE);
+            orderInfoGp.setVisibility(View.VISIBLE);
             editPrice.setEnabled(true);
             editTime.setEnabled(true);
         }
 
 
-        if (rxPermissions == null){
+        if (rxPermissions == null) {
             rxPermissions = new RxPermissions((Activity) context);
         }
         phoneEt.setOnClickListener(new View.OnClickListener() {
@@ -117,8 +121,8 @@ public class ChatHeadHolder extends BaseHolder<OrderEntity> {
                             public void accept(@io.reactivex.annotations.NonNull Boolean aBoolean) throws Exception {
                                 if (aBoolean) {
                                     //用intent启动拨打电话
-                                    if(TextUtils.isEmpty(chatInfo.getMobile())){
-                                        ToastUtils.toastForShort(context,"电话号码不能为空");
+                                    if (TextUtils.isEmpty(chatInfo.getMobile())) {
+                                        ToastUtils.toastForShort(context, "电话号码不能为空");
                                         return;
                                     }
                                     Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + chatInfo.getMobile()));
@@ -137,8 +141,8 @@ public class ChatHeadHolder extends BaseHolder<OrderEntity> {
 
                 if (data.getIsOfferid().equals("1") && chatInfo.getSid().equals(UserUtil.getUserInfo().getUserId())) {
                     //打款订货
-                    mManager.remit(chatInfo.getBrand(),editPrice.getText().toString(),chatInfo.getOrderid(),chatInfo.getSid(),
-                            chatInfo.getCid(),chatInfo.getHisRealName(),chatInfo.getBank(),chatInfo.getBankNum());
+                    mManager.remit(chatInfo.getBrand(), data.getData().get(0).getPrice(), chatInfo.getOrderid(), chatInfo.getSid(),
+                            chatInfo.getCid(), chatInfo.getHisRealName(), chatInfo.getBank(), chatInfo.getBankNum());
 
                 } else {
                     if (TextUtils.isEmpty(editPrice.getText().toString())) {
@@ -150,9 +154,9 @@ public class ChatHeadHolder extends BaseHolder<OrderEntity> {
                         return;
                     }
 
-                    mManager.offer(currentLocationBean,editPrice.getText().toString(),
-                            editTime.getText().toString(),chatInfo.getCid(),
-                            chatInfo.getSid(),chatInfo.getOrderid());
+                    mManager.offer(currentLocationBean, editPrice.getText().toString(),
+                            editTime.getText().toString(), chatInfo.getCid(),
+                            chatInfo.getSid(), chatInfo.getOrderid());
 
                     editPrice.setEnabled(false);
                     editTime.setEnabled(false);
@@ -162,8 +166,6 @@ public class ChatHeadHolder extends BaseHolder<OrderEntity> {
         });
 
     }
-
-
 
 
     public void sendReq() {
