@@ -524,32 +524,32 @@ public class TopicAdapter extends BaseAdapter {
 //            }
 //        });
 
-        holder.content.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                if(TextUtils.equals(mContext.getUserID(),memberId)){
-                    Intent intent=new Intent(mContext,TopicDetailMeActivity.class);
-                    intent.putExtra("TopicBean", bean);
-                    intent.putExtra("position", 0);
-                    mContext.startActivityForResult(intent, 0);
-                    return;
-                }
-                Intent i = new Intent();
-                if(jumpType==0){
-                    i.setClass(mContext, TopicDetailActivity.class);
-                }else{
-                    i.setClass(mContext, TopicDetailMeActivity.class);
-
-                }
-                i.putExtra("TopicBean", bean);
-                i.putExtra("position", 0);
-                i.putExtra("needPay", Integer.valueOf(bean.getIsOffer()));
-                mContext.startActivityForResult(i, 0);
-
-            }
-        });
+//        holder.content.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+//                if(TextUtils.equals(mContext.getUserID(),memberId)){
+//                    Intent intent=new Intent(mContext,TopicDetailMeActivity.class);
+//                    intent.putExtra("TopicBean", bean);
+//                    intent.putExtra("position", 0);
+//                    mContext.startActivityForResult(intent, 0);
+//                    return;
+//                }
+//                Intent i = new Intent();
+//                if(jumpType==0){
+//                    i.setClass(mContext, TopicDetailActivity.class);
+//                }else{
+//                    i.setClass(mContext, TopicDetailMeActivity.class);
+//
+//                }
+//                i.putExtra("TopicBean", bean);
+//                i.putExtra("position", 0);
+//                i.putExtra("needPay", Integer.valueOf(bean.getIsOffer()));
+//                mContext.startActivityForResult(i, 0);
+//
+//            }
+//        });
 
         holder.imgTitle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -561,33 +561,33 @@ public class TopicAdapter extends BaseAdapter {
                 mContext.startActivity(intent);
             }
         });
-        convertView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                //Log.i("WXCH","bean:"+bean);
-                if(TextUtils.equals(mContext.getUserID(),memberId)){
-                    Intent intent=new Intent(mContext,TopicDetailMeActivity.class);
-                    intent.putExtra("TopicBean", bean);
-                    intent.putExtra("position", 0);
-                    mContext.startActivityForResult(intent, 0);
-                    return;
-                }
-                Intent i = new Intent();
-                if(jumpType==0){
-                    i.setClass(mContext, TopicDetailActivity.class);
-                }else{
-                    i.setClass(mContext, TopicDetailMeActivity.class);
-
-                }
-                i.putExtra("TopicBean", bean);
-                i.putExtra("position", 0);
-                i.putExtra("needPay", Integer.valueOf(bean.getIsOffer()));
-                mContext.startActivityForResult(i, 0);
-
-            }
-        });
+//        convertView.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+//                //Log.i("WXCH","bean:"+bean);
+//                if(TextUtils.equals(mContext.getUserID(),memberId)){
+//                    Intent intent=new Intent(mContext,TopicDetailMeActivity.class);
+//                    intent.putExtra("TopicBean", bean);
+//                    intent.putExtra("position", 0);
+//                    mContext.startActivityForResult(intent, 0);
+//                    return;
+//                }
+//                Intent i = new Intent();
+//                if(jumpType==0){
+//                    i.setClass(mContext, TopicDetailActivity.class);
+//                }else{
+//                    i.setClass(mContext, TopicDetailMeActivity.class);
+//
+//                }
+//                i.putExtra("TopicBean", bean);
+//                i.putExtra("position", 0);
+//                i.putExtra("needPay", Integer.valueOf(bean.getIsOffer()));
+//                mContext.startActivityForResult(i, 0);
+//
+//            }
+//        });
         return convertView;
     }
 
