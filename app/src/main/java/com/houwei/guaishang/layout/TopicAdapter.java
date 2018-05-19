@@ -43,6 +43,7 @@ import com.houwei.guaishang.bean.PraiseBean;
 import com.houwei.guaishang.bean.TopicBean;
 import com.houwei.guaishang.easemob.EaseConstant;
 import com.houwei.guaishang.easemob.PreferenceManager;
+import com.houwei.guaishang.event.UpdateMoneyEvent;
 import com.houwei.guaishang.layout.PictureGridLayout.RedPacketClickListener;
 import com.houwei.guaishang.manager.FaceManager;
 import com.houwei.guaishang.manager.ITopicApplication;
@@ -67,6 +68,8 @@ import com.lzy.okgo.model.Response;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -353,18 +356,21 @@ public class TopicAdapter extends BaseAdapter {
                     @Override
                     public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
                         Log.i("onComplete","platform="+platform.getName()+" 分享成功");
-                        //Message message=new Message();
-                        //Bundle bundle=new Bundle();
-                        //bundle.putString("memberId", bean.getMemberId());
-                        //message.setData(bundle);
-                        //message.what=1;
-                        //holder.share_count_btn.setText((bean.getShareNum()+1)+"");
-                        //notifyDataSetChanged();
+                        OkGo.<String>post(HttpUtil.IP + "user/modify")
+                                .params("userid", UserUtil.getUserInfo().getUserId())
+                                .params("event", "is_share")
+                                .params("value", "1")
+                                .execute(new StringCallback() {
+                                    @Override
+                                    public void onSuccess(Response<String> response) {
 
-                        //HashMap<String, String> data = new HashMap<String, String>();
-                        //data.put("id", msg.getData().getString("memberId"));
-                        //String s = HttpUtil.postMsg(HttpUtil.getData(data), HttpUtil.IP + "mission/Sharing/");
-                        //Log.i("WXCH","SSSSSS:" + s);
+                                        EventBus.getDefault().post(new UpdateMoneyEvent());
+                                    }
+                                    @Override
+                                    public void onError(Response<String> response) {
+                                        super.onError(response);
+                                    }
+                                });
                     }
 
                     @Override
