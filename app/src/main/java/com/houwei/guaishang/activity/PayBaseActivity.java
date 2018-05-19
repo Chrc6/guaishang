@@ -31,7 +31,7 @@ import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.JsonParser;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
-public class PayBaseActivity extends BaseActivity implements CheckMoneyListener {
+public class PayBaseActivity extends BaseActivity implements CheckMoneyListener, View.OnClickListener {
 
 	private static final int NETWORK_IDEAPAY = 0x96;
 
@@ -41,8 +41,8 @@ public class PayBaseActivity extends BaseActivity implements CheckMoneyListener 
 	protected static final int PAY_TYPE_CUSTOMER = 3;
 	protected static final int PAY_TYPE_OFFLINE = 4;
 
-	private CheckBox alipay_cb, weixin_cb,dongdon_cb,customer_cb,offline_cb;
-	private LinearLayout alipay_ll, weixin_ll,dongdon_ll,customer_ll,offline_ll;
+	protected CheckBox alipay_cb, weixin_cb,dongdon_cb,customer_cb,offline_cb;
+	protected LinearLayout alipay_ll, weixin_ll,dongdon_ll,customer_ll,offline_ll;
 
 	protected int payType = 0;
 
@@ -170,78 +170,26 @@ public class PayBaseActivity extends BaseActivity implements CheckMoneyListener 
 
 	}
 
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+
+		}
+	}
+
 	
 	protected void initListener() {
-		// TODO Auto-generated method stub
-		alipay_ll.setOnClickListener(new View.OnClickListener() {
+		alipay_ll.setOnClickListener(this);
+		weixin_ll.setOnClickListener(this);
+		dongdon_ll.setOnClickListener(this);
+		customer_ll.setOnClickListener(this);
+		offline_ll.setOnClickListener(this);
 
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				alipay_cb.setChecked(true);
-				weixin_cb.setChecked(false);
-				dongdon_cb.setChecked(false);
-				customer_cb.setChecked(false);
-				offline_cb.setChecked(false);
-				payType = PAY_TYPE_ALI;
-			}
-		});
-
-		weixin_ll.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				weixin_cb.setChecked(true);
-				alipay_cb.setChecked(false);
-				dongdon_cb.setChecked(false);
-				customer_cb.setChecked(false);
-				offline_cb.setChecked(false);
-				payType = PAY_TYPE_WEIXIN;
-			}
-		});
-
-		dongdon_ll.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				dongdon_cb.setChecked(true);
-				alipay_cb.setChecked(false);
-				weixin_cb.setChecked(false);
-				customer_cb.setChecked(false);
-				offline_cb.setChecked(false);
-				payType = PAY_TYPE_DONGDONG;
-			}
-		});
-
-		customer_ll.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				customer_cb.setChecked(true);
-				alipay_cb.setChecked(false);
-				dongdon_cb.setChecked(false);
-				weixin_cb.setChecked(false);
-				offline_cb.setChecked(false);
-				payType = PAY_TYPE_CUSTOMER;
-			}
-		});
-
-		offline_ll.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				offline_cb.setChecked(true);
-				alipay_cb.setChecked(false);
-				dongdon_cb.setChecked(false);
-				customer_cb.setChecked(false);
-				weixin_cb.setChecked(false);
-				payType = PAY_TYPE_OFFLINE;
-			}
-		});
+		alipay_cb.setOnClickListener(this);
+		weixin_cb.setOnClickListener(this);
+		dongdon_cb.setOnClickListener(this);
+		customer_cb.setOnClickListener(this);
+		offline_cb.setOnClickListener(this);
 	}
 
 	//开始支付

@@ -215,20 +215,63 @@ public class PayActivity extends PayBaseActivity implements View.OnClickListener
 
 	@Override
 	public void onClick(View v) {
-		int type =  PAY_TYPE_DONGDONG;
 		switch (v.getId()) {
 			case R.id.iv_dongdong:
-				type = PAY_TYPE_DONGDONG;
+				BitmapSelectorUtil.gotoPic(PayActivity.this, 1, 3, false, false, PAY_TYPE_DONGDONG);
 				break;
 			case R.id.iv_customer:
-				type = PAY_TYPE_CUSTOMER;
+				BitmapSelectorUtil.gotoPic(PayActivity.this, 1, 3, false, false, PAY_TYPE_CUSTOMER);
 				break;
 			case R.id.iv_offline:
-				type = PAY_TYPE_OFFLINE;
+				BitmapSelectorUtil.gotoPic(PayActivity.this, 1, 3, false, false, PAY_TYPE_OFFLINE);
 				break;
-
+			case R.id.alipay_cb:
+			case R.id.ll_ali:
+				alipay_cb.setChecked(true);
+				weixin_cb.setChecked(false);
+				dongdon_cb.setChecked(false);
+				customer_cb.setChecked(false);
+				offline_cb.setChecked(false);
+				payType = PAY_TYPE_ALI;
+				break;
+			case R.id.weixin_cb:
+			case R.id.ll_weixin:
+				weixin_cb.setChecked(true);
+				alipay_cb.setChecked(false);
+				dongdon_cb.setChecked(false);
+				customer_cb.setChecked(false);
+				offline_cb.setChecked(false);
+				payType = PAY_TYPE_WEIXIN;
+				break;
+			case R.id.cb_company:
+			case R.id.ll_dongdong:
+				dongdon_cb.setChecked(true);
+				alipay_cb.setChecked(false);
+				weixin_cb.setChecked(false);
+				customer_cb.setChecked(false);
+				offline_cb.setChecked(false);
+				payType = PAY_TYPE_DONGDONG;
+				break;
+			case R.id.cb_customer:
+			case R.id.ll_customer:
+				customer_cb.setChecked(true);
+				alipay_cb.setChecked(false);
+				dongdon_cb.setChecked(false);
+				weixin_cb.setChecked(false);
+				offline_cb.setChecked(false);
+				payType = PAY_TYPE_CUSTOMER;
+				break;
+			case R.id.cb_offline:
+			case R.id.ll_offline:
+				offline_cb.setChecked(true);
+				alipay_cb.setChecked(false);
+				dongdon_cb.setChecked(false);
+				customer_cb.setChecked(false);
+				weixin_cb.setChecked(false);
+				payType = PAY_TYPE_OFFLINE;
+				break;
 		}
-		BitmapSelectorUtil.gotoPic(PayActivity.this, 1, 3, false, false, type);
+
 	}
 
 	@Override
