@@ -158,9 +158,11 @@ public class ChatHeadHolder extends BaseHolder<OrderEntity> {
                             editTime.getText().toString(), chatInfo.getCid(),
                             chatInfo.getSid(), chatInfo.getOrderid());
 
+                    editPrice.setText(editPrice.getText().toString()+"元");
+                    editTime.setText("交期"+editTime.getText().toString()+"天");
                     editPrice.setEnabled(false);
                     editTime.setEnabled(false);
-                    sure.setVisibility(View.GONE);
+                    sure.setText("已报价");
                 }
             }
         });

@@ -9,6 +9,7 @@ import com.houwei.guaishang.bean.LocationBean;
 import com.houwei.guaishang.bean.event.TopicHomeEvent;
 import com.houwei.guaishang.data.Contants;
 import com.houwei.guaishang.huanxin.order.OrderInfoResponse;
+import com.houwei.guaishang.sp.UserUtil;
 import com.houwei.guaishang.tools.DealResult;
 import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.SPUtils;
@@ -74,8 +75,8 @@ public class ChatManager {
 
         OkGo.<String>post(HttpUtil.IP+"topic/rob")
                 .params("order_id",orderid)
-                .params("user_id",cid)
-                .params("offer_id",sid)
+                .params("user_id",sid)
+                .params("offer_id", UserUtil.getUserInfo().getUserId())
                 .params("price",money)
                 .params("cycle",time)
                 .params("address",address)
@@ -96,6 +97,8 @@ public class ChatManager {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
+                        }else {
+                            ToastUtils.toastForShort(context,baseResponse.getMessage());
                         }
                     }
 

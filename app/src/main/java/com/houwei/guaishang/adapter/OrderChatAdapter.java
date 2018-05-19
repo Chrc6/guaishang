@@ -74,7 +74,7 @@ public class OrderChatAdapter extends RecyclerView.Adapter{
             }
             viewHolder.nameTv.setText("抢单人/"+count+"人");
         } else {
-            ViewHolder viewHolder = (ViewHolder) holder;
+            final ViewHolder viewHolder = (ViewHolder) holder;
             final OffersBean.OfferBean offerBean = list.get(position - 1);
             boolean notify = offerBean.isNotify();
             ImageLoader.getInstance().displayImage(offerBean.getAvatar(), viewHolder.headIv);

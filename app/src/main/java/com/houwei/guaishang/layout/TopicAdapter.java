@@ -452,6 +452,7 @@ public class TopicAdapter extends BaseAdapter {
                 intent.putExtra(OrderChatActivity.SID,bean.getMemberId());
                 intent.putExtra(OrderChatActivity.OrderId,bean.getTopicId());
                 intent.putExtra(OrderChatActivity.Brand,bean.getBrand());
+                intent.putExtra(OrderChatActivity.ALONE,false);
                 mContext.startActivity(intent);
             }
 
@@ -464,31 +465,32 @@ public class TopicAdapter extends BaseAdapter {
                 Intent intent = new Intent(mContext, OrderChatActivity.class);
                 ArrayList<OffersBean.OfferBean> tempList = new ArrayList<>();
                 OffersBean.OfferBean  tempBean = new OffersBean.OfferBean();
-                tempBean.setName(UserUtil.getUserInfo().getUserName());
-                tempBean.setMobile(UserUtil.getUserInfo().getMobile());
-                tempBean.setUserid(UserUtil.getUserInfo().getUserId());
-                tempBean.setAvatar(UserUtil.getUserInfo().getAvatar());
+                tempBean.setName(bean.getMemberName());
+                tempBean.setMobile(bean.getMobile());
+                tempBean.setUserid(bean.getMemberId());
+                tempBean.setAvatar(bean.getMemberAvatar().findOriginalUrl());
                 tempList.add(tempBean);
                 intent.putExtra(OrderChatActivity.Parse_List,(Serializable) tempList);
                 intent.putExtra(OrderChatActivity.SID,bean.getMemberId());
                 intent.putExtra(OrderChatActivity.OrderId,bean.getTopicId());
                 intent.putExtra(OrderChatActivity.Brand,bean.getBrand());
+                intent.putExtra(OrderChatActivity.ALONE,true);
                 mContext.startActivity(intent);
             }
         });
-        holder.order_btn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                Log.i("WXCH","userId:"+userId+",getMemberId:"+bean.getMemberId());
-                // TODO Auto-generated method stub
-                if (mContext.checkLogined()) {
-                    if(!bean.getMemberId().equals(mContext.getUserID())){
-                        orderBuyOrNextPage(bean,true);
-                    }
-                }
-            }
-        });
+//        holder.order_btn.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View arg0) {
+//                Log.i("WXCH","userId:"+userId+",getMemberId:"+bean.getMemberId());
+//                // TODO Auto-generated method stub
+//                if (mContext.checkLogined()) {
+//                    if(!bean.getMemberId().equals(mContext.getUserID())){
+//                        orderBuyOrNextPage(bean,true);
+//                    }
+//                }
+//            }
+//        });
 //        if(jumpType!=0){
 //            holder.order_btn.setVisibility(View.INVISIBLE);
 //        }
@@ -597,7 +599,25 @@ public class TopicAdapter extends BaseAdapter {
 //                            OrderBuyDialog.getInstance(mContext)
 //                                    .setData(PreferenceManager.getInstance().getUserCoins(), bean, mContext)
 //                                    .show();
-                            new OrderBuyDialog(mContext, PreferenceManager.getInstance().getUserCoins(), bean).show();
+                            new OrderBuyDialog(mContext, PreferenceManager.getInstance().getUserCoins(), bean, new OrderBuyDialog.FinishCallBack() {
+                                @Override
+                                public void call() {
+                                    Intent intent = new Intent(mContext, OrderChatActivity.class);
+                                    ArrayList<OffersBean.OfferBean> tempList = new ArrayList<>();
+                                    OffersBean.OfferBean  tempBean = new OffersBean.OfferBean();
+                                    tempBean.setName(bean.getMemberName());
+                                    tempBean.setMobile(bean.getMobile());
+                                    tempBean.setUserid(bean.getMemberId());
+                                    tempBean.setAvatar(bean.getMemberAvatar().findOriginalUrl());
+                                    tempList.add(tempBean);
+                                    intent.putExtra(OrderChatActivity.Parse_List,(Serializable) tempList);
+                                    intent.putExtra(OrderChatActivity.SID,bean.getMemberId());
+                                    intent.putExtra(OrderChatActivity.OrderId,bean.getTopicId());
+                                    intent.putExtra(OrderChatActivity.Brand,bean.getBrand());
+                                    intent.putExtra(OrderChatActivity.ALONE,true);
+                                    mContext.startActivity(intent);
+                                }
+                            }).show();
                         }else if (fromBtnClick){
                             ToastUtils.toastForShort(mContext, "此单您已抢过");
                         } else {

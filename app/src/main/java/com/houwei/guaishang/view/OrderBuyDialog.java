@@ -60,12 +60,13 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
         mContext = context;
     }
 
-    public OrderBuyDialog(BaseActivity context, float money, TopicBean bean) {
+    public OrderBuyDialog(BaseActivity context, float money, TopicBean bean,FinishCallBack callBack) {
         super(context,R.style.OrderBugDialog);
         mContext = context;
         activity = context;
         this.money = money;
         this.bean = bean;
+        this.callBack = callBack;
     }
 
     public static OrderBuyDialog getInstance(Context context) {
@@ -79,9 +80,9 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
         return instance;
     };
 
-    public OrderBuyDialog setData(float money,TopicBean bean,BaseActivity activity) {
+    public OrderBuyDialog setData(float money,TopicBean bean,BaseActivity activity,FinishCallBack callBack) {
 //        return instance;
-        return new OrderBuyDialog(activity,money,bean);
+        return new OrderBuyDialog(activity,money,bean,callBack);
     }
 
     @Override
@@ -133,11 +134,14 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
                 if (money < 1) {
                     goToRechargeActivity();
                 } else {
-                    Intent i=new Intent(activity, TopicDetailActivity.class);
-                    i.putExtra("TopicBean", bean);
-                    i.putExtra("position", 0);
-                    i.putExtra("needPay", Integer.valueOf(bean.getIsOffer()));
-                    activity.startActivity(i);
+                    if (callBack != null){
+                        callBack.call();
+                    }
+//                    Intent i=new Intent(activity, TopicDetailActivity.class);
+//                    i.putExtra("TopicBean", bean);
+//                    i.putExtra("position", 0);
+//                    i.putExtra("needPay", Integer.valueOf(bean.getIsOffer()));
+//                    activity.startActivity(i);
 //                    Intent i = new Intent();
 //                    i.putExtra("TopicBean", bean);
 //                    i.putExtra("position", 0);
@@ -160,6 +164,9 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
                                 .execute(new StringCallback() {
                                     @Override
                                     public void onSuccess(Response<String> response) {
+                                        if (callBack != null){
+                                            callBack.call();
+                                        }
                                         EventBus.getDefault().post(new UpdateMoneyEvent());
                                     }
                                     @Override
@@ -203,5 +210,10 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
 //        if (instance != null && !instance.isShowing() && activity != null) {
             super.show();
 //        }
+    }
+
+    private FinishCallBack callBack;
+    public interface  FinishCallBack{
+        void call();
     }
 }

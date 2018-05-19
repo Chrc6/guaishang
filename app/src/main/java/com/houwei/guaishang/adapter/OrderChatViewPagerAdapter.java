@@ -10,6 +10,7 @@ import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.easemob.EaseConstant;
 import com.houwei.guaishang.huanxin.ChatFragment;
 import com.houwei.guaishang.huanxin.ChatInfo;
+import com.houwei.guaishang.sp.UserUtil;
 
 import java.util.List;
 
@@ -25,17 +26,19 @@ public class OrderChatViewPagerAdapter extends FragmentPagerAdapter {
     private String sid;
     private String orderId;
     private String brand;
+    private boolean alone;
     public OrderChatViewPagerAdapter(FragmentManager fm, List<OffersBean.OfferBean> offerPriceList) {
         super(fm);
         this.userBeans = offerPriceList;
     }
 
-    public OrderChatViewPagerAdapter(FragmentManager fm, List<OffersBean.OfferBean> userBeans, String sid, String orderId, String brand) {
+    public OrderChatViewPagerAdapter(FragmentManager fm, List<OffersBean.OfferBean> userBeans, String sid, String orderId, String brand,boolean alone) {
         super(fm);
         this.userBeans = userBeans;
         this.sid = sid;
         this.orderId = orderId;
         this.brand = brand;
+        this.alone = alone;
     }
 
     @Override
@@ -52,7 +55,11 @@ public class OrderChatViewPagerAdapter extends FragmentPagerAdapter {
         chatInfo.setHeadImageBean(avatarBean);
         chatInfo.setHideTitle(true);
         chatInfo.setShowPriceInfo(false);
-        chatInfo.setCid(offerBean.getUserid());
+        if (alone && UserUtil.isInLoginStata()) {
+            chatInfo.setCid(UserUtil.getUserInfo().getUserId());
+        }else {
+            chatInfo.setCid(offerBean.getUserid());
+        }
         chatInfo.setSid(sid);
         chatInfo.setOrderid(orderId);
         chatInfo.setBank(offerBean.getBank());

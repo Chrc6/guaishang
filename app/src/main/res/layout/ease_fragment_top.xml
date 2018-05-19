@@ -86,7 +86,7 @@
         android:text="提交报价"
         android:textColor="#cfd4d8"
         android:textSize="@dimen/sp_14"
-        android:layout_marginRight="15dp"
+        android:layout_marginRight="10dp"
         android:padding="@dimen/dp5"
         android:layout_marginTop="15dp"
         android:background="@drawable/bg_rectangle_black"

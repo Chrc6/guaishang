@@ -157,7 +157,7 @@ public class EaseNotifier {
     private void sendEvent(EMMessage message){
         MessageEvent event = new MessageEvent();
         event.setId(message.getFrom());
-        EventBus.getDefault().post(this);
+        EventBus.getDefault().post(event);
     }
 
     public synchronized void onNewMesg(List<EMMessage> messages) {

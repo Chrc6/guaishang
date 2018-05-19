@@ -11,6 +11,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 
 import com.baidu.tts.tools.SharedPreferencesUtils;
+import com.houwei.guaishang.MessageEvent;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.bean.CommentPushBean;
 import com.houwei.guaishang.bean.FansPushBean;
@@ -461,5 +462,11 @@ public class MainActivity extends MainHuanXinActivity implements
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putString("videoPath", videoPath);
 		super.onSaveInstanceState(outState);
+	}
+
+	@Subscribe (threadMode = ThreadMode.MAIN)
+	public void on3EventMainThread(MessageEvent messageEvent){
+		String id = messageEvent.getId();
+
 	}
 }

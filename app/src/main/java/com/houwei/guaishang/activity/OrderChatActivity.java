@@ -35,6 +35,7 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
     public static final String SID = "SID";
     public static final String OrderId = "OrderId";
     public static final String Brand = "Brand";
+    public static final String ALONE = "alone";
     private ViewPager mViewPager;
     private RecyclerView mRecyclerView;
     private OrderChatAdapter mAdapter;
@@ -44,6 +45,7 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
     private String sid;
     private String orderId;
     private String brand;
+    private boolean alone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +93,7 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
             sid = intent.getStringExtra(SID);
             orderId = intent.getStringExtra(OrderId);
             brand = intent.getStringExtra(Brand);
+            alone = intent.getBooleanExtra(ALONE,false);
         }
     }
 
@@ -107,14 +110,14 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
         mAdapter.setItemOnclickListener(this);
         mRecyclerView.setAdapter(mAdapter);
 
-        if (offerPriceList.size() < 2) {
+        if (alone) {
             mRecyclerView.setVisibility(View.GONE);
         } else {
             mRecyclerView.setVisibility(View.VISIBLE);
         }
 
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        mViewPager.setAdapter(new OrderChatViewPagerAdapter(getSupportFragmentManager(),offerPriceList,sid,orderId,brand));
+        mViewPager.setAdapter(new OrderChatViewPagerAdapter(getSupportFragmentManager(),offerPriceList,sid,orderId,brand,alone));
 
         findViewById(R.id.ll_back).setOnClickListener(this);
 
@@ -136,6 +139,13 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
         mViewPager.setCurrentItem(postion);
         mAdapter.notifyDataSetChanged();
         mRecyclerView.scrollToPosition(postion);
+
+        int size = offerPriceList.size();
+        for (int i = 0; i < size; i++) {
+            if (userId.equals(offerPriceList.get(i).getUserid())){
+                offerPriceList.get(i).setNotify(false);
+            }
+        }
     }
 
 
@@ -146,8 +156,6 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
         for (int i = 0; i < size; i++) {
             if (id.equals(offerPriceList.get(i).getUserid())){
                 offerPriceList.get(i).setNotify(true);
-            }else {
-                offerPriceList.get(i).setNotify(false);
             }
         }
     }
