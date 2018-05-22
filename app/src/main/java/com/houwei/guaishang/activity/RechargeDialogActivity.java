@@ -71,24 +71,28 @@ public class RechargeDialogActivity extends RechargeBaseActivity implements View
         tvCancle = (TextView) findViewById(R.id.tv_cancle);
         tvConfirm = (TextView) findViewById(R.id.tv_confirm);
         rbALi = (CheckBox) findViewById(R.id.rb_ali);
-        rbALi.setSelected(true);
+//        rbALi.setSelected(true);
         rbWX = (CheckBox) findViewById(R.id.rb_wx);
-        rbWX.setSelected(false);
+//        rbWX.setSelected(false);
 
         rbALi.setOnClickListener(this);
         rbWX.setOnClickListener(this);
         tvCancle.setOnClickListener(this);
         tvConfirm.setOnClickListener(this);
         findViewById(R.id.fl_container).setOnClickListener(this);
+        findViewById(R.id.ll_ali).setOnClickListener(this);
+        findViewById(R.id.ll_wx).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.ll_ali:
             case R.id.rb_ali:
                 rbALi.setChecked(true);
                 rbWX.setChecked(false);
                 break;
+            case R.id.ll_wx:
             case R.id.rb_wx:
                 rbWX.setChecked(true);
                 rbALi.setChecked(false);
@@ -107,7 +111,7 @@ public class RechargeDialogActivity extends RechargeBaseActivity implements View
     }
 
     private void mobilePay() {
-        moneyRequire = (money * 1.0f) / 100;//money单位是元，moneyRequired单位是分
+        moneyRequire = money * 1.0f;//money单位是元，moneyRequired单位是分
         Map<String, String> mapOptional = new HashMap<String, String>();
         mapOptional.put("userid", getUserID());
 //        mapOptional.put("topicid", topicId);
@@ -131,6 +135,7 @@ public class RechargeDialogActivity extends RechargeBaseActivity implements View
     @Override
     protected void paySuccess() {
         super.paySuccess();
+        progress.dismiss();
         showSuccessTips("支付成功！");
         EventBus.getDefault().post(new TopicHomeEvent());
         Intent i = new Intent(RechargeDialogActivity.this, MainActivity.class);
