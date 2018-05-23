@@ -107,10 +107,9 @@ public class ProgressView extends View {
     private void drawText(Canvas canvas){
         float textWidths = (mTextPaint.measureText("打款"))/2;
         canvas.drawText("打款",radius-textWidths,viewHeight/2+mTextPanding,mTextPaint);
-
-        canvas.drawText("发货",viewWitdth-radius-textWidths,viewHeight/2+mTextPanding,mTextPaint);
-        canvas.drawText("收货",radius+(viewWitdth-4*radius)/3-textWidths,viewHeight/2+mTextPanding,mTextPaint);
-        canvas.drawText("评价",radius+(viewWitdth-4*radius)*2/3-textWidths,viewHeight/2+mTextPanding,mTextPaint);
+        canvas.drawText("发货",radius+(viewWitdth-4*radius)/3-textWidths,viewHeight/2+mTextPanding,mTextPaint);
+        canvas.drawText("收货",radius+(viewWitdth-4*radius)*2/3-textWidths,viewHeight/2+mTextPanding,mTextPaint);
+        canvas.drawText("评价",viewWitdth-radius-textWidths,viewHeight/2+mTextPanding,mTextPaint);
     }
 
     private void drawMiddleCircle(Canvas canvas){
