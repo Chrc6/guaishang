@@ -161,7 +161,7 @@
                 android:layout_height="40dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="3dp"
-                android:src="@drawable/add"
+                android:src="@drawable/pay_place_holder_icon"
                 android:scaleType="fitXY"/>
 
             <CheckBox
