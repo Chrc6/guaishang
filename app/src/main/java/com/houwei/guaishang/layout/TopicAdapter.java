@@ -608,6 +608,10 @@ public class TopicAdapter extends BaseAdapter {
                             new OrderBuyDialog(mContext, PreferenceManager.getInstance().getUserCoins(), bean, new OrderBuyDialog.FinishCallBack() {
                                 @Override
                                 public void call() {
+
+                                    //抢单请求
+
+
                                     Intent intent = new Intent(mContext, OrderChatActivity.class);
                                     ArrayList<OffersBean.OfferBean> tempList = new ArrayList<>();
                                     OffersBean.OfferBean  tempBean = new OffersBean.OfferBean();
@@ -621,6 +625,7 @@ public class TopicAdapter extends BaseAdapter {
                                     intent.putExtra(OrderChatActivity.OrderId,bean.getTopicId());
                                     intent.putExtra(OrderChatActivity.Brand,bean.getBrand());
                                     intent.putExtra(OrderChatActivity.ALONE,true);
+                                    intent.putExtra(OrderChatActivity.ShouldOffer,true);
                                     mContext.startActivity(intent);
                                 }
                             }).show();

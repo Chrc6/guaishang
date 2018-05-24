@@ -24,7 +24,7 @@ public class ChatInfo implements Serializable {
     private String brand;
     private String bank;
     private String bankNum;
-
+    private boolean shouldOffer;
     public ChatInfo() {
     }
 
@@ -130,5 +130,13 @@ public class ChatInfo implements Serializable {
 
     public void setBankNum(String bankNum) {
         this.bankNum = bankNum;
+    }
+
+    public boolean isShouldOffer() {
+        return shouldOffer;
+    }
+
+    public void setShouldOffer(boolean shouldOffer) {
+        this.shouldOffer = shouldOffer;
     }
 }

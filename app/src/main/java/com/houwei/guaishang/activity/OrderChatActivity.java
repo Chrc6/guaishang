@@ -36,6 +36,7 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
     public static final String OrderId = "OrderId";
     public static final String Brand = "Brand";
     public static final String ALONE = "alone";
+    public static final String ShouldOffer = "ShouldOffer";
     private ViewPager mViewPager;
     private RecyclerView mRecyclerView;
     private OrderChatAdapter mAdapter;
@@ -46,6 +47,7 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
     private String orderId;
     private String brand;
     private boolean alone;
+    private boolean shouldOffer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +96,7 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
             orderId = intent.getStringExtra(OrderId);
             brand = intent.getStringExtra(Brand);
             alone = intent.getBooleanExtra(ALONE,false);
+            shouldOffer = intent.getBooleanExtra(ShouldOffer,false);
         }
     }
 
@@ -117,7 +120,7 @@ public class OrderChatActivity extends BaseActivity implements View.OnClickListe
         }
 
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        mViewPager.setAdapter(new OrderChatViewPagerAdapter(getSupportFragmentManager(),offerPriceList,sid,orderId,brand,alone));
+        mViewPager.setAdapter(new OrderChatViewPagerAdapter(getSupportFragmentManager(),offerPriceList,sid,orderId,brand,alone,shouldOffer));
 
         findViewById(R.id.ll_back).setOnClickListener(this);
 
