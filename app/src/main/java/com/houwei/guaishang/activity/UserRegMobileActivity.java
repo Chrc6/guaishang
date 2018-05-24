@@ -25,6 +25,8 @@ import com.houwei.guaishang.views.AnimationYoYo;
 import com.mob.MobSDK;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
@@ -60,12 +62,24 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 
 	@Override
 	public void onHuanXinLoginSuccess() {
-
+		progress.dismiss();
+		// 进入主页面
+		Intent i = new Intent(this,
+				MainActivity.class);
+		i.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		startActivity(i);
+		finish();
 	}
 
 	@Override
 	public void onHuanXinLoginFail(int code, String message) {
-
+		progress.dismiss();
+		//失败了也进去，再进入ChatActivity的时候再判断重新登录一下
+		Intent i = new Intent(this,
+				MainActivity.class);
+		i.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		startActivity(i);
+		finish();
 	}
 
 	private UserRegMobileActivity.MyHandler handler = new UserRegMobileActivity.MyHandler(this);
@@ -370,5 +384,9 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 		}
 		return super.onTouchEvent(event);
 	}
-
+	//接收登录登出事件
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void on3EventMainThread(LoginSuccessEvent event){
+		finish();
+	}
 }

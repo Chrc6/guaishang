@@ -22,8 +22,11 @@ import android.widget.TextView;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.BaseActivity;
 import com.houwei.guaishang.activity.MissionActivity;
+import com.houwei.guaishang.event.LoginSuccessEvent;
 import com.houwei.guaishang.layout.SharePopupWindow;
 import com.houwei.guaishang.manager.MyUserBeanManager;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.io.FileOutputStream;

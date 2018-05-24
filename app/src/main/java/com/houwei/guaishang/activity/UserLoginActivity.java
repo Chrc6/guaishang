@@ -35,6 +35,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import cn.jpush.android.api.JPushInterface;
 import cn.sharesdk.framework.ShareSDK;
@@ -264,5 +266,9 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 		startActivity(i);
 		finish();
 	}
-
+	//接收登录登出事件
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void on3EventMainThread(LoginSuccessEvent event){
+		finish();
+	}
 }

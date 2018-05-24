@@ -8,6 +8,9 @@ import com.houwei.guaishang.activity.UserRegMobileActivity;
 import com.houwei.guaishang.bean.AvatarBean;
 import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.bean.UserResponse;
+import com.houwei.guaishang.event.LoginSuccessEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -60,6 +63,7 @@ public class ShareSDKUtilsReg {
                 Log.e("username",platform.getDb().getUserName());//拿到登录用户的昵称
 
                 saveUserInfo(platform.getDb());
+                postLoginSuccessEvent();
             }else{
                 Log.e("onComplete","分享成功");
             }
@@ -147,6 +151,17 @@ public class ShareSDKUtilsReg {
             } else {
                 myHandler.sendEmptyMessage(NETWORK_FAIL);
             }
+        }
+    }
+
+    private void postLoginSuccessEvent(){
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
+        EventBus.getDefault().post(new LoginSuccessEvent());
+
+        if (EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().unregister(this);
         }
     }
 }
