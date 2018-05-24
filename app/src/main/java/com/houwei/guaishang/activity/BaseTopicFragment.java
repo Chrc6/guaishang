@@ -84,7 +84,7 @@ public abstract class BaseTopicFragment extends BaseFragment implements
 				if (response.isSuccess()) {
 					activity.list = response.getData().getItems();
 
-					resetListOrder(activity.list);
+					resetListOrder();
 
 					Log.i("WXCH","list:"+activity.list);
 					activity.listView.onFinishLoading(response.getData()
@@ -241,7 +241,7 @@ public abstract class BaseTopicFragment extends BaseFragment implements
 	}
 
 	//对返回的数据重新排序，自己发的单没有签合同的一律放到排序第一个
-	private void resetListOrder(List<TopicBean> list) {
+	private void resetListOrder() {
 		if (list == null || list.size() == 0) return;
 		ArrayList<TopicBean> beans = new ArrayList<>();
 		String userId = "";
@@ -258,8 +258,24 @@ public abstract class BaseTopicFragment extends BaseFragment implements
 			}
 		}
 		list.addAll(0,beans);
-	}
 
+		resetListOrderNext();
+	}
+	private void resetListOrderNext() {
+		if (list == null || list.size() == 0) return;
+		ArrayList<TopicBean> beans = new ArrayList<>();
+
+
+		for (int i = 0; i < list.size(); i++) {
+			TopicBean bean = list.get(i);
+			if (bean.getIsOffer().equals("1")) {
+				beans.add(bean);
+				list.remove(i);
+				i--;
+			}
+		}
+		list.addAll(0,beans);
+	}
 	;
 
 	/**
