@@ -49,6 +49,7 @@ import com.houwei.guaishang.manager.FaceManager;
 import com.houwei.guaishang.manager.ITopicApplication;
 import com.houwei.guaishang.manager.MyUserBeanManager;
 import com.houwei.guaishang.preview.PreviewActivity;
+import com.houwei.guaishang.sp.DataStorage;
 import com.houwei.guaishang.sp.UserUtil;
 import com.houwei.guaishang.tools.DealResult;
 import com.houwei.guaishang.tools.HttpUtil;
@@ -430,11 +431,13 @@ public class TopicAdapter extends BaseAdapter {
         holder.order_btn.setFloatBtnClickListener(new FloatButton.FloatBtnClickListener() {
             @Override
             public void galb() {
+                DataStorage.putCurrentTopicId(bean.getTopicId());
                 orderBuyOrNextPage(bean,true);
             }
 
             @Override
             public void goChatView() {
+                DataStorage.putCurrentTopicId(bean.getTopicId());
                 // TODO: 2018/4/21 跳转到聊天页面
                 Intent intent = new Intent(mContext, OrderChatActivity.class);
                 List<OffersBean.OfferBean> offerPriceList = bean.getOfferPrice();
@@ -468,6 +471,7 @@ public class TopicAdapter extends BaseAdapter {
 
             @Override
             public void chatAlone() {
+                DataStorage.putCurrentTopicId(bean.getTopicId());
                 Intent intent = new Intent(mContext, OrderChatActivity.class);
                 ArrayList<OffersBean.OfferBean> tempList = new ArrayList<>();
                 OffersBean.OfferBean  tempBean = new OffersBean.OfferBean();
@@ -484,72 +488,7 @@ public class TopicAdapter extends BaseAdapter {
                 mContext.startActivity(intent);
             }
         });
-//        holder.order_btn.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View arg0) {
-//                Log.i("WXCH","userId:"+userId+",getMemberId:"+bean.getMemberId());
-//                // TODO Auto-generated method stub
-//                if (mContext.checkLogined()) {
-//                    if(!bean.getMemberId().equals(mContext.getUserID())){
-//                        orderBuyOrNextPage(bean,true);
-//                    }
-//                }
-//            }
-//        });
-//        if(jumpType!=0){
-//            holder.order_btn.setVisibility(View.INVISIBLE);
-//        }
 
-
-//        holder.follow_btn.setText(ValueUtil.getRelationTypeStringSimple(bean.getFriendship()));
-//        holder.follow_btn.setBackgroundResource(ValueUtil.getRelationTypeDrawableSimple(bean.getFriendship()));
-//        holder.follow_btn.setTextColor(ValueUtil.getRelationTextColorSimple(bean.getFriendship()));
-//        holder.follow_btn.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                // TODO Auto-generated method stub
-//                if (mContext.checkLogined()) {
-//                    if(!bean.getMemberId().equals(mContext.getUserID())){
-//                        if (onTopicBeanFollowClickListener != null) {
-//                            onTopicBeanFollowClickListener.onTopicBeanFollowClick(bean);
-//                        }
-//                    }
-//
-//                }
-//                /*if (onTopicBeanFollowClickListener != null) {
-//                    onTopicBeanFollowClickListener.onTopicBeanFollowClick(bean);
-//                }*/
-//            }
-//        });
-
-//        holder.content.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                // TODO Auto-generated method stub
-//                if(TextUtils.equals(mContext.getUserID(),memberId)){
-//                    Intent intent=new Intent(mContext,TopicDetailMeActivity.class);
-//                    intent.putExtra("TopicBean", bean);
-//                    intent.putExtra("position", 0);
-//                    mContext.startActivityForResult(intent, 0);
-//                    return;
-//                }
-//                Intent i = new Intent();
-//                if(jumpType==0){
-//                    i.setClass(mContext, TopicDetailActivity.class);
-//                }else{
-//                    i.setClass(mContext, TopicDetailMeActivity.class);
-//
-//                }
-//                i.putExtra("TopicBean", bean);
-//                i.putExtra("position", 0);
-//                i.putExtra("needPay", Integer.valueOf(bean.getIsOffer()));
-//                mContext.startActivityForResult(i, 0);
-//
-//            }
-//        });
 
         holder.imgTitle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -608,6 +547,10 @@ public class TopicAdapter extends BaseAdapter {
                             new OrderBuyDialog(mContext, PreferenceManager.getInstance().getUserCoins(), bean, new OrderBuyDialog.FinishCallBack() {
                                 @Override
                                 public void call() {
+
+                                    //抢单请求
+
+
                                     Intent intent = new Intent(mContext, OrderChatActivity.class);
                                     ArrayList<OffersBean.OfferBean> tempList = new ArrayList<>();
                                     OffersBean.OfferBean  tempBean = new OffersBean.OfferBean();
@@ -621,6 +564,7 @@ public class TopicAdapter extends BaseAdapter {
                                     intent.putExtra(OrderChatActivity.OrderId,bean.getTopicId());
                                     intent.putExtra(OrderChatActivity.Brand,bean.getBrand());
                                     intent.putExtra(OrderChatActivity.ALONE,true);
+                                    intent.putExtra(OrderChatActivity.ShouldOffer,true);
                                     mContext.startActivity(intent);
                                 }
                             }).show();

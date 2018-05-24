@@ -158,11 +158,12 @@ public class ChatHeadHolder extends BaseHolder<OrderEntity> {
                             editTime.getText().toString(), chatInfo.getCid(),
                             chatInfo.getSid(), chatInfo.getOrderid());
 
-                    editPrice.setText(editPrice.getText().toString()+"元");
-                    editTime.setText("交期"+editTime.getText().toString()+"天");
                     editPrice.setEnabled(false);
                     editTime.setEnabled(false);
+                    editPrice.setText(editPrice.getText().toString()+"元");
+                    editTime.setText("交期"+editTime.getText().toString()+"天");
                     sure.setText("已报价");
+                    sure.setEnabled(false);
                 }
             }
         });
@@ -171,6 +172,10 @@ public class ChatHeadHolder extends BaseHolder<OrderEntity> {
 
 
     public void sendReq() {
+
+        mManager.offer(currentLocationBean, "0",
+                "0", chatInfo.getCid(),
+                chatInfo.getSid(), chatInfo.getOrderid());
 
         mManager.queryOffer(chatInfo.getCid(), chatInfo.getSid(), chatInfo.getOrderid(), new ChatManager.ReqCallBack() {
             @Override

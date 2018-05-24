@@ -71,7 +71,7 @@
                 android:layout_height="40dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="3dp"
-                android:src="@drawable/pay_place_holder_icon"
+                android:src="@drawable/image_place_holder_c"
                 android:scaleType="fitXY"/>
 
             <CheckBox
@@ -111,7 +111,7 @@
                 android:layout_height="40dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="3dp"
-                android:src="@drawable/pay_place_holder_icon"
+                android:src="@drawable/image_place_holder_c"
                 android:scaleType="fitXY"/>
 
             <CheckBox
