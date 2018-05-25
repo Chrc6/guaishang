@@ -18,5 +18,10 @@ public class DeviceUtils {
         final float scale = context.getResources().getDisplayMetrics().density;
         return(int)(dpValue * scale+0.5f);
     }
+
+    public static final int getScreenWid(Context context){
+        int width = context.getResources().getDisplayMetrics().widthPixels;
+        return width;
+    }
 }
 
