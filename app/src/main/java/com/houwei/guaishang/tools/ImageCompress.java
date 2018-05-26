@@ -15,6 +15,11 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore.Images;
 import android.util.Log;
+
+import com.easemob.util.DensityUtil;
+import com.facebook.stetho.common.android.ViewUtil;
+import com.houwei.guaishang.util.DeviceUtils;
+
 public class ImageCompress {
 	 public static final String CONTENT = "content";
 	    public static final String FILE = "file";
@@ -80,11 +85,8 @@ public class ImageCompress {
 	        int actualWidth = options.outWidth;
 	        int actualHeight = options.outHeight;
 
-	        int desiredWidth = getResizedDimension(compressOptions.maxWidth,
-	                compressOptions.maxHeight, actualWidth, actualHeight);
-	        int desiredHeight = getResizedDimension(compressOptions.maxHeight,
-	                compressOptions.maxWidth, actualHeight, actualWidth);
-
+	        int desiredWidth = DeviceUtils.getScreenWid(context);
+	        int desiredHeight = DeviceUtils.dip2px(context,210);
 	        options.inJustDecodeBounds = false;
 	        options.inSampleSize = findBestSampleSize(actualWidth, actualHeight,
 	                desiredWidth, desiredHeight);
@@ -107,12 +109,12 @@ public class ImageCompress {
 	        }
 	 
 	        //特别小的图片，可以将其放大
-//	        if (destBitmap.getWidth() < desiredWidth
-//	                && destBitmap.getHeight() < desiredHeight) {
-//	        	 bitmap = Bitmap.createScaledBitmap(destBitmap, desiredWidth,
-//		                    desiredHeight, true);
-//		        destBitmap.recycle();
-//			}
+	        if (destBitmap.getWidth() < desiredWidth
+	                && destBitmap.getHeight() < desiredHeight) {
+	        	 bitmap = Bitmap.createScaledBitmap(destBitmap, desiredWidth,
+		                    desiredHeight, true);
+		        destBitmap.recycle();
+			}
 	        
 	    	if (orientation != 0) {
 	    		int degress = Integer.valueOf(orientation);
@@ -123,7 +125,7 @@ public class ImageCompress {
 	        if (null != compressOptions.destFile) {
 	            compressFile(compressOptions, bitmap);
 	        }
-	        
+	        Log.d("lei","处理完图片的大小：宽度"+bitmap.getWidth()+"高度是："+bitmap.getHeight());
 	        return bitmap;
 	    }
 	 
@@ -186,8 +188,8 @@ public class ImageCompress {
 	 
 	    /**
 	     * 获取文件的路径
-	     * 
-	     * @param scheme
+	     *
+
 	     * @return
 	     */
 	    private String getFilePath(Context context, Uri uri) {

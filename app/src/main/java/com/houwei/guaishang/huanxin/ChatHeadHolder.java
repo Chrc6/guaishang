@@ -172,11 +172,11 @@ public class ChatHeadHolder extends BaseHolder<OrderEntity> {
 
 
     public void sendReq() {
-
-        mManager.offer(currentLocationBean, "0",
-                "0", chatInfo.getCid(),
-                chatInfo.getSid(), chatInfo.getOrderid());
-
+        if (chatInfo.isShouldOffer()) {
+            mManager.offer(currentLocationBean, "0",
+                    "0", chatInfo.getCid(),
+                    chatInfo.getSid(), chatInfo.getOrderid());
+        }
         mManager.queryOffer(chatInfo.getCid(), chatInfo.getSid(), chatInfo.getOrderid(), new ChatManager.ReqCallBack() {
             @Override
             public void call(OrderInfoResponse response) {
