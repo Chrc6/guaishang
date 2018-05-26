@@ -159,6 +159,7 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
                             //送10元券
                         OkGo.<String>post(HttpUtil.IP + "user/modify")
                                 .params("userid", activity.getUserID())
+                                .params("topicid", bean.getTopicId())
                                 .params("event", "is_share")
                                 .params("value", "1")
                                 .execute(new StringCallback() {

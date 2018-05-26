@@ -359,6 +359,7 @@ public class TopicAdapter extends BaseAdapter {
                         Log.i("onComplete","platform="+platform.getName()+" 分享成功");
                         OkGo.<String>post(HttpUtil.IP + "user/modify")
                                 .params("userid", UserUtil.getUserInfo().getUserId())
+                                .params("topicid", bean.getTopicId())
                                 .params("event", "is_share")
                                 .params("value", "1")
                                 .execute(new StringCallback() {
