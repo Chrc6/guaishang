@@ -97,12 +97,25 @@ public class ImageCompress {
 	 
 	        if(destBitmap == null)
 	        	return null;
-	        
-	        // If necessary, scale down to the maximal acceptable size.
-	        if (destBitmap.getWidth() > desiredWidth
+
+			// If necessary, scale down to the maximal acceptable size.
+			if (destBitmap.getWidth() > desiredWidth
 	                || destBitmap.getHeight() > desiredHeight) {
-	            bitmap = Bitmap.createScaledBitmap(destBitmap, desiredWidth,
-	                    desiredHeight, true);
+				int height = destBitmap.getHeight();
+				int width = destBitmap.getWidth();
+				int retY;
+				if (height > desiredHeight){
+					 retY = (height-desiredHeight)/2;
+				}else {
+					retY = height;
+					desiredHeight = height;
+				}
+
+				bitmap = Bitmap.createBitmap(destBitmap,0,retY,width,desiredHeight,null,true);
+				if (width < desiredWidth) {
+					bitmap = Bitmap.createScaledBitmap(bitmap, desiredWidth,
+							desiredHeight, true);
+				}
 	            destBitmap.recycle();
 	        } else {
 	            bitmap = destBitmap;
