@@ -100,6 +100,7 @@ public class ChatHeadHolder extends BaseHolder<OrderEntity> {
             editTime.setEnabled(false);
             editPrice.setText(data.getData().get(0).getPrice()+"元");
             editTime.setText("交期"+data.getData().get(0).getCycle()+"天");
+            sure.setEnabled(false);
         } else {
             sure.setVisibility(View.VISIBLE);
             orderTv.setVisibility(View.GONE);
