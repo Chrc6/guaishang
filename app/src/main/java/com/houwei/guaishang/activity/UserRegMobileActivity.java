@@ -118,7 +118,7 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 
 						// 展开数据库
 						DBReq.getInstence(activity.getITopicApplication());
-
+						activity.progress.show();
 						activity.getITopicApplication().getHuanXinManager().loginHuanXinService(activity, response.getData().getUserid(),response.getData().getName(), activity);
 						UserInfo info = new UserInfo();
 						info.setUserId(response.getData().getUserid());
@@ -383,10 +383,5 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 							InputMethodManager.HIDE_NOT_ALWAYS);
 		}
 		return super.onTouchEvent(event);
-	}
-	//接收登录登出事件
-	@Subscribe(threadMode = ThreadMode.MAIN)
-	public void on3EventMainThread(LoginSuccessEvent event){
-		finish();
 	}
 }
