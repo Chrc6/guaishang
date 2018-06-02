@@ -4,12 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
-    app:cardBackgroundColor="#2b323a">
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="#2b323a"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,12 +26,15 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="car"
+                    >
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="210dp"
-                        android:background="@drawable/card_shape_raduis">
+
+                     >
 
                         <ImageView
                             android:id="@+id/img_title"
