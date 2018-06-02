@@ -101,7 +101,15 @@ public class ChatHeadHolder extends BaseHolder<OrderEntity> {
             editPrice.setText(data.getData().get(0).getPrice()+"元");
             editTime.setText("交期"+data.getData().get(0).getCycle()+"天");
             sure.setEnabled(false);
-        } else {
+        } else if (data.getIsOfferid().equals("0") && !UserUtil.getUserInfo().getUserId().equals(data.getData().get(0).getOfferld())){
+            sure.setVisibility(View.VISIBLE);
+            orderTv.setVisibility(View.VISIBLE);
+            orderInfoGp.setVisibility(View.GONE);
+            sure.setText("打款订货");
+            editPrice.setEnabled(false);
+            editTime.setEnabled(false);
+            orderTv.setText("交货期"+data.getData().get(0).getCycle()+"天 报价"+data.getData().get(0).getPrice()+"元");
+        }else {
             sure.setVisibility(View.VISIBLE);
             orderTv.setVisibility(View.GONE);
             orderInfoGp.setVisibility(View.VISIBLE);
