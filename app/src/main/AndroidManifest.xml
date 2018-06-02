@@ -307,7 +307,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"
-            android:theme="@style/TranslucentTheme"/>
+            />
         <activity
             android:name=".activity.UserLoginActivity"
             android:screenOrientation="portrait" />
