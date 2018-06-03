@@ -79,11 +79,11 @@
                 android:paddingTop="7dp">
 
                 <TextView
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
                     android:id="@+id/tv_choose_industry"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:drawableRight="@mipmap/togo"
                     android:text="选择行业"
                     android:textSize="18sp" />
@@ -242,19 +242,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:background="@color/white_color" />
+
             <TextView
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:id="@+id/tv_confirm"
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="发布订单"
-                android:gravity="center"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
                 android:background="@color/text_3"
+                android:gravity="center"
                 android:padding="8dp"
-                android:textSize="20sp"
-                android:textColor="@color/holo_orange_light"/>
+                android:text="发布订单"
+                android:textColor="@color/holo_orange_light"
+                android:textSize="20sp" />
+
             <LinearLayout
                 android:id="@+id/redpacket_ll"
                 android:layout_width="match_parent"

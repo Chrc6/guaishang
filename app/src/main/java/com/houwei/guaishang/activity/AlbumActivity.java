@@ -247,13 +247,18 @@ public class AlbumActivity extends BaseActivity {
 						options.filePath = orgPath;
 						Bitmap mBitmap = compress.compressFromUri(
 								AlbumActivity.this, options);
+						Bitmap mBitmap1 = compress.compressFromUriNoCut(
+								AlbumActivity.this, options);
 						if (mBitmap == null) {// 跳过错误的图片
 							continue;
 						}
 						// 将上一步的图片再次压缩到100K左右（和微信微博一致） 并保存到自己的新目录下，返回新的全路径
 						String newPicturePath = BitmapUtil
 								.saveMyBitmapWithCompress(orgPath, mBitmap, 80);
+						String newPicturePath1 = BitmapUtil
+								.saveMyBitmapWithCompress(orgPath, mBitmap1, 80);
 						tempThumbPictures.add(newPicturePath);
+						tempThumbPictures.add(newPicturePath1);
 					}
 
 				}

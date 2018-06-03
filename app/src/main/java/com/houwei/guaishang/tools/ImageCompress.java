@@ -137,7 +137,83 @@ public class ImageCompress {
 	        Log.d("lei","处理完图片的大小：宽度"+bitmap.getWidth()+"高度是："+bitmap.getHeight());
 	        return bitmap;
 	    }
-	 
+	/**
+	 * 图片尺寸缩小为640 *1136
+	 * @param context
+	 * @param compressOptions
+	 * @return
+	 */
+	public Bitmap compressFromUriNoCut(Context context,
+								  CompressOptions compressOptions) {
+
+		// uri指向的文件路径
+		String filePath = compressOptions.filePath;
+
+		if (null == filePath) {
+			return null;
+		}
+
+		int orientation = BitmapUtil.readPictureDegree(filePath);
+
+		if (orientation!=0) {
+			compressOptions.maxWidth = CompressOptions.DEFAULT_HEIGHT;
+			compressOptions.maxHeight = CompressOptions.DEFAULT_WIDTH;
+		}
+
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;
+
+		Bitmap temp = BitmapFactory.decodeFile(filePath, options);
+
+		int actualWidth = options.outWidth;
+		int actualHeight = options.outHeight;
+
+		int desiredWidth = getResizedDimension(compressOptions.maxWidth,
+				compressOptions.maxHeight, actualWidth, actualHeight);
+		int desiredHeight = getResizedDimension(compressOptions.maxHeight,
+				compressOptions.maxWidth, actualHeight, actualWidth);
+
+		options.inJustDecodeBounds = false;
+		options.inSampleSize = findBestSampleSize(actualWidth, actualHeight,
+				desiredWidth, desiredHeight);
+
+		Bitmap bitmap = null;
+
+		Bitmap destBitmap = BitmapFactory.decodeFile(filePath, options);
+
+		if(destBitmap == null)
+			return null;
+
+		// If necessary, scale down to the maximal acceptable size.
+		if (destBitmap.getWidth() > desiredWidth
+				|| destBitmap.getHeight() > desiredHeight) {
+			bitmap = Bitmap.createScaledBitmap(destBitmap, desiredWidth,
+					desiredHeight, true);
+			destBitmap.recycle();
+		} else {
+			bitmap = destBitmap;
+		}
+
+		//特别小的图片，可以将其放大
+//	        if (destBitmap.getWidth() < desiredWidth
+//	                && destBitmap.getHeight() < desiredHeight) {
+//	        	 bitmap = Bitmap.createScaledBitmap(destBitmap, desiredWidth,
+//		                    desiredHeight, true);
+//		        destBitmap.recycle();
+//			}
+
+		if (orientation != 0) {
+			int degress = Integer.valueOf(orientation);
+			bitmap = BitmapUtil.adjustPhotoRotation(bitmap, degress);
+		}
+
+		// compress file if need
+		if (null != compressOptions.destFile) {
+			compressFile(compressOptions, bitmap);
+		}
+
+		return bitmap;
+	}
 	    /**
 	     * compress file from bitmap with compressOptions
 	     * 

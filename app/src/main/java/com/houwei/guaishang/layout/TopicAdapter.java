@@ -79,8 +79,6 @@ import java.util.List;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
 
 
 public class TopicAdapter extends BaseAdapter {
@@ -279,7 +277,8 @@ public class TopicAdapter extends BaseAdapter {
         //imageLoader.displayImage(bean.getMemberAvatar().findSmallUrl(), holder.avator);
 //        imageLoader.displayImage(bean.getMemberAvatar().findSmallUrl(), holder.avator, mContext.getITopicApplication().getOtherManage().getCircleOptionsDisplayImageOptions());
         ImageLoader.getInstance().displayImage(bean.getMemberAvatar().findSmallUrl(), holder.avator);
-        imageLoader.displayImage(bean.getCover(), holder.imgTitle, mContext.getITopicApplication().getOtherManage().getRectDisplayImageOptions());
+        String url = bean.getCover();
+        imageLoader.displayImage(url, holder.imgTitle, mContext.getITopicApplication().getOtherManage().getRectDisplayImageOptions());
         holder.content.setText("详情： "+faceManager.
                         convertNormalStringToSpannableString(mContext, bean.getContent()),
                 BufferType.SPANNABLE);
@@ -353,6 +352,7 @@ public class TopicAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
+
                 ShareUtil2 shareUtil2 = new ShareUtil2(mContext, new PlatformActionListener() {
                     @Override
                     public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
@@ -495,7 +495,12 @@ public class TopicAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 ArrayList<String> list = new ArrayList<String>();
-                list.add(bean.getCover());
+                String original = bean.getBigcover();
+                if (!TextUtils.isEmpty(original)) {
+                    list.add(HttpUtil.IP_NOAPI+original);
+                }else {
+                    list.add(bean.getCover());
+                }
                 Intent intent = new Intent(mContext, PreviewActivity.class);
                 intent.putExtra("list",list);
                 mContext.startActivity(intent);

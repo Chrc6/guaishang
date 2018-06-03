@@ -61,7 +61,8 @@ public class BasePhotoGridActivity extends BaseActivity implements SelectPhotoLi
 
 	// 压缩后的临时路径
 	public ArrayList<String> thumbPictures = new ArrayList<String>();
-
+//	仅展示使用
+	public ArrayList<String> thumbPicturesShow = new ArrayList<String>();
 	private static final int REQUEST_PICK = 0;
 
 	@Override
@@ -128,13 +129,20 @@ public class BasePhotoGridActivity extends BaseActivity implements SelectPhotoLi
 						options.filePath = orgPath;
 						Bitmap mBitmap = compress.compressFromUri(
 								BasePhotoGridActivity.this, options);
-						if (mBitmap == null) {// 跳过错误的图片
+
+						Bitmap mBitmap1 = compress.compressFromUriNoCut(
+								BasePhotoGridActivity.this, options);
+						if (mBitmap == null || mBitmap1 == null) {// 跳过错误的图片
 							continue;
 						}
 						// 将上一步的图片再次压缩到100K左右（和微信微博一致） 并保存到自己的新目录下，返回新的全路径
 						String newPicturePath = BitmapUtil
 								.saveMyBitmapWithCompress(orgPath, mBitmap, 80);
-						tempThumbPictures.add(newPicturePath);	
+						tempThumbPictures.add(newPicturePath);
+
+						String newPicturePath1 = BitmapUtil
+								.saveMyBitmapWithCompress(orgPath, mBitmap1, 80);
+						tempThumbPictures.add(newPicturePath1);
 					}
 	
 				}
@@ -148,8 +156,14 @@ public class BasePhotoGridActivity extends BaseActivity implements SelectPhotoLi
 						//清除上次的 压缩图
 						clearCurreantThumbList();
 						//重新显示这次选择的
+						int size = tempThumbPictures.size();
+						for (int i = 0; i < size; i++) {
+							if (i % 2 == 0){
+								thumbPicturesShow.add(tempThumbPictures.get(i));
+							}
+						}
 						thumbPictures.addAll(0, tempThumbPictures);
-						PhotoReleaseGridAdapter adapter = new PhotoReleaseGridAdapter(thumbPictures,BasePhotoGridActivity.this);
+						PhotoReleaseGridAdapter adapter = new PhotoReleaseGridAdapter(thumbPicturesShow,BasePhotoGridActivity.this);
 						gridView.setAdapter(adapter);
 					}
 				});

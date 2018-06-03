@@ -49,7 +49,7 @@ public class TopicBean implements Serializable {
 	
 	private String videourl; 
 	private String cover;
-
+	private String bigcover;
 	private int friendship;
 
 	
@@ -368,7 +368,32 @@ public class TopicBean implements Serializable {
 			}
 		}
 	}
+	public String getBigcover() {
+		if(TextUtils.isEmpty(cover)){
+			return null;
+		}
+		return cover.startsWith("http")?cover:HttpUtil.IP_NOAPI+cover;
+	}
 
+	public void setBigcover(String cover) {
+		this.cover = cover;
+
+		if (cover != null && !cover.equals("")) {
+			try {
+				String urlWithOutPng = cover
+						.substring(0,cover.lastIndexOf("."));
+				String str = urlWithOutPng.substring(
+						urlWithOutPng.lastIndexOf(".") + 1,
+						urlWithOutPng.length());
+				String[] zu = str.split("\\_");
+				photoOriginalWidth = Integer.parseInt(zu[0]);
+				photoOriginalHeight = Integer.parseInt(zu[1]);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 	public float getPrice() {
 		return price;
 	}
