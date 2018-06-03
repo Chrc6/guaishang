@@ -27,10 +27,12 @@ android {
             abiFilters "armeabi", "armeabi-v7a", "x86", 'arm64-v8a'
         }
 
+//        "171d5353a93340be35061cee"
+//
         //极光推送配置
         manifestPlaceholders = [
                 JPUSH_PKGNAME: "com.houwei.guaishang",
-                JPUSH_APPKEY : "171d5353a93340be35061cee", //JPush上注册的包名对应的appkey.
+                JPUSH_APPKEY : "f9787854e29d0981a58b3d8b", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }

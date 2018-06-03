@@ -16,11 +16,11 @@ public class VoiceUtils {
 
 //////////////////需配置部分////////////////////////
     //AppId
-    private String APPID="11003766";
+    private String APPID="11327196";
     //ApiKey
-    private String APIKEY="MxSsRjTYYt2pWvR1M2njG4vt";
+    private String APIKEY="5WzFmwitUgLl7NKf4N52Nq9r";
     //SecretKey
-    private String SECRETKEY="c95395e4f5ae536db00629ac2a652721";
+    private String SECRETKEY="d007f957473c1284b86f2a550dbc087d";
 ////////////////////配置结束////////////////////////////////////
 
     private static VoiceUtils instance;
