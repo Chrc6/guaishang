@@ -16,6 +16,7 @@ import com.houwei.guaishang.sp.UserInfo;
 import com.houwei.guaishang.sp.UserUtil;
 import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.JsonParser;
+import com.houwei.guaishang.tools.LogUtil;
 import com.houwei.guaishang.tools.PublicStaticData;
 import com.houwei.guaishang.tools.ShareSDKUtils;
 import com.houwei.guaishang.tools.Utils;
@@ -28,6 +29,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.util.TimeUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -78,7 +80,8 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 
 					// 展开数据库
 					 DBReq.getInstence(activity.getITopicApplication());
-				
+						activity.progress.show();
+					Log.d("lei","开始登录环信"+System.currentTimeMillis());
 					 activity.getITopicApplication().getHuanXinManager().loginHuanXinService(activity, response.getData().getUserid(),response.getData().getName(), activity);
 					UserInfo info = new UserInfo();
 					info.setUserId(response.getData().getUserid());
@@ -246,6 +249,7 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 	@Override
 	public void onHuanXinLoginSuccess() {
 		// TODO Auto-generated method stub
+		Log.d("lei","登录环信成功"+ System.currentTimeMillis());
 		progress.dismiss();
 		// 进入主页面
 		Intent i = new Intent(UserLoginActivity.this,
@@ -266,9 +270,5 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 		startActivity(i);
 		finish();
 	}
-	//接收登录登出事件
-	@Subscribe(threadMode = ThreadMode.MAIN)
-	public void on3EventMainThread(LoginSuccessEvent event){
-		finish();
-	}
+
 }

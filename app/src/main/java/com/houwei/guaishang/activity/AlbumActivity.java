@@ -231,7 +231,7 @@ public class AlbumActivity extends BaseActivity {
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
-			try {
+//			try {
 				// 不要在子线程里修改全局变量！所以这里用临时变量
 				final ArrayList<String> tempThumbPictures = new ArrayList<String>();
 
@@ -297,10 +297,10 @@ public class AlbumActivity extends BaseActivity {
 					}
 				});
 
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 		}
 	}
 

@@ -68,7 +68,7 @@ public class ShareSDKUtils {
                 Log.e("onComplete","登录成功"+platform.getDb().getUserIcon());
                 Log.e("openid",platform.getDb().getUserId());//拿到登录后的openid
                 Log.e("username",platform.getDb().getUserName());//拿到登录用户的昵称
-
+                Log.d("lei","第三方登录成功"+System.currentTimeMillis());
                 saveUserInfo(platform.getDb());
                 postLoginSuccessEvent();
             }else{

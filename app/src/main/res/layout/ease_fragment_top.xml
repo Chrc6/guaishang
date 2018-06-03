@@ -29,7 +29,6 @@
         android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
         android:paddingTop="@dimen/dp5"
-        android:text="交货期7天，报价222元"
         android:textColor="#000000"
         android:textSize="10sp"></TextView>
 

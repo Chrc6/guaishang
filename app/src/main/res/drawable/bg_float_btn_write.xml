@@ -5,8 +5,4 @@
     <solid
         android:color="@color/white"
         />
-
-    <stroke
-        android:color="@color/bar_grey"
-        />
 </shape>

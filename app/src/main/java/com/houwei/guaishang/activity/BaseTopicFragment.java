@@ -85,7 +85,7 @@ public abstract class BaseTopicFragment extends BaseFragment implements
 				if (response.isSuccess()) {
 					activity.list = response.getData().getItems();
 
-					resetListOrder();
+					resetListOrderFinal();
 
 					Log.i("WXCH","list:"+activity.list);
 					activity.listView.onFinishLoading(response.getData()

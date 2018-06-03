@@ -307,7 +307,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"
-            android:theme="@style/TranslucentTheme"/>
+            />
         <activity
             android:name=".activity.UserLoginActivity"
             android:screenOrientation="portrait" />
@@ -379,7 +379,7 @@
         <!-- 环信应用的appkey -->
         <meta-data
             android:name="EASEMOB_APPKEY"
-            android:value="houweiwuzi#guaishang" />
+            android:value="1150180530099958#guaishang" />
         <!--
         声明sdk所需的service
         <service />中定义了intent-filter的话，android:exported属性值默认为true，

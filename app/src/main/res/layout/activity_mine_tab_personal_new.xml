@@ -70,7 +70,7 @@
                         android:id="@+id/iv_license"
                         android:layout_width="127dp"
                         android:layout_height="171dp"
-                        android:scaleType="fitXY"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/picture_update_icon" />
 
                     <LinearLayout

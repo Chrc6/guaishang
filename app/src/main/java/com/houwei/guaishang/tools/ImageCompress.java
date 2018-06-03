@@ -86,7 +86,7 @@ public class ImageCompress {
 	        int actualHeight = options.outHeight;
 
 	        int desiredWidth = DeviceUtils.getScreenWid(context);
-	        int desiredHeight = DeviceUtils.dip2px(context,210);
+	        int desiredHeight = DeviceUtils.dip2px(context,110);
 	        options.inJustDecodeBounds = false;
 	        options.inSampleSize = findBestSampleSize(actualWidth, actualHeight,
 	                desiredWidth, desiredHeight);
@@ -97,12 +97,21 @@ public class ImageCompress {
 	 
 	        if(destBitmap == null)
 	        	return null;
-	        
-	        // If necessary, scale down to the maximal acceptable size.
-	        if (destBitmap.getWidth() > desiredWidth
+
+			// If necessary, scale down to the maximal acceptable size.
+			if (destBitmap.getWidth() > desiredWidth
 	                || destBitmap.getHeight() > desiredHeight) {
-	            bitmap = Bitmap.createScaledBitmap(destBitmap, desiredWidth,
-	                    desiredHeight, true);
+				int height = destBitmap.getHeight();
+				int width = destBitmap.getWidth();
+				int retY;
+				if (height > desiredHeight){
+					 retY = (height-desiredHeight)/2;
+				}else {
+					retY = height;
+					desiredHeight = height;
+				}
+
+				bitmap = Bitmap.createBitmap(destBitmap,0,retY,width,desiredHeight,null,true);
 	            destBitmap.recycle();
 	        } else {
 	            bitmap = destBitmap;

@@ -34,7 +34,7 @@ public class OrderEntity {
     public class OrderUserEntity{
         private String price;//订单报价
         private String cycle;//订单周期
-        private String offerld;
+        private String offerld;//报价人id
 
 
         public OrderUserEntity() {
