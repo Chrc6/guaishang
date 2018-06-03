@@ -495,9 +495,9 @@ public class TopicAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 ArrayList<String> list = new ArrayList<String>();
-                String original = bean.getBigcover();
-                if (!TextUtils.isEmpty(original)) {
-                    list.add(HttpUtil.IP_NOAPI+original);
+
+                if (bean.getPicture().size() > 1) {
+                    list.add(HttpUtil.IP_NOAPI+bean.getPicture().get(1).getOriginal());
                 }else {
                     list.add(bean.getCover());
                 }
