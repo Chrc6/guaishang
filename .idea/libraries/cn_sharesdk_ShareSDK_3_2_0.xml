@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="cn.sharesdk:ShareSDK-3.2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/42ef61289f4b2f05465c236465ed4b4ca24ad2b0/output/jars/libs/ShareSDK-Core-3.2.0.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/42ef61289f4b2f05465c236465ed4b4ca24ad2b0/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/42ef61289f4b2f05465c236465ed4b4ca24ad2b0/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
