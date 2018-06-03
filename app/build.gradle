@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
+apply from: '../MobSDK.gradle'
 
 android {
     compileSdkVersion 25
@@ -30,7 +31,7 @@ android {
         //极光推送配置
         manifestPlaceholders = [
                 JPUSH_PKGNAME: "com.houwei.guaishang",
-                JPUSH_APPKEY : "171d5353a93340be35061cee", //JPush上注册的包名对应的appkey.
+                JPUSH_APPKEY : "f9787854e29d0981a58b3d8b", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }

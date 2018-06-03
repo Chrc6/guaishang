@@ -2,6 +2,8 @@ package com.houwei.guaishang.tools;
 
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -18,13 +20,17 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.FieldAttributes;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.BaseActivity;
 import com.houwei.guaishang.activity.MissionActivity;
 import com.houwei.guaishang.event.LoginSuccessEvent;
 import com.houwei.guaishang.layout.SharePopupWindow;
 import com.houwei.guaishang.manager.MyUserBeanManager;
+import com.mob.MobSDK;
+import com.tencent.connect.share.QQShare;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -145,7 +151,7 @@ public class ShareUtil2 {
 		Log.i("WXCH","---------------");
 		OnekeyShare oks = new OnekeyShare();
 		//关闭sso授权
-		oks.disableSSOWhenAuthorize();
+//		oks.disableSSOWhenAuthorize();
 		if (imageUrl != null) {
 			oks.setImageUrl(imageUrl);
 		} else {
