@@ -34,7 +34,7 @@ public class OrderEntity {
     public class OrderUserEntity{
         private String price;//订单报价
         private String cycle;//订单周期
-        private String offerld;//报价人id
+        private String offerId;//报价人id
 
 
         public OrderUserEntity() {
@@ -57,11 +57,11 @@ public class OrderEntity {
         }
 
         public String getOfferld() {
-            return offerld;
+            return offerId;
         }
 
         public void setOfferld(String offerld) {
-            this.offerld = offerld;
+            this.offerId = offerld;
         }
     }
 }
