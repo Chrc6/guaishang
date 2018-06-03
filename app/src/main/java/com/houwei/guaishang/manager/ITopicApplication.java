@@ -77,7 +77,7 @@ public class ITopicApplication extends MobApplication {
 //		PublicStaticData.myShareSDK= new ShareSDK();
 //		PublicStaticData.myShareSDK.initSDK(getApplicationContext());
 
-
+		MobSDK.init(this);
 		SDKInitializer.initialize(getApplicationContext());//百度地图
 		Fresco.initialize(this);
 	}

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
+apply from: '../MobSDK.gradle'
 
 android {
     compileSdkVersion 25
@@ -27,8 +28,6 @@ android {
             abiFilters "armeabi", "armeabi-v7a", "x86", 'arm64-v8a'
         }
 
-//        "171d5353a93340be35061cee"
-//
         //极光推送配置
         manifestPlaceholders = [
                 JPUSH_PKGNAME: "com.houwei.guaishang",
