@@ -157,7 +157,7 @@ public class ChatHeadHolder extends BaseHolder<OrderEntity> {
 
                 if (data.getIsOfferid().equals("1") && chatInfo.getSid().equals(UserUtil.getUserInfo().getUserId())) {
                     //打款订货
-                    mManager.remit(chatInfo.getBrand(), data.getData().get(0).getPrice(), chatInfo.getOrderid(), chatInfo.getSid(),
+                    mManager.remit(chatInfo.getBrand(), data.getData().get(0).getPrice(), chatInfo.getOrderid(), chatInfo.getOffer_id(),
                             chatInfo.getCid(), chatInfo.getHisRealName(), chatInfo.getBank(), chatInfo.getBankNum());
 
                 } else {

@@ -209,8 +209,6 @@ public class TopicAdapter extends BaseAdapter {
                 holder.progressView.setVisibility(View.GONE);
                 holder.VProdectLayout.setVisibility(View.GONE);
             }
-
-
         }
 
         final String memberId = bean.getMemberId();
@@ -553,10 +551,7 @@ public class TopicAdapter extends BaseAdapter {
                             new OrderBuyDialog(mContext, PreferenceManager.getInstance().getUserCoins(), bean, new OrderBuyDialog.FinishCallBack() {
                                 @Override
                                 public void call() {
-
                                     //抢单请求
-
-
                                     Intent intent = new Intent(mContext, OrderChatActivity.class);
                                     ArrayList<OffersBean.OfferBean> tempList = new ArrayList<>();
                                     OffersBean.OfferBean  tempBean = new OffersBean.OfferBean();

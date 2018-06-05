@@ -68,6 +68,7 @@ public class OrderChatViewPagerAdapter extends FragmentPagerAdapter {
         chatInfo.setBankNum(offerBean.getBankNum());
         chatInfo.setBrand(brand);
         chatInfo.setShouldOffer(shouldOffer);
+        chatInfo.setOffer_id(offerBean.getId());
         ChatFragment fragment = ChatFragment.getInstance(chatInfo);
         return fragment;
     }
