@@ -11,7 +11,7 @@ public class Payment implements Serializable {
     private int status;
     private String price;
     private String created_at;
-
+    private String id;
     public Payment() {
     }
 
@@ -45,5 +45,13 @@ public class Payment implements Serializable {
 
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

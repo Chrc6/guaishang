@@ -51,7 +51,7 @@ public class TopicBean implements Serializable {
 	private String cover;
 	private String bigcover;
 	private int friendship;
-
+	private String isDel;
 	
 	// client 自己定义的
 	private String timeString;
@@ -432,6 +432,14 @@ public class TopicBean implements Serializable {
 
 	public void setFriendship(int friendship) {
 		this.friendship = friendship;
+	}
+
+	public String getIsDel() {
+		return isDel;
+	}
+
+	public void setIsDel(String isDel) {
+		this.isDel = isDel;
 	}
 
 	@Override

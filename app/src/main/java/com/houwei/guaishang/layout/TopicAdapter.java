@@ -204,10 +204,12 @@ public class TopicAdapter extends BaseAdapter {
                 holder.progressView.setProgress(payment.getStatus());
                 holder.price.setText("总价"+payment.getPrice()+"元");
                 holder.time.setText("周期"+payment.getCycle()+"天");
+                holder.price_tv.setText("" + payment.getPrice());
             }else {
                 holder.barNum.setVisibility(View.VISIBLE);
                 holder.progressView.setVisibility(View.GONE);
                 holder.VProdectLayout.setVisibility(View.GONE);
+                holder.price_tv.setText("" + (int)bean.getPrice());
             }
         }
 
@@ -249,6 +251,12 @@ public class TopicAdapter extends BaseAdapter {
 //                    stopFlick(holder.order_btn);
                     stopFlick(holder.orderBtn_bg);
                 }
+            }else if (bean.getIsDel().equals("1")){
+                holder.order_btn.setStatu(3);
+                holder.order_btn.setBrief("");
+                holder.order_count.setVisibility(View.GONE);
+//                stopFlick(holder.order_btn);
+                stopFlick(holder.orderBtn_bg);
             }else if (Integer.valueOf(Integer.valueOf(bean.getIsOffer())) == 1){
                 holder.order_count.setVisibility(View.GONE);
                 holder.order_btn.setStatu(4);
@@ -330,7 +338,6 @@ public class TopicAdapter extends BaseAdapter {
 //        holder.header_time.setText(bean.getTimeString());
 //        holder.linearLayoutForListView.setVisibility((bean.getComments() == null || bean.getComments().isEmpty()) ? View.GONE : View.VISIBLE);
 //        holder.linearLayoutForListView.setVisibility(View.GONE);
-        holder.price_tv.setText("" + (int)bean.getPrice());
         holder.share_count_btn.setText(bean.getShareNum()+"");
 
 //        holder.zan_count_btn.setText(bean.getSumPrice());
