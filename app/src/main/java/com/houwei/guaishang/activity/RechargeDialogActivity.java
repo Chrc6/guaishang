@@ -56,11 +56,12 @@ public class RechargeDialogActivity extends RechargeBaseActivity implements View
             @Override
             public void afterTextChanged(Editable s) {
                 try {
-                    money = Long.valueOf(String.valueOf(s));
-                    if (money <= 0) {
-                        etInput.setText(String.valueOf(money));
+                    if (String.valueOf(s).startsWith("0")) {
+                        etInput.setText(String.valueOf(1));
+                    } else {
+                        money = Long.valueOf(String.valueOf(s));
+                        tvMoneyCount.setText(String.valueOf(money * 1L));
                     }
-                    tvMoneyCount.setText(String.valueOf(money * 100L));
                 } catch (Exception e) {
                     money = 1;
                 }
@@ -118,6 +119,7 @@ public class RechargeDialogActivity extends RechargeBaseActivity implements View
         mapOptional.put("price", ""+ money);
 //        mapOptional.put("to_memberid", to_memberid);
         mapOptional.put("isrecharge", "1");
+        mapOptional.put("addmoney", money+"");
         String title = "购买商品";
         pay(title, mapOptional);
     }

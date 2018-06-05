@@ -355,7 +355,7 @@ public class PayActivity extends PayBaseActivity implements View.OnClickListener
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if (retMap != null) {
+			if (retMap != null && retMap.isSuccess()) {
 				handler.post(new Runnable() {
 					@Override
 					public void run() {
