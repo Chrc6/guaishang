@@ -131,7 +131,7 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
             case R.id.rb_pay:
                 rbShare.setChecked(true);
                 rbPay.setChecked(false);
-                if (money < 1) {
+                if (money < 10) {
                     goToRechargeActivity();
                 } else {
                     if (callBack != null){
