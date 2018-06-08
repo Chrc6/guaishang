@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -12,8 +13,14 @@ import com.google.android.flexbox.FlexboxLayout;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.BaseActivity;
 import com.houwei.guaishang.sp.UserUtil;
+import com.houwei.guaishang.util.InflateService;
 import com.houwei.guaishang.util.LoginJumperUtil;
 import com.houwei.guaishang.view.CircleImageView;
+import com.houwei.guaishang.widget.holder.FloatFiveHolder;
+import com.houwei.guaishang.widget.holder.FloatFourHolder;
+import com.houwei.guaishang.widget.holder.FloatOneHolder;
+import com.houwei.guaishang.widget.holder.FloatThreeHolder;
+import com.houwei.guaishang.widget.holder.FloatTwoHolder;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -31,14 +38,14 @@ public class FloatButton extends RelativeLayout {
     private static final int Has_Galb = 4;//已抢
     private static final int Wait_Galb = 5;//等待抢单
 
-    private BaseActivity context;
+    private Context context;
     private List<String> mAvatarList;//头像列表
     private int status;
 
     private TextView galb,brief;
     private RelativeLayout galb_layout;
     private RelativeLayout galb_self;
-    private FlexboxLayout iconLayout;
+    private RelativeLayout iconLayout;
     private RelativeLayout rootView;
     public FloatButton(Context context) {
         super(context);
@@ -58,7 +65,7 @@ public class FloatButton extends RelativeLayout {
         brief = (TextView) view.findViewById(R.id.brief);
         galb_layout = (RelativeLayout) view.findViewById(R.id.galb_layout);
         galb_self = (RelativeLayout) view.findViewById(R.id.galb_self);
-        iconLayout = (FlexboxLayout) view.findViewById(R.id.icon_layout);
+        iconLayout = (RelativeLayout) view.findViewById(R.id.icon_layout);
         rootView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,9 +100,7 @@ public class FloatButton extends RelativeLayout {
     }
 
     private void init(Context context){
-        if (context instanceof BaseActivity){
-            this.context = (BaseActivity) context;
-        }
+       this.context = context;
         if (mAvatarList == null){
             mAvatarList = new ArrayList<>();
         }
@@ -144,6 +149,10 @@ public class FloatButton extends RelativeLayout {
             mAvatarList.clear();
             mAvatarList.addAll(list);
         }
+        mAvatarList.clear();
+        for (int i = 0; i < 1; i++) {
+            mAvatarList.add("http://www.guaishangfaming.com//media/topic/photo/2018-06-02/878fd1ecf1d0e4b03304d466b514390e.jpg");
+        }
             notifyAvatarRefresh();
     }
     private void setSelf(){
@@ -157,32 +166,40 @@ public class FloatButton extends RelativeLayout {
 
     private void notifyAvatarRefresh(){
         iconLayout.removeAllViews();
-        iconLayout.setFlexDirection(FlexboxLayout.SCROLL_AXIS_HORIZONTAL);
-        iconLayout.setFlexWrap(FlexboxLayout.FLEX_WRAP_WRAP);
-        iconLayout.setJustifyContent(FlexboxLayout.ALIGN_ITEMS_CENTER);
+
         int size = mAvatarList.size();
         if (size == 1){
-            CircleImageView imageView = new CircleImageView(context);
-            FlexboxLayout.LayoutParams layoutParams = new FlexboxLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            imageView.setLayoutParams(layoutParams);
-            ImageLoader.getInstance().displayImage(mAvatarList.get(0), imageView);
-            iconLayout.addView(imageView);
-        }else {
-            for (int i = 0; i < size; i++) {
-                if (i > 7) {
-                    break;
-                }
-                CircleImageView imageView = new CircleImageView(context);
-                FlexboxLayout.LayoutParams layoutParams = new FlexboxLayout.LayoutParams(dip2px(20), dip2px(20));
-                if (i == 2 || i == 5) {
-                    layoutParams.wrapBefore = true;
-                } else {
-                    layoutParams.wrapBefore = false;
-                }
-                imageView.setLayoutParams(layoutParams);
-                ImageLoader.getInstance().displayImage(mAvatarList.get(i), imageView);
-                iconLayout.addView(imageView);
-            }
+            FloatOneHolder oneHolder = new FloatOneHolder(context);
+            oneHolder.setData(mAvatarList);
+            iconLayout.addView(oneHolder.getRootView());
+        }else if (size == 2){
+            FloatTwoHolder twoHolder = new FloatTwoHolder(context);
+            twoHolder.setData(mAvatarList);
+            iconLayout.addView(twoHolder.getRootView());
+        }else if (size == 3){
+            FloatThreeHolder threeHolder = new FloatThreeHolder(context);
+            threeHolder.setData(mAvatarList);
+            iconLayout.addView(threeHolder.getRootView());
+        }else if (size == 4){
+            FloatFourHolder fourHolder = new FloatFourHolder(context);
+            fourHolder.setData(mAvatarList);
+            iconLayout.addView(fourHolder.getRootView());
+        }else if (size >= 5){
+//            LayoutInflater from = LayoutInflater.from(context);
+//            View inflate = LayoutInflater.from(context).inflate(R.layout.float_five,null);
+//            ImageView one = (ImageView) inflate.findViewById(R.id.float_one);
+//            ImageView two = (ImageView) inflate.findViewById(R.id.float_two);
+//            ImageView three = (ImageView) inflate.findViewById(R.id.float_three);
+//            ImageView four = (ImageView) inflate.findViewById(R.id.float_four);
+//            ImageView five = (ImageView) inflate.findViewById(R.id.float_five);
+//            ImageLoader.getInstance().displayImage(mAvatarList.get(0), one);
+//            ImageLoader.getInstance().displayImage(mAvatarList.get(1), two);
+//            ImageLoader.getInstance().displayImage(mAvatarList.get(2), three);
+//            ImageLoader.getInstance().displayImage(mAvatarList.get(3), four);
+//            ImageLoader.getInstance().displayImage(mAvatarList.get(4), five);
+            FloatFiveHolder fiveHolder = new FloatFiveHolder(context);
+            fiveHolder.setData(mAvatarList);
+            iconLayout.addView(fiveHolder.getRootView());
         }
     }
 

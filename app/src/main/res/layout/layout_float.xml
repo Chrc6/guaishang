@@ -37,11 +37,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-        <com.google.android.flexbox.FlexboxLayout
+        <RelativeLayout
             android:id="@+id/icon_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        </com.google.android.flexbox.FlexboxLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 </RelativeLayout>
