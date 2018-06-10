@@ -89,9 +89,9 @@ public class ProgressView extends View {
         drawRightLine(canvas);
         drawMiddleCircle(canvas);
         //绘制左边进度
-        drawLeftLine(canvas);
 
         drawText(canvas);
+        drawLeftLine(canvas);
 
 
     }
@@ -121,21 +121,21 @@ public class ProgressView extends View {
                 canvas.drawCircle(viewWitdth-radius,viewHeight/2,radius, mNormalCirclePaint);
                 break;
             case 10:
-                canvas.drawCircle(radius,viewHeight/2,radius, mNormalCirclePaint);
+                canvas.drawCircle(radius,viewHeight/2,radius, mSelectedCirclePaint);
                 canvas.drawCircle(radius+(viewWitdth-4*radius)/3,viewHeight/2,radius, mSelectedCirclePaint);
                 canvas.drawCircle(radius+(viewWitdth-4*radius)*2/3,viewHeight/2,radius, mNormalCirclePaint);
                 canvas.drawCircle(viewWitdth-radius,viewHeight/2,radius, mNormalCirclePaint);
                 break;
             case 11:
-                canvas.drawCircle(radius,viewHeight/2,radius, mNormalCirclePaint);
-                canvas.drawCircle(radius+(viewWitdth-4*radius)/3,viewHeight/2,radius, mNormalCirclePaint);
+                canvas.drawCircle(radius,viewHeight/2,radius, mSelectedCirclePaint);
+                canvas.drawCircle(radius+(viewWitdth-4*radius)/3,viewHeight/2,radius, mSelectedCirclePaint);
                 canvas.drawCircle(radius+(viewWitdth-4*radius)*2/3,viewHeight/2,radius, mSelectedCirclePaint);
                 canvas.drawCircle(viewWitdth-radius,viewHeight/2,radius, mNormalCirclePaint);
                 break;
             case 12:
-                canvas.drawCircle(radius,viewHeight/2,radius, mNormalCirclePaint);
-                canvas.drawCircle(radius+(viewWitdth-4*radius)/3,viewHeight/2,radius, mNormalCirclePaint);
-                canvas.drawCircle(radius+(viewWitdth-4*radius)*2/3,viewHeight/2,radius, mNormalCirclePaint);
+                canvas.drawCircle(radius,viewHeight/2,radius, mSelectedCirclePaint);
+                canvas.drawCircle(radius+(viewWitdth-4*radius)/3,viewHeight/2,radius, mSelectedCirclePaint);
+                canvas.drawCircle(radius+(viewWitdth-4*radius)*2/3,viewHeight/2,radius, mSelectedCirclePaint);
                 canvas.drawCircle(viewWitdth-radius,viewHeight/2,radius, mSelectedCirclePaint);
                 break;
             default:

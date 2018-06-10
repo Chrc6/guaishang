@@ -149,10 +149,6 @@ public class FloatButton extends RelativeLayout {
             mAvatarList.clear();
             mAvatarList.addAll(list);
         }
-        mAvatarList.clear();
-        for (int i = 0; i < 1; i++) {
-            mAvatarList.add("http://www.guaishangfaming.com//media/topic/photo/2018-06-02/878fd1ecf1d0e4b03304d466b514390e.jpg");
-        }
             notifyAvatarRefresh();
     }
     private void setSelf(){
