@@ -120,19 +120,19 @@ public class ProgressView extends View {
                 canvas.drawCircle(radius+(viewWitdth-4*radius)*2/3,viewHeight/2,radius, mNormalCirclePaint);
                 canvas.drawCircle(viewWitdth-radius,viewHeight/2,radius, mNormalCirclePaint);
                 break;
-            case 2:
+            case 10:
                 canvas.drawCircle(radius,viewHeight/2,radius, mNormalCirclePaint);
                 canvas.drawCircle(radius+(viewWitdth-4*radius)/3,viewHeight/2,radius, mSelectedCirclePaint);
                 canvas.drawCircle(radius+(viewWitdth-4*radius)*2/3,viewHeight/2,radius, mNormalCirclePaint);
                 canvas.drawCircle(viewWitdth-radius,viewHeight/2,radius, mNormalCirclePaint);
                 break;
-            case 3:
+            case 11:
                 canvas.drawCircle(radius,viewHeight/2,radius, mNormalCirclePaint);
                 canvas.drawCircle(radius+(viewWitdth-4*radius)/3,viewHeight/2,radius, mNormalCirclePaint);
                 canvas.drawCircle(radius+(viewWitdth-4*radius)*2/3,viewHeight/2,radius, mSelectedCirclePaint);
                 canvas.drawCircle(viewWitdth-radius,viewHeight/2,radius, mNormalCirclePaint);
                 break;
-            case 4:
+            case 12:
                 canvas.drawCircle(radius,viewHeight/2,radius, mNormalCirclePaint);
                 canvas.drawCircle(radius+(viewWitdth-4*radius)/3,viewHeight/2,radius, mNormalCirclePaint);
                 canvas.drawCircle(radius+(viewWitdth-4*radius)*2/3,viewHeight/2,radius, mNormalCirclePaint);
@@ -243,13 +243,13 @@ public class ProgressView extends View {
             case 1:
                 progress = 25;
                 break;
-            case 2:
+            case 10:
                 progress = 50;
                 break;
-            case 3:
+            case 11:
                 progress = 75;
                 break;
-            case 4:
+            case 12:
                 progress = 100;
                 break;
         }
