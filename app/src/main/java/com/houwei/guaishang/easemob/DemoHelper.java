@@ -263,7 +263,7 @@ public class DemoHelper {
             @Override
             public Intent getLaunchIntent(EMMessage message) {
                 //设置点击通知栏跳转事件 DQDEBUG
-            	 Intent intent = new Intent(appContext, ChatEaseActivity.class);
+            	 Intent intent = new Intent(appContext, ChatActivity.class);
             	
                 //有电话时优先跳转到通话页面
                 if(isVideoCalling){
