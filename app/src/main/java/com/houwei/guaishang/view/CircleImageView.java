@@ -36,7 +36,7 @@ public class CircleImageView extends AppCompatImageView {
 
     // 圆形边框的厚度默认值。
     // 如果是0，则没有天蓝色渐变的边框。
-    private static final int DEFAULT_BORDER_WIDTH = 2;
+    private static final int DEFAULT_BORDER_WIDTH = 0;
 
     private static final int DEFAULT_BORDER_COLOR = Color.WHITE;
 
