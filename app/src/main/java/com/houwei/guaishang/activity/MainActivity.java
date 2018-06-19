@@ -408,15 +408,15 @@ public class MainActivity extends MainHuanXinActivity implements
 
 	
 	private void checkUnReadActionCount(int unReadActionCount) {
-		unReadActionCountTV.setText("" + unReadActionCount);
-		unReadActionCountTV.setVisibility(unReadActionCount == 0 ? View.INVISIBLE
-						: View.VISIBLE);
+//		unReadActionCountTV.setText("" + unReadActionCount);
+//		unReadActionCountTV.setVisibility(unReadActionCount == 0 ? View.INVISIBLE
+//						: View.VISIBLE);
 	}
 
 	private void checkUnReadFansCount(int unReadActionCount) {
-		unReadFansCountTV.setText("" + unReadActionCount);
-		unReadFansCountTV.setVisibility(unReadActionCount == 0 ? View.INVISIBLE
-				: View.VISIBLE);
+//		unReadFansCountTV.setText("" + unReadActionCount);
+//		unReadFansCountTV.setVisibility(unReadActionCount == 0 ? View.INVISIBLE
+//				: View.VISIBLE);
 	}
 
 	
