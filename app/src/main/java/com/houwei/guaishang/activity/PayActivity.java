@@ -201,7 +201,7 @@ public class PayActivity extends PayBaseActivity implements View.OnClickListener
 		EventBus.getDefault().post(new TopicHomeEvent());
 		VoiceUtils.getInstance(ApplicationProvider.privode())
 				.getSyntheszer()
-				.speak("砸单成功，买"+brand+"就上咚咚砸单");
+				.speak("砸单成功，买"+brand+"就上怪商抢单");
 		Intent i = new Intent(PayActivity.this, MainActivity.class);
 		startActivity(i);
 		finish();

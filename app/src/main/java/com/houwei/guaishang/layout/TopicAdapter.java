@@ -19,6 +19,7 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -34,6 +35,7 @@ import com.houwei.guaishang.activity.Constant;
 import com.houwei.guaishang.activity.OrderChatActivity;
 import com.houwei.guaishang.activity.TopicDetailActivity;
 import com.houwei.guaishang.activity.newui.TopicDetailMeActivity;
+import com.houwei.guaishang.adapter.HomeOrderGridAdapter;
 import com.houwei.guaishang.adapter.OfferAdapter;
 import com.houwei.guaishang.bean.AvatarBean;
 import com.houwei.guaishang.bean.CommentBean;
@@ -154,7 +156,8 @@ public class TopicAdapter extends BaseAdapter {
             holder.header_name = (TextView) convertView.findViewById(R.id.header_name);
 //            holder.recyclerView = (LRecyclerView) convertView.findViewById(R.id.recyclerView_offer);
             holder.header_location = (TextView) convertView.findViewById(R.id.header_location);
-            holder.imgTitle = (ImageView) convertView.findViewById(R.id.img_title);
+//            holder.imgTitle = (ImageView) convertView.findViewById(R.id.img_title);
+            holder.gridView = (GridView) convertView.findViewById(R.id.grid_pictures);
             holder.tvCount = (TextView) convertView.findViewById(R.id.tv_count);
             holder.barNum = (NumberProgressBar) convertView.findViewById(R.id.bar_num);
             holder.content = (TextView) convertView.findViewById(R.id.content);
@@ -284,7 +287,13 @@ public class TopicAdapter extends BaseAdapter {
 //        imageLoader.displayImage(bean.getMemberAvatar().findSmallUrl(), holder.avator, mContext.getITopicApplication().getOtherManage().getCircleOptionsDisplayImageOptions());
         ImageLoader.getInstance().displayImage(bean.getMemberAvatar().findSmallUrl(), holder.avator);
         String url = bean.getCover();
-        imageLoader.displayImage(url, holder.imgTitle, mContext.getITopicApplication().getOtherManage().getRectDisplayImageOptions());
+//        imageLoader.displayImage(url, holder.imgTitle, mContext.getITopicApplication().getOtherManage().getRectDisplayImageOptions());
+        if (bean.getPicture() != null && bean.getPicture().size() > 0) {
+            List<AvatarBean> pics = bean.getPicture();
+            holder.gridView.setNumColumns(pics.size() >= 3 ? 3 : pics.size());
+            HomeOrderGridAdapter adapter = new HomeOrderGridAdapter(mContext, pics);
+            holder.gridView.setAdapter(adapter);
+        }
         holder.content.setText("详情： "+faceManager.
                         convertNormalStringToSpannableString(mContext, bean.getContent()),
                 BufferType.SPANNABLE);
@@ -496,21 +505,21 @@ public class TopicAdapter extends BaseAdapter {
         });
 
 
-        holder.imgTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ArrayList<String> list = new ArrayList<String>();
-
-                if (bean.getPicture().size() > 1) {
-                    list.add(HttpUtil.IP_NOAPI+bean.getPicture().get(1).getOriginal());
-                }else {
-                    list.add(bean.getCover());
-                }
-                Intent intent = new Intent(mContext, PreviewActivity.class);
-                intent.putExtra("list",list);
-                mContext.startActivity(intent);
-            }
-        });
+//        holder.imgTitle.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ArrayList<String> list = new ArrayList<String>();
+//
+//                if (bean.getPicture().size() > 1) {
+//                    list.add(HttpUtil.IP_NOAPI+bean.getPicture().get(1).getOriginal());
+//                }else {
+//                    list.add(bean.getCover());
+//                }
+//                Intent intent = new Intent(mContext, PreviewActivity.class);
+//                intent.putExtra("list",list);
+//                mContext.startActivity(intent);
+//            }
+//        });
 //        convertView.setOnClickListener(new View.OnClickListener() {
 //
 //            @Override
@@ -667,6 +676,7 @@ public class TopicAdapter extends BaseAdapter {
         private TextView content, header_name,  header_location,tvCount;
         private PraiseTextView zan_count_btn;
         private ImageView avator,imgTitle,imgIndicate,imageMyOrder;
+        private GridView gridView;
         private TextView  delete_btn,tvProgress;
         private View share_ll,orderBtn_bg;
         private TextView share_count_btn;

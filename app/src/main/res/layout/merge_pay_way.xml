@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginLeft="45dp"
-                android:text="咚咚平台微信支付"
+                android:text="怪商平台微信支付"
                 android:textColor="@color/color_101010"
                 android:textSize="14dp" />
 
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginLeft="45dp"
-                android:text="咚咚平台支付宝支付"
+                android:text="怪商平台支付宝支付"
                 android:textColor="@color/color_101010"
                 android:textSize="14dp" />
 
@@ -104,7 +104,7 @@
                     android:layout_width="61dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="29dp"
-                    android:text="咚咚平台"
+                    android:text="怪商平台"
                     android:textColor="@color/color_101010"
                     android:textSize="14dp" />
 
@@ -141,7 +141,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:text="开户行：中国银行东中市分行"
+                    android:text="开户行：中国银行股份有限公司苏州阊门支行"
                     android:textColor="#5c5c5c"
                     android:textSize="8dp" />
 
@@ -149,7 +149,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:text="账号：8522211553225555"
+                    android:text="账号：5365679038835"
                     android:textColor="#5c5c5c"
                     android:textSize="8dp" />
 

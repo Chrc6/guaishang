@@ -158,7 +158,7 @@
             android:layout_height="wrap_content"
             android:textSize="16dp"
             android:textColor="@color/color_101010"
-            android:text="支付到咚咚平台（" />
+            android:text="支付到怪商平台（" />
 
         <TextView
             android:layout_width="wrap_content"

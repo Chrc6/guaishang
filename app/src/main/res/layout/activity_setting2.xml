@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="7dp"
-            android:text="咚咚抢单"
+            android:text="怪商抢单"
             android:textColor="#101010"
             android:textSize="@dimen/dp_18" />
 
@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
             android:layout_gravity="center_horizontal"
-            android:text="《咚咚抢单软件许可及服务协议》"
+            android:text="《怪商抢单软件许可及服务协议》"
             android:textColor="#101010"
             android:textSize="@dimen/dp_14" />
 
@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
             android:layout_gravity="center_horizontal"
-            android:text="《咚咚隐私保护指引》"
+            android:text="《怪商隐私保护指引》"
             android:textColor="#101010"
             android:textSize="@dimen/dp_14" />
 

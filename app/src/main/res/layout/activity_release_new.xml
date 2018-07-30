@@ -10,7 +10,7 @@
         <TextView
             style="@style/titleTextStyle"
             android:textColor="@color/black"
-            android:text="咚咚砸单" />
+            android:text="怪商抢单" />
 
 
     </RelativeLayout>

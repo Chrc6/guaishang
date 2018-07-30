@@ -447,7 +447,7 @@ public class MainActivity extends MainHuanXinActivity implements
 			case TopicReleaseActivity.RELEASE_SUCCESS:
 				if (data != null && data.getStringExtra("brand") != null) {
 					String brand = data.getStringExtra("brand");
-					VoiceUtils.getInstance(this).speak("发布成功，买"+brand+"就上咚咚砸单");
+					VoiceUtils.getInstance(this).speak("发布成功，买"+brand+"就上怪商抢单");
 				}
 				if(topicFragment!=null){
 					topicFragment.refreshList(0);

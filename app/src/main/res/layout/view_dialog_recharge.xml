@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="购买咚咚金币"
+            android:text="购买怪商金币"
             android:textColor="@color/black"
             android:textSize="22dp" />
 
