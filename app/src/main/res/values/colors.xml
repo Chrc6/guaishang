@@ -127,4 +127,9 @@
     <color name="color_cd000000">#cd000000</color>
     <color name="color_8d000000">#8d000000</color>
 
+    <color name="color_d31c20">#d31c20</color>
+    <color name="color_d6d7df">#d6d7df</color>
+    <color name="color_382938">#382938</color>
+    <color name="color_ffffff">#ffffff</color>
+
 </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/register_bg_rectangle_radius_d31c20" android:state_pressed="true"/>
+    <item android:drawable="@drawable/register_bg_rectangle_radius_d31c20" android:state_selected="true"/>
+
+    <item android:drawable="@drawable/register_bg_rectangle_radius_d6d7df" android:state_pressed="false"/>
+    <item android:drawable="@drawable/register_bg_rectangle_radius_d6d7df" android:state_selected="false"/>
+
+    <item android:drawable="@drawable/register_bg_rectangle_radius_d6d7df"/>
+
+</selector>

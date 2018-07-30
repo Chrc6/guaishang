@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="12dp"
         android:gravity="center">
         <ImageView
             android:layout_width="88dp"
@@ -34,7 +34,6 @@
         <TextView
             android:layout_marginTop="8dp"
             android:textSize="20sp"
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"/>
@@ -46,26 +45,54 @@
         android:background="@drawable/bg_shape_login_bg"
         android:layout_marginLeft="@dimen/dp_10"
         android:layout_marginRight="@dimen/dp_10"
-       android:paddingLeft="15.33dp"
-        android:paddingRight="22dp"
-        android:paddingTop="@dimen/dp_18"
         android:gravity="center_vertical"
         android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/register"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="注册"
+                android:textColor="@drawable/login_text_color_selector"
+                android:textSize="@dimen/dp_14"
+                android:background="@drawable/register_bg_selector"/>
+
+            <Button
+                android:id="@+id/gotologin"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="登录"
+                android:textColor="@drawable/login_text_color_selector"
+                android:textSize="@dimen/dp_14"
+                android:background="@drawable/login_bg_selector"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="31dp"
+            android:layout_marginTop="@dimen/dp_18"
+            android:paddingLeft="15.33dp"
+            android:paddingRight="22dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
 
             >
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="43dp"
                 android:layout_height="wrap_content"
-                android:text="输入手机号"
+                android:text="账号"
                 android:textColor="#101010"
-                android:textSize="@dimen/sp_16"
+                android:textSize="14dp"
                 />
             <EditText
                 android:id="@+id/phone_et"
@@ -79,24 +106,61 @@
                 android:paddingLeft="@dimen/dp_10"
                 android:textColor="@color/text_black_color"
                 android:textColorHint="@color/text_gray_color"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:textSize="15sp" />
+                android:layout_marginLeft="26dp"
+                android:textSize="14dp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="31dp"
+            android:layout_marginTop="@dimen/dp_14"
+            android:paddingLeft="15.33dp"
+            android:paddingRight="22dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+
+            >
+
+            <TextView
+                android:layout_width="43dp"
+                android:layout_height="wrap_content"
+                android:text="密码"
+                android:textColor="#101010"
+                android:textSize="14dp"
+                />
+            <EditText
+                android:id="@+id/passward_et"
+                android:layout_width="match_parent"
+                android:layout_height="31dp"
+                android:background="@drawable/bg_shape_login"
+                android:hint="输入密码"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:singleLine="true"
+                android:paddingLeft="@dimen/dp_10"
+                android:textColor="@color/text_black_color"
+                android:textColorHint="@color/text_gray_color"
+                android:layout_marginLeft="26dp"
+                android:textSize="14dp" />
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="31dp"
             android:gravity="center_vertical"
             android:layout_marginTop="@dimen/dp_10"
+            android:paddingLeft="15.33dp"
+            android:paddingRight="22dp"
             android:layout_gravity="center_vertical"
             >
 
             <TextView
                 android:id="@+id/lable"
-                android:layout_width="wrap_content"
+                android:layout_width="43dp"
                 android:layout_height="wrap_content"
-                android:text="输入验证码"
+                android:text="验证码"
                 android:textColor="#101010"
-                android:textSize="@dimen/sp_16"
+                android:textSize="14dp"
                 android:layout_centerVertical="true"
                 />
             <RelativeLayout
@@ -104,7 +168,7 @@
                 android:layout_height="31dp"
                 android:background="@drawable/bg_shape_login"
                 android:layout_toRightOf="@+id/lable"
-                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginLeft="26dp"
                 android:gravity="center_vertical"
                 >
             <EditText
@@ -119,11 +183,11 @@
                 android:singleLine="true"
                 android:textColor="@color/text_black_color"
                 android:textColorHint="@color/text_gray_color"
-                android:textSize="15sp" />
+                android:textSize="14dp" />
             <Button
                 android:id="@+id/check_pw_get_btn"
-                android:layout_width="89dp"
-                android:layout_height="25dp"
+                android:layout_width="64dp"
+                android:layout_height="20dp"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/gray_rect_background"
                 android:layout_alignParentRight="true"
@@ -135,32 +199,17 @@
             </RelativeLayout>
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center_horizontal"
-            >
-            <Button
-                android:id="@+id/next_btn"
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_shape_regist_btn"
-                android:text="注册"
-                android:textColor="#382938"
-                android:textSize="17sp" />
-            <Button
-                android:id="@+id/gotologin"
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_shape_login_btn"
-                android:text="登陆"
-                android:textColor="#ffffff"
-                android:layout_marginLeft="10dp"
-                android:textSize="17sp" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/next_btn"
+            android:layout_width="150dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="@dimen/dp_22"
+            android:layout_marginBottom="17dp"
+            android:layout_gravity="center_horizontal"
+            android:text="确认"
+            android:textColor="#ffffff"
+            android:textSize="14dp"
+            android:background="@drawable/bg_shape_login_btn"/>
 
     </LinearLayout>
 

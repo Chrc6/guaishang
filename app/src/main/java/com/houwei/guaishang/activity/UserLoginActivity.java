@@ -124,7 +124,6 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
     private void initView() {
 		// TODO Auto-generated method stub
 
-
 		initProgressDialog(false, null);
 		user_name_et = (EditText) findViewById(R.id.username_et);
 		user_pw_et = (EditText) findViewById(R.id.check_pw_et);
@@ -152,7 +151,9 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 				}
 			}, 150);
 		}
-		
+
+		findViewById(R.id.gotologin).setSelected(true);
+
 	}
 
 	private Runnable run = new Runnable() {

@@ -281,7 +281,8 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 //				SMSSDK.getVoiceVerifyCode("86",phone_et.getText().toString().trim());
 //			}
 //		});
-		
+
+		findViewById(R.id.register).setSelected(true);
 		findViewById(R.id.next_btn).setOnClickListener(
 				new View.OnClickListener() {
 
@@ -308,7 +309,8 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 //						SMSSDK.submitVerificationCode("86", phone_et.getText().toString().trim(), check_pw_et.getText().toString().trim());
 					}
 				});
-		
+
+		findViewById(R.id.gotologin).setSelected(false);
 		findViewById(R.id.gotologin).setOnClickListener(new View.OnClickListener() {
 			
 			@Override
