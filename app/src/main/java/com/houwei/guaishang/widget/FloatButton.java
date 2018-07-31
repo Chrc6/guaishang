@@ -13,6 +13,7 @@ import com.google.android.flexbox.FlexboxLayout;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.BaseActivity;
 import com.houwei.guaishang.sp.UserUtil;
+import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.util.InflateService;
 import com.houwei.guaishang.util.LoginJumperUtil;
 import com.houwei.guaishang.view.CircleImageView;
@@ -22,6 +23,7 @@ import com.houwei.guaishang.widget.holder.FloatOneHolder;
 import com.houwei.guaishang.widget.holder.FloatThreeHolder;
 import com.houwei.guaishang.widget.holder.FloatTwoHolder;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.qiniu.android.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +43,7 @@ public class FloatButton extends RelativeLayout {
     private Context context;
     private List<String> mAvatarList;//头像列表
     private int status;
+    private String orderPublishHeadUrl;//订单发布者的头像url
 
     private TextView galb,brief;
     private RelativeLayout galb_layout;
@@ -138,6 +141,15 @@ public class FloatButton extends RelativeLayout {
         }
     }
 
+    //设置订单发布人的头像
+    public void setPublishMemberHeadUrl(String headUrl) {
+        if (headUrl != null && (headUrl.contains("http://") || headUrl.contains("https://"))) {
+            orderPublishHeadUrl = headUrl;
+        } else {
+            orderPublishHeadUrl = HttpUtil.IP_NOAPI+headUrl;
+        }
+    }
+
     public void setBrief(String content){
         if ( null != brief){
             brief.setText(content);
@@ -153,6 +165,9 @@ public class FloatButton extends RelativeLayout {
     }
     private void setSelf(){
         ArrayList<String> list = new ArrayList<>();
+        if (!StringUtils.isNullOrEmpty(orderPublishHeadUrl)) {
+            list.add(orderPublishHeadUrl);
+        }
         if (UserUtil.isInLoginStata()){
             String avatar = UserUtil.getUserInfo().getAvatar();
             list.add(avatar);
@@ -197,6 +212,10 @@ public class FloatButton extends RelativeLayout {
             fiveHolder.setData(mAvatarList);
             iconLayout.addView(fiveHolder.getRootView());
         }
+    }
+
+    public int getStatus() {
+        return status;
     }
 
 

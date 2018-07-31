@@ -282,7 +282,6 @@ public class MineFragmentNew extends BaseFragment implements OnClickListener,
                         EMNotifierEvent.Event.EventConversationListChanged});
     }
 
-
     @Override
     public void onStop() {
         EMChatManager.getInstance().unregisterEventListener(this);

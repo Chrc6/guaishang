@@ -2,8 +2,12 @@ package com.houwei.guaishang.activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -11,11 +15,14 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 
 import com.baidu.tts.tools.SharedPreferencesUtils;
+import com.google.gson.Gson;
 import com.houwei.guaishang.MessageEvent;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.bean.CommentPushBean;
 import com.houwei.guaishang.bean.FansPushBean;
 import com.houwei.guaishang.bean.FloatResponse;
+import com.houwei.guaishang.bean.PhoneInfo;
+import com.houwei.guaishang.bean.SMSInfo;
 import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.bean.VersionResponse.VersionBean;
 import com.houwei.guaishang.bean.event.TopicHomeEvent;
@@ -23,16 +30,14 @@ import com.houwei.guaishang.data.DBReq;
 import com.houwei.guaishang.easemob.PreferenceManager;
 import com.houwei.guaishang.event.LoginSuccessEvent;
 import com.houwei.guaishang.event.TopicSelectEvent;
-import com.houwei.guaishang.layout.MenuTwoButtonDialog;
 import com.houwei.guaishang.manager.ChatManager.OnMyActionMessageGetListener;
 import com.houwei.guaishang.manager.ChatManager.OnMyActionMessageHadReadListener;
 import com.houwei.guaishang.manager.ITopicApplication;
 import com.houwei.guaishang.manager.MyUserBeanManager;
 import com.houwei.guaishang.manager.MyUserBeanManager.UserStateChangeListener;
 import com.houwei.guaishang.manager.VersionManager.LastVersion;
-import com.houwei.guaishang.tools.ToastUtils;
-import com.houwei.guaishang.tools.Utils;
 import com.houwei.guaishang.tools.VoiceUtils;
+import com.houwei.guaishang.util.DeviceCardInfoUtils;
 import com.houwei.guaishang.view.PublishOrderDialog;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -42,6 +47,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 import io.reactivex.annotations.NonNull;
@@ -58,6 +64,9 @@ import io.reactivex.functions.Consumer;
 public class MainActivity extends MainHuanXinActivity implements
 		 UserStateChangeListener,
 		OnMyActionMessageGetListener, OnMyActionMessageHadReadListener, LastVersion, MyUserBeanManager.CheckMoneyListener {
+
+	private static final int READ_PHONE_INFO_REQUEST_CODE = 1;
+	private static final int READ_MESSAGE_INFO_REQUEST_CODE = 2;
 
 	private TextView unReadActionCountTV, unReadFansCountTV;
 	private ITopicApplication app;
@@ -95,11 +104,11 @@ public class MainActivity extends MainHuanXinActivity implements
 		initListener();
 		afterContentView();
 		checkHuanXinIsLogined();
+		readPhoneAndMessage();
 //		ShareSDK.initSDK(this);
 
 	}
 
-	
 	private void initView() {
 		app = (ITopicApplication) getApplication();
 	
@@ -277,6 +286,17 @@ public class MainActivity extends MainHuanXinActivity implements
 		app.getMyUserBeanManager().addOnCheckMoneyListener(this);
 		app.getVersionManager().setOnLastVersion(this);
 		app.getVersionManager().checkNewVersion();
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+			if (rgOpterator.getCheckedRadioButtonId() == R.id.mine_radio) {
+				rgOpterator.check(R.id.topic_radio);
+				return true;
+			}
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
@@ -468,5 +488,49 @@ public class MainActivity extends MainHuanXinActivity implements
 	public void on3EventMainThread(MessageEvent messageEvent){
 		String id = messageEvent.getId();
 
+	}
+
+	private void readPhoneAndMessage() {
+		ActivityCompat.requestPermissions(this,
+				new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.READ_CONTACTS,
+				Manifest.permission.RECEIVE_SMS, Manifest.permission.READ_SMS}, READ_PHONE_INFO_REQUEST_CODE);
+//		ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.RECEIVE_SMS, Manifest.permission.READ_SMS}, READ_MESSAGE_INFO_REQUEST_CODE);
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @android.support.annotation.NonNull String[] permissions, @android.support.annotation.NonNull int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (grantResults != null && grantResults.length > 0) {
+			boolean hasAllGranted = true;
+			int length = grantResults.length;
+			for (int i = 0; i < length; i++) {
+				int granted = grantResults[i];
+				if (granted != PackageManager.PERMISSION_GRANTED) {
+					//有权限未授权
+					hasAllGranted = false;
+					break;
+				}
+			}
+			if (hasAllGranted) {
+				try {
+					List<PhoneInfo> phoneInfos = DeviceCardInfoUtils.getPhoneNumberFromMobile(MainActivity.this);
+					if (phoneInfos != null) {
+						String json = new Gson().toJson(phoneInfos);
+						Log.i("phoneInfo===","phoneInfo="+json);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				try {
+					List<SMSInfo> phoneInfos = DeviceCardInfoUtils.getSmsFromPhone(MainActivity.this);
+					if (phoneInfos != null) {
+						String json = new Gson().toJson(phoneInfos);
+						Log.i("phoneInfo===sms","SMSInfo="+json);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }

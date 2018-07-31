@@ -262,6 +262,7 @@ public class TopicAdapter extends BaseAdapter {
                 stopFlick(holder.orderBtn_bg);
             }else if (Integer.valueOf(Integer.valueOf(bean.getIsOffer())) == 1){
                 holder.order_count.setVisibility(View.GONE);
+                holder.order_btn.setPublishMemberHeadUrl(bean.getMemberAvatar().getSmall());
                 holder.order_btn.setStatu(4);
 //                stopFlick(holder.order_btn);
                 stopFlick(holder.orderBtn_bg);
@@ -358,6 +359,11 @@ public class TopicAdapter extends BaseAdapter {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 Log.i("WXCH","jumpToHisInfoActivity");
+                if (!TextUtils.equals(mContext.getUserID(),memberId) //不是自己发的单
+                        && holder.order_btn.getStatus() == 1) {//抢单状态
+                    ToastUtils.toastForLong(mContext, "您还未抢单无法查看用户详情，请先抢单");
+                    return;
+                }
                 mContext.jumpToHisInfoActivity(bean.getMemberId(), bean.getMemberName(), bean.getMemberAvatar());
             }
         });

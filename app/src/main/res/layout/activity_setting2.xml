@@ -64,38 +64,6 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_feedback"
-            android:layout_width="match_parent"
-            android:layout_height="30dp">
-
-            <TextView
-                android:layout_width="85dp"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:text="客服投诉"
-                android:textColor="#101010"
-                android:textSize="@dimen/dp_14" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="45dp"
-                android:text="400-800-2000"
-                android:textColor="#101010"
-                android:textSize="@dimen/dp_14" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_alignParentBottom="true"
-                android:background="@color/text_gray_color" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
             android:id="@+id/rl_version_update"
             android:layout_width="match_parent"
             android:layout_height="30dp">
