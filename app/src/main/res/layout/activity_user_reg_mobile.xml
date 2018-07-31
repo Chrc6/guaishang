@@ -83,9 +83,7 @@
             android:paddingLeft="15.33dp"
             android:paddingRight="22dp"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-
-            >
+            android:gravity="center">
 
             <TextView
                 android:layout_width="43dp"
@@ -96,7 +94,7 @@
                 />
             <EditText
                 android:id="@+id/phone_et"
-                android:layout_width="match_parent"
+                android:layout_width="207dp"
                 android:layout_height="31dp"
                 android:background="@drawable/bg_shape_login"
                 android:hint="手机号"
@@ -117,9 +115,7 @@
             android:paddingLeft="15.33dp"
             android:paddingRight="22dp"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-
-            >
+            android:gravity="center">
 
             <TextView
                 android:layout_width="43dp"
@@ -130,7 +126,7 @@
                 />
             <EditText
                 android:id="@+id/passward_et"
-                android:layout_width="match_parent"
+                android:layout_width="207dp"
                 android:layout_height="31dp"
                 android:background="@drawable/bg_shape_login"
                 android:hint="输入密码"
@@ -145,14 +141,13 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="31dp"
             android:gravity="center_vertical"
             android:layout_marginTop="@dimen/dp_10"
             android:paddingLeft="15.33dp"
             android:paddingRight="22dp"
-            android:layout_gravity="center_vertical"
-            >
+            android:layout_gravity="center">
 
             <TextView
                 android:id="@+id/lable"
@@ -164,7 +159,7 @@
                 android:layout_centerVertical="true"
                 />
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="31dp"
                 android:background="@drawable/bg_shape_login"
                 android:layout_toRightOf="@+id/lable"
@@ -173,7 +168,7 @@
                 >
             <EditText
                 android:id="@+id/check_pw_et"
-                android:layout_width="match_parent"
+                android:layout_width="207dp"
                 android:layout_height="match_parent"
                 android:hint="输入验证码"
                 android:paddingLeft="10dp"
@@ -190,7 +185,7 @@
                 android:layout_height="20dp"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/gray_rect_background"
-                android:layout_alignParentRight="true"
+                android:layout_alignRight="@+id/check_pw_et"
                 android:text="获取验证码"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="6dp"
