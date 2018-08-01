@@ -10,10 +10,12 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
@@ -75,6 +77,7 @@ import com.houwei.guaishang.tools.ToastUtils;
 import com.luck.picture.lib.permissions.RxPermissions;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -96,6 +99,8 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
     protected static final int REQUEST_CODE_MAP = 1;
     protected static final int REQUEST_CODE_CAMERA = 2;
     protected static final int REQUEST_CODE_LOCAL = 3;
+    protected static final int REQUEST_CODE_FILE = 4;
+    protected static final int REQUEST_CODE_VIDEO = 5;
     private static final int REQUEST_CODE_GROUP_DETAIL = 21;
     // 阅后即焚id 避免和基类定义的常量可能发生的冲突，常量从11开始定义
     protected static final int ITEM_READFIRE = 15;
@@ -141,9 +146,11 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
     static final int ITEM_TAKE_PICTURE = 1;
     static final int ITEM_PICTURE = 2;
     static final int ITEM_LOCATION = 3;
-    protected int[] itemStrings = { R.string.attach_take_pic, R.string.attach_picture, R.string.attach_location };
-    protected int[] itemdrawables = { R.drawable.message_more_camera, R.drawable.message_more_pic, R.drawable.message_more_poi };
-    protected int[] itemIds = { ITEM_TAKE_PICTURE, ITEM_PICTURE, ITEM_LOCATION };
+    static final int ITEM_FILE = 4;
+    static final int ITEM_VIDEO = 5;
+    protected int[] itemStrings = { R.string.attach_take_pic, R.string.attach_picture, R.string.attach_location, R.string.attach_file, R.string. attach_video};
+    protected int[] itemdrawables = { R.drawable.message_more_camera, R.drawable.message_more_pic, R.drawable.message_more_poi, R.drawable.message_more_poi, R.drawable.message_more_poi };
+    protected int[] itemIds = { ITEM_TAKE_PICTURE, ITEM_PICTURE, ITEM_LOCATION, ITEM_FILE, ITEM_VIDEO };
     protected MyItemClickListener extendMenuItemClickListener;
     protected GroupListener groupListener;
     private EMChatRoomChangeListener chatRoomChangeListener;
@@ -214,13 +221,13 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
     }
     private void initView(){
         listView = messageList.getListView();
-        if (chatType == EaseConstant.CHATTYPE_SINGLE){
-            initSingleView();
-        }else if (chatType == EaseConstant.CHATTYPE_GROUP){
+//        if (chatType == EaseConstant.CHATTYPE_SINGLE){
+//            initSingleView();
+//        }else if (chatType == EaseConstant.CHATTYPE_GROUP){
             initGroupView();
-        }else {
-            initRoom();
-        }
+//        }else {
+//            initRoom();
+//        }
 
         initMenu();
         getRefreshLayout();
@@ -637,6 +644,9 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
      * 注册底部菜单扩展栏item; 覆盖此方法时如果不覆盖已有item，item的id需大于3
      */
     protected void registerExtendMenuItem() {
+        if (extendMenuItemClickListener == null) {
+            extendMenuItemClickListener = new MyItemClickListener();
+        }
         for (int i = 0; i < itemStrings.length; i++) {
             inputMenu.registerExtendMenuItem(itemStrings[i], itemdrawables[i],
                     itemIds[i], extendMenuItemClickListener);
@@ -807,11 +817,29 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
                     selectPicFromCamera();
                     break;
                 case ITEM_PICTURE:
-                    selectPicFromLocal(); // 图库选择图片
+                    if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_LOCAL);
+                    } else {
+                        selectPicFromLocal(); // 图库选择图片
+                    }
                     break;
                 case ITEM_LOCATION: // 位置
                     startActivityForResult(new Intent(getActivity(),
                             BaiduMapActivity.class), REQUEST_CODE_MAP);
+                    break;
+                case ITEM_FILE:// 文件
+                    if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_LOCAL);
+                    } else {
+                        selectFileFromLocal();
+                    }
+                    break;
+                case ITEM_VIDEO://视频
+                    if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_LOCAL);
+                    } else {
+                        selectVideoFromLocal();
+                    }
                     break;
 
                 default:
@@ -830,15 +858,52 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
             return;
         }
 
-        cameraFile = new File(PathUtil.getInstance().getImagePath(),
-                EMChatManager.getInstance().getCurrentUser()
-                        + System.currentTimeMillis() + ".jpg");
-        cameraFile.getParentFile().mkdirs();
-        startActivityForResult(
-                new Intent(MediaStore.ACTION_IMAGE_CAPTURE).putExtra(
-                        MediaStore.EXTRA_OUTPUT, Uri.fromFile(cameraFile)),
-                REQUEST_CODE_CAMERA);
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_CAMERA);
+        } else {
+            gotoCamera();
+        }
+
+
     }
+
+    private void gotoCamera() {
+        //        cameraFile = new File(PathUtil.getInstance().getImagePath(),
+//                EMChatManager.getInstance().getCurrentUser()
+//                        + System.currentTimeMillis() + ".jpg");
+//        cameraFile.getParentFile().mkdirs();
+        File parentFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "external_storage_camera");
+        if (!parentFile.exists()) {
+            parentFile.mkdirs();
+        }
+        cameraFile = new File(parentFile, EMChatManager.getInstance().getCurrentUser() + System.currentTimeMillis() + ".jpg");
+        if (!cameraFile.exists()) {
+            try {
+                cameraFile.createNewFile();
+                if (!cameraFile.exists()) {
+                    cameraFile.createNewFile();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Uri uri = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            uri = FileProvider.getUriForFile(getContext(), getContext().getApplicationContext().getPackageName(), cameraFile);
+        } else {
+            uri = Uri.fromFile(cameraFile);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+//        intent.setDataAndType(uri, "application/vnd.android.package-archive");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+
+        startActivityForResult(intent,  REQUEST_CODE_CAMERA);
+    }
+
 
     /**
      * 从图库获取图片
@@ -855,6 +920,62 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
                     android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         }
         startActivityForResult(intent, REQUEST_CODE_LOCAL);
+    }
+
+    /**
+     *从本地文件夹选择文件
+     */
+    protected void selectFileFromLocal(){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, REQUEST_CODE_FILE);
+    }
+
+    /**
+     *从本地文件夹选择视频
+     */
+    protected void selectVideoFromLocal(){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("video/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, REQUEST_CODE_VIDEO);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @android.support.annotation.NonNull String[] permissions, @android.support.annotation.NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_CAMERA) {
+            if (grantResults != null
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                gotoCamera();
+            } else {
+                ToastUtils.toastForLong(getContext(), "请开启相机权限或者存储读写权限");
+            }
+        } else if (requestCode == REQUEST_CODE_LOCAL) {
+            if (grantResults != null
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                selectPicFromLocal();
+            } else {
+                ToastUtils.toastForLong(getContext(), "请开启存储读写权限");
+            }
+        } else if (requestCode == REQUEST_CODE_FILE) {
+            if (grantResults != null
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                selectFileFromLocal();
+            } else {
+                ToastUtils.toastForLong(getContext(), "请开启存储读写权限");
+            }
+        } else if (requestCode == REQUEST_CODE_VIDEO) {
+            if (grantResults != null
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                selectVideoFromLocal();
+            } else {
+                ToastUtils.toastForLong(getContext(), "请开启存储读写权限");
+            }
+        }
+
     }
 
     protected ChatBaseActivity.EaseChatFragmentListener chatFragmentListener;
@@ -931,6 +1052,16 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
         sendMessage(message);
     }
 
+    protected void sendFileMessage(String filePath) {
+        EMMessage message = EMMessage.createFileSendMessage(filePath, chatInfo.getHisUserID());
+        sendMessage(message);
+    }
+
+    protected void sendVideoMessage(String videoPath) {
+        EMMessage message = EMMessage.createVideoSendMessage(videoPath, videoPath, 30 , chatInfo.getHisUserID());
+        sendMessage(message);
+    }
+
     /**
      * 根据图库图片uri发送图片
      *
@@ -968,6 +1099,72 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
             sendImageMessage(file.getAbsolutePath());
         }
 
+    }
+
+    private void sendFileByUri(Uri selectedFile) {
+        String[] filePathColumn = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getActivity().getContentResolver().query(selectedFile,
+                filePathColumn, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+            cursor = null;
+
+            if (picturePath == null || picturePath.equals("null")) {
+                Toast toast = Toast.makeText(getActivity(),
+                        R.string.cant_find_pictures, Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+                return;
+            }
+            sendFileMessage(picturePath);
+        } else {
+            File file = new File(selectedFile.getPath());
+            if (!file.exists()) {
+                Toast toast = Toast.makeText(getActivity(),
+                        R.string.cant_find_pictures, Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+                return;
+
+            }
+            sendFileMessage(file.getAbsolutePath());
+        }
+    }
+
+    private void sendVideoByUri(Uri selectedVideo) {
+        String[] filePathColumn = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getActivity().getContentResolver().query(selectedVideo,
+                filePathColumn, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+            cursor = null;
+
+            if (picturePath == null || picturePath.equals("null")) {
+                Toast toast = Toast.makeText(getActivity(),
+                        R.string.cant_find_pictures, Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+                return;
+            }
+            sendVideoMessage(picturePath);
+        } else {
+            File file = new File(selectedVideo.getPath());
+            if (!file.exists()) {
+                Toast toast = Toast.makeText(getActivity(),
+                        R.string.cant_find_pictures, Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+                return;
+
+            }
+            sendVideoMessage(file.getAbsolutePath());
+        }
     }
 
     protected void sendMessage(EMMessage message) {
@@ -1120,6 +1317,20 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
                             R.string.unable_to_get_loaction, Toast.LENGTH_SHORT).show();
                 }
 
+            } else if (requestCode == REQUEST_CODE_FILE) {
+                if (data != null) {
+                    Uri selectedFile = data.getData();
+                    if (selectedFile != null) {
+                        sendFileByUri(selectedFile);
+                    }
+                }
+            } else if (requestCode == REQUEST_CODE_VIDEO) {
+                if (data != null) {
+                    Uri selectedFile = data.getData();
+                    if (selectedFile != null) {
+                        sendVideoByUri(selectedFile);
+                    }
+                }
             }
         }
     }
