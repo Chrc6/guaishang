@@ -440,6 +440,7 @@
         <activity android:name=".activity.newui.ReleaseActivity" />
         <activity android:name=".activity.newui.TestActivity" />
         <activity android:name=".activity.newui.TopicDetailMeActivity" />
+        <activity android:name=".easemob.EaseShowVideoActivity" />
         <activity
             android:name="cn.sharesdk.tencent.qq.ReceiveActivity"
             android:launchMode="singleTask"

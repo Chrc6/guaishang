@@ -6,7 +6,9 @@ import java.util.Map;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -50,8 +52,20 @@ public class EaseShowVideoActivity extends EaseBaseActivity{
 				+ " remotepath:" + remotepath + " secret:" + secret);
 		if (localFilePath != null && new File(localFilePath).exists()) {
 			Intent intent = new Intent(Intent.ACTION_VIEW);
-			intent.setDataAndType(Uri.fromFile(new File(localFilePath)),
-					"video/mp4");
+			Uri uri;
+			File file = new File(localFilePath);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+				intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+				uri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName(), file);
+			} else {
+				uri = Uri.fromFile(file );
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+			}
+
+			intent.setDataAndType(uri, "video/*");
+//			intent.setDataAndType(Uri.fromFile(new File(localFilePath)),
+//					"video/mp4");
 			startActivity(intent);
 			finish();
 		} else if (!TextUtils.isEmpty(remotepath) && !remotepath.equals("null")) {
