@@ -131,7 +131,7 @@ public class UserFindPasswordActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_user_findpassword);
+		setContentView(R.layout.activity_passward_reset);
 		initView();
 		initListener();
 	}
@@ -142,7 +142,7 @@ public class UserFindPasswordActivity extends BaseActivity {
 		timer = new Timer();
 		phone_et = (EditText) findViewById(R.id.phone_et);
 		check_pw_et = (EditText) findViewById(R.id.check_pw_et);
-		 new_password_et2= (EditText) findViewById(R.id.new_password_et2);
+//		 new_password_et2= (EditText) findViewById(R.id.new_password_et2);
 		pw_et_1 = (EditText) findViewById(R.id.pw_et_1);
 
 		initProgressDialog(false, null);
@@ -220,22 +220,22 @@ public class UserFindPasswordActivity extends BaseActivity {
 							showErrorToast("请输入手机号");
 							return;
 						}
-						if (check_pw_et.getText().toString().trim().equals("")){
-							AnimationYoYo.shakeView(findViewById(R.id.check_pw_et));
-							showErrorToast("请输入验证码");
-							return;
-						}
 						if (pw_et_1.getText().toString().trim().equals("")){
 							AnimationYoYo.shakeView(findViewById(R.id.pw_et_1));
 							showErrorToast("请输入密码");
 							return;
 						}
-						if (!pw_et_1.getText().toString().trim().equals(new_password_et2.getText().toString().trim())) {
-							AnimationYoYo.shakeView(findViewById(R.id.pw_et_1));
-							AnimationYoYo.shakeView(findViewById(R.id.new_password_et2));
-							showErrorToast("两次密码不一致");
+						if (check_pw_et.getText().toString().trim().equals("")){
+							AnimationYoYo.shakeView(findViewById(R.id.check_pw_et));
+							showErrorToast("请输入验证码");
 							return;
 						}
+//						if (!pw_et_1.getText().toString().trim().equals(new_password_et2.getText().toString().trim())) {
+//							AnimationYoYo.shakeView(findViewById(R.id.pw_et_1));
+//							AnimationYoYo.shakeView(findViewById(R.id.new_password_et2));
+//							showErrorToast("两次密码不一致");
+//							return;
+//						}
 						
 						progress.show();
 						SMSSDK.submitVerificationCode("86", phone_et.getText().toString().trim(), check_pw_et.getText().toString().trim());

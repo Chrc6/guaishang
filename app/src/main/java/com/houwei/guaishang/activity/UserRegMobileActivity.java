@@ -53,12 +53,14 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 	public static String APPSECRET = "7b60e80917dd1d9b1f90223b02215b9b";//
 	
 	
-	private EditText phone_et, check_pw_et;
+	private EditText phone_et, check_pw_et, passward_et;
 	private Button check_pw_get_btn;
 	private Timer timer;
 	private TimerTask task;
 	private int CURRENTDELAYTIME;
 	private final int DELAYTIME = 60;
+
+	private static boolean registerActivityOnResume;
 
 	@Override
 	public void onHuanXinLoginSuccess() {
@@ -159,6 +161,11 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 			int result = msg.arg2;
 			Object data = msg.obj;
 			if (result == SMSSDK.RESULT_COMPLETE) {
+				if (!registerActivityOnResume) {
+					//找回密码的短信验证这边可以回调到
+					//为避免回调，用这个字段来判断
+					return;
+				}
 				//短信注册成功后，返回MainActivity,然后提示新好友
 				if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {//提交验证码成功
 					//验证码效验争取
@@ -166,6 +173,7 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 					Intent i = new Intent(activity,UserRegInfoPersonalActivity.class);
 					i.putExtra("mobile",  phoneMap.get("phone"));
 					activity.startActivity(i);
+//					accountRegister(activity);
 				} else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE || event == SMSSDK.EVENT_GET_VOICE_VERIFICATION_CODE){
 					activity.showErrorToast("验证码已经发送");
 					activity.check_pw_get_btn.setClickable(false);
@@ -195,6 +203,7 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 		timer = new Timer();
 		phone_et = (EditText) findViewById(R.id.phone_et);
 		check_pw_et = (EditText) findViewById(R.id.check_pw_et);
+		passward_et = (EditText) findViewById(R.id.passward_et);
 		initProgressDialog(false, null);
 		handler.postDelayed(new Runnable() {
 
@@ -294,6 +303,11 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 							showErrorToast("请输入手机号");
 							return;
 						}
+						if (passward_et.getText().toString().trim().equals("")){
+							AnimationYoYo.shakeView(findViewById(R.id.passward_et));
+							showErrorToast("请输入密码");
+							return;
+						}
 						if (check_pw_et.getText().toString().trim().equals("")){
 							AnimationYoYo.shakeView(findViewById(R.id.check_pw_et));
 							showErrorToast("请输入验证码");
@@ -301,12 +315,11 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 						}
 		
 						//debug 测试期间可以用这段代码跳过验证码
-						Intent i = new Intent(UserRegMobileActivity.this,UserRegInfoPersonalActivity.class);
-						i.putExtra("mobile",  phone_et.getText().toString().trim());
-						startActivity(i);
-						
-//						progress.show();
-//						SMSSDK.submitVerificationCode("86", phone_et.getText().toString().trim(), check_pw_et.getText().toString().trim());
+//						Intent i = new Intent(UserRegMobileActivity.this,UserRegInfoPersonalActivity.class);
+//						i.putExtra("mobile",  phone_et.getText().toString().trim());
+//						startActivity(i);
+						progress.show();
+						SMSSDK.submitVerificationCode("86", phone_et.getText().toString().trim(), check_pw_et.getText().toString().trim());
 					}
 				});
 
@@ -320,7 +333,7 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 				startActivity(i);
 			}
 		});
-		
+
 		findViewById(R.id.title_right).setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -360,6 +373,54 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 				utils.Login(SinaWeibo.NAME);
 			}
 		});
+	}
+
+//	private void accountRegister(final UserRegMobileActivity activity) {
+//		new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				UserResponse response = null;
+//				try {
+//					HashMap<String, String> data = new HashMap<String, String>();
+//					data.put("mobile", phone_et.getText().toString().trim());
+//					data.put("password", phone_et.getText().toString().trim());
+//					data.put("name", user_name_et.getText().toString().trim());
+//					data.put("avatar", currentPhotoUrl);
+//					data.put("sex", currentSexBean.getId());
+//					data.put("age", age_tv.getText().toString().trim());
+//					response = JsonParser.getUserResponse(HttpUtil.postMsg(
+//							HttpUtil.getData(data), HttpUtil.IP + "user/register"));
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				if (response != null) {
+//					handler.sendMessage(handler.obtainMessage(
+//							NETWORK_SUCCESS_DATA_RIGHT, response));
+//				} else {
+//					handler.sendEmptyMessage(NETWORK_FAIL);
+//				}
+//				new Handler().post(new Runnable() {
+//					@Override
+//					public void run() {
+//						activity.finish();
+//					}
+//				});
+//			}
+//		}).start();
+//	}
+
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		registerActivityOnResume = true;
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		registerActivityOnResume = false;
 	}
 
 	@Override

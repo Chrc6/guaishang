@@ -77,9 +77,9 @@ public class ProfileInfoActivity extends BaseActivity implements MyUserBeanManag
             case R.id.name_group:
                 jump(name.getText().toString(), ProfileEditActivity.NAME,1);
                 break;
-//            case R.id.phone_group:
-//                jump(phone.getText().toString(), ProfileEditActivity.Phone,2);
-//                break;
+            case R.id.phone_group:
+                jump(phone.getText().toString(), ProfileEditActivity.Phone,2);
+                break;
             case R.id.guding_phone_group:
                 jump(gudingPhone.getText().toString(), ProfileEditActivity.GuDing_Phone,3);
                 break;
@@ -137,7 +137,7 @@ public class ProfileInfoActivity extends BaseActivity implements MyUserBeanManag
                     gudingPhone.setText(guDingphoneRes);
                     ub = getITopicApplication()
                             .getMyUserBeanManager().getInstance();
-                    ub.setMobile(guDingphoneRes);
+                    ub.setGudingPhone(guDingphoneRes);
                     userInfo = UserUtil.getUserInfo();
                     userInfo.setGudingPhone(guDingphoneRes);
                     UserUtil.setUserInfo(userInfo);

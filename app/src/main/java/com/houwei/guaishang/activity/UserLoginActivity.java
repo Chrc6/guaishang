@@ -48,6 +48,7 @@ import cn.sharesdk.wechat.friends.Wechat;
 
 public class UserLoginActivity extends BaseActivity implements HuanXinLoginListener {
 	private EditText user_name_et, user_pw_et;
+	private TextView find_passward_tv;
 	
 	private MyHandler handler = new MyHandler(this);
 	private ImageView imageQQ;
@@ -127,6 +128,7 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 		initProgressDialog(false, null);
 		user_name_et = (EditText) findViewById(R.id.username_et);
 		user_pw_et = (EditText) findViewById(R.id.check_pw_et);
+		find_passward_tv = (TextView) findViewById(R.id.find_passward);
 		imageQQ = (ImageView) findViewById(R.id.image_qq);
 		imageWeibo = (ImageView) findViewById(R.id.image_weibo);
 		imageWechat = (ImageView) findViewById(R.id.image_wechat);
@@ -152,6 +154,13 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 			}, 150);
 		}
 
+		find_passward_tv.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(UserLoginActivity.this, UserFindPasswordActivity.class);
+				startActivity(intent);
+			}
+		});
 		findViewById(R.id.gotologin).setSelected(true);
 
 	}
