@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -74,6 +75,7 @@ import com.houwei.guaishang.manager.MyLocationManager;
 import com.houwei.guaishang.sp.UserUtil;
 import com.houwei.guaishang.tools.JsonUtil;
 import com.houwei.guaishang.tools.ToastUtils;
+import com.houwei.guaishang.tools.Utils;
 import com.luck.picture.lib.permissions.RxPermissions;
 
 import java.io.File;
@@ -101,6 +103,7 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
     protected static final int REQUEST_CODE_LOCAL = 3;
     protected static final int REQUEST_CODE_FILE = 4;
     protected static final int REQUEST_CODE_VIDEO = 5;
+    protected static final int REQUEST_CODE_READ_STORAGE = 6;
     private static final int REQUEST_CODE_GROUP_DETAIL = 21;
     // 阅后即焚id 避免和基类定义的常量可能发生的冲突，常量从11开始定义
     protected static final int ITEM_READFIRE = 15;
@@ -137,6 +140,8 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
     private boolean isMessageListInited;
     private RxPermissions rxPermissions;
     private String mobile;
+    private Uri selectedVideoFile;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -974,6 +979,12 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
             } else {
                 ToastUtils.toastForLong(getContext(), "请开启存储读写权限");
             }
+        } else if (requestCode == REQUEST_CODE_READ_STORAGE) {
+            if (grantResults != null
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                sendVideoByUri(selectedVideoFile);
+            }
         }
 
     }
@@ -1058,7 +1069,15 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
     }
 
     protected void sendVideoMessage(String videoPath) {
-        EMMessage message = EMMessage.createVideoSendMessage(videoPath, videoPath, 30 , chatInfo.getHisUserID());
+        //视频大小超出10M 就发送失败，环信限制了
+        File videoFile = new File(videoPath);
+        if (videoFile != null && videoFile.length() > 10 * 1024 *1024) {//大于10M
+            ToastUtils.toastForLong(getContext(), "视频文件不能大雨10M，请重新上传");
+        }
+        Bitmap bitmap = com.houwei.guaishang.video.Utils.getVideoThumb(videoPath);
+        String picPath = com.houwei.guaishang.video.Utils.bitmap2File(bitmap, videoPath);
+        int time = (int) (com.houwei.guaishang.video.Utils.getVideoTotalTime(videoPath) / 1000);
+        EMMessage message = EMMessage.createVideoSendMessage(videoPath, picPath, time , chatInfo.getHisUserID());
         sendMessage(message);
     }
 
@@ -1147,7 +1166,7 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
 
             if (picturePath == null || picturePath.equals("null")) {
                 Toast toast = Toast.makeText(getActivity(),
-                        R.string.cant_find_pictures, Toast.LENGTH_SHORT);
+                        R.string.video_does_not_exist, Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
                 return;
@@ -1157,7 +1176,7 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
             File file = new File(selectedVideo.getPath());
             if (!file.exists()) {
                 Toast toast = Toast.makeText(getActivity(),
-                        R.string.cant_find_pictures, Toast.LENGTH_SHORT);
+                        R.string.video_does_not_exist, Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
                 return;
@@ -1328,7 +1347,12 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
                 if (data != null) {
                     Uri selectedFile = data.getData();
                     if (selectedFile != null) {
-                        sendVideoByUri(selectedFile);
+                        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                            sendVideoByUri(selectedFile);
+                        } else {
+                            selectedVideoFile = selectedFile;
+                            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_READ_STORAGE);
+                        }
                     }
                 }
             }

@@ -70,6 +70,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.qiniu.android.utils.StringUtils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.greenrobot.eventbus.EventBus;
@@ -250,6 +251,9 @@ public class TopicAdapter extends BaseAdapter {
                     holder.order_count.setVisibility( View.VISIBLE);
                     holder.order_count.setText(mIconList.size() + "");
                     holder.order_btn.setStatu(2);
+                    if (!StringUtils.isNullOrEmpty(UserUtil.getUserInfo().getAvatar())) {
+                        mIconList.add(0, UserUtil.getUserInfo().getAvatar());
+                    }
                     holder.order_btn.setmAvatarList(mIconList);
 //                    stopFlick(holder.order_btn);
                     stopFlick(holder.orderBtn_bg);

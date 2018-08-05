@@ -159,6 +159,7 @@
     <string name="sd_card_does_not_exist">SD卡不存在，不能拍照</string>
     <string name="cant_find_pictures">找不到图片</string>
     <string name="File_does_not_exist">文件不存在</string>
+    <string name="video_does_not_exist">视频不存在</string>
     <string name="The_file_is_not_greater_than_10_m">文件不能大于10M</string>
     <string name="Whether_to_empty_all_chats">是否清空所有聊天记录</string>
     <string name="Send_voice_need_sdcard_support">发送语音需要sdcard支持</string>

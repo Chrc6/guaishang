@@ -32,11 +32,11 @@
             android:paddingTop="6dp"
             android:visibility="visible" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn_set_mode_keyboard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/chatting_setmode_keyboard_btn"
+            android:src="@drawable/chatting_setmode_keyboard_btn"
             android:onClick="setModeKeyboard"
             android:paddingBottom="6dp"
             android:paddingLeft="3dp"
