@@ -18,7 +18,7 @@
         android:text="抢单"
         android:layout_centerInParent="true"
         android:textColor="#666666"
-        android:textSize="15sp"
+        android:textSize="12dp"
         />
     <TextView
         android:id="@+id/brief"
@@ -28,8 +28,8 @@
        android:layout_below="@+id/galb"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/dp5"
-        android:textColor="#666666"
-        android:textSize="11sp"
+        android:textColor="#222222"
+        android:textSize="12dp"
         />
     </RelativeLayout>
     <RelativeLayout

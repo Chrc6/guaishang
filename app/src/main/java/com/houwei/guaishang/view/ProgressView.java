@@ -24,9 +24,9 @@ public class ProgressView extends View {
     private final int mRightBeginColor = Color.parseColor("#f7a167");//右边的起始颜色
     private final int mRightAfterColor = Color.parseColor("#fb8379");//右边的最终颜色
 
-    private final int mNormalPaintColor = Color.parseColor("#ededed");
+    private final int mNormalPaintColor = Color.parseColor("#d6d6d6");
     private final int mSelectedPaintColor = Color.parseColor("#ffff4444");
-    private final int mTextColor = Color.parseColor("#666666");
+    private final int mTextColor = Color.parseColor("#101010");
 
     private  int progress ;//进度（分4步）
     private int status;

@@ -1072,10 +1072,11 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
         //视频大小超出10M 就发送失败，环信限制了
         File videoFile = new File(videoPath);
         if (videoFile != null && videoFile.length() > 10 * 1024 *1024) {//大于10M
-            ToastUtils.toastForLong(getContext(), "视频文件不能大雨10M，请重新上传");
+            ToastUtils.toastForLong(getContext(), "视频文件不能大于10M，请重新上传");
+            return;
         }
         Bitmap bitmap = com.houwei.guaishang.video.Utils.getVideoThumb(videoPath);
-        String picPath = com.houwei.guaishang.video.Utils.bitmap2File(bitmap, videoPath);
+        String picPath = com.houwei.guaishang.video.Utils.bitmap2File(bitmap, System.currentTimeMillis()+"");
         int time = (int) (com.houwei.guaishang.video.Utils.getVideoTotalTime(videoPath) / 1000);
         EMMessage message = EMMessage.createVideoSendMessage(videoPath, picPath, time , chatInfo.getHisUserID());
         sendMessage(message);

@@ -160,20 +160,10 @@ public class TopicAdapter extends BaseAdapter {
 //            holder.imgTitle = (ImageView) convertView.findViewById(R.id.img_title);
             holder.gridView = (GridView) convertView.findViewById(R.id.grid_pictures);
             holder.tvCount = (TextView) convertView.findViewById(R.id.tv_count);
-            holder.barNum = (NumberProgressBar) convertView.findViewById(R.id.bar_num);
             holder.content = (TextView) convertView.findViewById(R.id.content);
 //            holder.header_time = (TextView) convertView.findViewById(R.id.header_time);
 //            holder.zan_count_btn = (PraiseTextView) convertView
 //                    .findViewById(R.id.zan_count_btn);
-
-            holder.delete_btn = (TextView) convertView
-                    .findViewById(R.id.delete_btn);
-            holder.price_tv = (TextView) convertView
-                    .findViewById(R.id.price_tv);
-//            holder.praise_ll = convertView.findViewById(R.id.praise_ll);
-//            holder.comment_ll = convertView.findViewById(R.id.comment_ll);
-            holder.share_ll = convertView.findViewById(R.id.share_ll);
-            holder.share_count_btn = (TextView) convertView.findViewById(R.id.share_count_btn);
             holder.order_btn = (FloatButton)convertView.findViewById(R.id.order_btn);
             holder.orderBtn_bg = convertView.findViewById(R.id.order_btn_bg);
             holder.order_count = (TextView) convertView.findViewById(R.id.count);
@@ -202,18 +192,14 @@ public class TopicAdapter extends BaseAdapter {
             //已订单
             Payment payment = bean.getPayment();
             if (payment != null){
-                holder.barNum.setVisibility(View.GONE);
                 holder.progressView.setVisibility(View.VISIBLE);
                 holder.VProdectLayout.setVisibility(View.VISIBLE);
                 holder.progressView.setProgress(payment.getStatus());
                 holder.price.setText("总价"+payment.getPrice()+"元");
                 holder.time.setText("周期"+payment.getCycle()+"天");
-                holder.price_tv.setText("" + payment.getPrice());
             }else {
-                holder.barNum.setVisibility(View.VISIBLE);
                 holder.progressView.setVisibility(View.GONE);
                 holder.VProdectLayout.setVisibility(View.GONE);
-                holder.price_tv.setText("" + (int)bean.getPrice());
             }
         }
 
@@ -221,8 +207,6 @@ public class TopicAdapter extends BaseAdapter {
         try {
             int max = Integer.valueOf(bean.getSetRob());
             int progress = Integer.valueOf(bean.getNowRob());
-            holder.barNum.setMax(max);
-            holder.barNum.setProgress(progress);
             if(progress==max){
                 //已结束
                 holder.order_btn.setStatu(3);
@@ -352,7 +336,6 @@ public class TopicAdapter extends BaseAdapter {
 //        holder.header_time.setText(bean.getTimeString());
 //        holder.linearLayoutForListView.setVisibility((bean.getComments() == null || bean.getComments().isEmpty()) ? View.GONE : View.VISIBLE);
 //        holder.linearLayoutForListView.setVisibility(View.GONE);
-        holder.share_count_btn.setText(bean.getShareNum()+"");
 
 //        holder.zan_count_btn.setText(bean.getSumPrice());
 
@@ -372,52 +355,6 @@ public class TopicAdapter extends BaseAdapter {
             }
         });
 
-        holder.share_ll.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                ShareUtil2 shareUtil2 = new ShareUtil2(mContext, new PlatformActionListener() {
-                    @Override
-                    public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-                        Log.i("onComplete","platform="+platform.getName()+" 分享成功");
-                        OkGo.<String>post(HttpUtil.IP + "user/modify")
-                                .params("userid", UserUtil.getUserInfo().getUserId())
-                                .params("topicid", bean.getTopicId())
-                                .params("event", "is_share")
-                                .params("value", "1")
-                                .execute(new StringCallback() {
-                                    @Override
-                                    public void onSuccess(Response<String> response) {
-
-                                        EventBus.getDefault().post(new UpdateMoneyEvent());
-                                    }
-                                    @Override
-                                    public void onError(Response<String> response) {
-                                        super.onError(response);
-                                    }
-                                });
-                    }
-
-                    @Override
-                    public void onError(Platform platform, int i, Throwable throwable) {
-
-                    }
-
-                    @Override
-                    public void onCancel(Platform platform, int i) {
-
-                    }
-                });
-                shareUtil2.setContent(bean.getContent());
-                shareUtil2.setUrl(HttpUtil.SHARE_TOPIC_IP + bean.getTopicId());
-                if (bean.getPicture() != null && !bean.getPicture().isEmpty()) {
-                    shareUtil2.setImageUrl(bean.getPicture().get(0).findOriginalUrl());
-                }
-                shareUtil2.showBottomPopupWin();
-            }
-        });
-
        /* if (userId.equals(bean.getMemberId())) {
             holder.delete_btn.setVisibility(View.VISIBLE);
             holder.chat_btn.setVisibility(View.GONE);
@@ -429,28 +366,6 @@ public class TopicAdapter extends BaseAdapter {
             holder.order_btn.setVisibility(View.VISIBLE);
             holder.follow_btn.setVisibility(View.VISIBLE);
         }*/
-
-        holder.delete_btn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                // TODO Auto-generated method stub
-                SureOrCancelDialog followDialog = new SureOrCancelDialog(
-                        mContext, "删除掉该条商品", "好",
-                        new SureOrCancelDialog.SureButtonClick() {
-
-                            @Override
-                            public void onSureButtonClick() {
-                                // TODO Auto-generated method stub
-                                if (onTopicBeanDeleteListener != null) {
-                                    onTopicBeanDeleteListener.onTopicBeanDeleteClick(bean);
-                                }
-                            }
-                        });
-                followDialog.show();
-            }
-        });
-
 
 //		holder.order_btn.setText(ValueUtil.getTopicTypeBuyButtonString(bean.getType()));
         holder.order_btn.setFloatBtnClickListener(new FloatButton.FloatBtnClickListener() {
@@ -687,18 +602,15 @@ public class TopicAdapter extends BaseAdapter {
         private PraiseTextView zan_count_btn;
         private ImageView avator,imgTitle,imgIndicate,imageMyOrder;
         private GridView gridView;
-        private TextView  delete_btn,tvProgress;
-        private View share_ll,orderBtn_bg;
-        private TextView share_count_btn;
+        private TextView  tvProgress;
+        private View orderBtn_bg;
 //        private LinearLayoutForListView linearLayoutForListView;
-        private NumberProgressBar barNum;
 //        private LRecyclerView recyclerView;
         private ProgressView progressView;
         private LinearLayout VProdectLayout;
         private TextView price,time;
         private FloatButton order_btn;
         private TextView order_count;
-        private TextView price_tv;
         private RatingBar ratingBar;
 
     }

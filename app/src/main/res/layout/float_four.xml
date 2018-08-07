@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="90dp"
-    android:layout_height="90dp"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bg_float_btn_white"
     android:gravity="center"
@@ -12,19 +12,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:gravity="center"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="4dp"
         >
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/float_two"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:scaleType="center"
             fresco:roundAsCircle="true"
             />
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/float_three"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:scaleType="center"
             fresco:roundAsCircle="true"
             android:layout_toRightOf="@+id/float_two"
@@ -33,13 +33,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="15dp"
         android:gravity="center"
         >
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/float_four"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:scaleType="center"
             fresco:roundAsCircle="true"
             />
@@ -50,7 +50,7 @@
             android:scaleType="center"
             fresco:roundAsCircle="true"
             android:layout_toRightOf="@+id/float_four"
-            android:layout_marginLeft="-10dp"
+            android:layout_marginLeft="-4dp"
             android:layout_centerInParent="true"
             />
     </RelativeLayout>

@@ -47,7 +47,7 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
 
     private LinearLayout llShare,llPay;
     private CheckBox rbShare,rbPay;
-    private TextView tvRecharge;
+    private TextView tvRecharge,tvPay;
 
     private Context mContext;
 
@@ -105,9 +105,11 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
         llPay = (LinearLayout) view.findViewById(R.id.ll_pay);
 
         tvRecharge = (TextView)view.findViewById(R.id.tv_recharge);
+        tvPay = (TextView)view.findViewById(R.id.tv_pay);
         if (money >= 0) {
             tvRecharge.setText("现有余额"+money+"元，点此充值");
         }
+        tvPay.setText("抢单支付"+bean.getRobbingPrice()+"个金币");
 
         rbShare = (CheckBox) view.findViewById(R.id.rb_share);
         rbShare.setSelected(true);

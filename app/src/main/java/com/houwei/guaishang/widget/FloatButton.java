@@ -136,7 +136,7 @@ public class FloatButton extends RelativeLayout {
             galb_self.setVisibility(GONE);
             brief.setVisibility(GONE);
             galb_layout.setVisibility(VISIBLE);
-            galb.setText("等待抢单");
+            galb.setText("待抢单");
             rootView.setBackground(context.getResources().getDrawable(R.drawable.bg_float_btn_red));
         }
     }

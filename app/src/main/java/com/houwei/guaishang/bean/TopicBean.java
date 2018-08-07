@@ -42,6 +42,8 @@ public class TopicBean implements Serializable {
 	private Payment payment;//订单信息
 	//无用
 	private int redpacket;//0普通动态，1红包照片
+
+	private float robbingPrice = 10;//抢单价格
 	
 	private float price;
 	
@@ -440,6 +442,14 @@ public class TopicBean implements Serializable {
 
 	public void setIsDel(String isDel) {
 		this.isDel = isDel;
+	}
+
+	public float getRobbingPrice() {
+		return robbingPrice;
+	}
+
+	public void setRobbingPrice(float robbingPrice) {
+		this.robbingPrice = robbingPrice;
 	}
 
 	@Override

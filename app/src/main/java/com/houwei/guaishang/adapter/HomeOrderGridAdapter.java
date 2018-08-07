@@ -43,8 +43,8 @@ public class HomeOrderGridAdapter extends BaseAdapter implements View.OnClickLis
 
     private void calculateWidthAndHeight() {
         int screenWidth = Utils.getScreenWidth(mContext);
-        //210是gridview的总高度
-        float totalHeight = Utils.dip2px(mContext, 210);
+        //187是gridview的总高度
+        float totalHeight = Utils.dip2px(mContext, 187);
         //16: 是父控件(viewpager)左右padding之和16dp
         float leftAndRightPadding = Utils.dip2px(mContext, 16);
 
@@ -52,8 +52,8 @@ public class HomeOrderGridAdapter extends BaseAdapter implements View.OnClickLis
         int lines = getCount() / 3 + (getCount() % 3 > 0 ? 1 : 0);
         lines = lines > 3 ? 3 : lines;
 
-        float horizontalSpacing = (column - 1) * Utils.dip2px(mContext, 1);
-        float verticalSpacing = (lines - 1) * Utils.dip2px(mContext, 1);
+        float horizontalSpacing = (column - 1) * Utils.dip2px(mContext, 10);
+        float verticalSpacing = (lines - 1) * Utils.dip2px(mContext, 4);
 
         itemWidth = (screenWidth - leftAndRightPadding - horizontalSpacing) / column;
         itemHeight = (totalHeight - verticalSpacing) / lines;
