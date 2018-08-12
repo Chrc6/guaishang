@@ -127,12 +127,11 @@ public class BasePhotoGridActivity extends BaseActivity implements SelectPhotoLi
 						ImageCompress compress = new ImageCompress();
 						ImageCompress.CompressOptions options = new ImageCompress.CompressOptions();
 						options.filePath = orgPath;
-						Bitmap mBitmap = compress.compressFromUri(
-								BasePhotoGridActivity.this, options);
 
-						Bitmap mBitmap1 = compress.compressFromUriNoCut(
+
+						Bitmap mBitmap = compress.compressFromUriNoCut(
 								BasePhotoGridActivity.this, options);
-						if (mBitmap == null || mBitmap1 == null) {// 跳过错误的图片
+						if (mBitmap == null ) {// 跳过错误的图片
 							continue;
 						}
 						// 将上一步的图片再次压缩到100K左右（和微信微博一致） 并保存到自己的新目录下，返回新的全路径
@@ -140,9 +139,6 @@ public class BasePhotoGridActivity extends BaseActivity implements SelectPhotoLi
 								.saveMyBitmapWithCompress(orgPath, mBitmap, 80);
 						tempThumbPictures.add(newPicturePath);
 
-						String newPicturePath1 = BitmapUtil
-								.saveMyBitmapWithCompress(orgPath, mBitmap1, 80);
-						tempThumbPictures.add(newPicturePath1);
 					}
 	
 				}

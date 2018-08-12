@@ -23,5 +23,10 @@ public class DeviceUtils {
         int width = context.getResources().getDisplayMetrics().widthPixels;
         return width;
     }
+
+    public static final int getScreenHeight(Context context){
+        int height = context.getResources().getDisplayMetrics().heightPixels;
+        return height;
+    }
 }
 

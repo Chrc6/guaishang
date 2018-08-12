@@ -12,10 +12,12 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.houwei.guaishang.R;
@@ -30,6 +32,7 @@ import com.houwei.guaishang.tools.JsonParser;
 import com.houwei.guaishang.tools.ShareSDKUtils;
 import com.houwei.guaishang.tools.ShareSDKUtilsReg;
 import com.houwei.guaishang.tools.Utils;
+import com.houwei.guaishang.util.DeviceUtils;
 import com.houwei.guaishang.views.AnimationYoYo;
 import com.mob.MobSDK;
 
@@ -64,8 +67,10 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 	public static String APPKEY = "15b5b9e067b56";
 	// 填写从短信SDK应用后台注册得到的APPSECRET
 	public static String APPSECRET = "7b60e80917dd1d9b1f90223b02215b9b";//
-	
+
+	private ScrollView scrollView;
 	private LinearLayout ll_register, ll_login;
+	private Button registerBt, loginBt;
 	private EditText phone_et, check_pw_et, passward_et;
 	private EditText user_name_et, user_pw_et;
 	private TextView find_passward_tv;
@@ -76,6 +81,7 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 	private final int DELAYTIME = 60;
 
 	private static int pageType = PAGE_TYPE_REGISTER;
+	private int scrollViewHeith;
 
 	private static boolean registerActivityOnResume;
 
@@ -258,11 +264,11 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 			pageType = intent.getIntExtra(PAGE_TYPE, PAGE_TYPE_REGISTER);
 		}
 		if (pageType == PAGE_TYPE_REGISTER) {
-			findViewById(R.id.register).setSelected(true);
-			findViewById(R.id.gotologin).setSelected(false);
+			registerBt.setSelected(true);
+			loginBt.setSelected(false);
 		} else {
-			findViewById(R.id.register).setSelected(false);
-			findViewById(R.id.gotologin).setSelected(true);
+			registerBt.setSelected(false);
+			loginBt.setSelected(true);
 		}
 	}
 
@@ -273,6 +279,8 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 		timer = new Timer();
 		ll_register = (LinearLayout) findViewById(R.id.ll_register);
 		ll_login = (LinearLayout) findViewById(R.id.ll_login);
+		registerBt = (Button) findViewById(R.id.register);
+		loginBt = (Button) findViewById(R.id.gotologin);
 		phone_et = (EditText) findViewById(R.id.phone_et);
 		check_pw_et = (EditText) findViewById(R.id.check_pw_et);
 		passward_et = (EditText) findViewById(R.id.passward_et);
@@ -364,6 +372,18 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 			}
 		};
 		SMSSDK.registerEventHandler(eh);
+		scrollView = (ScrollView) findViewById(R.id.scroll_view);
+		scrollView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+			@Override
+			public void onGlobalLayout() {
+				Log.i("onGlobalLayout===","nochange");
+				if (scrollViewHeith != scrollView.getHeight()) {
+					Log.i("onGlobalLayout===","change");
+					scrollViewHeith = scrollView.getHeight();
+					scrollView.smoothScrollTo(0, scrollViewHeith);
+				}
+			}
+		});
 	}
 
 	private void startTime() {
@@ -422,18 +442,6 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 					}
 				});
 
-		findViewById(R.id.gotologin).setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				pageType = PAGE_TYPE_LOGIN;
-				ll_register.setVisibility(View.GONE);
-				ll_login.setVisibility(View.VISIBLE);
-			}
-		});
-
-
 		findViewById(R.id.image_qq).setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -474,11 +482,26 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 			}
 		});
 
-		findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
+		loginBt.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				pageType = PAGE_TYPE_LOGIN;
+				loginBt.setSelected(true);
+				registerBt.setSelected(false);
+				ll_register.setVisibility(View.GONE);
+				ll_login.setVisibility(View.VISIBLE);
+			}
+		});
+
+		registerBt.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				pageType = PAGE_TYPE_REGISTER;
+				registerBt.setSelected(true);
+				loginBt.setSelected(false);
 				ll_login.setVisibility(View.GONE);
 				ll_register.setVisibility(View.VISIBLE);
 			}

@@ -104,6 +104,7 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
     protected static final int REQUEST_CODE_FILE = 4;
     protected static final int REQUEST_CODE_VIDEO = 5;
     protected static final int REQUEST_CODE_READ_STORAGE = 6;
+    protected static final int REQUEST_CODE_RECORD_AUDIO = 7;
     private static final int REQUEST_CODE_GROUP_DETAIL = 21;
     // 阅后即焚id 避免和基类定义的常量可能发生的冲突，常量从11开始定义
     protected static final int ITEM_READFIRE = 15;
@@ -613,16 +614,23 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
 
             @Override
             public boolean onPressToSpeakBtnTouch(View v, MotionEvent event) {
-                return voiceRecorder.onPressToSpeakBtnTouch(v, event,
-                        new EaseVoiceRecorderView.EaseVoiceRecorderCallback() {
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
+                        && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                    return voiceRecorder.onPressToSpeakBtnTouch(v, event,
+                            new EaseVoiceRecorderView.EaseVoiceRecorderCallback() {
 
-                            @Override
-                            public void onVoiceRecordComplete(
-                                    String voiceFilePath, int voiceTimeLength) {
-                                // 发送语音消息
-                                sendVoiceMessage(voiceFilePath, voiceTimeLength);
-                            }
-                        });
+                                @Override
+                                public void onVoiceRecordComplete(
+                                        String voiceFilePath, int voiceTimeLength) {
+                                    // 发送语音消息
+                                    sendVoiceMessage(voiceFilePath, voiceTimeLength);
+                                }
+                            });
+                } else {
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_RECORD_AUDIO);
+                    return false;
+                }
+
             }
 
             @Override
@@ -829,8 +837,15 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
                     }
                     break;
                 case ITEM_LOCATION: // 位置
-                    startActivityForResult(new Intent(getActivity(),
-                            BaiduMapActivity.class), REQUEST_CODE_MAP);
+                    if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                            || ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(getActivity(),
+                                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
+                                REQUEST_CODE_MAP);
+                    } else {
+                        startActivityForResult(new Intent(getActivity(),
+                                BaiduMapActivity.class), REQUEST_CODE_MAP);
+                    }
                     break;
                 case ITEM_FILE:// 文件
                     if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -965,28 +980,37 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
             } else {
                 ToastUtils.toastForLong(getContext(), "请开启存储读写权限");
             }
-        } else if (requestCode == REQUEST_CODE_FILE) {
-            if (grantResults != null
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                selectFileFromLocal();
-            } else {
-                ToastUtils.toastForLong(getContext(), "请开启存储读写权限");
-            }
-        } else if (requestCode == REQUEST_CODE_VIDEO) {
-            if (grantResults != null
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                selectVideoFromLocal();
-            } else {
-                ToastUtils.toastForLong(getContext(), "请开启存储读写权限");
-            }
-        } else if (requestCode == REQUEST_CODE_READ_STORAGE) {
+        } else if (requestCode == REQUEST_CODE_MAP) {
             if (grantResults != null
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED
                     && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                sendVideoByUri(selectedVideoFile);
+                startActivityForResult(new Intent(getActivity(),
+                        BaiduMapActivity.class), REQUEST_CODE_MAP);
+            } else if (requestCode == REQUEST_CODE_FILE) {
+                if (grantResults != null
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    selectFileFromLocal();
+                } else {
+                    ToastUtils.toastForLong(getContext(), "请开启存储读写权限");
+                }
+            } else if (requestCode == REQUEST_CODE_VIDEO) {
+                if (grantResults != null
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    selectVideoFromLocal();
+                } else {
+                    ToastUtils.toastForLong(getContext(), "请开启存储读写权限");
+                }
+            } else if (requestCode == REQUEST_CODE_READ_STORAGE) {
+                if (grantResults != null
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                        && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                    sendVideoByUri(selectedVideoFile);
+                }
+            } else if (requestCode == REQUEST_CODE_RECORD_AUDIO) {
+                //录音权限
             }
-        }
 
+        }
     }
 
     protected ChatBaseActivity.EaseChatFragmentListener chatFragmentListener;

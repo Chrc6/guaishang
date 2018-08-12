@@ -165,7 +165,7 @@ public class MinePersonalInfoDetailActivity extends  BaseActivity implements OnC
 		thumbPictures.add("" + PICTURE_UPDATE_ICON);
 		thumbPictures1.add("" + PICTURE_UPDATE_ICON);
 		gridView = (UnScrollGridView) findViewById(R.id.gridView);
-		gridAdapter=new MinePersonalInfoDetailActivity.PhotoReleaseGridAdapter(thumbPictures, this, new CallAdapterInter() {
+		gridAdapter=new PhotoReleaseGridAdapter(thumbPictures, this, new CallAdapterInter() {
 			@Override
 			public void call(int position) {
 				File thumbnailPhoto = new File(thumbPictures.get(position));
@@ -293,7 +293,7 @@ public class MinePersonalInfoDetailActivity extends  BaseActivity implements OnC
 
 	//子类也会调用这个方法
 	public void resetAdapter(){
-		gridView.setAdapter(new MinePersonalInfoDetailActivity.PhotoReleaseGridAdapter(thumbPictures,
+		gridView.setAdapter(new PhotoReleaseGridAdapter(thumbPictures,
 				MinePersonalInfoDetailActivity.this,null));
 	}
 
@@ -334,9 +334,9 @@ public class MinePersonalInfoDetailActivity extends  BaseActivity implements OnC
 
 		@Override
 		public View getView(final int position, View convertView, ViewGroup parent) {
-			MinePersonalInfoDetailActivity.MyGridViewHolder viewHolder;
+			MyGridViewHolder viewHolder;
 			if (convertView == null) {
-				viewHolder = new MinePersonalInfoDetailActivity.MyGridViewHolder();
+				viewHolder = new MyGridViewHolder();
 				convertView = mLayoutInflater.inflate(R.layout.griditem_picture_delete,
 						parent, false);
 				viewHolder.imageView = (ImageView) convertView
@@ -345,7 +345,7 @@ public class MinePersonalInfoDetailActivity extends  BaseActivity implements OnC
 						.findViewById(R.id.delete_btn);
 				convertView.setTag(viewHolder);
 			} else {
-				viewHolder = (MinePersonalInfoDetailActivity.MyGridViewHolder) convertView.getTag();
+				viewHolder = (MyGridViewHolder) convertView.getTag();
 			}
 
 				String photoRecourse = thumbPictures.get(position).equals(
@@ -355,7 +355,7 @@ public class MinePersonalInfoDetailActivity extends  BaseActivity implements OnC
 				viewHolder.delete_btn.setVisibility((thumbPictures.get(position).equals(
 						"" + BasePhotoGridActivity.PICTURE_UPDATE_ICON))?View.GONE:View.VISIBLE);
 
-				viewHolder.delete_btn.setOnClickListener(new View.OnClickListener() {
+				viewHolder.delete_btn.setOnClickListener(new OnClickListener() {
 
 					@Override
 					public void onClick(View arg0) {
@@ -413,9 +413,9 @@ public class MinePersonalInfoDetailActivity extends  BaseActivity implements OnC
 
 		@Override
 		public View getView(final int position, View convertView, ViewGroup parent) {
-			MinePersonalInfoDetailActivity.MyGridViewHolder viewHolder;
+			MyGridViewHolder viewHolder;
 			if (convertView == null) {
-				viewHolder = new MinePersonalInfoDetailActivity.MyGridViewHolder();
+				viewHolder = new MyGridViewHolder();
 				convertView = mLayoutInflater.inflate(R.layout.griditem_picture_delete,
 						parent, false);
 				viewHolder.imageView = (ImageView) convertView
@@ -424,7 +424,7 @@ public class MinePersonalInfoDetailActivity extends  BaseActivity implements OnC
 						.findViewById(R.id.delete_btn);
 				convertView.setTag(viewHolder);
 			} else {
-				viewHolder = (MinePersonalInfoDetailActivity.MyGridViewHolder) convertView.getTag();
+				viewHolder = (MyGridViewHolder) convertView.getTag();
 			}
 
 				String photoRecourse = thumbPictures.get(position).equals(
@@ -434,7 +434,7 @@ public class MinePersonalInfoDetailActivity extends  BaseActivity implements OnC
 				viewHolder.delete_btn.setVisibility((thumbPictures.get(position).equals(
 						"" + BasePhotoGridActivity.PICTURE_UPDATE_ICON))?View.GONE:View.VISIBLE);
 
-				viewHolder.delete_btn.setOnClickListener(new View.OnClickListener() {
+				viewHolder.delete_btn.setOnClickListener(new OnClickListener() {
 
 					@Override
 					public void onClick(View arg0) {
@@ -463,7 +463,7 @@ public class MinePersonalInfoDetailActivity extends  BaseActivity implements OnC
 	}
 
 	interface CallAdapterInter{
-		void call(int  position);
+		void call(int position);
 	}
 
 	private static class MyGridViewHolder {
@@ -489,7 +489,7 @@ public class MinePersonalInfoDetailActivity extends  BaseActivity implements OnC
 			}
 			progress.show();
 			// 在子线程中处理，并展示
-			new Thread(new MinePersonalInfoDetailActivity.CompressRun(selectedPicture)).start();
+			new Thread(new CompressRun(selectedPicture)).start();
 		}
 	}
 
@@ -521,7 +521,7 @@ public class MinePersonalInfoDetailActivity extends  BaseActivity implements OnC
 						ImageCompress compress = new ImageCompress();
 						ImageCompress.CompressOptions options = new ImageCompress.CompressOptions();
 						options.filePath = orgPath;
-						Bitmap mBitmap = compress.compressFromUri(
+						Bitmap mBitmap = compress.compressFromUriNoCut(
 								MinePersonalInfoDetailActivity.this, options);
 						if (mBitmap == null) {// 跳过错误的图片
 							continue;

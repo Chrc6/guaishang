@@ -97,7 +97,7 @@ public class CropImageActivity extends MonitoredActivity {
 		options.filePath = prePhototPath;
 		options.maxWidth = width;
 		options.maxHeight = height;
-		mBitmap = compress.compressFromUri(this, options);
+		mBitmap = compress.compressFromUriNoCut(this, options);
 
 		if (mBitmap == null) {
 			finish();
@@ -158,7 +158,7 @@ public class CropImageActivity extends MonitoredActivity {
 	}
 
 	private static class BackgroundJob extends
-			MonitoredActivity.LifeCycleAdapter implements Runnable {
+			LifeCycleAdapter implements Runnable {
 
 		private final MonitoredActivity mActivity;
 		private final ProgressDialog mDialog;

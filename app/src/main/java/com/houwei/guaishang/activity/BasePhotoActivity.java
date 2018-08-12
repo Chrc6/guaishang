@@ -286,7 +286,7 @@ public class BasePhotoActivity extends BaseActivity implements
 			ImageCompress compress = new ImageCompress();
 			ImageCompress.CompressOptions options = new ImageCompress.CompressOptions();
 			options.filePath = picturePath;
-			Bitmap mBitmap = compress.compressFromUri(this, options);
+			Bitmap mBitmap = compress.compressFromUriNoCut(this, options);
 
 			if (mBitmap == null) {
 				return;
