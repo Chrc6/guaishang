@@ -38,6 +38,7 @@ import com.houwei.guaishang.event.LogouSuccess;
 import com.houwei.guaishang.sp.UserUtil;
 import com.houwei.guaishang.tools.LogUtil;
 import com.houwei.guaishang.tools.ShareSDKUtils;
+import com.houwei.guaishang.util.LoginJumperUtil;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -86,14 +87,16 @@ public class MainHuanXinActivity extends BaseActivity implements
 			// 防止被移除后，没点确定按钮然后按了home键，长期在后台又进app导致的crash
 			// 三个fragment里加的判断同理
 			getITopicApplication().getHuanXinManager().logout(null);
-			startActivity(new Intent(this, UserLoginActivity.class));
+//			startActivity(new Intent(this, UserLoginActivity.class));
+			LoginJumperUtil.jumperLogin(MainHuanXinActivity.this);
 			finish();
 			return;
 		} else if (savedInstanceState != null
 				&& savedInstanceState.getBoolean("isConflict", false)) {
 			// 防止被T后，没点确定按钮然后按了home键，长期在后台又进app导致的crash
 			// 三个fragment里加的判断同理
-			startActivity(new Intent(this, UserLoginActivity.class));
+//			startActivity(new Intent(this, UserLoginActivity.class));
+			LoginJumperUtil.jumperLogin(MainHuanXinActivity.this);
 			finish();
 			return;
 		}
@@ -425,9 +428,10 @@ public class MainHuanXinActivity extends BaseActivity implements
 								EventBus.getDefault().post(new LogouSuccess());
 
 								finish();
-								startActivity(new Intent(
-										MainHuanXinActivity.this,
-										UserLoginActivity.class));
+//								startActivity(new Intent(
+//										MainHuanXinActivity.this,
+//										UserLoginActivity.class));
+								LoginJumperUtil.jumperLogin(MainHuanXinActivity.this);
 							}
 						});
 				conflictBuilder.setCancelable(false);
@@ -464,9 +468,10 @@ public class MainHuanXinActivity extends BaseActivity implements
 								dialog.dismiss();
 								accountRemovedBuilder = null;
 								finish();
-								startActivity(new Intent(
-										MainHuanXinActivity.this,
-										UserLoginActivity.class));
+//								startActivity(new Intent(
+//										MainHuanXinActivity.this,
+//										UserLoginActivity.class));
+								LoginJumperUtil.jumperLogin(MainHuanXinActivity.this);
 							}
 						});
 				accountRemovedBuilder.setCancelable(false);

@@ -9,6 +9,7 @@ import com.houwei.guaishang.activity.MainActivity;
 import com.houwei.guaishang.activity.MissionActivity;
 import com.houwei.guaishang.activity.UserLoginActivity;
 import com.houwei.guaishang.activity.UserRegInfoBaseActivity;
+import com.houwei.guaishang.activity.UserRegMobileActivity;
 import com.houwei.guaishang.bean.AvatarBean;
 import com.houwei.guaishang.bean.UserBean;
 import com.houwei.guaishang.bean.UserResponse;
@@ -42,10 +43,10 @@ public class ShareSDKUtils {
 
     private static String type="";
     private Activity activity;
-    private UserLoginActivity.MyHandler myHandler;
+    private UserRegMobileActivity.MyHandler myHandler;
 
 
-    public ShareSDKUtils(Activity activity,UserLoginActivity.MyHandler myHandler) {
+    public ShareSDKUtils(Activity activity,UserRegMobileActivity.MyHandler myHandler) {
         this.activity = activity;
         this.myHandler=myHandler;
     }

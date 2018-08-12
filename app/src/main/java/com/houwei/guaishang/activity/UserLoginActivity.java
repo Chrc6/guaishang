@@ -28,6 +28,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TimeUtils;
 import android.view.View;
@@ -128,6 +130,25 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 		initProgressDialog(false, null);
 		user_name_et = (EditText) findViewById(R.id.username_et);
 		user_pw_et = (EditText) findViewById(R.id.check_pw_et);
+		user_pw_et.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				String data = Utils.stringFilter(String.valueOf(s));
+				if (!String.valueOf(s).equals(data)) {
+					user_pw_et.setText(data);
+				}
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+
+			}
+		});
 		find_passward_tv = (TextView) findViewById(R.id.find_passward);
 		imageQQ = (ImageView) findViewById(R.id.image_qq);
 		imageWeibo = (ImageView) findViewById(R.id.image_weibo);
@@ -221,15 +242,15 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 
 			@Override
 			public void onClick(View arg0) {
-				ShareSDKUtils utils=new ShareSDKUtils(UserLoginActivity.this,handler);
-				utils.Login(QQ.NAME);
+//				ShareSDKUtils utils=new ShareSDKUtils(UserLoginActivity.this,handler);
+//				utils.Login(QQ.NAME);
 			}
 		});
 		findViewById(R.id.image_wechat).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				ShareSDKUtils utils=new ShareSDKUtils(UserLoginActivity.this,handler);
-				utils.Login(Wechat.NAME);
+//				ShareSDKUtils utils=new ShareSDKUtils(UserLoginActivity.this,handler);
+//				utils.Login(Wechat.NAME);
 
 			}
 		});
@@ -237,8 +258,8 @@ public class UserLoginActivity extends BaseActivity implements HuanXinLoginListe
 
 			@Override
 			public void onClick(View arg0) {
-				ShareSDKUtils utils=new ShareSDKUtils(UserLoginActivity.this,handler);
-				utils.Login(SinaWeibo.NAME);
+//				ShareSDKUtils utils=new ShareSDKUtils(UserLoginActivity.this,handler);
+//				utils.Login(SinaWeibo.NAME);
 			}
 		});
 

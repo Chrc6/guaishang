@@ -20,8 +20,11 @@ public class UserRegInfoBaseActivity extends BasePhotoActivity implements HuanXi
 	public void onHuanXinRegSuccess() {
 		// TODO Auto-generated method stub
 		progress.dismiss();
+//		Intent i = new Intent(UserRegInfoBaseActivity.this,
+//				UserLoginActivity.class);
 		Intent i = new Intent(UserRegInfoBaseActivity.this,
-				UserLoginActivity.class);
+				UserRegMobileActivity.class);
+		i.putExtra(UserRegMobileActivity.PAGE_TYPE, UserRegMobileActivity.PAGE_TYPE_LOGIN);
 		i.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		startActivity(i);
 		finish();

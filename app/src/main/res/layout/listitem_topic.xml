@@ -125,7 +125,7 @@
                         android:maxLines="2"
                         android:text="内容"
                         android:textColor="#000000"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
                     <RelativeLayout
                         android:layout_width="45dp"
@@ -198,7 +198,6 @@
                         android:paddingLeft="@dimen/dp_10"
                         android:paddingTop="@dimen/dp5"
                         android:paddingBottom="@dimen/dp5"
-                        android:layout_marginRight="15dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         >

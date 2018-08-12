@@ -8,8 +8,11 @@ import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
- * Created by chrc on 2018/4/21.
+ * Created by ** on 2018/4/21.
  */
 
 public class Utils {
@@ -52,5 +55,13 @@ public class Utils {
     public static float dip2px(Context mContext, int dipValue) {
         final float scale = mContext.getResources().getDisplayMetrics().density;
         return (int)(dipValue * scale + 0.5f);
+    }
+
+    public static String stringFilter(String str){
+        // 只允许字母、数字和汉字
+        String regEx = "[^a-zA-Z0-9]";
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(str);
+        return m.replaceAll("").trim();
     }
 }

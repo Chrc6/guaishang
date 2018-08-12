@@ -93,7 +93,12 @@ public class HomeOrderGridAdapter extends BaseAdapter implements View.OnClickLis
     @Override
     public void onClick(View v) {
         ArrayList<String> list = new ArrayList<String>();
-        list.add(HttpUtil.IP_NOAPI + mDatas.get(1).getOriginal());
+        if (mDatas != null) {
+            int size = mDatas.size();
+            for (int i = 0; i < size; i++) {
+                list.add(HttpUtil.IP_NOAPI + mDatas.get(i).getOriginal());
+            }
+        }
 
         Intent intent = new Intent(mContext, PreviewActivity.class);
         intent.putExtra("list",list);
