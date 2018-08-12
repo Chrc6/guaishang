@@ -88,7 +88,7 @@
         <LinearLayout
             android:id="@+id/ll_dongdong"
             android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingBottom="2dp">
@@ -121,9 +121,10 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:paddingTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:orientation="vertical">
 
@@ -140,7 +141,7 @@
                     android:id="@+id/tv_bank_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
+                    android:maxLines="2"
                     android:text="开户行：中国银行股份有限公司苏州阊门支行"
                     android:textColor="#5c5c5c"
                     android:textSize="8dp" />
@@ -150,6 +151,21 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:text="账号：5365679038835"
+                    android:textColor="#5c5c5c"
+                    android:textSize="8dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="税号：91320508MA1MBQK589"
+                    android:textColor="#5c5c5c"
+                    android:textSize="8dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="电话：0512-67202373   15190005031"
                     android:textColor="#5c5c5c"
                     android:textSize="8dp" />
 

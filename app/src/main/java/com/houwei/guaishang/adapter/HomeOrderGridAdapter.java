@@ -23,6 +23,8 @@ import com.houwei.guaishang.tools.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.internal.Util;
+
 /**
  * Created by Administrator on 2017/10/14.
  */
@@ -34,6 +36,7 @@ public class HomeOrderGridAdapter extends BaseAdapter implements View.OnClickLis
 
     float itemWidth;
     float itemHeight;
+    private int column;
 
     public HomeOrderGridAdapter(Context context, List<AvatarBean> datas) {
         this.mContext=context;
@@ -44,19 +47,19 @@ public class HomeOrderGridAdapter extends BaseAdapter implements View.OnClickLis
     private void calculateWidthAndHeight() {
         int screenWidth = Utils.getScreenWidth(mContext);
         //187是gridview的总高度
-        float totalHeight = Utils.dip2px(mContext, 187);
+//        float totalHeight = Utils.dip2px(mContext, 187);
         //16: 是父控件(viewpager)左右padding之和16dp
         float leftAndRightPadding = Utils.dip2px(mContext, 16);
 
-        int column = getCount() >= 3 ? 3 : getCount();
-        int lines = getCount() / 3 + (getCount() % 3 > 0 ? 1 : 0);
-        lines = lines > 3 ? 3 : lines;
+        column = getCount() >= 3 ? 3 : getCount();
+//        int lines = getCount() / 3 + (getCount() % 3 > 0 ? 1 : 0);
+//        lines = lines > 3 ? 3 : lines;
 
         float horizontalSpacing = (column - 1) * Utils.dip2px(mContext, 10);
-        float verticalSpacing = (lines - 1) * Utils.dip2px(mContext, 4);
+//        float verticalSpacing = (lines - 1) * Utils.dip2px(mContext, 4);
 
         itemWidth = (screenWidth - leftAndRightPadding - horizontalSpacing) / column;
-        itemHeight = (totalHeight - verticalSpacing) / lines;
+//        itemHeight = (totalHeight - verticalSpacing) / lines;
     }
 
     @Override
@@ -79,7 +82,7 @@ public class HomeOrderGridAdapter extends BaseAdapter implements View.OnClickLis
         GridViewholder viewHolder = null;
         if (convertView == null) {
             convertView = View.inflate(mContext, R.layout.home_order_grid_item, null);
-            viewHolder = new GridViewholder(convertView);
+            viewHolder = new GridViewholder(convertView, column);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (GridViewholder) convertView.getTag();
@@ -110,13 +113,18 @@ public class HomeOrderGridAdapter extends BaseAdapter implements View.OnClickLis
         public ImageView imageView;
         private Context context;
 
-        public GridViewholder(View itemView) {
+        public GridViewholder(View itemView, int column) {
             super(itemView);
             context = itemView.getContext();
             imageView = (ImageView) itemView.findViewById(R.id.image);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) imageView.getLayoutParams();
-            params.width = (int) itemWidth;
-            params.height = (int) itemHeight;
+            if (column < 3) {
+                params.width = (int) Utils.dip2px(context, 135);
+                params.height = (int) Utils.dip2px(context, 187);
+            } else {
+                params.width = (int) itemWidth;
+                params.height = (int) itemWidth;
+            }
             imageView.setLayoutParams(params);
         }
 
