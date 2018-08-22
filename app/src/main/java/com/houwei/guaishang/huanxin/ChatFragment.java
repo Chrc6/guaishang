@@ -637,7 +637,7 @@ public class ChatFragment extends BaseFragment implements EMEventListener ,MyLoc
             public void onBigExpressionClicked(EaseEmojicon emojicon) {
                 // 发送大表情(动态表情)
                 sendBigExpressionMessage(emojicon.getName(),
-                        emojicon.getIdentityCode(),chatInfo.getHisRealName());
+                        emojicon.getIdentityCode(),chatInfo.getHisUserID());
             }
         });
 

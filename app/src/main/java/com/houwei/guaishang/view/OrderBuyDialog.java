@@ -133,7 +133,11 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
             case R.id.rb_pay:
                 rbShare.setChecked(true);
                 rbPay.setChecked(false);
-                if (money < 10) {
+                float robPrice = 10;
+                if (bean != null) {
+                    robPrice = bean.getRobbingPrice();
+                }
+                if (money < robPrice) {
                     goToRechargeActivity();
                 } else {
                     if (callBack != null){

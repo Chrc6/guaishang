@@ -9,6 +9,7 @@ import com.houwei.guaishang.R;
 import com.houwei.guaishang.bean.StringResponse;
 import com.houwei.guaishang.tools.HttpUtil;
 import com.houwei.guaishang.tools.JsonParser;
+import com.houwei.guaishang.tools.Utils;
 import com.houwei.guaishang.views.AnimationYoYo;
 
 import android.content.Context;
@@ -17,6 +18,8 @@ import android.media.MediaRouter.UserRouteInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -144,6 +147,25 @@ public class UserFindPasswordActivity extends BaseActivity {
 		check_pw_et = (EditText) findViewById(R.id.check_pw_et);
 //		 new_password_et2= (EditText) findViewById(R.id.new_password_et2);
 		pw_et_1 = (EditText) findViewById(R.id.pw_et_1);
+		pw_et_1.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				String data = Utils.stringFilter(String.valueOf(s));
+				if (!String.valueOf(s).equals(data)) {
+					pw_et_1.setText(data);
+				}
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+
+			}
+		});
 
 		initProgressDialog(false, null);
 		handler.postDelayed(new Runnable() {

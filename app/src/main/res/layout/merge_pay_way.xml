@@ -142,7 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
-                    android:text="开户行：中国银行股份有限公司苏州阊门支行"
+                    android:text="开户行：中国银行苏州观前支行"
                     android:textColor="#5c5c5c"
                     android:textSize="8dp" />
 
@@ -150,7 +150,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:text="账号：5365679038835"
+                    android:text="账号：536567903835"
                     android:textColor="#5c5c5c"
                     android:textSize="8dp" />
 
