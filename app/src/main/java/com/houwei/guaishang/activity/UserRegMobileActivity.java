@@ -266,9 +266,13 @@ public class UserRegMobileActivity extends BaseActivity implements HuanXinManage
 		if (pageType == PAGE_TYPE_REGISTER) {
 			registerBt.setSelected(true);
 			loginBt.setSelected(false);
+			ll_register.setVisibility(View.VISIBLE);
+			ll_login.setVisibility(View.GONE);
 		} else {
 			registerBt.setSelected(false);
 			loginBt.setSelected(true);
+			ll_register.setVisibility(View.GONE);
+			ll_login.setVisibility(View.VISIBLE);
 		}
 	}
 
