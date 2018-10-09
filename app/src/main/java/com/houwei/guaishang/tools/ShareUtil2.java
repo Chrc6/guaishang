@@ -264,10 +264,10 @@ public class ShareUtil2 {
 		sp.setTitle(content);//朋友圈只显示这个
 		sp.setText(content);//朋友圈不显示此字段
 		sp.setUrl(url);
-		if (imageUrl != null) {
+		if (imageUrl != null && !"".equals(imageUrl)) {
 			sp.setImageUrl(imageUrl);
 		} else {
-			Drawable picture_update_icon = context.getResources().getDrawable(R.drawable.ic_launcher);
+			Drawable picture_update_icon = context.getResources().getDrawable(R.mipmap.logo);
 			sp.setImageData(((BitmapDrawable) picture_update_icon).getBitmap());
 		}
 		Platform platform = ShareSDK.getPlatform(WechatMoments.NAME);

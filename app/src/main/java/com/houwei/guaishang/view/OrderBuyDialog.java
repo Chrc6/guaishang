@@ -20,7 +20,6 @@ import android.widget.TextView;
 import com.houwei.guaishang.R;
 import com.houwei.guaishang.activity.BaseActivity;
 import com.houwei.guaishang.activity.RechargeDialogActivity;
-import com.houwei.guaishang.activity.TopicDetailActivity;
 import com.houwei.guaishang.bean.TopicBean;
 import com.houwei.guaishang.event.UpdateMoneyEvent;
 import com.houwei.guaishang.tools.HttpUtil;
@@ -162,7 +161,6 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
                 PlatformActionListener platformActionListener = new PlatformActionListener() {
                     @Override
                     public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-                            //送10元券
                         OkGo.<String>post(HttpUtil.IP + "user/modify")
                                 .params("userid", activity.getUserID())
                                 .params("topicid", bean.getTopicId())
@@ -194,7 +192,7 @@ public class OrderBuyDialog extends Dialog implements OnClickListener {
 
                     }
                 };
-                String content = "分享朋友圈送10元券";
+                String content = "分享免费抢单";
                 String url = HttpUtil.SHARE_TOPIC_IP + bean.getTopicId();
                 ShareUtil2.shareToWXmomentsForOrderBuy(mContext,content,url,"",platformActionListener);
                 break;
